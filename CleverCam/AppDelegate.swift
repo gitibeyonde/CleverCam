@@ -6,14 +6,22 @@
 //
 
 import UIKit
+import Firebase
+import UserNotifications
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let pushManager = PushNotificationManager(userID: "currently_logged_in_user_id")
+            pushManager.registerForPushNotifications()
+            
+        FirebaseApp.configure()
+        
         return true
     }
 
@@ -31,6 +39,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: [.alert, .sound]
+          ) {(accepted, error) in
+            if !accepted {
+              print("Notification access denied.")
+            }
+          }
+          UNUserNotificationCenter.current().delegate = self
+    }
+    func userNotificationCenter(
+      _ center: UNUserNotificationCenter,
+      willPresent notification: UNNotification,
+      withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        completionHandler(.alert)
+    }
+
+    func userNotificationCenter(
+      _ center: UNUserNotificationCenter,
+      didReceive response: UNNotificationResponse,
+      withCompletionHandler completionHandler: @escaping () -> Void) {
+
+      completionHandler()
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print(fcmToken!)
+        Users.setFCMtoken(object: fcmToken!)
+    }
 
 }
+
 
