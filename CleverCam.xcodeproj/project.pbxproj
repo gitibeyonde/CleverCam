@@ -24,6 +24,7 @@
 		AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F8297271820270054DA5E /* DeviceViewController.swift */; };
 		AB7F82AB271837950054DA5E /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82A9271837950054DA5E /* DeviceCell.swift */; };
 		AB7F82AC271837950054DA5E /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7F82AA271837950054DA5E /* DeviceCell.xib */; };
+		AB7F82B127197DEA0054DA5E /* JsonObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82B027197DEA0054DA5E /* JsonObjects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		AB7F8297271820270054DA5E /* DeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		AB7F82A9271837950054DA5E /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		AB7F82AA271837950054DA5E /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
+		AB7F82B027197DEA0054DA5E /* JsonObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonObjects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				AB7F8297271820270054DA5E /* DeviceViewController.swift */,
 				AB7F82A9271837950054DA5E /* DeviceCell.swift */,
 				AB7F82AA271837950054DA5E /* DeviceCell.xib */,
+				AB7F82B027197DEA0054DA5E /* JsonObjects.swift */,
 			);
 			path = device;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */,
 				AB7F828427170E4B0054DA5E /* User.swift in Sources */,
 				AB7F828E271711FC0054DA5E /* JsonModel.swift in Sources */,
+				AB7F82B127197DEA0054DA5E /* JsonObjects.swift in Sources */,
 				AB7F82632716D0D70054DA5E /* ViewController.swift in Sources */,
 				AB7F828B271710B30054DA5E /* HttpRequest.swift in Sources */,
 				AB7F829427181B220054DA5E /* PushNotificationManager.swift in Sources */,

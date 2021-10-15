@@ -10,6 +10,7 @@ import UIKit
 class DeviceViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
     @IBOutlet var collectionView: UICollectionView!
+    var deviceList:Array<Device> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,10 +18,33 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         let nibCell = UINib(nibName: "DeviceCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "deviceCell")
+        
+        
+        HttpRequest.deviceList(self) { (output) in
+            DispatchQueue.main.async {
+                do {
+                    let decoder = JSONDecoder()
+                    self.deviceList = try decoder.decode([Device].self, from: output)
+                    for device in self.deviceList {
+                        print(device.uuid)
+                        HttpRequest.lastAlerts(self, uuid: device.uuid) { (output) in
+                            DispatchQueue.main.async {
+                                print(output)
+                            }
+                        }
+                    }
+                    print("done model")
+                    self.collectionView.reloadData()
+               } catch let error {
+                    print("ERROR")
+                    print(error)
+               }
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return 3
+        return self.deviceList.count
     }
     
     // make a cell for each cell index path
@@ -29,8 +53,8 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deviceCell", for: indexPath as IndexPath) as! DeviceCell
         
-        // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
+        print("Index Path=")
+        print(indexPath)
         
         return cell
     }
@@ -46,4 +70,17 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         let height = (width * 0.95)
         return CGSize (width: width, height: height)
     }
+}
+
+
+
+extension DeviceViewController: HttpRequestDelegate {
+    func onError() {
+        DispatchQueue.main.async() {
+            let alert = UIAlertController(title: "Ops", message: "An error has occurred...", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+
 }

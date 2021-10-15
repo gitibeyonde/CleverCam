@@ -16,6 +16,8 @@ public struct HttpRequest {
     
     public typealias SuccessCompletionHandler = (_ response: String) -> Void
     
+    public typealias JsonSuccessCompletionHandler = (_ response: Data) -> Void
+    
     static func get(_ delegate: HttpRequestDelegate?, url: String,
                     success successCallback: @escaping SuccessCompletionHandler
     ) {
@@ -58,9 +60,10 @@ public struct HttpRequest {
         dataTask?.resume()
     }
     
-    static func login(_ delegate: HttpRequestDelegate?, url: String, base64LoginString: String,
+    static func login(_ delegate: HttpRequestDelegate?, base64LoginString: String,
                     success successCallback: @escaping SuccessCompletionHandler
     ) {
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=login"
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
             delegate?.onError()
             return
@@ -97,6 +100,96 @@ public struct HttpRequest {
         }
         dataTask?.resume()
     }
+    
+    //"https://ping.ibeyonde.com/api/iot.php?view=lastalerts&uuid=" + uuid;
+    static func deviceList(_ delegate: HttpRequestDelegate?,
+                    success successCallback: @escaping JsonSuccessCompletionHandler
+    ) {
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=devicelist"
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        
+        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    //send this block to required place
+                    successCallback(data)
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
+    
+    //"https://ping.ibeyonde.com/api/iot.php?view=lastalerts&uuid=" + uuid;
+    static func lastAlerts(_ delegate: HttpRequestDelegate?, uuid: String,
+                    success successCallback: @escaping JsonSuccessCompletionHandler
+    ) {
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=lastalerts&uuid=" + uuid;
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        
+        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    let respstr = String(decoding: data, as: UTF8.self)
+                    print("Response " + respstr)
+                    successCallback(data)
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
+    
     static func sendFCMToken(_ delegate: HttpRequestDelegate?, strToken : String,  success successCallback: @escaping SuccessCompletionHandler)
     {
         //https:///api/iot.php?view=token&username=demo&token=esEETMYXPxk:APA91bH7TMtcrfO7MmGYArkPYNEIRXpwFFfwwYB2F52XjyZnj2XIi1ANWevZ4579ITZ9Dp1LG9oQdj_-IpocyjpzkAsUlN102YEDNlTKvdX-aqcyhHFmt4JnzkjPMnkI_5L9jV_u9AO2BNFwzCYtTvKPYefKrqtAmQ&system=android&system_type=android&country=IN&language=en&phone_id=351897081138731

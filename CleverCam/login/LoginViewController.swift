@@ -56,9 +56,7 @@ class LoginViewController: UIViewController {
             let loginData = loginString.data(using: String.Encoding.utf8)!
             let base64LoginString = loginData.base64EncodedString()
 
-            print("https://ping.ibeyonde.com/api/iot.php?view=login")
-            print(base64LoginString);
-            HttpRequest.login(self, url: "https://ping.ibeyonde.com/api/iot.php?view=login", base64LoginString: base64LoginString) { (output) in
+            HttpRequest.login(self, base64LoginString: base64LoginString) { (output) in
                 DispatchQueue.main.async {
                     if output.contains("Success"){
                         print("Login Successful")
