@@ -22,11 +22,15 @@ class ViewController: UIViewController {
         
         if Users.getLoginStatus() == "true"
         {
-            print("User logged in")
+            print("Remember me true")
+            self.performSegue(withIdentifier: "ShowDevice", sender: nil)
+            print("Perform Segue ShowDevice")
+            
         }
         else {
+            print("User logged in")
             self.performSegue(withIdentifier: "ShowLogin", sender: nil)
-            print("Perform Segue")
+            print("Perform Segue ShowLogin")
         }
     }
     

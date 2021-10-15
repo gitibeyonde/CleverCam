@@ -45,7 +45,7 @@ class Users: NSObject {
         else
         {
             return UserDefaults.standard.object(forKey: isRemember) as! String
-            
+        
         }
     }
     class func setTeamId (object : String)

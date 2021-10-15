@@ -107,9 +107,13 @@ public struct HttpRequest {
             delegate?.onError()
             return
         }
+        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
 
         var request = URLRequest(url: usableUrl)
         request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
         request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
         
         var dataTask: URLSessionDataTask?

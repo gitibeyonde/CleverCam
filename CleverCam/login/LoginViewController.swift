@@ -62,15 +62,16 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     if output.contains("Success"){
                         print("Login Successful")
+                        Users.setUserName(object: self.username.text!)
+                        Users.setPassword(object: self.password.text!)
+                        Users.setLoginStatus(object: "true")
+                        
                         if Users.getFCMtoken() != ""
                         {
                             HttpRequest.sendFCMToken(self, strToken: Users.getFCMtoken()) { (output) in
                                 print("FCM token sent successfully to server.")
                             }
                         }
-                        Users.setUserName(object: self.username.text!)
-                        Users.setUserName(object: self.password.text!)
-                        Users.setLastName(object: "true")
                         self.performSegue(withIdentifier: "ShowDevice", sender: nil)
                     }
                     else {

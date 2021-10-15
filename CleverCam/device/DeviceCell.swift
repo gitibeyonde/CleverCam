@@ -12,6 +12,7 @@ class DeviceCell: UICollectionViewCell {
     @IBOutlet var image: UIImageView!
     @IBOutlet var deviceName: UILabel!
     
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
