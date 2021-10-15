@@ -53,9 +53,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deviceCell", for: indexPath as IndexPath) as! DeviceCell
         
-        print("Index Path=")
-        print(indexPath)
-        
         return cell
     }
     

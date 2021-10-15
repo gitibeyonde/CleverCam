@@ -178,8 +178,14 @@ public struct HttpRequest {
                     let data: Data = data,
                     let response = response as? HTTPURLResponse,
                     response.statusCode == 200 {
-                    let respstr = String(decoding: data, as: UTF8.self)
-                    print("Response " + respstr)
+                    do {
+                        let jsonObjects: [Array] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [Array<String>]
+                 
+                        print(jsonObjects[0][0])
+                    }
+                    catch {
+                        print("Something went wrong")
+                    }
                     successCallback(data)
                 }
                 else {
