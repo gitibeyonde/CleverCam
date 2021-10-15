@@ -9,10 +9,14 @@ import UIKit
 
 class DeviceViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
+    @IBOutlet var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loading device view controller")
+        
+        let nibCell = UINib(nibName: "DeviceCell", bundle: nil)
+        collectionView.register(nibCell, forCellWithReuseIdentifier: "deviceCell")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
