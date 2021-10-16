@@ -10,7 +10,6 @@ import UIKit
 class DeviceViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
     @IBOutlet var collectionView: UICollectionView!
-    var deviceList:Array<Device> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,17 +23,17 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
             DispatchQueue.main.async {
                 do {
                     let decoder = JSONDecoder()
-                    self.deviceList = try decoder.decode([Device].self, from: output)
-                    for device in self.deviceList {
+                    let deviceList:Array<Device> = try decoder.decode([Device].self, from: output)
+                    ApiContext.shared.setDeviceList(deviceList: deviceList)
+                    for device in deviceList {
                         print(device.uuid)
                         HttpRequest.lastAlerts(self, uuid: device.uuid) { (output) in
                             DispatchQueue.main.async {
-                                print(output)
+                                self.collectionView.reloadData()
                             }
                         }
                     }
                     print("done model")
-                    self.collectionView.reloadData()
                } catch let error {
                     print("ERROR")
                     print(error)
@@ -44,7 +43,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.deviceList.count
+        return ApiContext.shared.deviceAlertList.count
     }
     
     // make a cell for each cell index path
@@ -52,6 +51,12 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deviceCell", for: indexPath as IndexPath) as! DeviceCell
+        
+        let index :Int = indexPath[1]
+        
+        let da: Device = ApiContext.shared.getDevice(index: index)
+        
+        cell.deviceName.text = da.device_name
         
         return cell
     }

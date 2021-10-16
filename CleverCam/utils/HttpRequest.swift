@@ -18,6 +18,8 @@ public struct HttpRequest {
     
     public typealias JsonSuccessCompletionHandler = (_ response: Data) -> Void
     
+    public typealias AlertSuccessCompletionHandler = (_ response: Array<Alert>) -> Void
+    
     static func get(_ delegate: HttpRequestDelegate?, url: String,
                     success successCallback: @escaping SuccessCompletionHandler
     ) {
@@ -147,7 +149,7 @@ public struct HttpRequest {
     
     //"https://ping.ibeyonde.com/api/iot.php?view=lastalerts&uuid=" + uuid;
     static func lastAlerts(_ delegate: HttpRequestDelegate?, uuid: String,
-                    success successCallback: @escaping JsonSuccessCompletionHandler
+                    success successCallback: @escaping AlertSuccessCompletionHandler
     ) {
         let url = "https://ping.ibeyonde.com/api/iot.php?view=lastalerts&uuid=" + uuid;
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
@@ -178,15 +180,18 @@ public struct HttpRequest {
                     let data: Data = data,
                     let response = response as? HTTPURLResponse,
                     response.statusCode == 200 {
+                    var alertList: Array<Alert> = Array<Alert>()
                     do {
                         let jsonObjects: [Array] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [Array<String>]
-                 
-                        print(jsonObjects[0][0])
+                        for jsonObject in jsonObjects {
+                            alertList.append(Alert(url: jsonObject[0], time: jsonObject[1]))
+                        }
+                        ApiContext.shared.setDeviceAlerts(uuid: uuid, alertList: alertList)
                     }
                     catch {
                         print("Something went wrong")
                     }
-                    successCallback(data)
+                    successCallback(alertList)
                 }
                 else {
                     print("Unknown error")
