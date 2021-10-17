@@ -61,20 +61,18 @@
                         </subviews>
                     </stackView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico256" translatesAutoresizingMaskIntoConstraints="NO" id="A0q-h4-8ON">
-                        <rect key="frame" x="20" y="52" width="320" height="240"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="320" id="Gnn-iL-xzl"/>
-                            <constraint firstAttribute="height" constant="240" id="Z5W-ze-m6X"/>
-                        </constraints>
+                        <rect key="frame" x="0.0" y="37" width="365" height="273"/>
                     </imageView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="YVw-ZM-wAR" secondAttribute="trailing" id="H7o-Md-CGz"/>
+                <constraint firstAttribute="trailing" secondItem="A0q-h4-8ON" secondAttribute="trailing" id="KLu-dz-Wo2"/>
                 <constraint firstItem="YVw-ZM-wAR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Nfl-aV-GLI"/>
                 <constraint firstItem="YVw-ZM-wAR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="Pl6-6c-rua"/>
-                <constraint firstItem="A0q-h4-8ON" firstAttribute="top" secondItem="YVw-ZM-wAR" secondAttribute="bottom" constant="20" id="ber-6J-mlP"/>
-                <constraint firstItem="A0q-h4-8ON" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="moF-PX-cZ8"/>
+                <constraint firstItem="A0q-h4-8ON" firstAttribute="top" secondItem="YVw-ZM-wAR" secondAttribute="bottom" constant="5" id="ber-6J-mlP"/>
+                <constraint firstAttribute="bottom" secondItem="A0q-h4-8ON" secondAttribute="bottom" id="fzq-Dg-jfB"/>
+                <constraint firstItem="A0q-h4-8ON" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="moF-PX-cZ8"/>
             </constraints>
             <size key="customSize" width="365" height="310"/>
             <connections>

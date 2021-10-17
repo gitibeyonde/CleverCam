@@ -47,8 +47,12 @@ class ApiContext: NSObject {
         }
         return Array<Alert>()
     }
-    public func getDeviceAlerts(index: Int)->DeviceAlerts {
-        return deviceAlertList[index]
+    public func getDeviceAlerts(index: Int)->Array<Alert> {
+        return deviceAlertList[index].alertlist
+    }
+    
+    public func allDeviceAlertsAvailable()->Bool {
+        return deviceList.count == deviceList.count
     }
 
 }

@@ -43,6 +43,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("Count is ", ApiContext.shared.deviceAlertList.count)
         return ApiContext.shared.deviceAlertList.count
     }
     
@@ -53,11 +54,28 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deviceCell", for: indexPath as IndexPath) as! DeviceCell
         
         let index :Int = indexPath[1]
-        
-        let da: Device = ApiContext.shared.getDevice(index: index)
-        
-        cell.deviceName.text = da.device_name
-        
+        if ApiContext.shared.deviceAlertList.count > index {
+            let da: Device = ApiContext.shared.getDevice(index: index)
+            cell.deviceName.text = da.device_name
+            let al: Array<Alert> = ApiContext.shared.getDeviceAlerts(index: index)
+            
+            if al.count > 0 {
+                print("-----------------------------------------------", da.device_name)
+                
+                let url = URL(string: al[0].url)!
+                print(url)
+                getData(from: url) { data, response, error in
+                       guard let data = data, error == nil else { return }
+                       print(response?.suggestedFilename ?? url.lastPathComponent)
+                       print("Download Finished")
+                       // always update the UI from the main thread
+                       DispatchQueue.main.async() {
+                            cell.image.contentMode = .scaleAspectFit
+                            cell.image.image = UIImage(data: data)
+                       }
+                   }
+            }
+        }
         return cell
     }
     

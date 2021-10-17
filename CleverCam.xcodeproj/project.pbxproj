@@ -25,6 +25,7 @@
 		AB7F82AC271837950054DA5E /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7F82AA271837950054DA5E /* DeviceCell.xib */; };
 		AB7F82B127197DEA0054DA5E /* ApiObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82B027197DEA0054DA5E /* ApiObjects.swift */; };
 		AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82B4271A9E620054DA5E /* ApiContext.swift */; };
+		AB7F82BC271BE2CA0054DA5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82BB271BE2CA0054DA5E /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		AB7F82AA271837950054DA5E /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
 		AB7F82B027197DEA0054DA5E /* ApiObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiObjects.swift; sourceTree = "<group>"; };
 		AB7F82B4271A9E620054DA5E /* ApiContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiContext.swift; sourceTree = "<group>"; };
+		AB7F82BB271BE2CA0054DA5E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				AB7F829327181B220054DA5E /* PushNotificationManager.swift */,
 				AB7F82B4271A9E620054DA5E /* ApiContext.swift */,
 				AB7F82B027197DEA0054DA5E /* ApiObjects.swift */,
+				AB7F82BB271BE2CA0054DA5E /* Utils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */,
 				AB7F828427170E4B0054DA5E /* User.swift in Sources */,
 				AB7F82B127197DEA0054DA5E /* ApiObjects.swift in Sources */,
+				AB7F82BC271BE2CA0054DA5E /* Utils.swift in Sources */,
 				AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */,
 				AB7F82632716D0D70054DA5E /* ViewController.swift in Sources */,
 				AB7F828B271710B30054DA5E /* HttpRequest.swift in Sources */,

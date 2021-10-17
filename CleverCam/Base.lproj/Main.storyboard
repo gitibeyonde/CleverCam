@@ -395,7 +395,7 @@
                                 </subviews>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MPf-LB-DIT">
-                                <rect key="frame" x="10" y="10" width="394" height="780"/>
+                                <rect key="frame" x="0.0" y="10" width="414" height="780"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="l8u-nW-zUu">
                                     <size key="itemSize" width="128" height="128"/>
@@ -413,10 +413,10 @@
                         <viewLayoutGuide key="safeArea" id="OYl-jw-GzO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="MPf-LB-DIT" firstAttribute="top" secondItem="OYl-jw-GzO" secondAttribute="top" constant="10" id="EEo-dP-vD0"/>
-                            <constraint firstItem="MPf-LB-DIT" firstAttribute="leading" secondItem="OYl-jw-GzO" secondAttribute="leading" constant="10" id="MhO-EJ-9gy"/>
-                            <constraint firstItem="OYl-jw-GzO" firstAttribute="trailing" secondItem="MPf-LB-DIT" secondAttribute="trailing" constant="10" id="Opl-tE-W6x"/>
-                            <constraint firstItem="cXM-lL-ySS" firstAttribute="top" secondItem="MPf-LB-DIT" secondAttribute="bottom" constant="10" id="wqG-iN-Kj6"/>
+                            <constraint firstItem="MPf-LB-DIT" firstAttribute="centerX" secondItem="cXM-lL-ySS" secondAttribute="centerX" id="FKK-GI-RiW"/>
+                            <constraint firstItem="cXM-lL-ySS" firstAttribute="top" secondItem="MPf-LB-DIT" secondAttribute="bottom" constant="10" id="TZq-r5-S8L"/>
+                            <constraint firstItem="MPf-LB-DIT" firstAttribute="top" secondItem="OYl-jw-GzO" secondAttribute="top" constant="10" id="fjO-KG-SGx"/>
+                            <constraint firstItem="MPf-LB-DIT" firstAttribute="leading" secondItem="mrL-Ze-o3X" secondAttribute="leading" id="ywt-eK-czT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2ML-iQ-vyB"/>
