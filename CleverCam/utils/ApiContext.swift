@@ -54,5 +54,14 @@ class ApiContext: NSObject {
     public func allDeviceAlertsAvailable()->Bool {
         return deviceList.count == deviceList.count
     }
-
+    
+    var cache:[URL: Data] = [URL: Data]()
+    
+    public func addImage(url: URL, data: Data)->Void {
+        cache[url] = data
+    }
+    
+    public func getImage(url: URL)->Data {
+        return cache[url] ?? Data.init()
+    }
 }

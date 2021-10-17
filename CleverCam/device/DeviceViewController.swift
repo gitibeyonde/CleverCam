@@ -10,6 +10,7 @@ import UIKit
 class DeviceViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
     @IBOutlet var collectionView: UICollectionView!
+    var counter: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +41,22 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                }
             }
         }
+        
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        
     }
     
+    @objc func fireTimer() {
+        print("counter=", counter)
+        counter+=1
+        if counter>=10 {
+            counter=0;
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("Count is ", ApiContext.shared.deviceAlertList.count)
         return ApiContext.shared.deviceAlertList.count
@@ -62,18 +77,27 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
             if al.count > 0 {
                 print("-----------------------------------------------", da.device_name)
                 
-                let url = URL(string: al[0].url)!
-                print(url)
-                getData(from: url) { data, response, error in
-                       guard let data = data, error == nil else { return }
-                       print(response?.suggestedFilename ?? url.lastPathComponent)
-                       print("Download Finished")
-                       // always update the UI from the main thread
-                       DispatchQueue.main.async() {
-                            cell.image.contentMode = .scaleAspectFit
-                            cell.image.image = UIImage(data: data)
+                let url = URL(string: al[counter].url)!
+                let data:Data = ApiContext.shared.getImage(url: url)
+                if data.isEmpty {
+                    getData(from: url) { data, response, error in
+                            guard let data = data, error == nil else { return }
+                            print(response?.suggestedFilename ?? url.lastPathComponent)
+                            ApiContext.shared.addImage(url: url, data: data)
+                            // always update the UI from the main thread
+                            DispatchQueue.main.async() {
+                                cell.image.image = UIImage(data: data)
+                                cell.image.sizeToFit()
+                            }
                        }
-                   }
+                }
+                else {
+                    DispatchQueue.main.async() {
+                        print("Cache hit")
+                        cell.image.image = UIImage(data: data)
+                        cell.image.sizeToFit()
+                    }
+                }
             }
         }
         return cell
