@@ -11,7 +11,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     @IBOutlet var collectionView: UICollectionView!
     var counter: Int = 0
-    public static var device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+    public static var device_timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +40,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                     print("ERROR")
                     print(error)
                }
+                DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
             }
         }
     }
@@ -87,7 +88,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                             // always update the UI from the main thread
                             DispatchQueue.main.async() {
                                 cell.image.image = UIImage(data: data)
-                                cell.image.sizeToFit()
                             }
                        }
                 }
@@ -95,7 +95,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                     DispatchQueue.main.async() {
                         print("Cache hit")
                         cell.image.image = UIImage(data: data)
-                        cell.image.sizeToFit()
                     }
                 }
             }
@@ -118,8 +117,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     
 }
 
-
-
 extension DeviceViewController: HttpRequestDelegate {
     func onError() {
         DispatchQueue.main.async() {
@@ -137,5 +134,19 @@ extension DeviceViewController: DeviceCellDelegate {
         print("uuid clieckd = \(uuid)")
         HistoryViewController.uuid = uuid
         self.performSegue(withIdentifier: "ShowHistory", sender: uuid)
+    }
+    
+    func liveClicked(with uuid: String) {
+        DeviceViewController.device_timer.invalidate()
+        print("uuid clieckd = \(uuid)")
+        LiveViewController.uuid = uuid
+        self.performSegue(withIdentifier: "ShowLive", sender: uuid)
+    }
+    
+    func settingsClicked(with uuid: String) {
+        DeviceViewController.device_timer.invalidate()
+        print("uuid clieckd = \(uuid)")
+        SettingsViewController.uuid = uuid
+        self.performSegue(withIdentifier: "ShowSettings", sender: uuid)
     }
 }

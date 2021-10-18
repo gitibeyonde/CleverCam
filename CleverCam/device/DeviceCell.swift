@@ -9,6 +9,8 @@ import UIKit
 
 protocol DeviceCellDelegate: AnyObject {
     func historyClicked(with uuid: String)
+    func liveClicked(with uuid: String)
+    func settingsClicked(with uuid: String)
 }
 
 class DeviceCell: UICollectionViewCell {
@@ -24,12 +26,16 @@ class DeviceCell: UICollectionViewCell {
     }
 
     @IBAction func settingsClick(_ sender: Any) {
+        print("settings clicked")
+        delegate?.settingsClicked(with: uuid)
     }
     @IBAction func historyClicked(_ sender: Any) {
         print("history clicked")
         delegate?.historyClicked(with: uuid)
     }
     @IBAction func liveClicked(_ sender: Any) {
+        print("live clicked")
+        delegate?.liveClicked(with: uuid)
     }
     
     public func configure(uuid: String){

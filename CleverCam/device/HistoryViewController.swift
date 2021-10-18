@@ -53,7 +53,7 @@ class HistoryViewController: UIViewController , UICollectionViewDataSource, UICo
                     // always update the UI from the main thread
                     DispatchQueue.main.async() {
                         cell.image.image = UIImage(data: data)
-                        cell.image.sizeToFit()
+                        cell.image.frame = CGRect(x: 0, y: 0, width: 320, height: 240)
                     }
                }
         }
@@ -61,7 +61,7 @@ class HistoryViewController: UIViewController , UICollectionViewDataSource, UICo
             DispatchQueue.main.async() {
                 print("Cache hit")
                 cell.image.image = UIImage(data: data)
-                cell.image.sizeToFit()
+                cell.image.frame = CGRect(x: 0, y: 0, width: 320, height: 240)
             }
         }
         

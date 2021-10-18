@@ -383,10 +383,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu0-B6-rOi">
                                         <rect key="frame" x="103.5" y="0.0" width="11" height="22"/>
                                         <state key="normal" image="info" catalog="system"/>
+                                        <connections>
+                                            <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="lPu-xw-AAb"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3G-Ns-Cd2">
                                         <rect key="frame" x="193.5" y="0.0" width="21" height="22"/>
                                         <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <connections>
+                                            <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="4l0-Ab-iBd"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ld-BR-X8O">
                                         <rect key="frame" x="293.5" y="0.0" width="21" height="22"/>
@@ -394,7 +400,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MPf-LB-DIT">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MPf-LB-DIT">
                                 <rect key="frame" x="0.0" y="10" width="413.5" height="780"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="l8u-nW-zUu">
@@ -423,11 +429,249 @@
                     <connections>
                         <outlet property="collectionView" destination="MPf-LB-DIT" id="y3n-6i-aSz"/>
                         <segue destination="vtE-H4-AyR" kind="show" identifier="ShowHistory" id="SqE-2b-x1g"/>
+                        <segue destination="NCE-0w-BAR" kind="show" identifier="ShowLive" id="DUZ-Kt-ayi"/>
+                        <segue destination="rJR-dg-IM9" kind="show" identifier="ShowSettings" id="wda-av-RYE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zmk-PV-T5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1134.7826086956522" y="-41.517857142857139"/>
+            <point key="canvasLocation" x="1004" y="27"/>
+        </scene>
+        <!--Live View Controller-->
+        <scene sceneID="7Gw-g6-Uxn">
+            <objects>
+                <viewController storyboardIdentifier="LiveViewController" id="NCE-0w-BAR" customClass="LiveViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="phq-be-GBR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ai-Kg-XYM">
+                                <rect key="frame" x="0.0" y="20" width="414" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="cWP-ba-bf7">
+                                <rect key="frame" x="50" y="786" width="314.5" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U26-lx-wU2">
+                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="22"/>
+                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                        <connections>
+                                            <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="E62-aZ-Sai"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXd-6U-YZr">
+                                        <rect key="frame" x="103.5" y="0.0" width="11" height="22"/>
+                                        <state key="normal" image="info" catalog="system"/>
+                                        <connections>
+                                            <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="kXl-YN-FhJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSN-Lg-oRI">
+                                        <rect key="frame" x="193.5" y="0.0" width="21" height="22"/>
+                                        <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <connections>
+                                            <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="DI4-WP-KHY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrU-Gk-A3m">
+                                        <rect key="frame" x="293.5" y="0.0" width="21" height="22"/>
+                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <connections>
+                                            <segue destination="rJR-dg-IM9" kind="show" identifier="ShowSettings" id="09U-8J-npx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yCi-vZ-qft">
+                                <rect key="frame" x="0.0" y="60" width="414" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yCi-vZ-qft" secondAttribute="height" multiplier="69:50" id="Zbl-Hc-d2C"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yl8-R3-eFY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1Ai-Kg-XYM" firstAttribute="leading" secondItem="yCi-vZ-qft" secondAttribute="leading" id="1eO-ZZ-opI"/>
+                            <constraint firstItem="yCi-vZ-qft" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="DOM-nF-wSU"/>
+                            <constraint firstItem="1Ai-Kg-XYM" firstAttribute="top" secondItem="phq-be-GBR" secondAttribute="top" constant="20" symbolic="YES" id="Lpe-8B-LOw"/>
+                            <constraint firstItem="yCi-vZ-qft" firstAttribute="top" secondItem="1Ai-Kg-XYM" secondAttribute="bottom" constant="19.5" id="o3d-Ve-e6c"/>
+                            <constraint firstItem="1Ai-Kg-XYM" firstAttribute="trailing" secondItem="yCi-vZ-qft" secondAttribute="trailing" id="rfK-b6-8gq"/>
+                            <constraint firstItem="yCi-vZ-qft" firstAttribute="trailing" secondItem="yl8-R3-eFY" secondAttribute="trailing" id="srK-LN-CA9"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="TfO-Bb-iqB"/>
+                    <connections>
+                        <outlet property="deviceName" destination="1Ai-Kg-XYM" id="1Pr-iZ-QSO"/>
+                        <outlet property="video" destination="yCi-vZ-qft" id="Eid-T4-bLh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="42k-bw-qse" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1922" y="398"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="VVF-ys-afv">
+            <objects>
+                <viewController id="rJR-dg-IM9" customClass="SettingsViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VLi-Oq-NJ5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alS-cO-TH2">
+                                <rect key="frame" x="0.0" y="20" width="414" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="OKY-xf-fqC">
+                                <rect key="frame" x="44" y="774" width="314.5" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JsL-w7-OO4">
+                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="22"/>
+                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                        <connections>
+                                            <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="txE-DV-Vlb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONc-lt-rZu">
+                                        <rect key="frame" x="103.5" y="0.0" width="11" height="22"/>
+                                        <state key="normal" image="info" catalog="system"/>
+                                        <connections>
+                                            <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="j2C-ha-ttn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5y-xH-7HF">
+                                        <rect key="frame" x="193.5" y="0.0" width="21" height="22"/>
+                                        <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <connections>
+                                            <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="s5U-Fr-Sky"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWA-c3-fRX">
+                                        <rect key="frame" x="293.5" y="0.0" width="21" height="22"/>
+                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RsV-fF-fdc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="alS-cO-TH2" firstAttribute="leading" secondItem="RsV-fF-fdc" secondAttribute="leading" id="4Bm-yA-3Bd"/>
+                            <constraint firstItem="alS-cO-TH2" firstAttribute="top" secondItem="RsV-fF-fdc" secondAttribute="top" constant="20" id="IW7-t8-KKK"/>
+                            <constraint firstItem="alS-cO-TH2" firstAttribute="trailing" secondItem="RsV-fF-fdc" secondAttribute="trailing" id="lEE-38-bKk"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="GCK-eZ-h1H"/>
+                    <connections>
+                        <outlet property="deviceName" destination="alS-cO-TH2" id="aIv-JB-GLd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PqZ-yO-lHz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3713" y="994"/>
+        </scene>
+        <!--Notification View Controller-->
+        <scene sceneID="YU4-lB-efs">
+            <objects>
+                <viewController id="QEa-cb-Is1" customClass="NotificationViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5C4-5e-uCz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="FOy-Lu-se4">
+                                <rect key="frame" x="50" y="786" width="314.5" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMZ-VM-hR5">
+                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="22"/>
+                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                        <connections>
+                                            <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="a1b-JM-I57"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KG7-1t-bq7">
+                                        <rect key="frame" x="103.5" y="0.0" width="11" height="22"/>
+                                        <state key="normal" image="info" catalog="system"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fef-uT-Wcd">
+                                        <rect key="frame" x="193.5" y="0.0" width="21" height="22"/>
+                                        <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <connections>
+                                            <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="ovt-y7-JZS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDH-9n-ifg">
+                                        <rect key="frame" x="293.5" y="0.0" width="21" height="22"/>
+                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <connections>
+                                            <segue destination="rJR-dg-IM9" kind="show" identifier="ShowSettings" id="7aF-VC-cQa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tul-F8-eDK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8LP-8n-YSh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="brZ-jc-sDh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3668" y="-670"/>
+        </scene>
+        <!--Bluetooth View Controller-->
+        <scene sceneID="XMS-GP-qj1">
+            <objects>
+                <viewController id="c4s-SL-Pig" customClass="BluetoothViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Ta-cU-DGW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="t2D-eS-vcp">
+                                <rect key="frame" x="50" y="786" width="315" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCj-FX-8G6">
+                                        <rect key="frame" x="0.0" y="0.0" width="21" height="22"/>
+                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                        <connections>
+                                            <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="Xea-xZ-sAT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rrh-Oi-aDa">
+                                        <rect key="frame" x="100" y="0.0" width="11" height="22"/>
+                                        <state key="normal" image="info" catalog="system"/>
+                                        <connections>
+                                            <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="iOG-6r-wJk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PY-Db-0MB">
+                                        <rect key="frame" x="190" y="0.0" width="25" height="22"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iO8-bw-r5Q">
+                                        <rect key="frame" x="294" y="0.0" width="21" height="22"/>
+                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <connections>
+                                            <segue destination="rJR-dg-IM9" kind="show" identifier="ShowSettings" id="eSz-ee-aF8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Rfv-Kk-swR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="St2-RN-sZT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LlM-Yz-bdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4445" y="192"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="6i5-Uz-TGR">
@@ -437,11 +681,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tEx-Mb-Wrb">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tEx-Mb-Wrb">
                                 <rect key="frame" x="4" y="4" width="406" height="756"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mO2-dl-EFr">
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="mO2-dl-EFr">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -460,18 +704,30 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AF8-67-uGF">
                                         <rect key="frame" x="0.0" y="0.0" width="24.5" height="22"/>
                                         <state key="normal" image="list.and.film" catalog="system"/>
+                                        <connections>
+                                            <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="b2T-rT-2Hx"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Z8-Wd-ZSk">
                                         <rect key="frame" x="103.5" y="0.0" width="11" height="22"/>
                                         <state key="normal" image="info" catalog="system"/>
+                                        <connections>
+                                            <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotfication" id="WtH-SG-3b3"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0b-ys-nmH">
                                         <rect key="frame" x="193.5" y="0.0" width="21" height="22"/>
                                         <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <connections>
+                                            <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluettoth" id="dyG-XP-exf"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yH-rQ-niX">
                                         <rect key="frame" x="293.5" y="0.0" width="21" height="22"/>
                                         <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <connections>
+                                            <segue destination="rJR-dg-IM9" kind="show" identifier="ShowSettings" id="fLw-8v-kmp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -486,12 +742,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z7u-Rs-5H3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1911.594202898551" y="-425.22321428571428"/>
+            <point key="canvasLocation" x="1933" y="-352"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ypk-sm-VVq"/>
-        <segue reference="ewa-lX-8sf"/>
+        <segue reference="DI4-WP-KHY"/>
+        <segue reference="iOG-6r-wJk"/>
+        <segue reference="fLw-8v-kmp"/>
+        <segue reference="Xea-xZ-sAT"/>
         <segue reference="QVv-VV-ggL"/>
     </inferredMetricsTieBreakers>
     <resources>
