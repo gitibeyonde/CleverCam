@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol DeviceCellDelegate: AnyObject {
+    func historyClicked(with uuid: String)
+}
+
 class DeviceCell: UICollectionViewCell {
 
     @IBOutlet var image: UIImageView!
     @IBOutlet var deviceName: UILabel!
+    weak var delegate: DeviceCellDelegate?
+    private var uuid:String=""
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,8 +27,12 @@ class DeviceCell: UICollectionViewCell {
     }
     @IBAction func historyClicked(_ sender: Any) {
         print("history clicked")
-        DeviceViewController.device_timer.invalidate()
+        delegate?.historyClicked(with: uuid)
     }
     @IBAction func liveClicked(_ sender: Any) {
+    }
+    
+    public func configure(uuid: String){
+        self.uuid = uuid
     }
 }

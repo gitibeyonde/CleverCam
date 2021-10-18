@@ -15,10 +15,9 @@ protocol HttpRequestDelegate: class {
 public struct HttpRequest {
     
     public typealias SuccessCompletionHandler = (_ response: String) -> Void
-    
     public typealias JsonSuccessCompletionHandler = (_ response: Data) -> Void
-    
     public typealias AlertSuccessCompletionHandler = (_ response: Array<Alert>) -> Void
+    public typealias HistorySuccessCompletionHandler = (_ response: Array<History>) -> Void
     
     static func get(_ delegate: HttpRequestDelegate?, url: String,
                     success successCallback: @escaping SuccessCompletionHandler
@@ -192,6 +191,62 @@ public struct HttpRequest {
                         print("Something went wrong")
                     }
                     successCallback(alertList)
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
+    
+    //"https://ping.ibeyonde.com/api/iot.php?view=lastalerts&uuid=" + uuid;
+    static func history(_ delegate: HttpRequestDelegate?, uuid: String,
+                    success successCallback: @escaping HistorySuccessCompletionHandler
+    ) {
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=lastalerts&cnt=20&uuid=" + uuid;
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        
+        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    var historyList: Array<History> = Array<History>()
+                    do {
+                        let jsonObjects: [Array] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [Array<String>]
+                        print(jsonObjects)
+                        for jsonObject in jsonObjects {
+                            historyList.append(History(url: jsonObject[0], time: jsonObject[1]))
+                            print( jsonObject[1])
+                        }
+                        ApiContext.shared.setDeviceHistory(uuid: uuid, historyList: historyList)
+                    }
+                    catch {
+                        print("Something went wrong")
+                    }
+                    successCallback(historyList)
                 }
                 else {
                     print("Unknown error")

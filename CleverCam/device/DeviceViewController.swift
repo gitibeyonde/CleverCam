@@ -65,11 +65,13 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deviceCell", for: indexPath as IndexPath) as! DeviceCell
+        cell.delegate = self
         
         let index :Int = indexPath[1]
         if ApiContext.shared.deviceAlertList.count > index {
             let da: Device = ApiContext.shared.getDevice(index: index)
             cell.deviceName.text = da.device_name
+            cell.configure(uuid: da.uuid)
             let al: Array<Alert> = ApiContext.shared.getDeviceAlerts(index: index)
             
             if al.count > 0 {
@@ -105,11 +107,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
         DeviceViewController.device_timer.invalidate()
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "HistoryViewController")
-
-        show(secondVC, sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -132,4 +129,13 @@ extension DeviceViewController: HttpRequestDelegate {
         }
     }
 
+}
+
+extension DeviceViewController: DeviceCellDelegate {
+    func historyClicked(with uuid: String) {
+        DeviceViewController.device_timer.invalidate()
+        print("uuid clieckd = \(uuid)")
+        HistoryViewController.uuid = uuid
+        self.performSegue(withIdentifier: "ShowHistory", sender: uuid)
+    }
 }

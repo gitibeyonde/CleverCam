@@ -38,6 +38,10 @@ public struct Device: Codable {
 }
 
 
+/**
+ 
+ [["https:\/\/s3-us-west-2.amazonaws.c441d051905d6f13f4c202","15\/10\/2021 - 13:10:13"],["https:\/\/s3-us-
+ */
 public struct DeviceAlerts:Codable {
     var uuid: String
     var alertlist: Array<Alert>
@@ -47,10 +51,6 @@ public struct DeviceAlerts:Codable {
         alertlist=Array<Alert>()
     }
 }
-/**
- 
- [["https:\/\/s3-us-west-2.amazonaws.c441d051905d6f13f4c202","15\/10\/2021 - 13:10:13"],["https:\/\/s3-us-
- */
 public struct Alert:Codable {
     var url: String
     var time: String
@@ -65,3 +65,26 @@ public struct Alert:Codable {
     }
 }
 
+
+public struct DeviceHistory:Codable {
+   var uuid: String
+   var historylist: Array<History>
+   
+   init(){
+        uuid=""
+        historylist=Array<History>()
+   }
+}
+public struct History:Codable {
+   var url: String
+   var time: String
+   
+   init(){
+       url=""
+       time=""
+   }
+   init(url: String, time: String){
+       self.url = url
+       self.time = time
+   }
+}

@@ -12,6 +12,9 @@ class ApiContext: NSObject {
     
     static let shared = ApiContext()
     
+    /*
+     DEVICE LIST
+     */
     public var deviceList:Array<Device> = []
     public func setDeviceList(deviceList: Array<Device>)->Void {
         self.deviceList = deviceList
@@ -31,6 +34,9 @@ class ApiContext: NSObject {
         return deviceList[index]
     }
     
+    /*
+     DEVICE ALERTS
+     */
     public var deviceAlertList:Array<DeviceAlerts> = []
     public func setDeviceAlerts(uuid: String, alertList: Array<Alert>)->Void {
         var deviceAlerts : DeviceAlerts = DeviceAlerts()
@@ -52,11 +58,40 @@ class ApiContext: NSObject {
     }
     
     public func allDeviceAlertsAvailable()->Bool {
-        return deviceList.count == deviceList.count
+        return deviceList.count == deviceAlertList.count
     }
     
-    var cache:[URL: Data] = [URL: Data]()
+    /*
+     DEVICE HISTORY
+     */
+    public var deviceHistoryList:Array<DeviceHistory> = []
+    public func setDeviceHistory(uuid: String,  historyList: Array<History>)->Void {
+        var deviceHistory : DeviceHistory = DeviceHistory()
+        deviceHistory.uuid = uuid
+        deviceHistory.historylist = historyList
+        deviceHistoryList.append(deviceHistory)
+    }
     
+    public func getDeviceHistory(uuid: String)->Array<History> {
+        for alertcombo in deviceHistoryList {
+            if alertcombo.uuid == uuid {
+                return alertcombo.historylist
+            }
+        }
+        return Array<History>()
+    }
+    public func getDeviceHistory(index: Int)->Array<History> {
+        return deviceHistoryList[index].historylist
+    }
+    
+    public func allDeviceHistoryAvailable()->Bool {
+        return deviceList.count == deviceHistoryList.count
+    }
+    
+    /*
+     CACHE
+     */
+    var cache:[URL: Data] = [URL: Data]()
     public func addImage(url: URL, data: Data)->Void {
         cache[url] = data
     }

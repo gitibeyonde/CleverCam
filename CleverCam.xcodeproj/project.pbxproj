@@ -27,7 +27,8 @@
 		AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82B4271A9E620054DA5E /* ApiContext.swift */; };
 		AB7F82BC271BE2CA0054DA5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82BB271BE2CA0054DA5E /* Utils.swift */; };
 		AB7F82C3271C45340054DA5E /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82C2271C45340054DA5E /* HistoryViewController.swift */; };
-		AB7F82C9271C51C90054DA5E /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82C8271C51C90054DA5E /* HistoryCell.swift */; };
+		AB7F82CE271D42490054DA5E /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82CC271D42490054DA5E /* HistoryCell.swift */; };
+		AB7F82CF271D42490054DA5E /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7F82CD271D42490054DA5E /* HistoryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +53,8 @@
 		AB7F82B4271A9E620054DA5E /* ApiContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiContext.swift; sourceTree = "<group>"; };
 		AB7F82BB271BE2CA0054DA5E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		AB7F82C2271C45340054DA5E /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		AB7F82C8271C51C90054DA5E /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		AB7F82CC271D42490054DA5E /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		AB7F82CD271D42490054DA5E /* HistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +132,8 @@
 				AB7F82A9271837950054DA5E /* DeviceCell.swift */,
 				AB7F82AA271837950054DA5E /* DeviceCell.xib */,
 				AB7F82C2271C45340054DA5E /* HistoryViewController.swift */,
-				AB7F82C8271C51C90054DA5E /* HistoryCell.swift */,
+				AB7F82CC271D42490054DA5E /* HistoryCell.swift */,
+				AB7F82CD271D42490054DA5E /* HistoryCell.xib */,
 			);
 			path = device;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				AB7F82782716D86B0054DA5E /* GoogleService-Info.plist in Resources */,
 				AB7F82682716D0DF0054DA5E /* Assets.xcassets in Resources */,
 				AB7F82662716D0D70054DA5E /* Main.storyboard in Resources */,
+				AB7F82CF271D42490054DA5E /* HistoryCell.xib in Resources */,
 				AB7F82AC271837950054DA5E /* DeviceCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,7 +226,7 @@
 				AB7F82BC271BE2CA0054DA5E /* Utils.swift in Sources */,
 				AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */,
 				AB7F82632716D0D70054DA5E /* ViewController.swift in Sources */,
-				AB7F82C9271C51C90054DA5E /* HistoryCell.swift in Sources */,
+				AB7F82CE271D42490054DA5E /* HistoryCell.swift in Sources */,
 				AB7F828B271710B30054DA5E /* HttpRequest.swift in Sources */,
 				AB7F829427181B220054DA5E /* PushNotificationManager.swift in Sources */,
 				AB7F82AB271837950054DA5E /* DeviceCell.swift in Sources */,
