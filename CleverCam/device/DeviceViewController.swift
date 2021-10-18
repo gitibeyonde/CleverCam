@@ -11,6 +11,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     @IBOutlet var collectionView: UICollectionView!
     var counter: Int = 0
+    public static var device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +42,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                }
             }
         }
-        
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
-        
     }
     
     @objc func fireTimer() {
@@ -106,6 +104,12 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
+        DeviceViewController.device_timer.invalidate()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "HistoryViewController")
+
+        show(secondVC, sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -114,6 +118,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         let height = (width * 0.95)
         return CGSize (width: width, height: height)
     }
+    
 }
 
 

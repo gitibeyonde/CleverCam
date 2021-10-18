@@ -21,6 +21,8 @@ class DeviceCell: UICollectionViewCell {
     @IBAction func settingsClick(_ sender: Any) {
     }
     @IBAction func historyClicked(_ sender: Any) {
+        print("history clicked")
+        DeviceViewController.device_timer.invalidate()
     }
     @IBAction func liveClicked(_ sender: Any) {
     }
