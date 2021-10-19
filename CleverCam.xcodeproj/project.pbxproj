@@ -34,6 +34,7 @@
 		AB7F82D9271D79780054DA5E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82D8271D79780054DA5E /* NotificationViewController.swift */; };
 		AB7F82DE271D79990054DA5E /* GlobalSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82DD271D79990054DA5E /* GlobalSettingsViewController.swift */; };
 		AB7F82E2271D79B30054DA5E /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82E1271D79B30054DA5E /* BluetoothViewController.swift */; };
+		AB7F82E8271ED9230054DA5E /* MJPEGStreamLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		AB7F82D8271D79780054DA5E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		AB7F82DD271D79990054DA5E /* GlobalSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettingsViewController.swift; sourceTree = "<group>"; };
 		AB7F82E1271D79B30054DA5E /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
+		AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGStreamLib.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				AB7F82B4271A9E620054DA5E /* ApiContext.swift */,
 				AB7F82B027197DEA0054DA5E /* ApiObjects.swift */,
 				AB7F82BB271BE2CA0054DA5E /* Utils.swift */,
+				AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */,
 				AB7F82632716D0D70054DA5E /* ViewController.swift in Sources */,
 				AB7F82CE271D42490054DA5E /* HistoryCell.swift in Sources */,
+				AB7F82E8271ED9230054DA5E /* MJPEGStreamLib.swift in Sources */,
 				AB7F828B271710B30054DA5E /* HttpRequest.swift in Sources */,
 				AB7F82D5271D77460054DA5E /* SettingsViewController.swift in Sources */,
 				AB7F829427181B220054DA5E /* PushNotificationManager.swift in Sources */,

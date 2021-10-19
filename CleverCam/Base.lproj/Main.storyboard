@@ -485,20 +485,29 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yCi-vZ-qft">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yCi-vZ-qft">
                                 <rect key="frame" x="0.0" y="60" width="414" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yCi-vZ-qft" secondAttribute="height" multiplier="69:50" id="Zbl-Hc-d2C"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGo-ox-oOQ">
+                                <rect key="frame" x="180" y="185.5" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Mt1-C8-6yQ"/>
+                                    <constraint firstAttribute="height" constant="50" id="am1-Cf-3Od"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yl8-R3-eFY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1Ai-Kg-XYM" firstAttribute="leading" secondItem="yCi-vZ-qft" secondAttribute="leading" id="1eO-ZZ-opI"/>
+                            <constraint firstItem="jGo-ox-oOQ" firstAttribute="top" secondItem="1Ai-Kg-XYM" secondAttribute="bottom" constant="145" id="ADg-Lx-3uP"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="DOM-nF-wSU"/>
                             <constraint firstItem="1Ai-Kg-XYM" firstAttribute="top" secondItem="phq-be-GBR" secondAttribute="top" constant="20" symbolic="YES" id="Lpe-8B-LOw"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="top" secondItem="1Ai-Kg-XYM" secondAttribute="bottom" constant="19.5" id="o3d-Ve-e6c"/>
+                            <constraint firstItem="jGo-ox-oOQ" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" constant="180" id="oXq-AN-FLs"/>
                             <constraint firstItem="1Ai-Kg-XYM" firstAttribute="trailing" secondItem="yCi-vZ-qft" secondAttribute="trailing" id="rfK-b6-8gq"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="trailing" secondItem="yl8-R3-eFY" secondAttribute="trailing" id="srK-LN-CA9"/>
                         </constraints>
@@ -506,12 +515,13 @@
                     <navigationItem key="navigationItem" id="TfO-Bb-iqB"/>
                     <connections>
                         <outlet property="deviceName" destination="1Ai-Kg-XYM" id="1Pr-iZ-QSO"/>
+                        <outlet property="progressIndicator" destination="jGo-ox-oOQ" id="6iu-vl-WdL"/>
                         <outlet property="video" destination="yCi-vZ-qft" id="Eid-T4-bLh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42k-bw-qse" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1922" y="398"/>
+            <point key="canvasLocation" x="1921.7391304347827" y="397.76785714285711"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="VVF-ys-afv">
@@ -753,11 +763,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ypk-sm-VVq"/>
         <segue reference="DI4-WP-KHY"/>
-        <segue reference="iOG-6r-wJk"/>
-        <segue reference="eSz-ee-aF8"/>
-        <segue reference="Xea-xZ-sAT"/>
+        <segue reference="kXl-YN-FhJ"/>
+        <segue reference="09U-8J-npx"/>
+        <segue reference="E62-aZ-Sai"/>
         <segue reference="QVv-VV-ggL"/>
     </inferredMetricsTieBreakers>
     <resources>

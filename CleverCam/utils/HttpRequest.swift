@@ -310,7 +310,6 @@ public class HttpRequest: HttpRequestDelegate {
                 response.statusCode == 200 {
                 //send this block to required place
                 let respstr = String(decoding: data, as: UTF8.self)
-                print("Response " + respstr)
                 if !respstr.contains("Ibeyonde Cam") {
                     validLocalURL = String()
                 }
@@ -328,7 +327,7 @@ public class HttpRequest: HttpRequestDelegate {
         
         
         if !validLocalURL.isEmpty {
-            return validLocalURL
+            return "\(validLocalURL)/stream"
         }
         
         //get the remote url
@@ -367,7 +366,9 @@ public class HttpRequest: HttpRequestDelegate {
                     let response = response as? HTTPURLResponse,
                     response.statusCode == 200 {
                     //send this block to required place
-                    validRemoteURL = String(decoding: data, as: UTF8.self)
+                    validRemoteURL = String(bytes: data, encoding: .ascii) ?? ""
+                    validRemoteURL = validRemoteURL.replacingOccurrences(of: "\\/", with: "/")
+                    validRemoteURL = validRemoteURL.replacingOccurrences(of: "\"", with: "")
                     print("Response " + validRemoteURL)
                 }
                 else {

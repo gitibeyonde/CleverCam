@@ -9,10 +9,14 @@ import UIKit
 
 class LiveViewController: UIViewController {
 
-    @IBOutlet var deviceName: UILabel!
-    @IBOutlet var video: UIImageView!
+    @IBOutlet weak var deviceName: UILabel!
+    @IBOutlet weak var video: UIImageView!
+    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
     public static var uuid: String = ""
+    var stream: MJPEGStreamLib!
+    var url: URL?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,20 +24,38 @@ class LiveViewController: UIViewController {
         print("loading live view for ", LiveViewController.uuid)
         
         let url:String = HttpRequest.getStreamUrl(self, uuid: LiveViewController.uuid)
-        
         print("Live view rcvd url ", url)
+        let urlComponent2 = URLComponents(string: url)
+        
+        // Set the ImageView to the stream object
+        stream = MJPEGStreamLib(imageView: video)
+        // Start Loading Indicator
+        stream.didStartLoading = { [unowned self] in
+            self.progressIndicator.startAnimating()
+            self.progressIndicator.isHidden = false
+        }
+        // Stop Loading Indicator
+        stream.didFinishLoading = { [unowned self] in
+            self.progressIndicator.stopAnimating()
+            self.progressIndicator.isHidden = true
+        }
+        
+        stream.contentURL = urlComponent2!.url
+        stream.play() // Play the stream
+        
+        deviceName.text = "Live view \(LiveViewController.uuid)"
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
-    */
+    
+    // Make the Status Bar Light/Dark Content for this View
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+        //return UIStatusBarStyle.default   // Make dark again
+    }
 
 }
 
