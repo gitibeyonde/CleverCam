@@ -15,31 +15,23 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("loading device view controller")
+        print("loading device view controller ")
         
         let nibCell = UINib(nibName: "DeviceCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "deviceCell")
         
         
-        HttpRequest.deviceList(self) { (output) in
+        HttpRequest.deviceList(self) { (deviceList) in
             DispatchQueue.main.async {
-                do {
-                    let decoder = JSONDecoder()
-                    let deviceList:Array<Device> = try decoder.decode([Device].self, from: output)
-                    ApiContext.shared.setDeviceList(deviceList: deviceList)
-                    for device in deviceList {
-                        print(device.uuid)
-                        HttpRequest.lastAlerts(self, uuid: device.uuid) { (output) in
-                            DispatchQueue.main.async {
-                                self.collectionView.reloadData()
-                            }
+                for device in deviceList {
+                    print("DeviceViewController ", device.uuid)
+                    HttpRequest.lastAlerts(self, uuid: device.uuid) { (output) in
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
                         }
                     }
-                    print("done model")
-               } catch let error {
-                    print("ERROR")
-                    print(error)
-               }
+                }
+                print("done model")
                 DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
             }
         }
@@ -58,7 +50,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("Count is ", ApiContext.shared.deviceAlertList.count)
-        return ApiContext.shared.deviceAlertList.count
+        return ApiContext.shared.deviceList.count
     }
     
     // make a cell for each cell index path
@@ -120,7 +112,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
 extension DeviceViewController: HttpRequestDelegate {
     func onError() {
         DispatchQueue.main.async() {
-            let alert = UIAlertController(title: "Ops", message: "An error has occurred...", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Ops", message: "Error getting device list...", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
@@ -131,21 +123,21 @@ extension DeviceViewController: HttpRequestDelegate {
 extension DeviceViewController: DeviceCellDelegate {
     func historyClicked(with uuid: String) {
         DeviceViewController.device_timer.invalidate()
-        print("uuid clieckd = \(uuid)")
+        print("uuid clicked = \(uuid)")
         HistoryViewController.uuid = uuid
         self.performSegue(withIdentifier: "ShowHistory", sender: uuid)
     }
     
     func liveClicked(with uuid: String) {
         DeviceViewController.device_timer.invalidate()
-        print("uuid clieckd = \(uuid)")
+        print("uuid clicked = \(uuid)")
         LiveViewController.uuid = uuid
         self.performSegue(withIdentifier: "ShowLive", sender: uuid)
     }
     
     func settingsClicked(with uuid: String) {
         DeviceViewController.device_timer.invalidate()
-        print("uuid clieckd = \(uuid)")
+        print("uuid clicked = \(uuid)")
         SettingsViewController.uuid = uuid
         self.performSegue(withIdentifier: "ShowSettings", sender: uuid)
     }

@@ -22,7 +22,7 @@ class ApiContext: NSObject {
     public func getDeviceList()->Array<Device> {
         return self.deviceList;
     }
-    public func getDeviceAlerts(uuid: String)->Device {
+    public func getDevice(uuid: String)->Device {
         for device in deviceList {
             if device.uuid == uuid {
                 return device
@@ -39,6 +39,13 @@ class ApiContext: NSObject {
      */
     public var deviceAlertList:Array<DeviceAlerts> = []
     public func setDeviceAlerts(uuid: String, alertList: Array<Alert>)->Void {
+        //check if uuid exists
+        for (index, element) in deviceAlertList.enumerated() {
+            if element.uuid == uuid {
+                deviceAlertList[index].alertlist = alertList
+                return
+            }
+        }
         var deviceAlerts : DeviceAlerts = DeviceAlerts()
         deviceAlerts.uuid = uuid
         deviceAlerts.alertlist = alertList

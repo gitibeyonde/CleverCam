@@ -628,7 +628,7 @@
         <!--Bluetooth View Controller-->
         <scene sceneID="XMS-GP-qj1">
             <objects>
-                <viewController id="c4s-SL-Pig" customClass="BluetoothViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="BluetoothViewController" storyboardIdentifier="BluetoothViewController" id="c4s-SL-Pig" customClass="BluetoothViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Ta-cU-DGW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -663,6 +663,13 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bluetooth is under construction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wET-GL-5FV">
+                                <rect key="frame" x="12" y="361" width="389" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rfv-Kk-swR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -746,9 +753,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="ypk-sm-VVq"/>
         <segue reference="DI4-WP-KHY"/>
         <segue reference="iOG-6r-wJk"/>
-        <segue reference="fLw-8v-kmp"/>
+        <segue reference="eSz-ee-aF8"/>
         <segue reference="Xea-xZ-sAT"/>
         <segue reference="QVv-VV-ggL"/>
     </inferredMetricsTieBreakers>
@@ -762,6 +770,9 @@
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -16,8 +16,12 @@ class LiveViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        print("loading live view for ", LiveViewController.uuid)
+        
+        let url:String = HttpRequest.getStreamUrl(self, uuid: LiveViewController.uuid)
+        
+        print("Live view rcvd url ", url)
     }
     
 
@@ -30,5 +34,17 @@ class LiveViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+
+extension LiveViewController: HttpRequestDelegate {
+    func onError() {
+        DispatchQueue.main.async() {
+            let alert = UIAlertController(title: "Ops", message: "Unable to get live feed...", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
 
 }
