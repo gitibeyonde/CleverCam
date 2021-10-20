@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB5FCE592720124100D695DA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5FCE572720124100D695DA /* NotificationCell.swift */; };
 		AB5FCE5A2720124100D695DA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5FCE582720124100D695DA /* NotificationCell.xib */; };
+		AB5FCE5D27201D9000D695DA /* BellAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5FCE5C27201D9000D695DA /* BellAlertViewController.swift */; };
 		AB7F825F2716D0D70054DA5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F825E2716D0D70054DA5E /* AppDelegate.swift */; };
 		AB7F82612716D0D70054DA5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82602716D0D70054DA5E /* SceneDelegate.swift */; };
 		AB7F82632716D0D70054DA5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82622716D0D70054DA5E /* ViewController.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		AB5FCE572720124100D695DA /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		AB5FCE582720124100D695DA /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		AB5FCE5C27201D9000D695DA /* BellAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellAlertViewController.swift; sourceTree = "<group>"; };
 		AB7F825B2716D0D70054DA5E /* CleverCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleverCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7F825E2716D0D70054DA5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB7F82602716D0D70054DA5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				AB7F82D8271D79780054DA5E /* NotificationViewController.swift */,
 				AB5FCE572720124100D695DA /* NotificationCell.swift */,
 				AB5FCE582720124100D695DA /* NotificationCell.xib */,
+				AB5FCE5C27201D9000D695DA /* BellAlertViewController.swift */,
 			);
 			path = notification;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			files = (
 				AB7F827C2716DC4F0054DA5E /* LoginViewController.swift in Sources */,
 				AB7F82812716E2B50054DA5E /* RegisterViewController.swift in Sources */,
+				AB5FCE5D27201D9000D695DA /* BellAlertViewController.swift in Sources */,
 				AB7F82D2271D72CF0054DA5E /* LiveViewController.swift in Sources */,
 				AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */,
 				AB7F828427170E4B0054DA5E /* User.swift in Sources */,

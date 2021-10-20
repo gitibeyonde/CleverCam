@@ -74,6 +74,9 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
         DeviceViewController.device_timer.invalidate()
+        let nl: Array<Notification> = ApiContext.shared.notificationList
+        BellAlertViewController.uuid = nl[indexPath[1]].uuid
+        self.performSegue(withIdentifier: "ShowBell", sender: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize

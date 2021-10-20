@@ -48,23 +48,16 @@
                             </button>
                         </subviews>
                     </stackView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kC3-OS-HlA">
+                        <rect key="frame" x="170" y="152" width="50" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </activityIndicatorView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="A0q-h4-8ON">
-                        <rect key="frame" x="0.0" y="37" width="365" height="256"/>
+                        <rect key="frame" x="0.0" y="45" width="365" height="256"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kC3-OS-HlA">
-                        <rect key="frame" x="170" y="152" width="50" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" id="qAx-JF-BNx"/>
-                            <constraint firstAttribute="width" constant="50" id="xRj-ZB-mc0"/>
-                        </constraints>
-                    </activityIndicatorView>
                 </subviews>
             </view>
-            <constraints>
-                <constraint firstItem="kC3-OS-HlA" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="22" id="0m8-mO-kZ6"/>
-                <constraint firstItem="kC3-OS-HlA" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" constant="12.5" id="bVf-yZ-GSE"/>
-            </constraints>
             <size key="customSize" width="365" height="310"/>
             <connections>
                 <outlet property="deviceName" destination="0QT-M4-xae" id="fZ9-5c-efS"/>
