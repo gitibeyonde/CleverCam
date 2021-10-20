@@ -94,6 +94,16 @@ class ApiContext: NSObject {
     public func allDeviceHistoryAvailable()->Bool {
         return deviceList.count == deviceHistoryList.count
     }
+    /*
+     NOTIFICATION
+     */
+    public var notificationList: Array<Notification> = Array<Notification>()
+    public func setNotification(nl: Array<Notification>){
+        notificationList = nl
+    }
+    public func getNotification()->Array<Notification>{
+        return notificationList;
+    }
     
     /*
      CACHE

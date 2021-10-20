@@ -7,23 +7,92 @@
 
 import UIKit
 
-class NotificationViewController: UIViewController {
-
+class NotificationViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+   
+    @IBOutlet var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        print("loading notification view controller ")
+        
+        let nibCell = UINib(nibName: "NotificationCell", bundle: nil)
+        collectionView.register(nibCell, forCellWithReuseIdentifier: "NotificationCell")
+        
+        
+        HttpRequest.notifications(self) { (notificationList) in
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return ApiContext.shared.notificationList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        // get a reference to our storyboard cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NotificationCell", for: indexPath as IndexPath) as! NotificationCell
+        
+        let nl: Array<Notification> = ApiContext.shared.notificationList
+        
+        cell.deviceName.text = nl[indexPath[1]].uuid
+        cell.id.text = nl[indexPath[1]].id
+        
+        
+        let url = URL(string: nl[indexPath[1]].image)!
+        let data:Data = ApiContext.shared.getImage(url: url)
+        if data.isEmpty {
+            getData(from: url) { data, response, error in
+                    guard let data = data, error == nil else { return }
+                    print(response?.suggestedFilename ?? url.lastPathComponent)
+                    ApiContext.shared.addImage(url: url, data: data)
+                    // always update the UI from the main thread
+                    DispatchQueue.main.async() {
+                        cell.image.image = UIImage(data: data)
+                        cell.image.frame = CGRect(x: 0, y: 0, width: 320, height: 240)
+                        cell.progress.stopAnimating()
+                    }
+               }
+        }
+        else {
+            DispatchQueue.main.async() {
+                print("Cache hit")
+                cell.image.image = UIImage(data: data)
+                cell.image.frame = CGRect(x: 0, y: 0, width: 320, height: 240)
+                cell.progress.stopAnimating()
+            }
+        }
+        
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // handle tap events
+        print("You selected cell #\(indexPath.item)!")
+        DeviceViewController.device_timer.invalidate()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let width = UIScreen.main.bounds.size.width - 40
+        let height = (width * 0.50)
+        return CGSize (width: width, height: height)
     }
     
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension NotificationViewController: HttpRequestDelegate {
+    func onError() {
+        DispatchQueue.main.async() {
+            let alert = UIAlertController(title: "Ops", message: "Error getting notifications...", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
-    */
 
 }

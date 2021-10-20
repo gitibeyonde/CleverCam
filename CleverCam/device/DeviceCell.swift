@@ -17,6 +17,8 @@ class DeviceCell: UICollectionViewCell {
 
     @IBOutlet var image: UIImageView!
     @IBOutlet var deviceName: UILabel!
+    @IBOutlet var progress: UIActivityIndicatorView!
+    
     weak var delegate: DeviceCellDelegate?
     private var uuid:String=""
     

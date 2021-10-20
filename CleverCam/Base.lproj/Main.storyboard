@@ -491,7 +491,7 @@
                                     <constraint firstAttribute="width" secondItem="yCi-vZ-qft" secondAttribute="height" multiplier="69:50" id="Zbl-Hc-d2C"/>
                                 </constraints>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGo-ox-oOQ">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGo-ox-oOQ">
                                 <rect key="frame" x="180" y="185.5" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Mt1-C8-6yQ"/>
@@ -625,11 +625,35 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uWX-FU-IRa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="781"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xd4-Ap-G25">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="QEa-cb-Is1" id="3SG-by-xf5"/>
+                                    <outlet property="delegate" destination="QEa-cb-Is1" id="XTX-bu-pMA"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tul-F8-eDK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Tul-F8-eDK" firstAttribute="trailing" secondItem="uWX-FU-IRa" secondAttribute="trailing" id="7Fs-pt-Lm2"/>
+                            <constraint firstItem="uWX-FU-IRa" firstAttribute="leading" secondItem="Tul-F8-eDK" secondAttribute="leading" id="JMw-5e-3Rx"/>
+                            <constraint firstItem="FOy-Lu-se4" firstAttribute="top" secondItem="uWX-FU-IRa" secondAttribute="bottom" constant="5" id="SF5-p6-b52"/>
+                            <constraint firstItem="uWX-FU-IRa" firstAttribute="top" secondItem="Tul-F8-eDK" secondAttribute="top" id="gRt-mZ-qI2"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8LP-8n-YSh"/>
+                    <connections>
+                        <outlet property="collectionView" destination="uWX-FU-IRa" id="gC1-xb-5aT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="brZ-jc-sDh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -673,10 +697,10 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bluetooth is under construction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wET-GL-5FV">
-                                <rect key="frame" x="12" y="361" width="389" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bluetooth is under construction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wET-GL-5FV">
+                                <rect key="frame" x="41" y="361" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>

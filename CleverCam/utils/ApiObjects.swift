@@ -88,3 +88,28 @@ public struct History:Codable {
        self.time = time
    }
 }
+
+
+public struct Notification:Codable {
+    var uuid: String
+    var id: String
+    var created: String
+    var image: String
+    var type: String
+    
+    init(){
+        uuid=""
+        id=""
+        created=""
+        image=""
+        type=""
+    }
+    
+    init(uuid: String, id: String, created: String, image: String, type: String){
+        self.uuid=uuid
+        self.id=id
+        self.created=created
+        self.image=image
+        self.type=type
+    }
+}

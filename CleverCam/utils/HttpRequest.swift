@@ -18,6 +18,7 @@ public class HttpRequest: HttpRequestDelegate {
     public typealias DeviceSuccessCompletionHandler = (_ response: Array<Device>) -> Void
     public typealias AlertSuccessCompletionHandler = (_ response: Array<Alert>) -> Void
     public typealias HistorySuccessCompletionHandler = (_ response: Array<History>) -> Void
+    public typealias NotificationSuccessCompletionHandler = (_ response: Array<Notification>) -> Void
    
     
     static func login(_ delegate: HttpRequestDelegate?, base64LoginString: String,
@@ -382,6 +383,60 @@ public class HttpRequest: HttpRequestDelegate {
         _ = semaphore2.wait(timeout: DispatchTime.distantFuture)
         print("got remote url ", validRemoteURL)
         return validRemoteURL
+    }
+    
+    static func notifications(_ delegate: HttpRequestDelegate?,
+                    success successCallback: @escaping NotificationSuccessCompletionHandler
+    ) {
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=lastalerts&type=bp"
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        
+        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    var notificationList: Array<Notification> = Array<Notification>()
+                    do {
+                        let jsonObjects: [NSDictionary] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [NSDictionary]
+                        for jsonObject in jsonObjects {
+                            notificationList.append(Notification(uuid: jsonObject["uuid"] as! String, id: jsonObject["id"] as! String, created: jsonObject["created"] as! String, image: jsonObject["image"] as! String, type: jsonObject["type"] as! String
+                            ))
+                        }
+                        ApiContext.shared.setNotification(nl: notificationList)
+                    }
+                    catch {
+                        print("Something went wrong")
+                    }
+                    successCallback(notificationList)
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
     }
     
     static func sendFCMToken(_ delegate: HttpRequestDelegate?, strToken : String,  success successCallback: @escaping SuccessCompletionHandler)

@@ -20,39 +20,27 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="uuidName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QT-M4-xae">
-                                <rect key="frame" x="0.0" y="1" width="113" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="tEy-WI-DeW"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="1.5" width="88" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="id0-MQ-G28">
-                                <rect key="frame" x="171" y="0.0" width="26" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="FsO-3V-TIz"/>
-                                </constraints>
+                                <rect key="frame" x="146" y="0.0" width="23.5" height="22"/>
                                 <state key="normal" image="slider.horizontal.3" catalog="system"/>
                                 <connections>
                                     <action selector="settingsClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Xf3-7I-SSW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QZ-PY-eGa">
-                                <rect key="frame" x="255" y="0.0" width="26" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="LMp-Es-IQh"/>
-                                </constraints>
+                                <rect key="frame" x="227.5" y="0.0" width="29.5" height="22"/>
                                 <state key="normal" image="camera.on.rectangle" catalog="system"/>
                                 <connections>
                                     <action selector="historyClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="HS0-xV-UN0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhM-hq-piN">
-                                <rect key="frame" x="339" y="0.0" width="26" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="1qi-JY-8jR"/>
-                                </constraints>
+                                <rect key="frame" x="315" y="0.0" width="50" height="22"/>
                                 <state key="normal" image="video" catalog="system"/>
                                 <connections>
                                     <action selector="liveClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="jzY-Ec-zWE"/>
@@ -60,29 +48,34 @@
                             </button>
                         </subviews>
                     </stackView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico256" id="A0q-h4-8ON">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="A0q-h4-8ON">
                         <rect key="frame" x="0.0" y="37" width="365" height="256"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kC3-OS-HlA">
+                        <rect key="frame" x="170" y="152" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="qAx-JF-BNx"/>
+                            <constraint firstAttribute="width" constant="50" id="xRj-ZB-mc0"/>
+                        </constraints>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="YVw-ZM-wAR" secondAttribute="trailing" id="H7o-Md-CGz"/>
-                <constraint firstAttribute="trailing" secondItem="A0q-h4-8ON" secondAttribute="trailing" id="KLu-dz-Wo2"/>
-                <constraint firstItem="YVw-ZM-wAR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Nfl-aV-GLI"/>
-                <constraint firstItem="A0q-h4-8ON" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="moF-PX-cZ8"/>
+                <constraint firstItem="kC3-OS-HlA" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="22" id="0m8-mO-kZ6"/>
+                <constraint firstItem="kC3-OS-HlA" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" constant="12.5" id="bVf-yZ-GSE"/>
             </constraints>
             <size key="customSize" width="365" height="310"/>
             <connections>
                 <outlet property="deviceName" destination="0QT-M4-xae" id="fZ9-5c-efS"/>
                 <outlet property="image" destination="A0q-h4-8ON" id="ZuR-De-Upa"/>
+                <outlet property="progress" destination="kC3-OS-HlA" id="TkF-Tu-Si7"/>
             </connections>
             <point key="canvasLocation" x="265.94202898550725" y="81.696428571428569"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="camera.on.rectangle" catalog="system" width="128" height="96"/>
-        <image name="ico256" width="256" height="256"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <image name="video" catalog="system" width="128" height="83"/>
     </resources>

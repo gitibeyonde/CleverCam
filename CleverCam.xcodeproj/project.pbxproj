@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB5FCE592720124100D695DA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5FCE572720124100D695DA /* NotificationCell.swift */; };
+		AB5FCE5A2720124100D695DA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5FCE582720124100D695DA /* NotificationCell.xib */; };
 		AB7F825F2716D0D70054DA5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F825E2716D0D70054DA5E /* AppDelegate.swift */; };
 		AB7F82612716D0D70054DA5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82602716D0D70054DA5E /* SceneDelegate.swift */; };
 		AB7F82632716D0D70054DA5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82622716D0D70054DA5E /* ViewController.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB5FCE572720124100D695DA /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		AB5FCE582720124100D695DA /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		AB7F825B2716D0D70054DA5E /* CleverCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleverCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7F825E2716D0D70054DA5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB7F82602716D0D70054DA5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				AB7F82D8271D79780054DA5E /* NotificationViewController.swift */,
+				AB5FCE572720124100D695DA /* NotificationCell.swift */,
+				AB5FCE582720124100D695DA /* NotificationCell.xib */,
 			);
 			path = notification;
 			sourceTree = "<group>";
@@ -247,6 +253,7 @@
 				AB7F82782716D86B0054DA5E /* GoogleService-Info.plist in Resources */,
 				AB7F82682716D0DF0054DA5E /* Assets.xcassets in Resources */,
 				AB7F82662716D0D70054DA5E /* Main.storyboard in Resources */,
+				AB5FCE5A2720124100D695DA /* NotificationCell.xib in Resources */,
 				AB7F82CF271D42490054DA5E /* HistoryCell.xib in Resources */,
 				AB7F82AC271837950054DA5E /* DeviceCell.xib in Resources */,
 			);
@@ -271,6 +278,7 @@
 				AB7F82632716D0D70054DA5E /* ViewController.swift in Sources */,
 				AB7F82CE271D42490054DA5E /* HistoryCell.swift in Sources */,
 				AB7F82E8271ED9230054DA5E /* MJPEGStreamLib.swift in Sources */,
+				AB5FCE592720124100D695DA /* NotificationCell.swift in Sources */,
 				AB7F828B271710B30054DA5E /* HttpRequest.swift in Sources */,
 				AB7F82D5271D77460054DA5E /* SettingsViewController.swift in Sources */,
 				AB7F829427181B220054DA5E /* PushNotificationManager.swift in Sources */,
@@ -427,6 +435,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9426U42V69;
 				INFOPLIST_FILE = CleverCam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -445,6 +454,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9426U42V69;
 				INFOPLIST_FILE = CleverCam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -32,12 +32,10 @@ class LiveViewController: UIViewController {
         // Start Loading Indicator
         stream.didStartLoading = { [unowned self] in
             self.progressIndicator.startAnimating()
-            self.progressIndicator.isHidden = false
         }
         // Stop Loading Indicator
         stream.didFinishLoading = { [unowned self] in
             self.progressIndicator.stopAnimating()
-            self.progressIndicator.isHidden = true
         }
         
         stream.contentURL = urlComponent2!.url

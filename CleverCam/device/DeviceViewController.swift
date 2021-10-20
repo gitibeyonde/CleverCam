@@ -38,7 +38,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     @objc func fireTimer() {
-        print("counter=", counter)
         counter+=1
         if counter>=10 {
             counter=0;
@@ -80,6 +79,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                             // always update the UI from the main thread
                             DispatchQueue.main.async() {
                                 cell.image.image = UIImage(data: data)
+                                cell.progress.stopAnimating()
                             }
                        }
                 }
@@ -87,6 +87,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                     DispatchQueue.main.async() {
                         print("Cache hit")
                         cell.image.image = UIImage(data: data)
+                        cell.progress.stopAnimating()
                     }
                 }
             }
