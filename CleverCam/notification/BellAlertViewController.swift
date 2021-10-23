@@ -36,10 +36,29 @@ class BellAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let images = [ self.img0, self.img1, self.img2, self.img3, self.img4, self.img5, self.img6, self.img7, self.img8, self.img9 ]
+        
         print("loading bell alert view controller ")
+        var initFirstImage = false
         HttpRequest.bellAlertDetails(self, uuid: BellAlertViewController.uuid, datetime: BellAlertViewController.datetime) { (notificationList) in
             DispatchQueue.main.async {
-                print(notificationList[0])
+                for i in 0...9 {
+                    let url = URL(string: notificationList[i].url)!
+                    getData(from: url) { data, response, error in
+                            guard let data = data, error == nil else { return }
+                            print(response?.suggestedFilename ?? url.lastPathComponent)
+                            ApiContext.shared.addImage(url: url, data: data)
+                            // always update the UI from the main thread
+                            DispatchQueue.main.async() {
+                                images[i]?.image = UIImage(data: data)
+                                if !initFirstImage {
+                                    self.history.image = UIImage(data: data)
+                                    initFirstImage = true
+                                }
+                                self.progressHistory.stopAnimating()
+                            }
+                       }
+                }
             }
         }
         
@@ -65,8 +84,6 @@ class BellAlertViewController: UIViewController {
         stream.play() // Play the stream
         
         //load history
-        
-        
     }
     
 }

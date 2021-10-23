@@ -228,7 +228,7 @@ public class HttpRequest: HttpRequestDelegate {
     static func getStreamUrl(_ delegate: HttpRequestDelegate?, uuid: String
     ) -> String {
         
-        let device:Device = ApiContext.shared.getDevice(uuid: LiveViewController.uuid)
+        var device:Device = ApiContext.shared.getDevice(uuid: LiveViewController.uuid)
         if device.uuid == "" {
             let url = "https://ping.ibeyonde.com/api/iot.php?view=devicelist"
             guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
@@ -264,7 +264,7 @@ public class HttpRequest: HttpRequestDelegate {
                             let decoder = JSONDecoder()
                             let deviceList:Array<Device> = try decoder.decode([Device].self, from: data)
                             ApiContext.shared.setDeviceList(deviceList: deviceList)
-                            print("Device list set")
+                            print("Device list set ", deviceList)
                         }
                         catch {
                             print("Something went wrong")
@@ -276,15 +276,16 @@ public class HttpRequest: HttpRequestDelegate {
                         delegate?.onError()
                     }
                     
-                    print("Running")
+                    print("Running", BellAlertViewController.uuid)
                     semaphore.signal()
             }
             dataTask?.resume()
             _ = semaphore.wait(timeout: DispatchTime.distantFuture)
             print("Resume")
-        } ///if device.uuid == ""
+            device = ApiContext.shared.getDevice(uuid: BellAlertViewController.uuid)
+        }
+        print(" Have device url ", device)
         
-        print("Have device ", device.deviceip)
         
         var validLocalURL: String = "http://\(device.deviceip)"
         //if not lets call the delegate to manage the error
@@ -440,25 +441,7 @@ public class HttpRequest: HttpRequestDelegate {
         dataTask?.resume()
     }
     
-    /**
-     Date d = new Date();
-            SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//2021-09-27 09:12:48
-            try {
-                d = sdf.parse(date_time);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            Log.d(TAG, "getBellAlertDetails " + d.toString());
-
-            sdf = new SimpleDateFormat("yyyy/MM/dd");
-            String date= sdf.format(d);
-            sdf = new SimpleDateFormat("HH");
-            String hour= sdf.format(d);
-            sdf = new SimpleDateFormat("mm");
-            String minute= sdf.format(d);
-            String url ="https://ping.ibeyonde.com/api/iot.php?view=bellalerts&uuid=" + uuid + "&date=" + date  + "&hour=" + hour + "&minute=" + minute; //format path = 2016/06/02; hour = 05
-            //["https:\/\/s3-us-west-2.amazonaws.com\/e","22\/09\/2021 - 14:10:41"],
-     */
+   
     static func bellAlertDetails(_ delegate: HttpRequestDelegate?, uuid: String, datetime: String,
                     success successCallback: @escaping BellHistorySuccessCompletionHandler
     ) {
