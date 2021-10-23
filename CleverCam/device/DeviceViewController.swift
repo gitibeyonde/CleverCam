@@ -32,7 +32,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                     }
                 }
                 print("done model")
-                DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
+                DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
             }
         }
     }
