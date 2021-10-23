@@ -15,6 +15,7 @@ class HistoryCell: UICollectionViewCell {
 
     @IBOutlet var image: UIImageView!
     @IBOutlet var dateTime: UILabel!
+    @IBOutlet var progress: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

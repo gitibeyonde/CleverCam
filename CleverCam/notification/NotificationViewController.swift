@@ -41,14 +41,14 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         cell.deviceName.text = nl[indexPath[1]].uuid
         cell.id.text = nl[indexPath[1]].id
         
-        
-        let url = URL(string: nl[indexPath[1]].image)!
-        let data:Data = ApiContext.shared.getImage(url: url)
+        let url_str = nl[indexPath[1]].image
+        let Url = URL(string: url_str)!
+        let data:Data = ApiContext.shared.getImage(url: url_str)
         if data.isEmpty {
-            getData(from: url) { data, response, error in
+            getData(from: Url) { data, response, error in
                     guard let data = data, error == nil else { return }
-                    print(response?.suggestedFilename ?? url.lastPathComponent)
-                    ApiContext.shared.addImage(url: url, data: data)
+                    print(response?.suggestedFilename ?? Url.lastPathComponent)
+                    ApiContext.shared.addImage(url: url_str, data: data)
                     // always update the UI from the main thread
                     DispatchQueue.main.async() {
                         cell.image.image = UIImage(data: data)

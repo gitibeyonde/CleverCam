@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CryptoKit
 
 
 class ApiContext: NSObject {
@@ -108,15 +109,20 @@ class ApiContext: NSObject {
     /*
      CACHE
      */
-    var cache:[URL: Data] = [URL: Data]()
-    public func addImage(url: URL, data: Data)->Void {
-        cache[url] = data
+    var cache:[String: Data] = [String: Data]()
+    public func addImage(url: String, data: Data)->Void {
+        cache[md5(str: url)] = data
     }
     
-    public func getImage(url: URL)->Data {
-        return cache[url] ?? Data.init()
+    public func getImage(url: String)->Data {
+        return cache[md5(str: url)] ?? Data.init()
     }
     
+    private func md5(str: String)-> String {
+        //let computed = Insecure.MD5.hash(data: str.data(using: .utf8)!)
+        //return computed.map { String(format: "%02hhx", $0) }.joined()
+        return str
+    }
     
     /*
      DEVICE HISTORY

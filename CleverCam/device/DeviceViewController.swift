@@ -25,14 +25,26 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
             DispatchQueue.main.async {
                 for device in deviceList {
                     print("DeviceViewController ", device.uuid)
-                    HttpRequest.lastAlerts(self, uuid: device.uuid) { (output) in
-                        DispatchQueue.main.async {
-                            self.collectionView.reloadData()
+                    HttpRequest.lastAlerts(self, uuid: device.uuid) { (alerts) in
+                        for a in alerts {
+                            let url_str = a.url
+                            let Url = URL(string: url_str)!
+                            getData(from: Url) { data, response, error in
+                                    guard let data = data, error == nil else { return }
+                                    print(response?.suggestedFilename ?? Url.lastPathComponent)
+                                    ApiContext.shared.addImage(url: url_str, data: data)
+                                
+                                    if ApiContext.shared.allDeviceAlertsAvailable() {
+                                        DispatchQueue.main.async {
+                                            self.collectionView.reloadData()
+                                        }
+                                    }
+                               }
                         }
                     }
                 }
                 print("done model")
-                DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
+                DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
             }
         }
     }
@@ -58,37 +70,25 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deviceCell", for: indexPath as IndexPath) as! DeviceCell
         cell.delegate = self
-        
+    
         let index :Int = indexPath[1]
-        if ApiContext.shared.deviceAlertList.count > index {
+        cell.progress.startAnimating()
+        print("Index is ", index)
+        if index < ApiContext.shared.deviceAlertList.count {
+            
             let da: Device = ApiContext.shared.getDevice(index: index)
             cell.deviceName.text = da.device_name
             cell.configure(uuid: da.uuid)
-            let al: Array<Alert> = ApiContext.shared.getDeviceAlerts(index: index)
             
+            let al: Array<Alert> = ApiContext.shared.getDeviceAlerts(uuid: da.uuid)
             if al.count > 0 {
                 print("-----------------------------------------------", da.device_name)
-                
-                let url = URL(string: al[counter].url)!
-                let data:Data = ApiContext.shared.getImage(url: url)
-                if data.isEmpty {
-                    getData(from: url) { data, response, error in
-                            guard let data = data, error == nil else { return }
-                            print(response?.suggestedFilename ?? url.lastPathComponent)
-                            ApiContext.shared.addImage(url: url, data: data)
-                            // always update the UI from the main thread
-                            DispatchQueue.main.async() {
-                                cell.image.image = UIImage(data: data)
-                                cell.progress.stopAnimating()
-                            }
-                       }
-                }
-                else {
-                    DispatchQueue.main.async() {
-                        print("Cache hit")
-                        cell.image.image = UIImage(data: data)
-                        cell.progress.stopAnimating()
-                    }
+                let url_str = al[counter].url
+                let data:Data = ApiContext.shared.getImage(url: url_str)
+                if !data.isEmpty {
+                    print("Cache hit ", index)
+                    cell.image.image = UIImage(data: data)
+                    cell.progress.stopAnimating()
                 }
             }
         }

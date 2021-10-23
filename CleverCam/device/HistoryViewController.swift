@@ -20,7 +20,20 @@ class HistoryViewController: UIViewController, UICollectionViewDataSource, UICol
         let nibCell = UINib(nibName: "HistoryCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "historyCell")
         
-        HttpRequest.history(self, uuid: HistoryViewController.uuid) { (output) in
+        HttpRequest.history(self, uuid: HistoryViewController.uuid) { (histlist) in
+            for h in histlist {
+                let url_str =  h.url
+                let Url = URL(string: url_str)!
+
+                getData(from: Url) { data, response, error in
+                    guard let data = data, error == nil else { return }
+                    print(response?.suggestedFilename ?? Url.lastPathComponent)
+                    ApiContext.shared.addImage(url: url_str, data: data)
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+               }
+            }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -41,27 +54,14 @@ class HistoryViewController: UIViewController, UICollectionViewDataSource, UICol
         
         let hl: Array<History> = ApiContext.shared.getDeviceHistory(uuid: HistoryViewController.uuid)
         
-        let url = URL(string: hl[indexPath[1]].url)!
-        
         cell.dateTime.text = hl[indexPath[1]].time
-        let data:Data = ApiContext.shared.getImage(url: url)
-        if data.isEmpty {
-            getData(from: url) { data, response, error in
-                    guard let data = data, error == nil else { return }
-                    print(response?.suggestedFilename ?? url.lastPathComponent)
-                    ApiContext.shared.addImage(url: url, data: data)
-                    // always update the UI from the main thread
-                    DispatchQueue.main.async() {
-                        cell.image.image = UIImage(data: data)
-                        cell.image.frame = CGRect(x: 0, y: 0, width: 320, height: 240)
-                    }
-               }
-        }
-        else {
+        
+        let url_str =  hl[indexPath[1]].url
+        let data:Data = ApiContext.shared.getImage(url: url_str)
+        if !data.isEmpty {
             DispatchQueue.main.async() {
-                print("Cache hit")
                 cell.image.image = UIImage(data: data)
-                cell.image.frame = CGRect(x: 0, y: 0, width: 320, height: 240)
+                cell.progress.stopAnimating()
             }
         }
         
@@ -72,13 +72,6 @@ class HistoryViewController: UIViewController, UICollectionViewDataSource, UICol
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
         
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        let width = UIScreen.main.bounds.size.width - 40
-        let height = (width * 0.85)
-        return CGSize (width: width, height: height)
     }
     
 }

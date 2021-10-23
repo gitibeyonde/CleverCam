@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="451" height="341"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="7c2-fe-Byf">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="7c2-fe-Byf">
                         <rect key="frame" x="0.0" y="0.0" width="451" height="302"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -25,13 +26,23 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="qHU-zk-km2">
+                        <rect key="frame" x="200.5" y="145.5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="6Dh-Kw-Wnf"/>
+                            <constraint firstAttribute="width" constant="50" id="WEE-Wx-Dxz"/>
+                        </constraints>
+                    </activityIndicatorView>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="ykB-mg-GKZ"/>
             <constraints>
                 <constraint firstItem="7c2-fe-Byf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8PQ-7y-RTZ"/>
                 <constraint firstItem="7c2-fe-Byf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="93d-nC-Coc"/>
                 <constraint firstItem="Nbu-Lo-AC8" firstAttribute="top" secondItem="7c2-fe-Byf" secondAttribute="bottom" id="O06-GY-jdi"/>
+                <constraint firstItem="qHU-zk-km2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="O9o-ZE-nO0"/>
                 <constraint firstAttribute="trailing" secondItem="7c2-fe-Byf" secondAttribute="trailing" id="cwu-f4-zQs"/>
+                <constraint firstItem="qHU-zk-km2" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="mAP-T5-TL1"/>
                 <constraint firstItem="Nbu-Lo-AC8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="nQa-Qg-68w"/>
                 <constraint firstAttribute="bottom" secondItem="Nbu-Lo-AC8" secondAttribute="bottom" id="sxy-vo-F9v"/>
                 <constraint firstAttribute="trailing" secondItem="Nbu-Lo-AC8" secondAttribute="trailing" id="x08-Kq-Ymd"/>
@@ -40,6 +51,7 @@
             <connections>
                 <outlet property="dateTime" destination="Nbu-Lo-AC8" id="dAN-rq-uQ7"/>
                 <outlet property="image" destination="7c2-fe-Byf" id="qg7-Ca-XqQ"/>
+                <outlet property="progress" destination="qHU-zk-km2" id="aon-Z0-K0q"/>
             </connections>
             <point key="canvasLocation" x="431.15942028985512" y="232.03125"/>
         </collectionViewCell>

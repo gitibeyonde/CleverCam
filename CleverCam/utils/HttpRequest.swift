@@ -205,10 +205,8 @@ public class HttpRequest: HttpRequestDelegate {
                     var historyList: Array<History> = Array<History>()
                     do {
                         let jsonObjects: [Array] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [Array<String>]
-                        print(jsonObjects)
                         for jsonObject in jsonObjects {
                             historyList.append(History(url: jsonObject[0], time: jsonObject[1]))
-                            print( jsonObject[1])
                         }
                         ApiContext.shared.setDeviceHistory(uuid: uuid, historyList: historyList)
                     }

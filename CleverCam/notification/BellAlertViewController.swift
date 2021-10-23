@@ -43,11 +43,13 @@ class BellAlertViewController: UIViewController {
         HttpRequest.bellAlertDetails(self, uuid: BellAlertViewController.uuid, datetime: BellAlertViewController.datetime) { (notificationList) in
             DispatchQueue.main.async {
                 for i in 0...9 {
-                    let url = URL(string: notificationList[i].url)!
-                    getData(from: url) { data, response, error in
+                    
+                    let url_str = notificationList[i].url
+                    let Url = URL(string: url_str)!
+                    getData(from: Url) { data, response, error in
                             guard let data = data, error == nil else { return }
-                            print(response?.suggestedFilename ?? url.lastPathComponent)
-                            ApiContext.shared.addImage(url: url, data: data)
+                            print(response?.suggestedFilename ?? Url.lastPathComponent)
+                            ApiContext.shared.addImage(url: url_str, data: data)
                             // always update the UI from the main thread
                             DispatchQueue.main.async() {
                                 images[i]?.image = UIImage(data: data)
