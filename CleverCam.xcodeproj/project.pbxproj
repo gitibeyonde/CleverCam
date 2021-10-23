@@ -38,6 +38,7 @@
 		AB7F82DE271D79990054DA5E /* GlobalSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82DD271D79990054DA5E /* GlobalSettingsViewController.swift */; };
 		AB7F82E2271D79B30054DA5E /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82E1271D79B30054DA5E /* BluetoothViewController.swift */; };
 		AB7F82E8271ED9230054DA5E /* MJPEGStreamLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */; };
+		AB9BF7B92723E8A900C5B832 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		AB7F82DD271D79990054DA5E /* GlobalSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettingsViewController.swift; sourceTree = "<group>"; };
 		AB7F82E1271D79B30054DA5E /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
 		AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGStreamLib.swift; sourceTree = "<group>"; };
+		AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				AB7F827B2716DC4F0054DA5E /* LoginViewController.swift */,
 				AB7F82802716E2B50054DA5E /* RegisterViewController.swift */,
 				AB7F828327170E4B0054DA5E /* User.swift */,
+				AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				AB7F82AB271837950054DA5E /* DeviceCell.swift in Sources */,
 				AB7F82E2271D79B30054DA5E /* BluetoothViewController.swift in Sources */,
 				AB7F825F2716D0D70054DA5E /* AppDelegate.swift in Sources */,
+				AB9BF7B92723E8A900C5B832 /* ResetViewController.swift in Sources */,
 				AB7F82612716D0D70054DA5E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
