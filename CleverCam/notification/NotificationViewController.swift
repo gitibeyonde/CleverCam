@@ -76,6 +76,7 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         DeviceViewController.device_timer.invalidate()
         let nl: Array<Notification> = ApiContext.shared.notificationList
         BellAlertViewController.uuid = nl[indexPath[1]].uuid
+        BellAlertViewController.datetime = nl[indexPath[1]].created
         self.performSegue(withIdentifier: "ShowBell", sender: nil)
     }
     

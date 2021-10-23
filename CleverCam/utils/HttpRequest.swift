@@ -19,6 +19,7 @@ public class HttpRequest: HttpRequestDelegate {
     public typealias AlertSuccessCompletionHandler = (_ response: Array<Alert>) -> Void
     public typealias HistorySuccessCompletionHandler = (_ response: Array<History>) -> Void
     public typealias NotificationSuccessCompletionHandler = (_ response: Array<Notification>) -> Void
+    public typealias BellHistorySuccessCompletionHandler = (_ response: Array<BellHistory>) -> Void
    
     
     static func login(_ delegate: HttpRequestDelegate?, base64LoginString: String,
@@ -438,6 +439,92 @@ public class HttpRequest: HttpRequestDelegate {
         }
         dataTask?.resume()
     }
+    
+    /**
+     Date d = new Date();
+            SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//2021-09-27 09:12:48
+            try {
+                d = sdf.parse(date_time);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Log.d(TAG, "getBellAlertDetails " + d.toString());
+
+            sdf = new SimpleDateFormat("yyyy/MM/dd");
+            String date= sdf.format(d);
+            sdf = new SimpleDateFormat("HH");
+            String hour= sdf.format(d);
+            sdf = new SimpleDateFormat("mm");
+            String minute= sdf.format(d);
+            String url ="https://ping.ibeyonde.com/api/iot.php?view=bellalerts&uuid=" + uuid + "&date=" + date  + "&hour=" + hour + "&minute=" + minute; //format path = 2016/06/02; hour = 05
+            //["https:\/\/s3-us-west-2.amazonaws.com\/e","22\/09\/2021 - 14:10:41"],
+     */
+    static func bellAlertDetails(_ delegate: HttpRequestDelegate?, uuid: String, datetime: String,
+                    success successCallback: @escaping BellHistorySuccessCompletionHandler
+    ) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.date(from: datetime)
+        
+        let calendar = Calendar.current
+        
+        let year = calendar.component(.year, from: date!)
+        let month = calendar.component(.month, from: date!)
+        let day = calendar.component(.day, from: date!)
+        let hour = calendar.component(.hour, from: date!)
+        let minute = calendar.component(.minute, from: date!)
+        
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=bellalerts&uuid=\(uuid)&date=\(year)/\(month)/\(day)&hour=\(hour)&minute=\(minute)";
+        
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        
+        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    var bellHistoryList: Array<BellHistory> = Array<BellHistory>()
+                    do {
+                        let jsonObjects: [NSDictionary] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [NSDictionary]
+                        for jsonObject in jsonObjects {
+                            bellHistoryList.append(BellHistory(url: jsonObject["url"] as! String, time: jsonObject["datetime"] as! String))
+                        }
+                        ApiContext.shared.setBellHistory(bellHistoryList: bellHistoryList)
+                    }
+                    catch {
+                        print("Something went wrong")
+                    }
+                    successCallback(bellHistoryList)
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
+    
     
     static func sendFCMToken(_ delegate: HttpRequestDelegate?, strToken : String,  success successCallback: @escaping SuccessCompletionHandler)
     {

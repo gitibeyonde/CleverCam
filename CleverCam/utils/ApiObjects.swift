@@ -75,6 +75,7 @@ public struct DeviceHistory:Codable {
         historylist=Array<History>()
    }
 }
+
 public struct History:Codable {
    var url: String
    var time: String
@@ -112,4 +113,19 @@ public struct Notification:Codable {
         self.image=image
         self.type=type
     }
+}
+
+
+public struct BellHistory:Codable {
+   var url: String
+   var datetime: String
+   
+   init(){
+        url=""
+        datetime=""
+   }
+   init(url: String, time: String){
+       self.url = url
+       self.datetime = time
+   }
 }

@@ -116,4 +116,18 @@ class ApiContext: NSObject {
     public func getImage(url: URL)->Data {
         return cache[url] ?? Data.init()
     }
+    
+    
+    /*
+     DEVICE HISTORY
+     */
+    public var bellHistoryList:Array<BellHistory> = []
+    public func setBellHistory(bellHistoryList: Array<BellHistory>)->Void {
+        self.bellHistoryList=bellHistoryList
+    }
+    
+    public func getBellHistory(uuid: String)->Array<BellHistory> {
+        return bellHistoryList
+    }
+    
 }

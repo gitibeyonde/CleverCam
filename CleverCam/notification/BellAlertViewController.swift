@@ -15,7 +15,21 @@ class BellAlertViewController: UIViewController {
     @IBOutlet var progressHistory: UIActivityIndicatorView!
     @IBOutlet var liveProgress: UIActivityIndicatorView!
     
+    @IBOutlet var img0: UIImageView!
+    @IBOutlet var img1: UIImageView!
+    @IBOutlet var img2: UIImageView!
+    @IBOutlet var img3: UIImageView!
+    @IBOutlet var img4: UIImageView!
+    @IBOutlet var img5: UIImageView!
+    @IBOutlet var img6: UIImageView!
+    @IBOutlet var img7: UIImageView!
+    @IBOutlet var img8: UIImageView!
+    @IBOutlet var img9: UIImageView!
+    
     public static var uuid: String = ""
+    public static var datetime: String = ""
+    
+    
     var stream: MJPEGStreamLib!
     var url: URL?
     
@@ -23,7 +37,13 @@ class BellAlertViewController: UIViewController {
         super.viewDidLoad()
         
         print("loading bell alert view controller ")
+        HttpRequest.bellAlertDetails(self, uuid: BellAlertViewController.uuid, datetime: BellAlertViewController.datetime) { (notificationList) in
+            DispatchQueue.main.async {
+                print(notificationList[0])
+            }
+        }
         
+        //load live
         name.text = BellAlertViewController.uuid
         
         let url:String = HttpRequest.getStreamUrl(self, uuid: BellAlertViewController.uuid)
@@ -44,19 +64,11 @@ class BellAlertViewController: UIViewController {
         stream.contentURL = urlComponent!.url
         stream.play() // Play the stream
         
+        //load history
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension BellAlertViewController: HttpRequestDelegate {
