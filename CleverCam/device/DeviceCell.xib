@@ -20,28 +20,28 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="uuidName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QT-M4-xae">
-                                <rect key="frame" x="0.0" y="1.5" width="88" height="20.5"/>
+                                <rect key="frame" x="0.0" y="1.5" width="79" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="id0-MQ-G28">
-                                <rect key="frame" x="146" y="0.0" width="23.5" height="22"/>
-                                <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                <rect key="frame" x="137" y="0.0" width="36.5" height="22"/>
+                                <state key="normal" image="tt_settings"/>
                                 <connections>
                                     <action selector="settingsClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Xf3-7I-SSW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QZ-PY-eGa">
-                                <rect key="frame" x="227.5" y="0.0" width="29.5" height="22"/>
-                                <state key="normal" image="camera.on.rectangle" catalog="system"/>
+                                <rect key="frame" x="231.5" y="0.0" width="36.5" height="22"/>
+                                <state key="normal" image="tt_image_search"/>
                                 <connections>
                                     <action selector="historyClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="HS0-xV-UN0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhM-hq-piN">
-                                <rect key="frame" x="315" y="0.0" width="50" height="22"/>
-                                <state key="normal" image="video" catalog="system"/>
+                                <rect key="frame" x="326" y="0.0" width="39" height="22"/>
+                                <state key="normal" image="tt_ondemand_video"/>
                                 <connections>
                                     <action selector="liveClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="jzY-Ec-zWE"/>
                                 </connections>
@@ -68,8 +68,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="camera.on.rectangle" catalog="system" width="128" height="96"/>
-        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
-        <image name="video" catalog="system" width="128" height="83"/>
+        <image name="tt_image_search" width="36" height="36"/>
+        <image name="tt_ondemand_video" width="36" height="36"/>
+        <image name="tt_settings" width="36" height="36"/>
     </resources>
 </document>

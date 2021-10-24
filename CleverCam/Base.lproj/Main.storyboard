@@ -490,31 +490,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="cXM-lL-ySS">
-                                <rect key="frame" x="49.333333333333485" y="800" width="314.5" height="22"/>
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" id="cXM-lL-ySS">
+                                <rect key="frame" x="50" y="786" width="315" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pO-0t-sQQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="22"/>
-                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pO-0t-sQQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_awesome_motion"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu0-B6-rOi">
-                                        <rect key="frame" x="103.5" y="0.0" width="11" height="22"/>
-                                        <state key="normal" image="info" catalog="system"/>
+                                        <rect key="frame" x="93" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="lPu-xw-AAb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3G-Ns-Cd2">
-                                        <rect key="frame" x="193.5" y="0.0" width="21" height="22"/>
-                                        <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <rect key="frame" x="186" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="4l0-Ab-iBd"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ld-BR-X8O">
-                                        <rect key="frame" x="293.5" y="0.0" width="21" height="22"/>
-                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <rect key="frame" x="279" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="tuA-vt-A7A" kind="show" identifier="ShowGlobalSettings" id="Pr2-as-fDm"/>
                                         </connections>
@@ -522,7 +522,7 @@
                                 </subviews>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MPf-LB-DIT">
-                                <rect key="frame" x="0.0" y="10" width="413.5" height="780"/>
+                                <rect key="frame" x="0.0" y="10" width="415" height="766"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="l8u-nW-zUu">
                                     <size key="itemSize" width="128" height="128"/>
@@ -572,34 +572,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="cWP-ba-bf7">
-                                <rect key="frame" x="50" y="786" width="314.5" height="22"/>
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" id="cWP-ba-bf7">
+                                <rect key="frame" x="50" y="786" width="315" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U26-lx-wU2">
-                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="22"/>
-                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="E62-aZ-Sai"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXd-6U-YZr">
-                                        <rect key="frame" x="103.5" y="0.0" width="11" height="22"/>
-                                        <state key="normal" image="info" catalog="system"/>
+                                        <rect key="frame" x="93" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="kXl-YN-FhJ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSN-Lg-oRI">
-                                        <rect key="frame" x="193.5" y="0.0" width="21" height="22"/>
-                                        <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <rect key="frame" x="186" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="DI4-WP-KHY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrU-Gk-A3m">
-                                        <rect key="frame" x="293.5" y="0.0" width="21" height="22"/>
-                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <rect key="frame" x="279" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="tuA-vt-A7A" kind="show" identifier="ShowGlobalSettings" id="eWR-ek-Ea6"/>
                                         </connections>
@@ -658,34 +658,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="OKY-xf-fqC">
-                                <rect key="frame" x="44" y="774" width="314.5" height="22"/>
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" id="OKY-xf-fqC">
+                                <rect key="frame" x="50" y="786" width="315" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JsL-w7-OO4">
-                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="22"/>
-                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="txE-DV-Vlb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONc-lt-rZu">
-                                        <rect key="frame" x="103.5" y="0.0" width="11" height="22"/>
-                                        <state key="normal" image="info" catalog="system"/>
+                                        <rect key="frame" x="93" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="j2C-ha-ttn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5y-xH-7HF">
-                                        <rect key="frame" x="193.5" y="0.0" width="21" height="22"/>
-                                        <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <rect key="frame" x="186" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="s5U-Fr-Sky"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWA-c3-fRX">
-                                        <rect key="frame" x="293.5" y="0.0" width="21" height="22"/>
-                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <rect key="frame" x="279" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="tuA-vt-A7A" kind="show" identifier="ShowGlobalSettings" id="pW9-hc-5fS"/>
                                         </connections>
@@ -718,31 +718,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="FOy-Lu-se4">
-                                <rect key="frame" x="50" y="786" width="314.5" height="22"/>
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" id="FOy-Lu-se4">
+                                <rect key="frame" x="50" y="786" width="315" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMZ-VM-hR5">
-                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="22"/>
-                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="a1b-JM-I57"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KG7-1t-bq7">
-                                        <rect key="frame" x="103.5" y="0.0" width="11" height="22"/>
-                                        <state key="normal" image="info" catalog="system"/>
+                                        <rect key="frame" x="93" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_notifications_active"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fef-uT-Wcd">
-                                        <rect key="frame" x="193.5" y="0.0" width="21" height="22"/>
-                                        <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <rect key="frame" x="186" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="ovt-y7-JZS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDH-9n-ifg">
-                                        <rect key="frame" x="293.5" y="0.0" width="21" height="22"/>
-                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <rect key="frame" x="279" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="tuA-vt-A7A" kind="show" identifier="ShowGlobalSettings" id="ue1-av-rsX"/>
                                         </connections>
@@ -912,48 +912,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="t2D-eS-vcp">
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" id="t2D-eS-vcp">
                                 <rect key="frame" x="50" y="786" width="315" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCj-FX-8G6">
-                                        <rect key="frame" x="0.0" y="0.0" width="25" height="22"/>
-                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="Xea-xZ-sAT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rrh-Oi-aDa">
-                                        <rect key="frame" x="104" y="0.0" width="11" height="22"/>
-                                        <state key="normal" image="info" catalog="system"/>
+                                        <rect key="frame" x="93" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="iOG-6r-wJk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PY-Db-0MB">
-                                        <rect key="frame" x="194" y="0.0" width="21" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="21" id="f0a-UH-I6X"/>
-                                        </constraints>
-                                        <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <rect key="frame" x="186" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_settings_bluetooth"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iO8-bw-r5Q">
-                                        <rect key="frame" x="294" y="0.0" width="21" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="21" id="c88-2Y-j6m"/>
-                                        </constraints>
-                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <rect key="frame" x="279" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="rJR-dg-IM9" kind="show" identifier="ShowSettings" id="eSz-ee-aF8"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="iO8-bw-r5Q" firstAttribute="leading" secondItem="5PY-Db-0MB" secondAttribute="trailing" constant="79" id="dEo-DI-qyJ"/>
-                                </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth is under construction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wET-GL-5FV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bluetooth is under construction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wET-GL-5FV">
                                 <rect key="frame" x="41" y="361" width="335" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
@@ -961,11 +953,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rfv-Kk-swR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Rfv-Kk-swR" firstAttribute="trailing" secondItem="wET-GL-5FV" secondAttribute="trailing" constant="38" id="OLb-go-OSQ"/>
-                            <constraint firstItem="wET-GL-5FV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rfv-Kk-swR" secondAttribute="leading" id="PFE-Mi-5ZZ"/>
-                            <constraint firstItem="wET-GL-5FV" firstAttribute="top" secondItem="Rfv-Kk-swR" secondAttribute="top" constant="361" id="QcT-0D-kYc"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="St2-RN-sZT"/>
                 </viewController>
@@ -981,59 +968,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Global Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGB-An-obq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Global Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGB-An-obq">
                                 <rect key="frame" x="58" y="12" width="131.5" height="21.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="Btp-eQ-ew5">
-                                <rect key="frame" x="50" y="804" width="315" height="22"/>
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" id="Btp-eQ-ew5">
+                                <rect key="frame" x="50" y="786" width="315" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPb-NV-06T">
-                                        <rect key="frame" x="0.0" y="0.0" width="25" height="22"/>
-                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="aYo-8w-XJK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuT-xL-PG0">
-                                        <rect key="frame" x="104" y="0.0" width="11" height="22"/>
-                                        <state key="normal" image="info" catalog="system"/>
+                                        <rect key="frame" x="93" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="bN5-hw-iLD"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dda-FV-M0b">
-                                        <rect key="frame" x="194" y="0.0" width="21" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="21" id="0k6-Tv-DrK"/>
-                                        </constraints>
-                                        <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <rect key="frame" x="186" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="showDetail" identifier="ShowBluetooth" id="R91-DY-haJ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrf-3J-DQD">
-                                        <rect key="frame" x="294" y="0.0" width="21" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="21" id="vqS-LV-BOQ"/>
-                                        </constraints>
-                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <rect key="frame" x="279" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_handyman"/>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="rrf-3J-DQD" firstAttribute="leading" secondItem="dda-FV-M0b" secondAttribute="trailing" constant="79" id="acy-OM-P5t"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yzu-EL-r2e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="jGB-An-obq" firstAttribute="top" secondItem="Yzu-EL-r2e" secondAttribute="top" constant="12" id="oIk-cE-fEy"/>
-                            <constraint firstItem="jGB-An-obq" firstAttribute="leading" secondItem="Yzu-EL-r2e" secondAttribute="leading" constant="58" id="zPA-Xz-RGz"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZW4-vH-cm2"/>
                 </viewController>
@@ -1065,34 +1040,34 @@
                                     <outlet property="delegate" destination="vtE-H4-AyR" id="LRq-7N-IzM"/>
                                 </connections>
                             </collectionView>
-                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="79" baselineRelativeArrangement="YES" id="tUU-lO-x4B">
-                                <rect key="frame" x="50" y="779" width="314.5" height="22"/>
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" id="tUU-lO-x4B">
+                                <rect key="frame" x="50" y="786" width="315" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AF8-67-uGF">
-                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="22"/>
-                                        <state key="normal" image="list.and.film" catalog="system"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="b2T-rT-2Hx"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Z8-Wd-ZSk">
-                                        <rect key="frame" x="103.5" y="0.0" width="11" height="22"/>
-                                        <state key="normal" image="info" catalog="system"/>
+                                        <rect key="frame" x="93" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotfication" id="WtH-SG-3b3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0b-ys-nmH">
-                                        <rect key="frame" x="193.5" y="0.0" width="21" height="22"/>
-                                        <state key="normal" image="antenna.radiowaves.left.and.right" catalog="system"/>
+                                        <rect key="frame" x="186" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluettoth" id="dyG-XP-exf"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yH-rQ-niX">
-                                        <rect key="frame" x="293.5" y="0.0" width="21" height="22"/>
-                                        <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <rect key="frame" x="279" y="0.0" width="36" height="22"/>
+                                        <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="rJR-dg-IM9" kind="show" identifier="ShowSettings" id="fLw-8v-kmp"/>
                                         </connections>
@@ -1114,21 +1089,21 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ue1-av-rsX"/>
-        <segue reference="dyG-XP-exf"/>
-        <segue reference="WtH-SG-3b3"/>
-        <segue reference="fLw-8v-kmp"/>
-        <segue reference="b2T-rT-2Hx"/>
+        <segue reference="Pr2-as-fDm"/>
+        <segue reference="4l0-Ab-iBd"/>
+        <segue reference="lPu-xw-AAb"/>
+        <segue reference="wda-av-RYE"/>
+        <segue reference="SkZ-2s-KgS"/>
         <segue reference="Snh-GA-Gw4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Login_Logo" width="300" height="68"/>
-        <image name="antenna.radiowaves.left.and.right" catalog="system" width="128" height="109"/>
         <image name="eyeHide" width="25" height="25"/>
         <image name="eyeShow" width="25" height="25"/>
-        <image name="info" catalog="system" width="93" height="128"/>
-        <image name="list.and.film" catalog="system" width="128" height="86"/>
-        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
+        <image name="tt_awesome_motion" width="36" height="36"/>
+        <image name="tt_handyman" width="36" height="36"/>
+        <image name="tt_notifications_active" width="36" height="36"/>
+        <image name="tt_settings_bluetooth" width="36" height="36"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
