@@ -3,6 +3,8 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,23 +27,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="id0-MQ-G28">
+                            <button opaque="NO" contentMode="scaleAspectFit" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="id0-MQ-G28">
                                 <rect key="frame" x="137" y="0.0" width="36.5" height="22"/>
-                                <state key="normal" image="tt_settings"/>
+                                <state key="normal" image="tt_settings">
+                                    <color key="titleShadowColor" name="AccentColor"/>
+                                </state>
                                 <connections>
                                     <action selector="settingsClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Xf3-7I-SSW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QZ-PY-eGa">
+                            <button opaque="NO" contentMode="scaleAspectFit" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QZ-PY-eGa">
                                 <rect key="frame" x="231.5" y="0.0" width="36.5" height="22"/>
-                                <state key="normal" image="tt_image_search"/>
+                                <state key="normal" image="tt_image_search">
+                                    <color key="titleColor" systemColor="linkColor"/>
+                                </state>
                                 <connections>
                                     <action selector="historyClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="HS0-xV-UN0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhM-hq-piN">
+                            <button opaque="NO" contentMode="scaleAspectFit" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhM-hq-piN">
                                 <rect key="frame" x="326" y="0.0" width="39" height="22"/>
-                                <state key="normal" image="tt_ondemand_video"/>
+                                <state key="normal" image="tt_ondemand_video">
+                                    <color key="titleColor" systemColor="linkColor"/>
+                                </state>
                                 <connections>
                                     <action selector="liveClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="jzY-Ec-zWE"/>
                                 </connections>
@@ -71,5 +79,11 @@
         <image name="tt_image_search" width="36" height="36"/>
         <image name="tt_ondemand_video" width="36" height="36"/>
         <image name="tt_settings" width="36" height="36"/>
+        <namedColor name="AccentColor">
+            <color red="0.83700001239776611" green="0.83700001239776611" blue="0.83700001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
