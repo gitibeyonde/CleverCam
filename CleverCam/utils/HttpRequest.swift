@@ -20,6 +20,7 @@ public class HttpRequest: HttpRequestDelegate {
     public typealias HistorySuccessCompletionHandler = (_ response: Array<History>) -> Void
     public typealias NotificationSuccessCompletionHandler = (_ response: Array<Notification>) -> Void
     public typealias BellHistorySuccessCompletionHandler = (_ response: Array<BellHistory>) -> Void
+    public typealias ConfigSuccessCompletionHandler = (_ response: Array<CameraConfig>) -> Void
    
     
     static func login(_ delegate: HttpRequestDelegate?, base64LoginString: String,
@@ -505,6 +506,61 @@ public class HttpRequest: HttpRequestDelegate {
         }
         dataTask?.resume()
     }
+    
+    /**
+                            SETTINGS
+     */
+    static func settings(_ delegate: HttpRequestDelegate?, uuid: String,
+                    success successCallback: @escaping ConfigSuccessCompletionHandler
+    ) {
+        let device = ApiContext.shared.getDevice(uuid: uuid);
+        let url = "http://\(device.deviceip)/cmd?name=getconf";
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("localhost", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    var config: Array<CameraConfig> = Array<CameraConfig>()
+                    print(response)
+                    do {
+                        let jsonObjects: [Array] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [Array<String>]
+                        for jsonObject in jsonObjects {
+                            config.append(CameraConfig(name: jsonObject[0], value: jsonObject[1]))
+                        }
+                    }
+                    catch {
+                        print("Something went wrong")
+                    }
+                    successCallback(config)
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
+    
+    //"https://ping.ibeyonde.com/api/iot.php?view=lastalerts&uuid=" + uuid;
+   
     
     
     static func sendFCMToken(_ delegate: HttpRequestDelegate?, strToken : String,  success successCallback: @escaping SuccessCompletionHandler)

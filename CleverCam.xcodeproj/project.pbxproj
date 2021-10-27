@@ -39,6 +39,7 @@
 		AB7F82E2271D79B30054DA5E /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82E1271D79B30054DA5E /* BluetoothViewController.swift */; };
 		AB7F82E8271ED9230054DA5E /* MJPEGStreamLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */; };
 		AB9BF7B92723E8A900C5B832 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */; };
+		ABDC6F6427296FF100061E9B /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDC6F6327296FF100061E9B /* TimeZone.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		AB7F82E1271D79B30054DA5E /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
 		AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGStreamLib.swift; sourceTree = "<group>"; };
 		AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
+		ABDC6F6327296FF100061E9B /* TimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZone.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				AB7F82B027197DEA0054DA5E /* ApiObjects.swift */,
 				AB7F82BB271BE2CA0054DA5E /* Utils.swift */,
 				AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */,
+				ABDC6F6327296FF100061E9B /* TimeZone.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */,
 				AB7F828427170E4B0054DA5E /* User.swift in Sources */,
 				AB7F82B127197DEA0054DA5E /* ApiObjects.swift in Sources */,
+				ABDC6F6427296FF100061E9B /* TimeZone.swift in Sources */,
 				AB7F82C3271C45340054DA5E /* HistoryViewController.swift in Sources */,
 				AB7F82BC271BE2CA0054DA5E /* Utils.swift in Sources */,
 				AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */,

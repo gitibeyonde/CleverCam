@@ -17,18 +17,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="365" height="310"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="bottom" spacing="58" baselineRelativeArrangement="YES" id="YVw-ZM-wAR">
-                        <rect key="frame" x="0.0" y="10" width="365" height="22"/>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kC3-OS-HlA">
+                        <rect key="frame" x="170" y="152" width="50" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </activityIndicatorView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="A0q-h4-8ON">
+                        <rect key="frame" x="0.0" y="13" width="365" height="256"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="bottom" spacing="60" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVw-ZM-wAR">
+                        <rect key="frame" x="0.0" y="274" width="365" height="36"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="uuidName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QT-M4-xae">
-                                <rect key="frame" x="0.0" y="1.5" width="79" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="uuidName" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QT-M4-xae">
+                                <rect key="frame" x="0.0" y="15.5" width="81.5" height="20.5"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" systemColor="systemIndigoColor"/>
                                 <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFit" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="id0-MQ-G28">
-                                <rect key="frame" x="137" y="0.0" width="36.5" height="22"/>
+                                <rect key="frame" x="141.5" y="0.0" width="35.5" height="36"/>
                                 <state key="normal" image="tt_settings">
                                     <color key="titleShadowColor" name="AccentColor"/>
                                 </state>
@@ -37,7 +46,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QZ-PY-eGa">
-                                <rect key="frame" x="231.5" y="0.0" width="36.5" height="22"/>
+                                <rect key="frame" x="237" y="0.0" width="35.5" height="36"/>
                                 <state key="normal" image="tt_image_search">
                                     <color key="titleColor" systemColor="linkColor"/>
                                 </state>
@@ -46,7 +55,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhM-hq-piN">
-                                <rect key="frame" x="326" y="0.0" width="39" height="22"/>
+                                <rect key="frame" x="332.5" y="0.0" width="32.5" height="36"/>
                                 <state key="normal" image="tt_ondemand_video">
                                     <color key="titleColor" systemColor="linkColor"/>
                                 </state>
@@ -55,17 +64,17 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="s1b-Wj-x3v"/>
+                        </constraints>
                     </stackView>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kC3-OS-HlA">
-                        <rect key="frame" x="170" y="152" width="50" height="50"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </activityIndicatorView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="A0q-h4-8ON">
-                        <rect key="frame" x="0.0" y="45" width="365" height="256"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="YVw-ZM-wAR" secondAttribute="trailing" id="1Te-rP-WPn"/>
+                <constraint firstAttribute="bottom" secondItem="YVw-ZM-wAR" secondAttribute="bottom" id="Mtn-eP-diD"/>
+                <constraint firstItem="YVw-ZM-wAR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Y6E-Qe-e4S"/>
+            </constraints>
             <size key="customSize" width="365" height="310"/>
             <connections>
                 <outlet property="deviceName" destination="0QT-M4-xae" id="fZ9-5c-efS"/>
@@ -84,6 +93,9 @@
         </namedColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

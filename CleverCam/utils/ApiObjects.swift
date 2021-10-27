@@ -129,3 +129,18 @@ public struct BellHistory:Codable {
        self.datetime = time
    }
 }
+
+
+public struct CameraConfig:Codable {
+   var name: String
+   var value: String
+   
+   init(){
+        name=""
+        value=""
+   }
+   init(name: String, value: String){
+       self.name = name
+       self.value = value
+   }
+}
