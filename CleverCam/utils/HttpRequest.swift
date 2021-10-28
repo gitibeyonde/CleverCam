@@ -20,7 +20,7 @@ public class HttpRequest: HttpRequestDelegate {
     public typealias HistorySuccessCompletionHandler = (_ response: Array<History>) -> Void
     public typealias NotificationSuccessCompletionHandler = (_ response: Array<Notification>) -> Void
     public typealias BellHistorySuccessCompletionHandler = (_ response: Array<BellHistory>) -> Void
-    public typealias ConfigSuccessCompletionHandler = (_ response: Array<CameraConfig>) -> Void
+    public typealias ConfigSuccessCompletionHandler = (_ response: CameraConfig) -> Void
    
     
     static func login(_ delegate: HttpRequestDelegate?, base64LoginString: String,
@@ -538,18 +538,15 @@ public class HttpRequest: HttpRequestDelegate {
                     let data: Data = data,
                     let response = response as? HTTPURLResponse,
                     response.statusCode == 200 {
-                    var config: Array<CameraConfig> = Array<CameraConfig>()
-                    print(response)
                     do {
-                        let jsonObjects: [Array] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [Array<String>]
-                        for jsonObject in jsonObjects {
-                            config.append(CameraConfig(name: jsonObject[0], value: jsonObject[1]))
-                        }
+                        let decoder = JSONDecoder()
+                        let config:CameraConfig = try decoder.decode(CameraConfig.self, from: data)
+                        successCallback(config)
                     }
                     catch {
                         print("Something went wrong")
+                        delegate?.onError()
                     }
-                    successCallback(config)
                 }
                 else {
                     print("Unknown error")

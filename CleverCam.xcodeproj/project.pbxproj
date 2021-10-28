@@ -20,7 +20,7 @@
 		AB7F82782716D86B0054DA5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB7F82772716D86B0054DA5E /* GoogleService-Info.plist */; };
 		AB7F827C2716DC4F0054DA5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F827B2716DC4F0054DA5E /* LoginViewController.swift */; };
 		AB7F82812716E2B50054DA5E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82802716E2B50054DA5E /* RegisterViewController.swift */; };
-		AB7F828427170E4B0054DA5E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F828327170E4B0054DA5E /* User.swift */; };
+		AB7F828427170E4B0054DA5E /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F828327170E4B0054DA5E /* Users.swift */; };
 		AB7F828B271710B30054DA5E /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F828A271710B30054DA5E /* HttpRequest.swift */; };
 		AB7F829427181B220054DA5E /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F829327181B220054DA5E /* PushNotificationManager.swift */; };
 		AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F8297271820270054DA5E /* DeviceViewController.swift */; };
@@ -57,7 +57,7 @@
 		AB7F82772716D86B0054DA5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB7F827B2716DC4F0054DA5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AB7F82802716E2B50054DA5E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		AB7F828327170E4B0054DA5E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AB7F828327170E4B0054DA5E /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		AB7F828A271710B30054DA5E /* HttpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		AB7F829327181B220054DA5E /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		AB7F8297271820270054DA5E /* DeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			children = (
 				AB7F827B2716DC4F0054DA5E /* LoginViewController.swift */,
 				AB7F82802716E2B50054DA5E /* RegisterViewController.swift */,
-				AB7F828327170E4B0054DA5E /* User.swift */,
+				AB7F828327170E4B0054DA5E /* Users.swift */,
 				AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */,
 			);
 			path = login;
@@ -280,7 +280,7 @@
 				AB5FCE5D27201D9000D695DA /* BellAlertViewController.swift in Sources */,
 				AB7F82D2271D72CF0054DA5E /* LiveViewController.swift in Sources */,
 				AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */,
-				AB7F828427170E4B0054DA5E /* User.swift in Sources */,
+				AB7F828427170E4B0054DA5E /* Users.swift in Sources */,
 				AB7F82B127197DEA0054DA5E /* ApiObjects.swift in Sources */,
 				ABDC6F6427296FF100061E9B /* TimeZone.swift in Sources */,
 				AB7F82C3271C45340054DA5E /* HistoryViewController.swift in Sources */,

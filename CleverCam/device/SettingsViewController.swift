@@ -13,35 +13,59 @@ let fsValues = [ "Large", "Medium", "Small" ]
 class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
    
     public static var uuid: String = ""
+    var config:CameraConfig = CameraConfig()
     
     @IBOutlet var label: UILabel!
     @IBOutlet var name: UITextField!
     @IBOutlet var version: UITextField!
     @IBOutlet var timezone: UIPickerView!
-    @IBOutlet var framesize: UIPickerView!
+    @IBOutlet var camFramesize: UIPickerView!
     @IBOutlet var activity: UIActivityIndicatorView!
-    @IBOutlet var message: UITextField!
+    @IBOutlet var message: UILabel!
+    @IBOutlet var cloudStreamSwitch: UISwitch!
+    @IBOutlet var storeHistorySwitch: UISwitch!
+    @IBOutlet var vertFlipSwitch: UISwitch!
+    @IBOutlet var horFlipSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tzs = _timezones()
+        for to in tzs.getTimeZones() {
+            tzValues.append(to.timezone)
+        }
+        
         HttpRequest.settings(self, uuid: SettingsViewController.uuid) { (config) in
-            for nv in config {
-                print(nv)
+            self.config = config
+            DispatchQueue.main.async {
+                self.activity.stopAnimating()
+                self.message.text = "\(config.name) settings"
+                self.name.text = config.name
+                self.version.text = config.version
+                self.cloudStreamSwitch.setOn(config.cloud == "true", animated: false)
+                self.storeHistorySwitch.setOn(config.history == "true", animated: false)
+                self.vertFlipSwitch.setOn(config.vflip == 1, animated: false)
+                self.horFlipSwitch.setOn(config.hmirror == 1, animated: false)
+                self.camFramesize.selectRow(self.framesizeIndex(framesize: config.framesize), inComponent: 0, animated: false)
+                self.timezone.selectRow(tzValues.firstIndex(of: config.timezone) ?? 0, inComponent: 0, animated: false)
             }
         }
         
         // Do any additional setup after loading the view.
         timezone.tag = 1
-        framesize.tag = 2
-        
-        let tzs = _timezones()
-        
-        for to in tzs.getTimeZones() {
-            tzValues.append(to.timezone)
+        camFramesize.tag = 2
+    }
+    
+    private func framesizeIndex(framesize: Int)->Int {
+        if framesize == 8 {
+            return 2
         }
-        
-        
+        else if framesize == 5 {
+            return 1
+        }
+        else {
+            return 0
+        }
     }
     
     @IBAction func deviceNameClick(_ sender: UIButton) {
@@ -125,7 +149,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 extension SettingsViewController: HttpRequestDelegate {
     func onError() {
         DispatchQueue.main.async() {
-            let alert = UIAlertController(title: "Ops", message: "Error getting device list...", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Ops", message: "Error getting camera config...", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
