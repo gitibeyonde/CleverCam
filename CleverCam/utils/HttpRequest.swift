@@ -556,8 +556,165 @@ public class HttpRequest: HttpRequestDelegate {
         dataTask?.resume()
     }
     
+    static func applyDeviceConfig(_ delegate: HttpRequestDelegate?, uuid: String, name: String, value: String,
+                    success successCallback: @escaping SuccessCompletionHandler
+    ) {
+        let device = ApiContext.shared.getDevice(uuid: uuid);
+        let url = "http://\(device.deviceip)/cmd?name=config&var=\(name)&val=\(value)";
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("localhost", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    print("Success full",  String(bytes: data, encoding: .ascii) ?? "")
+                    successCallback(String(bytes: data, encoding: .ascii) ?? "")
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
+    
+    static func applyCamConfig(_ delegate: HttpRequestDelegate?, uuid: String, name: String, value: String,
+                    success successCallback: @escaping SuccessCompletionHandler
+    ) {
+        let device = ApiContext.shared.getDevice(uuid: uuid);
+        let url = "http://\(device.deviceip)/cmd?name=camconf&var=\(name)&val=\(value)";
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("localhost", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    print("Success full",  String(bytes: data, encoding: .ascii) ?? "")
+                    successCallback(String(bytes: data, encoding: .ascii) ?? "")
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
+    
+    static func deviceCommand(_ delegate: HttpRequestDelegate?, uuid: String, name: String,
+                    success successCallback: @escaping SuccessCompletionHandler
+    ) {
+        let device = ApiContext.shared.getDevice(uuid: uuid);
+        let url = "http://\(device.deviceip)/cmd?name=\(name)";
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("localhost", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    print("Success full",  String(bytes: data, encoding: .ascii) ?? "")
+                    successCallback(String(bytes: data, encoding: .ascii) ?? "")
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
     //"https://ping.ibeyonde.com/api/iot.php?view=lastalerts&uuid=" + uuid;
-   
+    static func deleteHistory(_ delegate: HttpRequestDelegate?, uuid: String,
+                    success successCallback: @escaping SuccessCompletionHandler
+    ) {
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=delhist&uuid=\(uuid)";
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        
+        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    print("Success full",  String(bytes: data, encoding: .ascii) ?? "")
+                    successCallback(String(bytes: data, encoding: .ascii) ?? "")
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
     
     
     static func sendFCMToken(_ delegate: HttpRequestDelegate?, strToken : String,  success successCallback: @escaping SuccessCompletionHandler)

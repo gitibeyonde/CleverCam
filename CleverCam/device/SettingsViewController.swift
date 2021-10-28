@@ -34,12 +34,14 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         for to in tzs.getTimeZones() {
             tzValues.append(to.timezone)
         }
+        timezone.tag = 1
+        camFramesize.tag = 2
         
         HttpRequest.settings(self, uuid: SettingsViewController.uuid) { (config) in
             self.config = config
             DispatchQueue.main.async {
                 self.activity.stopAnimating()
-                self.message.text = "\(config.name) settings"
+                self.message.text = "       \(config.name) settings"
                 self.name.text = config.name
                 self.version.text = config.version
                 self.cloudStreamSwitch.setOn(config.cloud == "true", animated: false)
@@ -51,9 +53,6 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             }
         }
         
-        // Do any additional setup after loading the view.
-        timezone.tag = 1
-        camFramesize.tag = 2
     }
     
     private func framesizeIndex(framesize: Int)->Int {
@@ -69,51 +68,55 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func deviceNameClick(_ sender: UIButton) {
+        print(self.name.text!)
+        HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "cn", value: self.name.text!) { (reponse) in
+            print(reponse)
+        }
     }
     
     @IBAction func cloudStreaming(_ sender: UISwitch) {
-        if (sender.isOn == true){
-           print("on")
-        }
-        else{
-           print("off")
+        HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "cloud", value: sender.isOn == true ? "true" : "false" ) { (reponse) in
+            print(reponse)
         }
     }
     
     @IBAction func storeMotion(_ sender: UISwitch) {
-        if (sender.isOn == true){
-           print("on")
-        }
-        else{
-           print("off")
+        HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "history", value: sender.isOn == true ? "true" : "false" ) { (reponse) in
+            print(reponse)
         }
     }
     
     @IBAction func deleteHistory(_ sender: UIButton) {
+        HttpRequest.deleteHistory(self, uuid: SettingsViewController.uuid ) { (reponse) in
+            print(reponse)
+        }
     }
+    
     @IBAction func verticalFlip(_ sender: UISwitch) {
-        if (sender.isOn == true){
-           print("on")
-        }
-        else{
-           print("off")
-        }
+        HttpRequest.applyCamConfig(self, uuid: SettingsViewController.uuid, name: "vflip", value: sender.isOn == true ? "1" : "0" ) { (reponse) in
+                print(reponse)
+            }
     }
     @IBAction func horizontalFlip(_ sender: UISwitch) {
-        if (sender.isOn == true){
-           print("on")
-        }
-        else{
-           print("off")
-        }
+        HttpRequest.applyCamConfig(self, uuid: SettingsViewController.uuid, name: "hmirror", value: sender.isOn == true ? "1" : "0" ) { (reponse) in
+                print(reponse)
+            }
     }
     
     @IBAction func restart(_ sender: UIButton) {
+        HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "restart" ) { (reponse) in
+            print(reponse)
+        }
     }
-    
     @IBAction func reset(_ sender: UIButton) {
+        HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "reset" ) { (reponse) in
+            print(reponse)
+        }
     }
     @IBAction func upgrade(_ sender: UIButton) {
+        HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "upgrade" ) { (reponse) in
+            print(reponse)
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -142,6 +145,22 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView.tag {
+            case 1:
+                print(tzValues[row])
+                HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "timezone", value: tzValues[row] ) { (reponse) in
+                        print(reponse)
+                    }
+                break
+            case 2:
+                print(fsValues[row])
+                HttpRequest.applyCamConfig(self, uuid: SettingsViewController.uuid, name: "framesize", value: fsValues[row] ) { (reponse) in
+                        print(reponse)
+                    }
+                break
+            default:
+                break
+        }
     }
 }
 
