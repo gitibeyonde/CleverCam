@@ -12,6 +12,7 @@ class NotificationCell: UICollectionViewCell {
     @IBOutlet var image: UIImageView!
     @IBOutlet var deviceName: UILabel!
     @IBOutlet var progress: UIActivityIndicatorView!
+    @IBOutlet var dateTime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

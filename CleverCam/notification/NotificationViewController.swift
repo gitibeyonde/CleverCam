@@ -40,6 +40,7 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         
         cell.deviceName.text = nl[indexPath[1]].uuid
         cell.id.text = nl[indexPath[1]].id
+        cell.dateTime.text = nl[indexPath[1]].created
         
         let url_str = nl[indexPath[1]].image
         let Url = URL(string: url_str)!
@@ -52,7 +53,6 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
                     // always update the UI from the main thread
                     DispatchQueue.main.async() {
                         cell.image.image = UIImage(data: data)
-                        cell.image.frame = CGRect(x: 0, y: 0, width: 320, height: 240)
                         cell.progress.stopAnimating()
                     }
                }
@@ -61,7 +61,6 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
             DispatchQueue.main.async() {
                 print("Cache hit")
                 cell.image.image = UIImage(data: data)
-                cell.image.frame = CGRect(x: 0, y: 0, width: 320, height: 240)
                 cell.progress.stopAnimating()
             }
         }

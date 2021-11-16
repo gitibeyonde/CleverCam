@@ -82,12 +82,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func registerButtonPress(_ sender: Any) {
-        print("Register button press loaded")
-        self.performSegue(withIdentifier: "ShowRegister", sender: nil)
-    }
-    
-    
 }
 
 

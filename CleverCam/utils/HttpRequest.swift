@@ -31,6 +31,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return
         }
+        print(url)
 
         var request = URLRequest(url: usableUrl)
         request.httpMethod = "GET"
@@ -73,6 +74,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return
         }
+        print(url)
         
         let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
         let loginData = loginString.data(using: String.Encoding.utf8)!
@@ -125,6 +127,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return
         }
+        print(url)
         
         let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
         let loginData = loginString.data(using: String.Encoding.utf8)!
@@ -179,6 +182,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return
         }
+        print(url)
         
         let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
         let loginData = loginString.data(using: String.Encoding.utf8)!
@@ -234,6 +238,7 @@ public class HttpRequest: HttpRequestDelegate {
                 delegate?.onError()
                 return String()
             }
+            print(url)
             
             let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
             let loginData = loginString.data(using: String.Encoding.utf8)!
@@ -394,6 +399,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return
         }
+        print(url)
         
         let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
         let loginData = loginString.data(using: String.Encoding.utf8)!
@@ -457,11 +463,11 @@ public class HttpRequest: HttpRequestDelegate {
         let minute = calendar.component(.minute, from: date!)
         
         let url = "https://ping.ibeyonde.com/api/iot.php?view=bellalerts&uuid=\(uuid)&date=\(year)/\(month)/\(day)&hour=\(hour)&minute=\(minute)";
-        
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
             delegate?.onError()
             return
         }
+        print(url)
         
         let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
         let loginData = loginString.data(using: String.Encoding.utf8)!
@@ -491,6 +497,7 @@ public class HttpRequest: HttpRequestDelegate {
                         let jsonObjects: [NSDictionary] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [NSDictionary]
                         for jsonObject in jsonObjects {
                             bellHistoryList.append(BellHistory(url: jsonObject["url"] as! String, time: jsonObject["datetime"] as! String))
+                            print(jsonObject["datetime"]!)
                         }
                         ApiContext.shared.setBellHistory(bellHistoryList: bellHistoryList)
                     }
@@ -519,6 +526,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return
         }
+        print(url)
         
         var request = URLRequest(url: usableUrl)
         request.httpMethod = "GET"
@@ -565,6 +573,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return
         }
+        print(url)
         
         var request = URLRequest(url: usableUrl)
         request.httpMethod = "GET"
@@ -604,6 +613,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return
         }
+        print(url)
         
         var request = URLRequest(url: usableUrl)
         request.httpMethod = "GET"
@@ -643,6 +653,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return
         }
+        print(url)
         
         var request = URLRequest(url: usableUrl)
         request.httpMethod = "GET"
@@ -681,6 +692,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return
         }
+        print(url)
         
         let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
         let loginData = loginString.data(using: String.Encoding.utf8)!
@@ -722,11 +734,12 @@ public class HttpRequest: HttpRequestDelegate {
         //https:///api/iot.php?view=token&username=demo&token=esEETMYXPxk:APA91bH7TMtcrfO7MmGYArkPYNEIRXpwFFfwwYB2F52XjyZnj2XIi1ANWevZ4579ITZ9Dp1LG9oQdj_-IpocyjpzkAsUlN102YEDNlTKvdX-aqcyhHFmt4JnzkjPMnkI_5L9jV_u9AO2BNFwzCYtTvKPYefKrqtAmQ&system=android&system_type=android&country=IN&language=en&phone_id=351897081138731
         let udid = UIDevice.current.identifierForVendor?.uuidString
         let url = "https://ping.ibeyonde.com/api/iot.php?view=token&username=\(Users.getUserName())&token=\(strToken)&system=iOS&system_type=iOS&country=IN&language=en&phone_id=\(udid ?? "123456")"
-        
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
             delegate?.onError()
             return
         }
+        print(url)
+        
         let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()

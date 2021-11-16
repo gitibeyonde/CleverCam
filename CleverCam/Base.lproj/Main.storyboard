@@ -88,7 +88,6 @@
                                             <color key="titleColor" name="colSecText"/>
                                         </state>
                                         <connections>
-                                            <action selector="registerButtonPress:" destination="b28-yQ-tY2" eventType="touchUpInside" id="eC6-P0-uPL"/>
                                             <segue destination="5b4-bz-hGK" kind="show" identifier="ShowRegistration" id="E57-xj-hEB"/>
                                         </connections>
                                     </button>
@@ -134,7 +133,6 @@
                                             <color key="titleColor" name="colSecText"/>
                                         </state>
                                         <connections>
-                                            <action selector="registerButtonPress:" destination="b28-yQ-tY2" eventType="touchUpInside" id="LwZ-tW-suM"/>
                                             <segue destination="zjM-Yg-CM1" kind="showDetail" identifier="ShowReset" id="yn6-ao-mp8"/>
                                         </connections>
                                     </button>

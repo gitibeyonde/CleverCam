@@ -39,11 +39,11 @@ class BellAlertViewController: UIViewController {
         let images = [ self.img0, self.img1, self.img2, self.img3, self.img4, self.img5, self.img6, self.img7, self.img8, self.img9 ]
         
         print("loading bell alert view controller ")
+        
         var initFirstImage = false
         HttpRequest.bellAlertDetails(self, uuid: BellAlertViewController.uuid, datetime: BellAlertViewController.datetime) { (notificationList) in
             DispatchQueue.main.async {
-                for i in 0...9 {
-                    
+                for i in 0...notificationList.count - 1 {
                     let url_str = notificationList[i].url
                     let Url = URL(string: url_str)!
                     getData(from: Url) { data, response, error in
