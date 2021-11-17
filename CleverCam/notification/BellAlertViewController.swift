@@ -28,17 +28,16 @@ class BellAlertViewController: UIViewController {
     
     public static var uuid: String = ""
     public static var datetime: String = ""
-    
+    public static var images : Array<UIImageView> = []
     
     var stream: MJPEGStreamLib!
     var url: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let images = [ self.img0, self.img1, self.img2, self.img3, self.img4, self.img5, self.img6, self.img7, self.img8, self.img9 ]
-        
         print("loading bell alert view controller ")
+        
+        BellAlertViewController.images = [ self.img0, self.img1, self.img2, self.img3, self.img4, self.img5, self.img6, self.img7, self.img8, self.img9 ]
         
         var initFirstImage = false
         HttpRequest.bellAlertDetails(self, uuid: BellAlertViewController.uuid, datetime: BellAlertViewController.datetime) { (notificationList) in
@@ -52,12 +51,15 @@ class BellAlertViewController: UIViewController {
                             ApiContext.shared.addImage(url: url_str, data: data)
                             // always update the UI from the main thread
                             DispatchQueue.main.async() {
-                                images[i]?.image = UIImage(data: data)
+                                BellAlertViewController.images[i].image = UIImage(data: data)
+                                let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageViewTapped))
+                                BellAlertViewController.images[i].addGestureRecognizer(gestureRecognizer)
+                                BellAlertViewController.images[i].tag = i
                                 if !initFirstImage {
-                                    self.history.image = UIImage(data: data)
+                                    self.history.image = BellAlertViewController.images[i].image
                                     initFirstImage = true
+                                    self.progressHistory.stopAnimating()
                                 }
-                                self.progressHistory.stopAnimating()
                             }
                        }
                 }
@@ -65,7 +67,7 @@ class BellAlertViewController: UIViewController {
         }
         
         //load live
-        name.text = BellAlertViewController.uuid
+        name.text = "Alert for " + BellAlertViewController.uuid + " at " + BellAlertViewController.datetime
         
         let url:String = HttpRequest.getStreamUrl(self, uuid: BellAlertViewController.uuid)
         print("Live view rcvd url ", url)
@@ -88,6 +90,13 @@ class BellAlertViewController: UIViewController {
         //load history
     }
     
+    @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
+        print("Image taped", sender.view!.tag)
+        let i: Int = sender.view!.tag
+        self.history.image = BellAlertViewController.images[i].image
+    }
+    
+
 }
 
 extension BellAlertViewController: HttpRequestDelegate {
