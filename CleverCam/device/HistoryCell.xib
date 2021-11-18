@@ -59,7 +59,7 @@
     </objects>
     <resources>
         <namedColor name="colSec">
-            <color red="0.84999999999999998" green="0.11" blue="0.38" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.85000002384185791" green="0.10999999940395355" blue="0.37999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

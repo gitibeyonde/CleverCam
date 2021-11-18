@@ -10,7 +10,7 @@ import UIKit
 class HistoryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var collectionView: UICollectionView!
-    
+    @IBOutlet var heading: UILabel!
     public static var uuid: String = ""
     
     override func viewDidLoad() {
@@ -19,6 +19,8 @@ class HistoryViewController: UIViewController, UICollectionViewDataSource, UICol
         
         let nibCell = UINib(nibName: "HistoryCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "historyCell")
+        
+        heading.text = "    " + ApiContext.shared.getDeviceName(uuid: HistoryViewController.uuid) + " History"
         
         HttpRequest.history(self, uuid: HistoryViewController.uuid) { (histlist) in
             for h in histlist {

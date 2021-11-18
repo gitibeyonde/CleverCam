@@ -9,7 +9,6 @@ import UIKit
 
 class LiveViewController: UIViewController {
 
-    @IBOutlet weak var deviceName: UILabel!
     @IBOutlet weak var video: UIImageView!
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
@@ -17,11 +16,14 @@ class LiveViewController: UIViewController {
     var stream: MJPEGStreamLib!
     var url: URL?
     
+    @IBOutlet var heading: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("loading live view for ", LiveViewController.uuid)
+        
+        heading.text = "    Live " + ApiContext.shared.getDeviceName(uuid: LiveViewController.uuid)
         
         let url:String = HttpRequest.getStreamUrl(self, uuid: LiveViewController.uuid)
         print("Live view rcvd url ", url)
@@ -40,8 +42,6 @@ class LiveViewController: UIViewController {
         
         stream.contentURL = urlComponent2!.url
         stream.play() // Play the stream
-        
-        deviceName.text = "Live view \(LiveViewController.uuid)"
     }
     
 

@@ -32,6 +32,9 @@ class BellAlertViewController: UIViewController {
     
     var stream: MJPEGStreamLib!
     var url: URL?
+    var counter: Int = 0
+    var counterMax: Int = 0
+    public static var history_timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +45,8 @@ class BellAlertViewController: UIViewController {
         var initFirstImage = false
         HttpRequest.bellAlertDetails(self, uuid: BellAlertViewController.uuid, datetime: BellAlertViewController.datetime) { (notificationList) in
             DispatchQueue.main.async {
-                for i in 0...notificationList.count - 1 {
+                self.counterMax = notificationList.count - 1
+                for i in 0...self.counterMax {
                     let url_str = notificationList[i].url
                     let Url = URL(string: url_str)!
                     getData(from: Url) { data, response, error in
@@ -67,7 +71,7 @@ class BellAlertViewController: UIViewController {
         }
         
         //load live
-        name.text = "Alert for " + BellAlertViewController.uuid + " at " + BellAlertViewController.datetime
+        name.text = "     " + ApiContext.shared.getDeviceName(uuid: BellAlertViewController.uuid) + " at " +  BellAlertViewController.datetime
         
         let url:String = HttpRequest.getStreamUrl(self, uuid: BellAlertViewController.uuid)
         print("Live view rcvd url ", url)
@@ -87,17 +91,29 @@ class BellAlertViewController: UIViewController {
         stream.contentURL = urlComponent!.url
         stream.play() // Play the stream
         
-        //load history
+        //animate history
+        BellAlertViewController.history_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
     }
     
     @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
         print("Image taped", sender.view!.tag)
-        let i: Int = sender.view!.tag
-        self.history.image = BellAlertViewController.images[i].image
+        BellAlertViewController.history_timer .invalidate()
+        counter = sender.view!.tag
+        self.history.image = BellAlertViewController.images[counter].image
     }
     
-
+    
+    @objc func fireTimer() {
+        counter+=1
+        if counter > self.counterMax {
+            counter=0;
+        }
+        DispatchQueue.main.async {
+            self.history.image = BellAlertViewController.images[self.counter].image
+        }
+    }
 }
+
 
 extension BellAlertViewController: HttpRequestDelegate {
     func onError() {

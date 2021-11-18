@@ -10,6 +10,7 @@ import UIKit
 class NotificationViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
    
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var heading: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         
         let nl: Array<Notification> = ApiContext.shared.notificationList
         
-        cell.deviceName.text = nl[indexPath[1]].uuid
+        cell.deviceName.text = ApiContext.shared.getDeviceName(uuid:nl[indexPath[1]].uuid)
         cell.id.text = nl[indexPath[1]].id
         cell.dateTime.text = nl[indexPath[1]].created
         

@@ -43,7 +43,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                         }
                     }
                 }
-                print("done model")
                 DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
             }
         }
@@ -60,7 +59,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Count is ", ApiContext.shared.deviceAlertList.count)
         return ApiContext.shared.deviceList.count
     }
     
@@ -73,7 +71,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     
         let index :Int = indexPath[1]
         cell.progress.startAnimating()
-        print("Index is ", index)
         if index < ApiContext.shared.deviceAlertList.count {
             
             let da: Device = ApiContext.shared.getDevice(index: index)
@@ -82,11 +79,9 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
             
             let al: Array<Alert> = ApiContext.shared.getDeviceAlerts(uuid: da.uuid)
             if al.count > 0 {
-                print("-----------------------------------------------", da.device_name)
                 let url_str = al[counter].url
                 let data:Data = ApiContext.shared.getImage(url: url_str)
                 if !data.isEmpty {
-                    print("Cache hit ", index)
                     cell.image.image = UIImage(data: data)
                     cell.progress.stopAnimating()
                 }

@@ -34,6 +34,14 @@ class ApiContext: NSObject {
     public func getDevice(index: Int)->Device {
         return deviceList[index]
     }
+    public func getDeviceName(uuid: String)->String {
+        for device in deviceList {
+            if device.uuid == uuid {
+                return device.device_name
+            }
+        }
+        return uuid
+    }
     
     /*
      DEVICE ALERTS
