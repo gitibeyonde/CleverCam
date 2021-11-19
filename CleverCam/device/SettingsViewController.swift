@@ -37,21 +37,31 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         timezone.tag = 1
         camFramesize.tag = 2
         
-        HttpRequest.settings(self, uuid: SettingsViewController.uuid) { (config) in
-            self.config = config
-            DispatchQueue.main.async {
-                self.activity.stopAnimating()
-                self.message.text = "       \(config.name) settings"
-                self.name.text = config.name
-                self.version.text = config.version
-                self.cloudStreamSwitch.setOn(config.cloud == "true", animated: false)
-                self.storeHistorySwitch.setOn(config.history == "true", animated: false)
-                self.vertFlipSwitch.setOn(config.vflip == 1, animated: false)
-                self.horFlipSwitch.setOn(config.hmirror == 1, animated: false)
-                self.camFramesize.selectRow(self.framesizeIndex(framesize: config.framesize), inComponent: 0, animated: false)
-                self.timezone.selectRow(tzValues.firstIndex(of: config.timezone) ?? 0, inComponent: 0, animated: false)
+        HttpRequest.veil(self) { (veil) in
+            print("Veil ", veil)
+            
+            if (!veil.isEmpty){
+                HttpRequest.settings(self, uuid: SettingsViewController.uuid) { (config) in
+                    self.config = config
+                    DispatchQueue.main.async {
+                        self.activity.stopAnimating()
+                        self.message.text = "       \(config.name) settings"
+                        self.name.text = config.name
+                        self.version.text = config.version
+                        self.cloudStreamSwitch.setOn(config.cloud == "true", animated: false)
+                        self.storeHistorySwitch.setOn(config.history == "true", animated: false)
+                        self.vertFlipSwitch.setOn(config.vflip == 1, animated: false)
+                        self.horFlipSwitch.setOn(config.hmirror == 1, animated: false)
+                        self.camFramesize.selectRow(self.framesizeIndex(framesize: config.framesize), inComponent: 0, animated: false)
+                        self.timezone.selectRow(tzValues.firstIndex(of: config.timezone) ?? 0, inComponent: 0, animated: false)
+                    }
+                }
+            }
+            else {
+                self.message.text = "       FAILED: Please, reload settings"
             }
         }
+        
         
     }
     

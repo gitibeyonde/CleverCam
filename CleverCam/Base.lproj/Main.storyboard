@@ -1325,9 +1325,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tEx-Mb-Wrb">
-                                <rect key="frame" x="4" y="4" width="406" height="756"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tEx-Mb-Wrb">
+                                <rect key="frame" x="0.0" y="45" width="414" height="718"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="mO2-dl-EFr">
                                     <size key="itemSize" width="0.0" height="128"/>
@@ -1345,14 +1344,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                 <color key="backgroundColor" name="colPrimary"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="kNY-IJ-qtD"/>
+                                    <constraint firstAttribute="height" constant="40" id="xCk-2r-fTa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" name="colPrimaryText"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tUU-lO-x4B">
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" id="tUU-lO-x4B">
                                 <rect key="frame" x="60" y="772" width="294" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AF8-67-uGF">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
@@ -1387,20 +1387,18 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="vk4-mb-aYH"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="A1s-zn-Nc1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="tUU-lO-x4B" firstAttribute="leading" secondItem="A1s-zn-Nc1" secondAttribute="leading" constant="60" id="11c-ez-yvm"/>
-                            <constraint firstItem="2yu-ob-7DL" firstAttribute="trailing" secondItem="A1s-zn-Nc1" secondAttribute="trailing" id="74K-fO-wag"/>
-                            <constraint firstItem="A1s-zn-Nc1" firstAttribute="bottom" secondItem="tUU-lO-x4B" secondAttribute="bottom" id="7Hd-6B-726"/>
-                            <constraint firstItem="A1s-zn-Nc1" firstAttribute="trailing" secondItem="tUU-lO-x4B" secondAttribute="trailing" constant="60" id="Eje-G4-Lf9"/>
-                            <constraint firstItem="2yu-ob-7DL" firstAttribute="leading" secondItem="A1s-zn-Nc1" secondAttribute="leading" id="GZx-qf-sdE"/>
-                            <constraint firstItem="2yu-ob-7DL" firstAttribute="top" secondItem="A1s-zn-Nc1" secondAttribute="top" id="qId-nx-RPX"/>
+                            <constraint firstItem="A1s-zn-Nc1" firstAttribute="trailing" secondItem="tEx-Mb-Wrb" secondAttribute="trailing" id="Nub-MB-8YB"/>
+                            <constraint firstItem="tEx-Mb-Wrb" firstAttribute="leading" secondItem="A1s-zn-Nc1" secondAttribute="leading" id="OE8-iS-j4J"/>
+                            <constraint firstItem="2yu-ob-7DL" firstAttribute="leading" secondItem="A1s-zn-Nc1" secondAttribute="leading" id="aTb-Az-eie"/>
+                            <constraint firstItem="2yu-ob-7DL" firstAttribute="trailing" secondItem="A1s-zn-Nc1" secondAttribute="trailing" id="c46-As-7Jg"/>
+                            <constraint firstItem="2yu-ob-7DL" firstAttribute="top" secondItem="A1s-zn-Nc1" secondAttribute="top" id="hXv-Bj-BqP"/>
+                            <constraint firstItem="A1s-zn-Nc1" firstAttribute="bottom" secondItem="tEx-Mb-Wrb" secondAttribute="bottom" constant="45" id="lyD-ti-tBV"/>
+                            <constraint firstItem="tEx-Mb-Wrb" firstAttribute="top" secondItem="A1s-zn-Nc1" secondAttribute="top" constant="45" id="pQz-vP-vKc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EAn-7o-sw2"/>
@@ -1415,11 +1413,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Xlb-20-uru"/>
-        <segue reference="R91-DY-haJ"/>
-        <segue reference="iOG-6r-wJk"/>
-        <segue reference="eSz-ee-aF8"/>
-        <segue reference="Xea-xZ-sAT"/>
+        <segue reference="Pr2-as-fDm"/>
+        <segue reference="dyG-XP-exf"/>
+        <segue reference="WtH-SG-3b3"/>
+        <segue reference="fLw-8v-kmp"/>
+        <segue reference="b2T-rT-2Hx"/>
         <segue reference="c7c-ci-XiC"/>
     </inferredMetricsTieBreakers>
     <resources>

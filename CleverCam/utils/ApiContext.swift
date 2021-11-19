@@ -13,6 +13,8 @@ class ApiContext: NSObject {
     
     static let shared = ApiContext()
     
+    public var veil:String=""
+    
     /*
      DEVICE LIST
      */

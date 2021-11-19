@@ -23,6 +23,21 @@ public class HttpRequest: HttpRequestDelegate {
     public typealias ConfigSuccessCompletionHandler = (_ response: CameraConfig) -> Void
    
     
+    static func insertCred(usableUrl: URL)->URLRequest {
+        
+        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        
+        return request
+    }
+    
+    
     static func login(_ delegate: HttpRequestDelegate?, base64LoginString: String,
                     success successCallback: @escaping SuccessCompletionHandler
     ) {
@@ -64,6 +79,45 @@ public class HttpRequest: HttpRequestDelegate {
         }
         dataTask?.resume()
     }
+
+    static func veil(_ delegate: HttpRequestDelegate?,
+                    success successCallback: @escaping SuccessCompletionHandler
+    ) {
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=veil"
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        print(url)
+        
+        let request = insertCred(usableUrl: usableUrl)
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    //send this block to required place
+                    ApiContext.shared.veil = String(decoding: data, as: UTF8.self)
+                    print("Response " + ApiContext.shared.veil)
+                    successCallback(ApiContext.shared.veil)
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
     
     //"https://ping.ibeyonde.com/api/iot.php?view=lastalerts&uuid=" + uuid;
     static func deviceList(_ delegate: HttpRequestDelegate?,
@@ -76,14 +130,7 @@ public class HttpRequest: HttpRequestDelegate {
         }
         print(url)
         
-        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-
-        var request = URLRequest(url: usableUrl)
-        request.httpMethod = "GET"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        let request = insertCred(usableUrl: usableUrl)
         
         var dataTask: URLSessionDataTask?
         let defaultSession = URLSession(configuration: .default)
@@ -129,14 +176,7 @@ public class HttpRequest: HttpRequestDelegate {
         }
         print(url)
         
-        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-
-        var request = URLRequest(url: usableUrl)
-        request.httpMethod = "GET"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        let request = insertCred(usableUrl: usableUrl)
         
         var dataTask: URLSessionDataTask?
         let defaultSession = URLSession(configuration: .default)
@@ -178,20 +218,14 @@ public class HttpRequest: HttpRequestDelegate {
                     success successCallback: @escaping HistorySuccessCompletionHandler
     ) {
         let url = "https://ping.ibeyonde.com/api/iot.php?view=lastalerts&cnt=20&uuid=" + uuid;
+        
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
             delegate?.onError()
             return
         }
         print(url)
         
-        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-
-        var request = URLRequest(url: usableUrl)
-        request.httpMethod = "GET"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        let request = insertCred(usableUrl: usableUrl)
         
         var dataTask: URLSessionDataTask?
         let defaultSession = URLSession(configuration: .default)
@@ -240,14 +274,7 @@ public class HttpRequest: HttpRequestDelegate {
             }
             print(url)
             
-            let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
-            let loginData = loginString.data(using: String.Encoding.utf8)!
-            let base64LoginString = loginData.base64EncodedString()
-
-            var request = URLRequest(url: usableUrl)
-            request.httpMethod = "GET"
-            request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-            request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+            let request = insertCred(usableUrl: usableUrl)
             
             var dataTask: URLSessionDataTask?
             let defaultSession = URLSession(configuration: .default)
@@ -348,14 +375,7 @@ public class HttpRequest: HttpRequestDelegate {
             return String()
         }
         
-        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-
-        request = URLRequest(url: usableUrl2)
-        request.httpMethod = "GET"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        request = insertCred(usableUrl: usableUrl2)
         
         var dataTask2: URLSessionDataTask?
         let defaultSession = URLSession(configuration: .default)
@@ -401,14 +421,7 @@ public class HttpRequest: HttpRequestDelegate {
         }
         print(url)
         
-        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-
-        var request = URLRequest(url: usableUrl)
-        request.httpMethod = "GET"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        let request = insertCred(usableUrl: usableUrl)
         
         var dataTask: URLSessionDataTask?
         let defaultSession = URLSession(configuration: .default)
@@ -469,14 +482,7 @@ public class HttpRequest: HttpRequestDelegate {
         }
         print(url)
         
-        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-
-        var request = URLRequest(url: usableUrl)
-        request.httpMethod = "GET"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        let request = insertCred(usableUrl: usableUrl)
         
         var dataTask: URLSessionDataTask?
         let defaultSession = URLSession(configuration: .default)
@@ -568,7 +574,7 @@ public class HttpRequest: HttpRequestDelegate {
                     success successCallback: @escaping SuccessCompletionHandler
     ) {
         let device = ApiContext.shared.getDevice(uuid: uuid);
-        let url = "http://\(device.deviceip)/cmd?name=config&var=\(name)&val=\(value)";
+        let url = "http://\(device.deviceip)/cmd?name=config&var=\(name)&val=\(value)&veil=\(ApiContext.shared.veil)";
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
             delegate?.onError()
             return
@@ -608,7 +614,7 @@ public class HttpRequest: HttpRequestDelegate {
                     success successCallback: @escaping SuccessCompletionHandler
     ) {
         let device = ApiContext.shared.getDevice(uuid: uuid);
-        let url = "http://\(device.deviceip)/cmd?name=camconf&var=\(name)&val=\(value)";
+        let url = "http://\(device.deviceip)/cmd?name=camconf&var=\(name)&val=\(value)&veil=\(ApiContext.shared.veil)";
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
             delegate?.onError()
             return
@@ -648,7 +654,7 @@ public class HttpRequest: HttpRequestDelegate {
                     success successCallback: @escaping SuccessCompletionHandler
     ) {
         let device = ApiContext.shared.getDevice(uuid: uuid);
-        let url = "http://\(device.deviceip)/cmd?name=\(name)";
+        let url = "http://\(device.deviceip)/cmd?name=\(name)&veil=\(ApiContext.shared.veil)";
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
             delegate?.onError()
             return
@@ -694,14 +700,7 @@ public class HttpRequest: HttpRequestDelegate {
         }
         print(url)
         
-        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-
-        var request = URLRequest(url: usableUrl)
-        request.httpMethod = "GET"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        let request = insertCred(usableUrl: usableUrl)
         
         var dataTask: URLSessionDataTask?
         let defaultSession = URLSession(configuration: .default)
@@ -740,14 +739,7 @@ public class HttpRequest: HttpRequestDelegate {
         }
         print(url)
         
-        let loginString = String(format: "%@:%@", Users.getUserName(), Users.getPassword())
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-
-        var request = URLRequest(url: usableUrl)
-        request.httpMethod = "GET"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        let request = insertCred(usableUrl: usableUrl)
         
         var dataTask: URLSessionDataTask?
         let defaultSession = URLSession(configuration: .default)

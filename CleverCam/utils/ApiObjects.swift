@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 public struct Device: Codable {
     var uuid: String
     var user_name: String
