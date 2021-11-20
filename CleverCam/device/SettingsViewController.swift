@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         timezone.tag = 1
         camFramesize.tag = 2
         
-        HttpRequest.veil(self) { (veil) in
+        HttpRequest.veil(self, uuid: SettingsViewController.uuid) { (veil) in
             print("Veil ", veil)
             
             if (!veil.isEmpty){

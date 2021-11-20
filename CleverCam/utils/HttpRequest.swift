@@ -80,10 +80,10 @@ public class HttpRequest: HttpRequestDelegate {
         dataTask?.resume()
     }
 
-    static func veil(_ delegate: HttpRequestDelegate?,
+    static func veil(_ delegate: HttpRequestDelegate?, uuid: String,
                     success successCallback: @escaping SuccessCompletionHandler
     ) {
-        let url = "https://ping.ibeyonde.com/api/iot.php?view=veil"
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=veil&uuid=\(uuid)"
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
             delegate?.onError()
             return
@@ -527,7 +527,7 @@ public class HttpRequest: HttpRequestDelegate {
                     success successCallback: @escaping ConfigSuccessCompletionHandler
     ) {
         let device = ApiContext.shared.getDevice(uuid: uuid);
-        let url = "http://\(device.deviceip)/cmd?name=getconf";
+        let url = "http://\(device.deviceip)/cmd?name=getconf&veil=\(ApiContext.shared.veil)";
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
             delegate?.onError()
             return
@@ -558,7 +558,7 @@ public class HttpRequest: HttpRequestDelegate {
                         successCallback(config)
                     }
                     catch {
-                        print("Something went wrong")
+                        print("Bad response ",String(decoding: data, as: UTF8.self))
                         delegate?.onError()
                     }
                 }
