@@ -129,9 +129,9 @@ class ApiContext: NSObject {
     }
     
     private func md5(str: String)-> String {
-        //let computed = Insecure.MD5.hash(data: str.data(using: .utf8)!)
-        //return computed.map { String(format: "%02hhx", $0) }.joined()
-        return str
+        let us = str.components(separatedBy: "data.ibeyonde")[1]
+        let ind = us.components(separatedBy: "?")[0]
+        return ind
     }
     
     /*

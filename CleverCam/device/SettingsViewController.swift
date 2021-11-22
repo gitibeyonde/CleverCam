@@ -26,6 +26,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet var storeHistorySwitch: UISwitch!
     @IBOutlet var vertFlipSwitch: UISwitch!
     @IBOutlet var horFlipSwitch: UISwitch!
+    @IBOutlet var upgradeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         timezone.tag = 1
         camFramesize.tag = 2
         
+        self.upgradeButton.isEnabled = false;
         HttpRequest.veil(self, uuid: SettingsViewController.uuid) { (veil) in
             print("Veil ", veil)
             
@@ -55,13 +57,30 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                         self.camFramesize.selectRow(self.framesizeIndex(framesize: config.framesize), inComponent: 0, animated: false)
                         self.timezone.selectRow(tzValues.firstIndex(of: config.timezone) ?? 0, inComponent: 0, animated: false)
                     }
+                    
+                    HttpRequest.latestVersion(self, uuid: SettingsViewController.uuid) { (version) in
+                        let x: Array = version.components(separatedBy: "-")
+                        let upver: Int = Int(x[0]) ?? 0;
+                        let curver: Int = Int(self.config.version) ?? 0;
+                        let veil: String = x[1];
+                        print("up version =", upver)
+                        print("veil =", veil)
+                        print("curr version =", self.config.version)
+                        print(veil, ApiContext.shared.veil)
+                        if (upver > curver && veil == ApiContext.shared.veil){
+                            DispatchQueue.main.async {
+                                print("Enabling upgrade button")
+                                self.upgradeButton.isEnabled = true;
+                                self.upgradeButton.setTitle("Upgrade to version \(upver)", for: UIControl.State.normal)
+                            }
+                        }
+                    }
                 }
             }
             else {
                 self.message.text = "       FAILED: Please, reload settings"
             }
         }
-        
         
     }
     

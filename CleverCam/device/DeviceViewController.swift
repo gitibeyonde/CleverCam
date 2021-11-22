@@ -31,7 +31,6 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                             let Url = URL(string: url_str)!
                             getData(from: Url) { data, response, error in
                                     guard let data = data, error == nil else { return }
-                                    print(response?.suggestedFilename ?? Url.lastPathComponent)
                                     ApiContext.shared.addImage(url: url_str, data: data)
                                 
                                     if ApiContext.shared.allDeviceAlertsAvailable() {

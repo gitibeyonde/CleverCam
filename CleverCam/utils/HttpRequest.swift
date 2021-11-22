@@ -119,6 +119,44 @@ public class HttpRequest: HttpRequestDelegate {
         dataTask?.resume()
     }
     
+    static func latestVersion(_ delegate: HttpRequestDelegate?, uuid: String,
+                    success successCallback: @escaping SuccessCompletionHandler
+    ) {
+        let url = "https://ping.ibeyonde.com/api/esp32_scb.php?uuid=\(uuid)"
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        print(url)
+        
+        let request = insertCred(usableUrl: usableUrl)
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    //send this block to required place
+                    let res = String(decoding: data, as: UTF8.self)
+                    print("Response ", res)
+                    successCallback(res)
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
     //"https://ping.ibeyonde.com/api/iot.php?view=lastalerts&uuid=" + uuid;
     static func deviceList(_ delegate: HttpRequestDelegate?,
                     success successCallback: @escaping DeviceSuccessCompletionHandler

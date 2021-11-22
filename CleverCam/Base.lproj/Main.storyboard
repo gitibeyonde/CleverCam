@@ -808,15 +808,6 @@
                                 <color key="textColor" name="colSecText"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOW-Ri-9Rl">
-                                <rect key="frame" x="30" y="707" width="200" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="Bst-aA-JGg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <color key="textColor" name="colSecText"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1sz-hO-dC7" userLabel="camFramesize">
                                 <rect key="frame" x="244" y="539" width="150" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -862,11 +853,14 @@
                                 <rect key="frame" x="30" y="45" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB0-Sy-4xt">
-                                <rect key="frame" x="351" y="711" width="36" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB0-Sy-4xt">
+                                <rect key="frame" x="27" y="711" width="357" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="7eW-Iy-so2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" name="colSecText"/>
-                                <state key="normal" image="tt_done">
+                                <state key="normal">
                                     <color key="titleColor" name="colSecText"/>
                                 </state>
                                 <connections>
@@ -897,9 +891,9 @@
                             <constraint firstItem="RsV-fF-fdc" firstAttribute="trailing" secondItem="KV6-cx-cNp" secondAttribute="trailing" constant="184" id="C3k-KI-Zaf"/>
                             <constraint firstItem="RsV-fF-fdc" firstAttribute="trailing" secondItem="amL-oo-mwG" secondAttribute="trailing" constant="30" id="CfD-fi-D7m"/>
                             <constraint firstItem="NZ2-lW-bzX" firstAttribute="leading" secondItem="RsV-fF-fdc" secondAttribute="leading" constant="30" id="CzJ-6C-caB"/>
+                            <constraint firstItem="OB0-Sy-4xt" firstAttribute="top" secondItem="RsV-fF-fdc" secondAttribute="top" constant="711" id="DAf-Ih-yvl"/>
                             <constraint firstItem="RsV-fF-fdc" firstAttribute="trailing" secondItem="NZ2-lW-bzX" secondAttribute="trailing" constant="184" id="DVF-sc-Agf"/>
                             <constraint firstItem="52H-LP-VVv" firstAttribute="top" secondItem="RsV-fF-fdc" secondAttribute="top" constant="595" id="FRx-RD-1iL"/>
-                            <constraint firstItem="UOW-Ri-9Rl" firstAttribute="top" secondItem="RsV-fF-fdc" secondAttribute="top" constant="707" id="HUi-zV-0bN"/>
                             <constraint firstItem="RsV-fF-fdc" firstAttribute="trailing" secondItem="dOh-7u-NTu" secondAttribute="trailing" constant="184" id="Kcy-3j-4u5"/>
                             <constraint firstItem="0Wr-lG-KMo" firstAttribute="top" secondItem="RsV-fF-fdc" secondAttribute="top" constant="539" id="MhT-FH-Sxd"/>
                             <constraint firstItem="DiZ-Yw-WeI" firstAttribute="top" secondItem="RsV-fF-fdc" secondAttribute="top" id="Ot1-HY-4rC"/>
@@ -915,6 +909,7 @@
                             <constraint firstItem="RsV-fF-fdc" firstAttribute="trailing" secondItem="ckH-AF-pMg" secondAttribute="trailing" constant="184" id="dE4-Dl-Dl4"/>
                             <constraint firstItem="14w-Kg-mwH" firstAttribute="top" secondItem="RsV-fF-fdc" secondAttribute="top" constant="652" id="e3k-BR-a01"/>
                             <constraint firstItem="lWd-In-D9p" firstAttribute="leading" secondItem="RsV-fF-fdc" secondAttribute="leading" constant="30" id="elk-f6-riB"/>
+                            <constraint firstItem="OB0-Sy-4xt" firstAttribute="leading" secondItem="RsV-fF-fdc" secondAttribute="leading" constant="27" id="evE-wJ-AZ4"/>
                             <constraint firstItem="RsV-fF-fdc" firstAttribute="trailing" secondItem="14w-Kg-mwH" secondAttribute="trailing" constant="184" id="fLm-jB-AGt"/>
                             <constraint firstItem="KV6-cx-cNp" firstAttribute="top" secondItem="RsV-fF-fdc" secondAttribute="top" constant="272" id="gEu-Tw-KPM"/>
                             <constraint firstItem="amL-oo-mwG" firstAttribute="leading" secondItem="RsV-fF-fdc" secondAttribute="leading" constant="80" id="gRI-bK-wTl"/>
@@ -926,9 +921,7 @@
                             <constraint firstItem="RsV-fF-fdc" firstAttribute="trailing" secondItem="52H-LP-VVv" secondAttribute="trailing" constant="184" id="nzJ-B7-HgQ"/>
                             <constraint firstItem="VuI-FG-bsv" firstAttribute="leading" secondItem="RsV-fF-fdc" secondAttribute="leading" constant="30" id="oM5-sK-J88"/>
                             <constraint firstItem="RsV-fF-fdc" firstAttribute="trailing" secondItem="gLz-Ae-u8J" secondAttribute="trailing" constant="184" id="pfj-jc-DdD"/>
-                            <constraint firstItem="UOW-Ri-9Rl" firstAttribute="leading" secondItem="RsV-fF-fdc" secondAttribute="leading" constant="30" id="s5D-82-lNE"/>
                             <constraint firstItem="VuI-FG-bsv" firstAttribute="top" secondItem="RsV-fF-fdc" secondAttribute="top" constant="116" id="xBi-30-TPh"/>
-                            <constraint firstItem="RsV-fF-fdc" firstAttribute="trailing" secondItem="UOW-Ri-9Rl" secondAttribute="trailing" constant="184" id="xcF-xa-Sns"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GCK-eZ-h1H"/>
@@ -942,6 +935,7 @@
                         <outlet property="name" destination="dpc-Bv-OOl" id="K3I-HR-BHL"/>
                         <outlet property="storeHistorySwitch" destination="nLn-eb-Cnm" id="UM2-Ye-F57"/>
                         <outlet property="timezone" destination="bfM-Ca-aui" id="QlH-ka-Q72"/>
+                        <outlet property="upgradeButton" destination="OB0-Sy-4xt" id="nfT-le-iZi"/>
                         <outlet property="version" destination="06f-Bl-W4G" id="3MI-JI-rwB"/>
                         <outlet property="vertFlipSwitch" destination="pyg-cr-gUA" id="61m-S4-43g"/>
                     </connections>
@@ -1413,11 +1407,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Pr2-as-fDm"/>
-        <segue reference="dyG-XP-exf"/>
-        <segue reference="WtH-SG-3b3"/>
+        <segue reference="Xlb-20-uru"/>
+        <segue reference="05D-qQ-YEo"/>
+        <segue reference="GgM-gQ-1IZ"/>
         <segue reference="fLw-8v-kmp"/>
-        <segue reference="b2T-rT-2Hx"/>
+        <segue reference="Xc2-hJ-fzz"/>
         <segue reference="c7c-ci-XiC"/>
     </inferredMetricsTieBreakers>
     <resources>
