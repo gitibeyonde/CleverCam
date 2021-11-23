@@ -98,7 +98,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         let width = UIScreen.main.bounds.size.width - 40
-        let height = (width * 0.85)
+        let height = (width * 0.80)
         return CGSize (width: width, height: height)
     }
     

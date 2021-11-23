@@ -417,6 +417,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" id="vrZ-9E-cdn">
+                                <rect key="frame" x="0.0" y="762" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OO5-w8-g7t">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="backgroundColor" name="colPrimaryLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="dsu-Yh-7RV"/>
+                                </constraints>
+                                <blurEffect style="prominent"/>
+                            </visualEffectView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MPf-LB-DIT">
                                 <rect key="frame" x="0.0" y="45" width="414" height="719"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -438,17 +451,13 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pO-0t-sQQ" colorLabel="IBBuiltInLabel-Red">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="5"/>
                                         <color key="tintColor" name="colPrimaryLight"/>
-                                        <state key="normal" image="tt_awesome_motion">
-                                            <color key="titleColor" systemColor="systemIndigoColor"/>
-                                            <color key="titleShadowColor" systemColor="systemIndigoColor"/>
-                                        </state>
+                                        <state key="normal" image="tt_awesome_motion"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu0-B6-rOi">
                                         <rect key="frame" x="86" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="lPu-xw-AAb"/>
@@ -456,7 +465,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3G-Ns-Cd2">
                                         <rect key="frame" x="172" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="4l0-Ab-iBd"/>
@@ -464,7 +473,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ld-BR-X8O">
                                         <rect key="frame" x="258" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="tuA-vt-A7A" kind="show" identifier="ShowGlobalSettings" id="Pr2-as-fDm"/>
@@ -473,7 +482,7 @@
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="zae-WE-Lwa"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        ibeyonde Devices" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAg-Ce-Fju">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        Device List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAg-Ce-Fju">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                 <color key="backgroundColor" name="colPrimary"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -484,13 +493,16 @@
                         <viewLayoutGuide key="safeArea" id="OYl-jw-GzO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="vrZ-9E-cdn" firstAttribute="trailing" secondItem="OYl-jw-GzO" secondAttribute="trailing" id="ARF-n0-muz"/>
                             <constraint firstItem="MPf-LB-DIT" firstAttribute="top" secondItem="OYl-jw-GzO" secondAttribute="top" constant="45" id="B2U-a8-FbW"/>
                             <constraint firstItem="MPf-LB-DIT" firstAttribute="leading" secondItem="OYl-jw-GzO" secondAttribute="leading" id="QIh-Lp-ddf"/>
                             <constraint firstItem="MPf-LB-DIT" firstAttribute="top" secondItem="eAg-Ce-Fju" secondAttribute="bottom" constant="5" id="Rc0-XB-Qqa"/>
                             <constraint firstItem="eAg-Ce-Fju" firstAttribute="leading" secondItem="MPf-LB-DIT" secondAttribute="leading" id="dZq-jf-cvL"/>
                             <constraint firstItem="eAg-Ce-Fju" firstAttribute="top" secondItem="OYl-jw-GzO" secondAttribute="top" id="hl2-ai-kd5"/>
+                            <constraint firstAttribute="bottom" secondItem="vrZ-9E-cdn" secondAttribute="bottom" id="jkc-hF-dYg"/>
                             <constraint firstItem="OYl-jw-GzO" firstAttribute="bottom" secondItem="MPf-LB-DIT" secondAttribute="bottom" constant="44" id="p74-HL-rGS"/>
                             <constraint firstItem="eAg-Ce-Fju" firstAttribute="trailing" secondItem="MPf-LB-DIT" secondAttribute="trailing" id="uyw-I0-WKA"/>
+                            <constraint firstItem="vrZ-9E-cdn" firstAttribute="leading" secondItem="OYl-jw-GzO" secondAttribute="leading" id="vNg-vQ-DkF"/>
                             <constraint firstItem="MPf-LB-DIT" firstAttribute="trailing" secondItem="OYl-jw-GzO" secondAttribute="trailing" id="vxH-1G-Idk"/>
                         </constraints>
                     </view>
@@ -514,12 +526,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="      Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ai-Kg-XYM">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
-                                <color key="backgroundColor" name="colPrimary"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" id="CG9-3l-fsw">
+                                <rect key="frame" x="0.0" y="762" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vwZ-hf-9aS">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="backgroundColor" name="colPrimaryLight"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="7N5-Ir-2sH"/>
+                                    <constraint firstAttribute="height" constant="80" id="ck0-iJ-rta"/>
                                 </constraints>
+                                <blurEffect style="prominent"/>
+                            </visualEffectView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ai-Kg-XYM">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="colPrimary"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" name="colPrimaryText"/>
                                 <nil key="highlightedColor"/>
@@ -532,8 +555,9 @@
                                 <rect key="frame" x="180" y="186.5" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cWP-ba-bf7">
+                            <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" id="cWP-ba-bf7">
                                 <rect key="frame" x="60" y="772" width="294" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U26-lx-wU2">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
@@ -545,7 +569,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXd-6U-YZr">
                                         <rect key="frame" x="86" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="kXl-YN-FhJ"/>
@@ -553,7 +577,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSN-Lg-oRI">
                                         <rect key="frame" x="172" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="DI4-WP-KHY"/>
@@ -561,27 +585,21 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrU-Gk-A3m">
                                         <rect key="frame" x="258" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="tuA-vt-A7A" kind="show" identifier="ShowGlobalSettings" id="eWR-ek-Ea6"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="QqS-P2-COE"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yl8-R3-eFY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="cWP-ba-bf7" secondAttribute="trailing" constant="60" id="8OA-Q6-bnf"/>
-                            <constraint firstItem="1Ai-Kg-XYM" firstAttribute="trailing" secondItem="yl8-R3-eFY" secondAttribute="trailing" id="8mI-Lv-CHk"/>
-                            <constraint firstItem="cWP-ba-bf7" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" constant="60" id="DK2-ix-tvK"/>
-                            <constraint firstItem="1Ai-Kg-XYM" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="Fkk-rL-wfr"/>
-                            <constraint firstItem="1Ai-Kg-XYM" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" id="XgI-Tx-FhU"/>
-                            <constraint firstItem="cWP-ba-bf7" firstAttribute="bottom" secondItem="yl8-R3-eFY" secondAttribute="bottom" id="hs0-yf-U4s"/>
+                            <constraint firstAttribute="bottom" secondItem="CG9-3l-fsw" secondAttribute="bottom" id="4yc-y2-520"/>
+                            <constraint firstItem="CG9-3l-fsw" firstAttribute="trailing" secondItem="yl8-R3-eFY" secondAttribute="trailing" id="76V-ot-gHl"/>
+                            <constraint firstItem="CG9-3l-fsw" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="Kt2-wo-AGI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TfO-Bb-iqB"/>
@@ -603,6 +621,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" id="Odp-Q4-WmN">
+                                <rect key="frame" x="0.0" y="762" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ctl-dn-Qli">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="backgroundColor" name="colPrimaryLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Il3-p6-yoe"/>
+                                </constraints>
+                                <blurEffect style="prominent"/>
+                            </visualEffectView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        Device Setting" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiZ-Yw-WeI">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                 <color key="backgroundColor" name="colPrimary"/>
@@ -632,7 +663,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-2F-Da8">
                                         <rect key="frame" x="86" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="GgM-gQ-1IZ"/>
@@ -640,7 +671,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkK-sl-C0n">
                                         <rect key="frame" x="172" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="05D-qQ-YEo"/>
@@ -648,7 +679,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UvG-4b-N0w">
                                         <rect key="frame" x="258" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="tuA-vt-A7A" kind="show" identifier="ShowGlobalSettings" id="Xlb-20-uru"/>
@@ -952,13 +983,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" id="Fsj-f7-aMk">
+                                <rect key="frame" x="0.0" y="762" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KTA-SR-hN3">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="backgroundColor" name="colPrimaryLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="gq8-gY-x40"/>
+                                </constraints>
+                                <blurEffect style="prominent"/>
+                            </visualEffectView>
                             <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" id="FOy-Lu-se4">
                                 <rect key="frame" x="60" y="772" width="294" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMZ-VM-hR5">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="a1b-JM-I57"/>
@@ -971,7 +1015,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fef-uT-Wcd">
                                         <rect key="frame" x="172" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluetooth" id="ovt-y7-JZS"/>
@@ -979,7 +1023,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDH-9n-ifg">
                                         <rect key="frame" x="258" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="tuA-vt-A7A" kind="show" identifier="ShowGlobalSettings" id="ue1-av-rsX"/>
@@ -1156,6 +1200,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" id="u1j-0e-i5t">
+                                <rect key="frame" x="0.0" y="762" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KKS-dC-HjS">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="backgroundColor" name="colPrimaryLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="0b0-dg-hha"/>
+                                </constraints>
+                                <blurEffect style="prominent"/>
+                            </visualEffectView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth is under construction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wET-GL-5FV">
                                 <rect key="frame" x="40" y="361" width="334" height="30"/>
                                 <constraints>
@@ -1170,7 +1227,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCj-FX-8G6">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="Xea-xZ-sAT"/>
@@ -1178,7 +1235,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rrh-Oi-aDa">
                                         <rect key="frame" x="86" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="iOG-6r-wJk"/>
@@ -1191,7 +1248,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iO8-bw-r5Q">
                                         <rect key="frame" x="258" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="rJR-dg-IM9" kind="show" identifier="ShowSettings" id="eSz-ee-aF8"/>
@@ -1228,6 +1285,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" id="jJU-Ib-vh9">
+                                <rect key="frame" x="0.0" y="762" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fQY-yO-tdx">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="backgroundColor" name="colPrimaryLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="v8z-2h-fJy"/>
+                                </constraints>
+                                <blurEffect style="prominent"/>
+                            </visualEffectView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        Setting" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRf-pf-0yK">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                 <color key="backgroundColor" name="colPrimary"/>
@@ -1244,7 +1314,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPb-NV-06T">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="aYo-8w-XJK"/>
@@ -1252,7 +1322,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuT-xL-PG0">
                                         <rect key="frame" x="86" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotification" id="bN5-hw-iLD"/>
@@ -1260,7 +1330,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dda-FV-M0b">
                                         <rect key="frame" x="172" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="showDetail" identifier="ShowBluetooth" id="R91-DY-haJ"/>
@@ -1319,8 +1389,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tEx-Mb-Wrb">
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" id="Ogs-Q1-y78">
+                                <rect key="frame" x="0.0" y="759" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4ez-4H-v2r">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="backgroundColor" name="colPrimaryLight"/>
+                                <blurEffect style="prominent"/>
+                            </visualEffectView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tEx-Mb-Wrb">
                                 <rect key="frame" x="0.0" y="45" width="414" height="718"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="mO2-dl-EFr">
                                     <size key="itemSize" width="0.0" height="128"/>
@@ -1334,12 +1415,10 @@
                                     <outlet property="delegate" destination="vtE-H4-AyR" id="LRq-7N-IzM"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        History" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yu-ob-7DL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="        History" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yu-ob-7DL">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="colPrimary"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="xCk-2r-fTa"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" name="colPrimaryText"/>
                                 <nil key="highlightedColor"/>
@@ -1358,7 +1437,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Z8-Wd-ZSk">
                                         <rect key="frame" x="86" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" identifier="ShowNotfication" id="WtH-SG-3b3"/>
@@ -1366,7 +1445,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0b-ys-nmH">
                                         <rect key="frame" x="172" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_settings_bluetooth"/>
                                         <connections>
                                             <segue destination="c4s-SL-Pig" kind="show" identifier="ShowBluettoth" id="dyG-XP-exf"/>
@@ -1374,7 +1453,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yH-rQ-niX">
                                         <rect key="frame" x="258" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryDark"/>
                                         <state key="normal" image="tt_handyman"/>
                                         <connections>
                                             <segue destination="rJR-dg-IM9" kind="show" identifier="ShowSettings" id="fLw-8v-kmp"/>
@@ -1385,15 +1464,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="A1s-zn-Nc1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="A1s-zn-Nc1" firstAttribute="trailing" secondItem="tEx-Mb-Wrb" secondAttribute="trailing" id="Nub-MB-8YB"/>
-                            <constraint firstItem="tEx-Mb-Wrb" firstAttribute="leading" secondItem="A1s-zn-Nc1" secondAttribute="leading" id="OE8-iS-j4J"/>
-                            <constraint firstItem="2yu-ob-7DL" firstAttribute="leading" secondItem="A1s-zn-Nc1" secondAttribute="leading" id="aTb-Az-eie"/>
-                            <constraint firstItem="2yu-ob-7DL" firstAttribute="trailing" secondItem="A1s-zn-Nc1" secondAttribute="trailing" id="c46-As-7Jg"/>
-                            <constraint firstItem="2yu-ob-7DL" firstAttribute="top" secondItem="A1s-zn-Nc1" secondAttribute="top" id="hXv-Bj-BqP"/>
-                            <constraint firstItem="A1s-zn-Nc1" firstAttribute="bottom" secondItem="tEx-Mb-Wrb" secondAttribute="bottom" constant="45" id="lyD-ti-tBV"/>
-                            <constraint firstItem="tEx-Mb-Wrb" firstAttribute="top" secondItem="A1s-zn-Nc1" secondAttribute="top" constant="45" id="pQz-vP-vKc"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EAn-7o-sw2"/>
                     <connections>
@@ -1410,7 +1480,7 @@
         <segue reference="Xlb-20-uru"/>
         <segue reference="05D-qQ-YEo"/>
         <segue reference="GgM-gQ-1IZ"/>
-        <segue reference="fLw-8v-kmp"/>
+        <segue reference="eSz-ee-aF8"/>
         <segue reference="Xc2-hJ-fzz"/>
         <segue reference="c7c-ci-XiC"/>
     </inferredMetricsTieBreakers>
@@ -1427,6 +1497,9 @@
         <image name="tt_settings_bluetooth" width="36" height="36"/>
         <namedColor name="colPrimary">
             <color red="0.2199999988079071" green="0.28999999165534973" blue="0.67000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colPrimaryDark">
+            <color red="0.0" green="0.12999999523162842" blue="0.37999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colPrimaryLight">
             <color red="0.43999999761581421" green="0.44999998807907104" blue="0.87000000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
