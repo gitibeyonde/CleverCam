@@ -80,6 +80,63 @@ public class HttpRequest: HttpRequestDelegate {
         dataTask?.resume()
     }
 
+    
+    static func register(_ delegate: HttpRequestDelegate?, username: String, email: String, phone: String, password: String,
+                    success successCallback: @escaping SuccessCompletionHandler
+    ) {
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=register"
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        print(url)
+
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "POST"
+        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        var components = URLComponents(url: usableUrl, resolvingAgainstBaseURL: false)!
+        components.queryItems = [
+            URLQueryItem(name: "user_name", value: username),
+            URLQueryItem(name: "user_email", value: email),
+            URLQueryItem(name: "user_phone", value: phone),
+            URLQueryItem(name: "user_password", value: password)
+        ]
+        let query = components.url!.query ?? ""
+        print(query)
+        request.httpBody = Data(query.utf8)
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    //send this block to required place
+                    let respstr = String(decoding: data, as: UTF8.self)
+                    print("Response " + respstr)
+                    successCallback(respstr)
+                }
+                else {
+                    let respstr = String(decoding: data!, as: UTF8.self)
+                    print("data", respstr)
+                    print("response", response!)
+                    print("Unknown error", error!)
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
+    
     static func veil(_ delegate: HttpRequestDelegate?, uuid: String,
                     success successCallback: @escaping SuccessCompletionHandler
     ) {
@@ -813,4 +870,27 @@ public class HttpRequest: HttpRequestDelegate {
         }
     }
 
+}
+
+extension Dictionary {
+    func percentEncoded() -> Data? {
+        return map { key, value in
+            let escapedKey = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+            let escapedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+            return escapedKey + "=" + escapedValue
+        }
+        .joined(separator: "&")
+        .data(using: .utf8)
+    }
+}
+
+extension CharacterSet {
+    static let urlQueryValueAllowed: CharacterSet = {
+        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
+        let subDelimitersToEncode = "!$&'()*+,;="
+
+        var allowed = CharacterSet.urlQueryAllowed
+        allowed.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
+        return allowed
+    }()
 }

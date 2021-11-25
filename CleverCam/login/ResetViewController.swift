@@ -27,3 +27,17 @@ class ResetViewController: UIViewController {
     */
 
 }
+
+
+
+
+extension ResetViewController: HttpRequestDelegate {
+    func onError() {
+        DispatchQueue.main.async() {
+            let alert = UIAlertController(title: "Ops", message: "An error has occurred...", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+
+}

@@ -95,18 +95,13 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         DeviceViewController.device_timer.invalidate()
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        let width = UIScreen.main.bounds.size.width - 40
-        let height = (width * 0.80)
-        return CGSize (width: width, height: height)
-    }
     
 }
 
 extension DeviceViewController: HttpRequestDelegate {
     func onError() {
         DispatchQueue.main.async() {
+            Users.setLoginStatus(object: "false")
             let alert = UIAlertController(title: "Ops", message: "Error getting device list...", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)

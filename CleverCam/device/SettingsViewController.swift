@@ -15,9 +15,8 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     public static var uuid: String = ""
     var config:CameraConfig = CameraConfig()
     
-    @IBOutlet var label: UILabel!
     @IBOutlet var name: UITextField!
-    @IBOutlet var version: UITextField!
+    @IBOutlet var version: UILabel!
     @IBOutlet var timezone: UIPickerView!
     @IBOutlet var camFramesize: UIPickerView!
     @IBOutlet var activity: UIActivityIndicatorView!
@@ -27,6 +26,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet var vertFlipSwitch: UISwitch!
     @IBOutlet var horFlipSwitch: UISwitch!
     @IBOutlet var upgradeButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +83,6 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 self.message.text = "       FAILED: Please, reload settings"
             }
         }
-        
     }
     
     private func framesizeIndex(framesize: Int)->Int {
