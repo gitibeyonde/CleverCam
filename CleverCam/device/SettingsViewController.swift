@@ -85,18 +85,6 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
-    private func framesizeIndex(framesize: Int)->Int {
-        if framesize == 8 {
-            return 2
-        }
-        else if framesize == 5 {
-            return 1
-        }
-        else {
-            return 0
-        }
-    }
-    
     @IBAction func deviceNameClick(_ sender: UIButton) {
         print(self.name.text!)
         HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "cn", value: self.name.text!) { (reponse) in
@@ -153,6 +141,29 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return 1
     }
     
+    private func framesizeIndex(framesize: Int)->Int {
+        if framesize == 8 {
+            return 2
+        }
+        else if framesize == 5 {
+            return 1
+        }
+        else {
+            return 0
+        }
+    }
+    
+    private func indexToFramesize(index: Int)->Int {
+        if index == 0 {
+            return 8
+        }
+        else if index == 1 {
+            return 5
+        }
+        else {
+            return 0
+        }
+    }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag {
             case 1:
@@ -184,7 +195,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 break
             case 2:
                 print(fsValues[row])
-                HttpRequest.applyCamConfig(self, uuid: SettingsViewController.uuid, name: "framesize", value: fsValues[row] ) { (reponse) in
+                HttpRequest.applyCamConfig(self, uuid: SettingsViewController.uuid, name: "framesize", value: String(indexToFramesize(index: row)) ) { (reponse) in
                         print(reponse)
                     }
                 break
