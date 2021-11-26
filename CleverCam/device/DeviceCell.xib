@@ -17,9 +17,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="365" height="291"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kC3-OS-HlA">
-                        <rect key="frame" x="170" y="152" width="50" height="50"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kC3-OS-HlA">
+                        <rect key="frame" x="120" y="100" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="R0i-zS-ATm"/>
+                            <constraint firstAttribute="height" constant="80" id="kSU-UA-hNZ"/>
+                        </constraints>
                     </activityIndicatorView>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="bottom" spacing="37" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVw-ZM-wAR">
                         <rect key="frame" x="0.0" y="255" width="365" height="36"/>
@@ -75,18 +78,25 @@
                             <constraint firstAttribute="height" constant="36" id="rW9-EW-iz9"/>
                         </constraints>
                     </stackView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A0q-h4-8ON">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A0q-h4-8ON">
                         <rect key="frame" x="0.0" y="0.0" width="365" height="255"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="A0q-h4-8ON" secondAttribute="height" multiplier="73:51" id="yif-o8-1Wm"/>
+                        </constraints>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ybA-7r-wjV"/>
             <constraints>
+                <constraint firstItem="A0q-h4-8ON" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Q2q-f2-Z4J"/>
                 <constraint firstAttribute="bottom" secondItem="YVw-ZM-wAR" secondAttribute="bottom" id="QKT-QA-yHe"/>
                 <constraint firstAttribute="trailing" secondItem="YVw-ZM-wAR" secondAttribute="trailing" id="W2d-Kg-8W4"/>
                 <constraint firstItem="YVw-ZM-wAR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="dJc-rF-Q4G"/>
+                <constraint firstAttribute="trailing" secondItem="A0q-h4-8ON" secondAttribute="trailing" id="hZM-Gu-cKt"/>
+                <constraint firstItem="kC3-OS-HlA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="120" id="mnj-hd-ZcJ"/>
+                <constraint firstItem="A0q-h4-8ON" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="q3C-uc-aTN"/>
                 <constraint firstAttribute="width" constant="365" id="saa-7y-n7r"/>
+                <constraint firstItem="kC3-OS-HlA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="100" id="vrd-Fb-vFm"/>
                 <constraint firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="365:291" id="ytZ-oH-l26"/>
             </constraints>
             <size key="customSize" width="365" height="291"/>
