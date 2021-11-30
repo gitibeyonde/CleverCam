@@ -7,33 +7,35 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate  {
 
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
+   
+    @IBOutlet var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         print("LoginViewController loaded")
+        username.delegate = self
+        username.tag = 1
+        password.delegate = self
+        password.tag = 2
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    @IBAction func passwordEyeEnabled(_ sender: UIButton) {
-        password.isSecureTextEntry = sender.isSelected
-        sender.isSelected = !sender.isSelected
-    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.tag == 1 {
+            username.resignFirstResponder()
+            password.becomeFirstResponder()
+        }
+        else {
+            password.resignFirstResponder()
+            loginButton.becomeFirstResponder()
+        }
+      return false
+   }
     
     @IBAction func loginButtonPress(_ sender: UIButton) {
         print(username.text ?? "noname")

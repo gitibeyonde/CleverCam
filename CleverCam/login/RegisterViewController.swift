@@ -7,22 +7,55 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate  {
 
     @IBOutlet var username: UITextField!
     @IBOutlet var email: UITextField!
     @IBOutlet var phone: UITextField!
     @IBOutlet var password: UITextField!
     @IBOutlet var repeatpass: UITextField!
-    
-    
-    
+    @IBOutlet var registerButton: UIButton!
+        
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        username.delegate = self
+        username.tag = 1
+        email.delegate = self
+        email.tag = 2
+        phone.delegate = self
+        phone.tag = 3
+        password.delegate = self
+        password.tag = 4
+        repeatpass.delegate = self
+        repeatpass.tag = 5
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.tag == 1 {
+            username.resignFirstResponder()
+            email.becomeFirstResponder()
+        }
+        else if textField.tag == 2  {
+            email.resignFirstResponder()
+            phone.becomeFirstResponder()
+        }
+        else if textField.tag == 3  {
+            phone.resignFirstResponder()
+            password.becomeFirstResponder()
+        }
+        else if textField.tag == 4  {
+            password.resignFirstResponder()
+            repeatpass.becomeFirstResponder()
+        }
+        else  {
+            repeatpass.resignFirstResponder()
+            registerButton.becomeFirstResponder()
+        }
+      return false
+   }
+
     @IBAction func registerButtonPress(_ sender: UIButton) {
         print(username.text!)
         print(password.text!)
