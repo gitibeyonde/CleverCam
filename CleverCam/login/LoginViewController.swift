@@ -37,6 +37,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
       return false
    }
     
+   @IBAction func passwordEyeEnabled(_ sender: UIButton) {
+        password.isSecureTextEntry = sender.isSelected
+        sender.isSelected = !sender.isSelected
+    }
+
     @IBAction func loginButtonPress(_ sender: UIButton) {
         print(username.text ?? "noname")
         print(password.text ?? "nopass")

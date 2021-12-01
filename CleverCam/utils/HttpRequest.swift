@@ -714,7 +714,22 @@ public class HttpRequest: HttpRequestDelegate {
         let hour = calendar.component(.hour, from: date!)
         let minute = calendar.component(.minute, from: date!)
         
-        let url = "https://ping.ibeyonde.com/api/iot.php?view=bellalerts&uuid=\(uuid)&date=\(year)/\(month)/\(day)&hour=\(hour)&minute=\(minute)";
+        var month_str:String=""
+        if (month < 10) {
+            month_str = "0\(month)"
+        }
+        else {
+            month_str = "\(month)"
+        }
+        var day_str:String=""
+        if (day < 10) {
+            day_str = "0\(day)"
+        }
+        else {
+            day_str = "\(day)"
+        }
+        
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=bellalerts&uuid=\(uuid)&date=\(year)/\(month_str)/\(day_str)&hour=\(hour)&minute=\(minute)";
         guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
             delegate?.onError()
             return

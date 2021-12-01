@@ -39,12 +39,14 @@ class BellAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loading bell alert view controller ")
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
         BellAlertViewController.images = [ self.img0, self.img1, self.img2, self.img3, self.img4, self.img5, self.img6, self.img7, self.img8, self.img9 ]
         
         var initFirstImage = false
         HttpRequest.bellAlertDetails(self, uuid: BellAlertViewController.uuid, datetime: BellAlertViewController.datetime) { (notificationList) in
-            DispatchQueue.main.async {
+            print(notificationList.count)
+            if (notificationList.count > 0 ) {
                 self.counterMax = notificationList.count - 1
                 for i in 0...self.counterMax {
                     let url_str = notificationList[i].url

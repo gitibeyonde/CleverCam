@@ -11,27 +11,27 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="historyCell" id="gTV-IL-0wX" customClass="HistoryCell" customModule="CleverCam">
-            <rect key="frame" x="0.0" y="0.0" width="451" height="341"/>
+            <rect key="frame" x="0.0" y="0.0" width="365" height="302"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="451" height="341"/>
+                <rect key="frame" x="0.0" y="0.0" width="365" height="302"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="7c2-fe-Byf">
-                        <rect key="frame" x="0.0" y="0.0" width="451" height="302"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="255"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbu-Lo-AC8">
-                        <rect key="frame" x="0.0" y="302" width="451" height="39"/>
+                        <rect key="frame" x="0.0" y="255" width="365" height="47"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" name="colSec"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="qHU-zk-km2">
-                        <rect key="frame" x="200.5" y="145.5" width="50" height="50"/>
+                        <rect key="frame" x="148" y="120" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="6Dh-Kw-Wnf"/>
-                            <constraint firstAttribute="width" constant="50" id="WEE-Wx-Dxz"/>
+                            <constraint firstAttribute="height" constant="50" id="08M-Jk-DFa"/>
+                            <constraint firstAttribute="width" constant="50" id="TCu-Jk-cPx"/>
                         </constraints>
                     </activityIndicatorView>
                 </subviews>
@@ -40,21 +40,21 @@
             <constraints>
                 <constraint firstItem="7c2-fe-Byf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8PQ-7y-RTZ"/>
                 <constraint firstItem="7c2-fe-Byf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="93d-nC-Coc"/>
+                <constraint firstItem="Nbu-Lo-AC8" firstAttribute="top" secondItem="qHU-zk-km2" secondAttribute="bottom" constant="85" id="IIV-aZ-Wrq"/>
                 <constraint firstItem="Nbu-Lo-AC8" firstAttribute="top" secondItem="7c2-fe-Byf" secondAttribute="bottom" id="O06-GY-jdi"/>
-                <constraint firstItem="qHU-zk-km2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="O9o-ZE-nO0"/>
+                <constraint firstItem="qHU-zk-km2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="148" id="YgH-I1-89g"/>
                 <constraint firstAttribute="trailing" secondItem="7c2-fe-Byf" secondAttribute="trailing" id="cwu-f4-zQs"/>
-                <constraint firstItem="qHU-zk-km2" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="mAP-T5-TL1"/>
                 <constraint firstItem="Nbu-Lo-AC8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="nQa-Qg-68w"/>
                 <constraint firstAttribute="bottom" secondItem="Nbu-Lo-AC8" secondAttribute="bottom" id="sxy-vo-F9v"/>
                 <constraint firstAttribute="trailing" secondItem="Nbu-Lo-AC8" secondAttribute="trailing" id="x08-Kq-Ymd"/>
             </constraints>
-            <size key="customSize" width="451" height="341"/>
+            <size key="customSize" width="364" height="302"/>
             <connections>
                 <outlet property="dateTime" destination="Nbu-Lo-AC8" id="dAN-rq-uQ7"/>
                 <outlet property="image" destination="7c2-fe-Byf" id="qg7-Ca-XqQ"/>
                 <outlet property="progress" destination="qHU-zk-km2" id="aon-Z0-K0q"/>
             </connections>
-            <point key="canvasLocation" x="431.15942028985512" y="232.03125"/>
+            <point key="canvasLocation" x="368.11594202898556" y="218.97321428571428"/>
         </collectionViewCell>
     </objects>
     <resources>
