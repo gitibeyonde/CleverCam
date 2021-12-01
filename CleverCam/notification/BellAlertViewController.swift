@@ -31,7 +31,7 @@ class BellAlertViewController: UIViewController {
     public static var images : Array<UIImageView> = []
     
     var stream: MJPEGStreamLib!
-    var url: URL?
+    var url: String?
     var counter: Int = 0
     var counterMax: Int = 0
     public static var history_timer = Timer()
@@ -73,27 +73,52 @@ class BellAlertViewController: UIViewController {
         //load live
         name.text = "     " + ApiContext.shared.getDeviceName(uuid: BellAlertViewController.uuid) + " at " +  BellAlertViewController.datetime
         
-        let url:String = HttpRequest.getStreamUrl(self, uuid: BellAlertViewController.uuid)
-        print("Live view rcvd url ", url)
-        let urlComponent = URLComponents(string: url)
-        
-        // Set the ImageView to the stream object
-        stream = MJPEGStreamLib(imageView: live)
-        // Start Loading Indicator
-        stream.didStartLoading = { [unowned self] in
-            self.liveProgress.startAnimating()
+        self.liveProgress.startAnimating()
+        HttpRequest.checkLocalURL(self, uuid: BellAlertViewController.uuid ) { (localUrl) in
+            print(localUrl)
+            if localUrl == "" {
+                HttpRequest.getRemoteURL(self, uuid: BellAlertViewController.uuid ) { (remoteUrl) in
+                    print(remoteUrl)
+                    self.url=remoteUrl
+                    self.streamLive()
+                }
+            }
+            else {
+                self.url=localUrl
+                self.streamLive()
+            }
+            
         }
-        // Stop Loading Indicator
-        stream.didFinishLoading = { [unowned self] in
-            self.liveProgress.stopAnimating()
-        }
-        
-        stream.contentURL = urlComponent!.url
-        stream.play() // Play the stream
         
         //animate history
         BellAlertViewController.history_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
     }
+    
+    
+
+    @IBAction func reload(_ sender: Any) {
+        self.stream.play()
+    }
+    
+    public func streamLive()->Void {
+        print("Live view rcvd url ", self.url!)
+        let urlComponent2 = URLComponents(string: self.url!)
+        
+        // Set the ImageView to the stream object
+        self.stream = MJPEGStreamLib(imageView: self.live)
+        // Start Loading Indicator
+        self.stream.didStartLoading = { [unowned self] in
+            self.liveProgress.startAnimating()
+        }
+        // Stop Loading Indicator
+        self.stream.didFinishLoading = { [unowned self] in
+            self.liveProgress.stopAnimating()
+        }
+        
+        self.stream.contentURL = urlComponent2!.url
+        self.stream.play() // Play the stream
+    }
+    
     
     @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
         print("Image taped", sender.view!.tag)

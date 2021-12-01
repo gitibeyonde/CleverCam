@@ -16,10 +16,9 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loading device view controller ")
-        
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         let nibCell = UINib(nibName: "DeviceCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "deviceCell")
-        
         
         HttpRequest.deviceList(self) { (deviceList) in
             DispatchQueue.main.async {
@@ -36,13 +35,14 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                                     if ApiContext.shared.allDeviceAlertsAvailable() {
                                         DispatchQueue.main.async {
                                             self.collectionView.reloadData()
+                                            return
                                         }
                                     }
                                }
                         }
                     }
                 }
-                DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
+                //DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
             }
         }
     }
@@ -92,7 +92,28 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
-        DeviceViewController.device_timer.invalidate()
+        fireTimer()
+        //DeviceViewController.device_timer.invalidate()
+        // get a reference to our storyboard cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deviceCell", for: indexPath as IndexPath) as! DeviceCell
+    
+        let index :Int = indexPath[1]
+        if index < ApiContext.shared.deviceAlertList.count {
+            
+            let da: Device = ApiContext.shared.getDevice(index: index)
+            cell.deviceName.text = da.device_name
+            cell.configure(uuid: da.uuid)
+            
+            let al: Array<Alert> = ApiContext.shared.getDeviceAlerts(uuid: da.uuid)
+            if al.count > 0 {
+                let url_str = al[counter].url
+                let data:Data = ApiContext.shared.getImage(url: url_str)
+                if !data.isEmpty {
+                    cell.image.image = UIImage(data: data)
+                }
+            }
+        }
+        ApiContext.shared.moveDeviceToTop(index: index)
     }
     
     

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -175,6 +175,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Qb7-Pf-P19"/>
                     <connections>
+                        <outlet property="loginButton" destination="pkT-iI-yfy" id="rgH-W2-qfU"/>
                         <outlet property="password" destination="ZGa-hb-Z8d" id="dJs-DL-nCM"/>
                         <outlet property="username" destination="TDb-x6-5RX" id="kvl-sp-fsh"/>
                         <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="SkZ-2s-KgS"/>
@@ -228,6 +229,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginButtonPress:" destination="b28-yQ-tY2" eventType="touchUpInside" id="cvN-Y6-1GN"/>
+                                    <action selector="registerButton:" destination="R3v-Rq-qI8" eventType="touchUpInside" id="U7V-1b-KGQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WNb-Au-lxa">
@@ -271,6 +273,7 @@
                     <navigationItem key="navigationItem" id="MW4-wW-80d"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJ9-aF-pX8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="R3v-Rq-qI8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="988" y="-449"/>
         </scene>
@@ -458,6 +461,7 @@
                         <outlet property="email" destination="ubP-2G-tpc" id="4ZM-Fl-g6j"/>
                         <outlet property="password" destination="Scs-HD-RIu" id="hyc-kP-USQ"/>
                         <outlet property="phone" destination="gDW-cH-4Jz" id="s0m-ta-soS"/>
+                        <outlet property="registerButton" destination="QfJ-bd-lO0" id="Rsa-gP-sBr"/>
                         <outlet property="repeatpass" destination="agt-uL-TlM" id="tZc-WW-XjE"/>
                         <outlet property="username" destination="HR5-8y-aDl" id="AtQ-mg-HPB"/>
                     </connections>
@@ -621,8 +625,8 @@
                                 </constraints>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGo-ox-oOQ">
-                                <rect key="frame" x="180" y="186.5" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="170" y="170" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <stackView opaque="NO" contentMode="bottom" distribution="equalSpacing" alignment="bottom" spacing="50" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cWP-ba-bf7">
                                 <rect key="frame" x="40" y="802" width="347" height="36"/>
@@ -665,6 +669,19 @@
                                     <constraint firstAttribute="height" constant="36" id="NO4-ff-bRN"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRg-8U-KrI">
+                                <rect key="frame" x="150" y="688" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="3jD-cU-ZZo"/>
+                                    <constraint firstAttribute="width" constant="100" id="Yak-4b-Zmw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" name="colSecDark"/>
+                                <state key="normal" title="Reload"/>
+                                <connections>
+                                    <action selector="reload:" destination="NCE-0w-BAR" eventType="touchUpInside" id="O9B-or-kqc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yl8-R3-eFY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -673,6 +690,7 @@
                             <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="cWP-ba-bf7" secondAttribute="trailing" constant="41" id="9lg-Yx-B2D"/>
                             <constraint firstItem="cWP-ba-bf7" firstAttribute="bottom" secondItem="yl8-R3-eFY" secondAttribute="bottom" id="CIE-Mt-daF"/>
                             <constraint firstAttribute="trailing" secondItem="1Ai-Kg-XYM" secondAttribute="trailing" constant="-39" id="J3C-kP-1GY"/>
+                            <constraint firstItem="jRg-8U-KrI" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" constant="150" id="KU0-Jj-xBW"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" constant="60" id="NgV-oe-E0n"/>
                             <constraint firstAttribute="bottom" secondItem="CG9-3l-fsw" secondAttribute="bottom" id="NoS-0x-FjN"/>
                             <constraint firstItem="cWP-ba-bf7" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" constant="40" id="Pex-rn-gcC"/>
@@ -681,6 +699,7 @@
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" constant="5" id="YaF-lF-Kgr"/>
                             <constraint firstItem="CG9-3l-fsw" firstAttribute="trailing" secondItem="yl8-R3-eFY" secondAttribute="trailing" id="gKP-JY-GKU"/>
                             <constraint firstItem="CG9-3l-fsw" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="oJ8-fG-zev"/>
+                            <constraint firstItem="yl8-R3-eFY" firstAttribute="bottom" secondItem="jRg-8U-KrI" secondAttribute="bottom" constant="120" id="pp0-TU-1YD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TfO-Bb-iqB"/>
@@ -1665,11 +1684,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="RbD-ce-3IY"/>
-        <segue reference="5j9-k9-8iw"/>
-        <segue reference="jdm-qE-pLT"/>
-        <segue reference="fLw-8v-kmp"/>
-        <segue reference="7Ib-sh-6TD"/>
+        <segue reference="eWR-ek-Ea6"/>
+        <segue reference="DI4-WP-KHY"/>
+        <segue reference="kXl-YN-FhJ"/>
+        <segue reference="wda-av-RYE"/>
+        <segue reference="E62-aZ-Sai"/>
         <segue reference="vyE-OM-wpk"/>
     </inferredMetricsTieBreakers>
     <resources>

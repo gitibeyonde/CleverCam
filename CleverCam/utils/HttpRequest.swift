@@ -357,6 +357,147 @@ public class HttpRequest: HttpRequestDelegate {
         dataTask?.resume()
     }
     
+    static func checkLocalURL(_ delegate: HttpRequestDelegate?, uuid: String, success successCallback: @escaping SuccessCompletionHandler) {
+        var device:Device = ApiContext.shared.getDevice(uuid: LiveViewController.uuid)
+        if device.uuid == "" {
+            let url = "https://ping.ibeyonde.com/api/iot.php?view=devicelist"
+            guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+                delegate?.onError()
+                return
+            }
+            print(url)
+            
+            let request = insertCred(usableUrl: usableUrl)
+            
+            var dataTask: URLSessionDataTask?
+            let defaultSession = URLSession(configuration: .default)
+            
+            let semaphore = DispatchSemaphore(value: 0)
+            dataTask =
+                defaultSession.dataTask(with: request) { data, response, error in
+                    defer {
+                        dataTask = nil
+                    }
+                    if error != nil {
+                        delegate?.onError()
+                    } else if
+                        let data: Data = data,
+                        let response = response as? HTTPURLResponse,
+                        response.statusCode == 200 {
+                        do {
+                            let decoder = JSONDecoder()
+                            let deviceList:Array<Device> = try decoder.decode([Device].self, from: data)
+                            ApiContext.shared.setDeviceList(deviceList: deviceList)
+                            print("Device list set ", deviceList)
+                        }
+                        catch {
+                            print("Something went wrong")
+                            delegate?.onError()
+                        }
+                    }
+                    else {
+                        print("Unknown error")
+                        delegate?.onError()
+                    }
+                    
+                    print("Running", BellAlertViewController.uuid)
+                    semaphore.signal()
+            }
+            dataTask?.resume()
+            _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+            print("Resume")
+            device = ApiContext.shared.getDevice(uuid: BellAlertViewController.uuid)
+        }
+        print(" Have device url ", device)
+        
+        var localURL: String = "http://\(device.deviceip)"
+        //if not lets call the delegate to manage the error
+        guard let urlComponent1 = URLComponents(string: localURL), let usableUrl1 = urlComponent1.url else {
+          delegate?.onError()
+          return
+        }
+        print(localURL)
+
+        var request = URLRequest(url: usableUrl1)
+        request.httpMethod = "GET"
+        request.timeoutInterval = 5
+
+        var dataTask1: URLSessionDataTask?
+        let defaultSession1 = URLSession(configuration: .default)
+        dataTask1 = defaultSession1.dataTask(with: request) { data, response, error in
+            defer {
+                dataTask1 = nil
+            }
+            if error != nil {
+                localURL = "none"
+                successCallback("")
+            } else if
+                let data: Data = data,
+                let response = response as? HTTPURLResponse,
+                response.statusCode == 200 {
+                //send this block to required place
+                let respstr = String(decoding: data, as: UTF8.self)
+                print(respstr)
+                if respstr.contains("Ibeyonde Cam") {
+                    successCallback("\(localURL)/stream")
+                }
+                else {
+                    successCallback("")
+                }
+            }
+            else {
+                print("Unknown error")
+                successCallback("")
+            }
+        }
+        dataTask1?.resume()
+    }
+    
+    static func getRemoteURL(_ delegate: HttpRequestDelegate?, uuid: String, success successCallback: @escaping SuccessCompletionHandler) {
+        
+        let url:String = "https://ping.ibeyonde.com/api/iot.php?view=live&quality=HINI&uuid=" + uuid;
+        //if not lets call the delegate to manage the error
+        guard let urlComponent1 = URLComponents(string: url), let usableUrl1 = urlComponent1.url else {
+          delegate?.onError()
+          return
+        }
+        print(url)
+        
+        let request = insertCred(usableUrl: usableUrl1)
+
+        var dataTask1: URLSessionDataTask?
+        let defaultSession1 = URLSession(configuration: .default)
+        dataTask1 = defaultSession1.dataTask(with: request) { data, response, error in
+            defer {
+                dataTask1 = nil
+            }
+            if error != nil {
+                delegate?.onError()
+            } else if
+                let data: Data = data,
+                let response = response as? HTTPURLResponse,
+                response.statusCode == 200 {
+                //send this block to required place
+                var remoteURL = String(bytes: data, encoding: .ascii) ?? ""
+                if remoteURL.starts(with: "\"https") {
+                    remoteURL = remoteURL.trimmingCharacters(in: .whitespaces)
+                    remoteURL = remoteURL.replacingOccurrences(of: "\\/", with: "/")
+                    remoteURL = remoteURL.replacingOccurrences(of: "\"", with: "")
+                    successCallback(remoteURL)
+                }
+                else {
+                    print("Unknown error", remoteURL)
+                    delegate?.onError()
+                }
+            }
+            else {
+                print("Unknown error")
+                delegate?.onError()
+            }
+        }
+        dataTask1?.resume()
+    }
+    
     static func getStreamUrl(_ delegate: HttpRequestDelegate?, uuid: String
     ) -> String {
         
@@ -413,50 +554,52 @@ public class HttpRequest: HttpRequestDelegate {
         print(" Have device url ", device)
         
         
-        var validLocalURL: String = "http://\(device.deviceip)"
+        var localURL: String = "http://\(device.deviceip)"
         //if not lets call the delegate to manage the error
-        guard let urlComponent1 = URLComponents(string: validLocalURL), let usableUrl1 = urlComponent1.url else {
+        guard let urlComponent1 = URLComponents(string: localURL), let usableUrl1 = urlComponent1.url else {
           delegate?.onError()
           return String()
         }
+        print(localURL)
 
         var request = URLRequest(url: usableUrl1)
         request.httpMethod = "GET"
+        request.timeoutInterval = 5
 
         var dataTask1: URLSessionDataTask?
         let defaultSession1 = URLSession(configuration: .default)
         let semaphore1 = DispatchSemaphore(value: 0)
-        print("get local url")
         dataTask1 = defaultSession1.dataTask(with: request) { data, response, error in
             defer {
                 dataTask1 = nil
             }
             if error != nil {
-                delegate?.onError()
+                localURL = "none"
             } else if
                 let data: Data = data,
                 let response = response as? HTTPURLResponse,
                 response.statusCode == 200 {
                 //send this block to required place
                 let respstr = String(decoding: data, as: UTF8.self)
+                print(respstr)
                 if !respstr.contains("Ibeyonde Cam") {
-                    validLocalURL = String()
+                    localURL = "none"
                 }
             }
             else {
-              print("Unknown error")
-              delegate?.onError()
+                print("Unknown error")
+                localURL = "none"
             }
             print("getting local url")
             semaphore1.signal()
         }
         dataTask1?.resume()
         _ = semaphore1.wait(timeout: DispatchTime.distantFuture)
-        print("got local url ", validLocalURL)
+        print(localURL)
         
         
-        if !validLocalURL.isEmpty {
-            return "\(validLocalURL)/stream"
+        if localURL != "none" {
+            return "\(localURL)/stream"
         }
         
         //get the remote url
@@ -469,6 +612,7 @@ public class HttpRequest: HttpRequestDelegate {
             delegate?.onError()
             return String()
         }
+        print(url)
         
         request = insertCred(usableUrl: usableUrl2)
         

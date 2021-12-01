@@ -36,6 +36,11 @@ class ApiContext: NSObject {
     public func getDevice(index: Int)->Device {
         return deviceList[index]
     }
+    public func moveDeviceToTop(index: Int)->Void {
+        let topDevice = deviceList[0]
+        deviceList[0] = deviceList[index]
+        deviceList[index] = topDevice
+    }
     public func getDeviceName(uuid: String)->String {
         for device in deviceList {
             if device.uuid == uuid {

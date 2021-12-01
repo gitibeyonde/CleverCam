@@ -15,8 +15,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate  {
     @IBOutlet var password: UITextField!
     @IBOutlet var repeatpass: UITextField!
     @IBOutlet var registerButton: UIButton!
-        
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
