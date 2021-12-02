@@ -496,7 +496,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pO-0t-sQQ" colorLabel="IBBuiltInLabel-Red">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="5"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryText"/>
                                         <state key="normal" image="tt_awesome_motion"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu0-B6-rOi">
@@ -633,7 +633,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U26-lx-wU2">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryText"/>
                                         <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="E62-aZ-Sai"/>
@@ -769,7 +769,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="5"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryText"/>
                                         <state key="normal" image="tt_awesome_motion">
                                             <color key="titleColor" systemColor="systemIndigoColor"/>
                                             <color key="titleShadowColor" systemColor="systemIndigoColor"/>
@@ -1074,7 +1074,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KG7-1t-bq7">
                                         <rect key="frame" x="104" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryText"/>
                                         <state key="normal" image="tt_notifications_active"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fef-uT-Wcd">
@@ -1271,7 +1271,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZ8-h5-dEs">
                                         <rect key="frame" x="104" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryText"/>
                                         <state key="normal" image="tt_notifications_active"/>
                                         <connections>
                                             <segue destination="QEa-cb-Is1" kind="show" id="jdm-qE-pLT"/>
@@ -1401,7 +1401,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PY-Db-0MB">
                                         <rect key="frame" x="208" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryText"/>
                                         <state key="normal" image="tt_settings_bluetooth"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iO8-bw-r5Q">
@@ -1500,7 +1500,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrf-3J-DQD">
                                         <rect key="frame" x="312" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryText"/>
                                         <state key="normal" image="tt_handyman"/>
                                     </button>
                                 </subviews>
@@ -1617,7 +1617,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AF8-67-uGF">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                        <color key="tintColor" name="colPrimaryLight"/>
+                                        <color key="tintColor" name="colPrimaryText"/>
                                         <state key="normal" image="tt_awesome_motion"/>
                                         <connections>
                                             <segue destination="3ZN-5C-1xA" kind="show" identifier="ShowDevice" id="b2T-rT-2Hx"/>
@@ -1684,12 +1684,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eWR-ek-Ea6"/>
-        <segue reference="DI4-WP-KHY"/>
-        <segue reference="kXl-YN-FhJ"/>
-        <segue reference="wda-av-RYE"/>
-        <segue reference="E62-aZ-Sai"/>
-        <segue reference="vyE-OM-wpk"/>
+        <segue reference="hBz-bH-PmC"/>
+        <segue reference="R91-DY-haJ"/>
+        <segue reference="bN5-hw-iLD"/>
+        <segue reference="fLw-8v-kmp"/>
+        <segue reference="aYo-8w-XJK"/>
+        <segue reference="c7c-ci-XiC"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="eyeHide" width="25" height="25"/>
@@ -1712,7 +1712,7 @@
             <color red="0.43999999761581421" green="0.44999998807907104" blue="0.87000000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colPrimaryText">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colSec">
             <color red="0.85000002384185791" green="0.10999999940395355" blue="0.37999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
