@@ -25,6 +25,7 @@ class BellAlertViewController: UIViewController {
     @IBOutlet var img7: UIImageView!
     @IBOutlet var img8: UIImageView!
     @IBOutlet var img9: UIImageView!
+    @IBOutlet var scrollView: UIScrollView!
     
     public static var uuid: String = ""
     public static var datetime: String = ""
@@ -120,7 +121,6 @@ class BellAlertViewController: UIViewController {
         self.stream.contentURL = urlComponent2!.url
         self.stream.play() // Play the stream
     }
-    
     
     @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
         print("Image taped", sender.view!.tag)
