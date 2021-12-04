@@ -2,18 +2,14 @@
 //  HistoryCell.swift
 //  CleverCam
 //
-//  Created by Abhinandan Prateek on 18/10/21.
+//  Created by Abhinandan Prateek on 04/12/21.
 //
 
 import UIKit
 
-protocol HistoryCellDelegate: AnyObject {
-    
-}
+class HistoryCell: UITableViewCell {
 
-class HistoryCell: UICollectionViewCell {
-
-    @IBOutlet var image: UIImageView!
+    @IBOutlet var historyImage: UIImageView!
     @IBOutlet var dateTime: UILabel!
     @IBOutlet var progress: UIActivityIndicatorView!
     
@@ -22,4 +18,10 @@ class HistoryCell: UICollectionViewCell {
         // Initialization code
     }
 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
 }

@@ -7,9 +7,10 @@
 
 import UIKit
 
-class HistoryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class HistoryViewController: UIViewController,  UITableViewDataSource, UITableViewDelegate  {
     
-    @IBOutlet var collectionView: UICollectionView!
+    
+    @IBOutlet var tableView: UITableView!
     @IBOutlet var heading: UILabel!
     public static var uuid: String = ""
     
@@ -18,7 +19,7 @@ class HistoryViewController: UIViewController, UICollectionViewDataSource, UICol
         print("loading HistoryViewController")
         
         let nibCell = UINib(nibName: "HistoryCell", bundle: nil)
-        collectionView.register(nibCell, forCellWithReuseIdentifier: "historyCell")
+        tableView.register(nibCell, forCellReuseIdentifier: "historyCell")
         
         heading.text = "    " + ApiContext.shared.getDeviceName(uuid: HistoryViewController.uuid) + " History"
         
@@ -32,27 +33,25 @@ class HistoryViewController: UIViewController, UICollectionViewDataSource, UICol
                     print(response?.suggestedFilename ?? Url.lastPathComponent)
                     ApiContext.shared.addImage(url: url_str, data: data)
                     DispatchQueue.main.async {
-                        self.collectionView.reloadData()
+                        self.tableView.reloadData()
                     }
                }
             }
             DispatchQueue.main.async {
-                self.collectionView.reloadData()
+                self.tableView.reloadData()
             }
         }
     }
     
-
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let hl: Array<History> = ApiContext.shared.getDeviceHistory(uuid: HistoryViewController.uuid)
         return hl.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // get a reference to our storyboard cell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "historyCell", for: indexPath as IndexPath) as! HistoryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath as IndexPath) as! HistoryCell
         
         let hl: Array<History> = ApiContext.shared.getDeviceHistory(uuid: HistoryViewController.uuid)
         
@@ -62,18 +61,12 @@ class HistoryViewController: UIViewController, UICollectionViewDataSource, UICol
         let data:Data = ApiContext.shared.getImage(url: url_str)
         if !data.isEmpty {
             DispatchQueue.main.async() {
-                cell.image.image = UIImage(data: data)
+                cell.historyImage.image = UIImage(data: data)
                 cell.progress.stopAnimating()
             }
         }
         
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // handle tap events
-        print("You selected cell #\(indexPath.item)!")
-        
     }
     
 }

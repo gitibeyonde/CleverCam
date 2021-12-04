@@ -12,6 +12,8 @@
 		AB5FCE592720124100D695DA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5FCE572720124100D695DA /* NotificationCell.swift */; };
 		AB5FCE5A2720124100D695DA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5FCE582720124100D695DA /* NotificationCell.xib */; };
 		AB5FCE5D27201D9000D695DA /* BellAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5FCE5C27201D9000D695DA /* BellAlertViewController.swift */; };
+		AB6FF124275B351900273902 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6FF122275B351900273902 /* HistoryCell.swift */; };
+		AB6FF125275B351900273902 /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB6FF123275B351900273902 /* HistoryCell.xib */; };
 		AB7F825F2716D0D70054DA5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F825E2716D0D70054DA5E /* AppDelegate.swift */; };
 		AB7F82612716D0D70054DA5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82602716D0D70054DA5E /* SceneDelegate.swift */; };
 		AB7F82632716D0D70054DA5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82622716D0D70054DA5E /* ViewController.swift */; };
@@ -30,8 +32,6 @@
 		AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82B4271A9E620054DA5E /* ApiContext.swift */; };
 		AB7F82BC271BE2CA0054DA5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82BB271BE2CA0054DA5E /* Utils.swift */; };
 		AB7F82C3271C45340054DA5E /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82C2271C45340054DA5E /* HistoryViewController.swift */; };
-		AB7F82CE271D42490054DA5E /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82CC271D42490054DA5E /* HistoryCell.swift */; };
-		AB7F82CF271D42490054DA5E /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7F82CD271D42490054DA5E /* HistoryCell.xib */; };
 		AB7F82D2271D72CF0054DA5E /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82D1271D72CF0054DA5E /* LiveViewController.swift */; };
 		AB7F82D5271D77460054DA5E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82D4271D77460054DA5E /* SettingsViewController.swift */; };
 		AB7F82D9271D79780054DA5E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82D8271D79780054DA5E /* NotificationViewController.swift */; };
@@ -48,6 +48,8 @@
 		AB5FCE572720124100D695DA /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		AB5FCE582720124100D695DA /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		AB5FCE5C27201D9000D695DA /* BellAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellAlertViewController.swift; sourceTree = "<group>"; };
+		AB6FF122275B351900273902 /* HistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		AB6FF123275B351900273902 /* HistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryCell.xib; sourceTree = "<group>"; };
 		AB7F825B2716D0D70054DA5E /* CleverCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleverCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7F825E2716D0D70054DA5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB7F82602716D0D70054DA5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,8 +69,6 @@
 		AB7F82B4271A9E620054DA5E /* ApiContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiContext.swift; sourceTree = "<group>"; };
 		AB7F82BB271BE2CA0054DA5E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		AB7F82C2271C45340054DA5E /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		AB7F82CC271D42490054DA5E /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
-		AB7F82CD271D42490054DA5E /* HistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryCell.xib; sourceTree = "<group>"; };
 		AB7F82D1271D72CF0054DA5E /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		AB7F82D4271D77460054DA5E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AB7F82D8271D79780054DA5E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
@@ -156,10 +156,10 @@
 		AB7F8296271820120054DA5E /* device */ = {
 			isa = PBXGroup;
 			children = (
+				AB6FF122275B351900273902 /* HistoryCell.swift */,
+				AB6FF123275B351900273902 /* HistoryCell.xib */,
 				AB7F8297271820270054DA5E /* DeviceViewController.swift */,
 				AB7F82C2271C45340054DA5E /* HistoryViewController.swift */,
-				AB7F82CC271D42490054DA5E /* HistoryCell.swift */,
-				AB7F82CD271D42490054DA5E /* HistoryCell.xib */,
 				AB7F82D1271D72CF0054DA5E /* LiveViewController.swift */,
 				AB7F82D4271D77460054DA5E /* SettingsViewController.swift */,
 				AB389898275B108B00884EFC /* DeviceCell.swift */,
@@ -259,11 +259,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB7F826B2716D0DF0054DA5E /* LaunchScreen.storyboard in Resources */,
+				AB6FF125275B351900273902 /* HistoryCell.xib in Resources */,
 				AB7F82782716D86B0054DA5E /* GoogleService-Info.plist in Resources */,
 				AB7F82682716D0DF0054DA5E /* Assets.xcassets in Resources */,
 				AB7F82662716D0D70054DA5E /* Main.storyboard in Resources */,
 				AB5FCE5A2720124100D695DA /* NotificationCell.xib in Resources */,
-				AB7F82CF271D42490054DA5E /* HistoryCell.xib in Resources */,
 				AB38989B275B108B00884EFC /* DeviceCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,13 +288,13 @@
 				AB7F82BC271BE2CA0054DA5E /* Utils.swift in Sources */,
 				AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */,
 				AB7F82632716D0D70054DA5E /* ViewController.swift in Sources */,
-				AB7F82CE271D42490054DA5E /* HistoryCell.swift in Sources */,
 				AB7F82E8271ED9230054DA5E /* MJPEGStreamLib.swift in Sources */,
 				AB5FCE592720124100D695DA /* NotificationCell.swift in Sources */,
 				AB7F828B271710B30054DA5E /* HttpRequest.swift in Sources */,
 				AB7F82D5271D77460054DA5E /* SettingsViewController.swift in Sources */,
 				AB7F829427181B220054DA5E /* PushNotificationManager.swift in Sources */,
 				AB7F82D9271D79780054DA5E /* NotificationViewController.swift in Sources */,
+				AB6FF124275B351900273902 /* HistoryCell.swift in Sources */,
 				AB7F82DE271D79990054DA5E /* GlobalSettingsViewController.swift in Sources */,
 				AB7F82E2271D79B30054DA5E /* BluetoothViewController.swift in Sources */,
 				AB7F825F2716D0D70054DA5E /* AppDelegate.swift in Sources */,

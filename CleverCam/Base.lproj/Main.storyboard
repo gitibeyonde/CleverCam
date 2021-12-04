@@ -478,7 +478,7 @@
         <!--Device View Controller-->
         <scene sceneID="eiU-4k-cbg">
             <objects>
-                <viewController restorationIdentifier="DeviceViewController" storyboardIdentifier="DeviceViewController" id="3ZN-5C-1xA" customClass="DeviceViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3ZN-5C-1xA" customClass="DeviceViewController" customModule="CleverCam" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mrL-Ze-o3X">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -544,12 +544,12 @@
                                 <color key="textColor" name="colPrimaryText"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="276" estimatedRowHeight="276" sectionHeaderHeight="40" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o5J-Dl-mKp">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="320" estimatedRowHeight="-1" sectionHeaderHeight="40" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o5J-Dl-mKp">
                                 <rect key="frame" x="0.0" y="42" width="428" height="756"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="3ZN-5C-1xA" id="2Hk-vm-ZGL"/>
-                                    <outlet property="delegate" destination="mrL-Ze-o3X" id="KCc-Cw-Olh"/>
+                                    <outlet property="delegate" destination="3ZN-5C-1xA" id="CZn-OB-aCK"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -1591,7 +1591,8 @@
         <!--History View Controller-->
         <scene sceneID="6i5-Uz-TGR">
             <objects>
-                <viewController storyboardIdentifier="HistoryViewController" id="vtE-H4-AyR" customClass="HistoryViewController" customModule="CleverCam" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z7u-Rs-5H3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="HistoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vtE-H4-AyR" customClass="HistoryViewController" customModule="CleverCam" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UKk-QB-CCp">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1608,21 +1609,6 @@
                                 </constraints>
                                 <blurEffect style="prominent"/>
                             </visualEffectView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tEx-Mb-Wrb">
-                                <rect key="frame" x="0.0" y="45" width="428" height="747"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="mO2-dl-EFr">
-                                    <size key="itemSize" width="0.0" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="vtE-H4-AyR" id="Sjr-gk-YoO"/>
-                                    <outlet property="delegate" destination="vtE-H4-AyR" id="LRq-7N-IzM"/>
-                                </connections>
-                            </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        History" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yu-ob-7DL">
                                 <rect key="frame" x="0.0" y="0.0" width="428" height="40"/>
                                 <color key="backgroundColor" name="colPrimary"/>
@@ -1674,43 +1660,49 @@
                                     <constraint firstAttribute="height" constant="36" id="krC-X4-Xo9"/>
                                 </constraints>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="310" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vvw-zh-epG">
+                                <rect key="frame" x="0.0" y="42" width="428" height="756"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vtE-H4-AyR" id="cyg-HY-Ujy"/>
+                                    <outlet property="delegate" destination="vtE-H4-AyR" id="Xyg-1o-SXx"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="A1s-zn-Nc1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Ogs-Q1-y78" secondAttribute="trailing" id="4XR-93-k0c"/>
+                            <constraint firstItem="Vvw-zh-epG" firstAttribute="top" secondItem="A1s-zn-Nc1" secondAttribute="top" constant="42" id="4au-nb-wUd"/>
                             <constraint firstItem="tUU-lO-x4B" firstAttribute="leading" secondItem="A1s-zn-Nc1" secondAttribute="leading" constant="40" id="4sB-05-1iq"/>
                             <constraint firstItem="A1s-zn-Nc1" firstAttribute="trailing" secondItem="2yu-ob-7DL" secondAttribute="trailing" id="8cL-ga-o3l"/>
                             <constraint firstItem="2yu-ob-7DL" firstAttribute="leading" secondItem="A1s-zn-Nc1" secondAttribute="leading" id="CoU-0y-nS7"/>
                             <constraint firstItem="A1s-zn-Nc1" firstAttribute="bottom" secondItem="tUU-lO-x4B" secondAttribute="bottom" id="Eli-Df-T4z"/>
+                            <constraint firstItem="A1s-zn-Nc1" firstAttribute="trailing" secondItem="Vvw-zh-epG" secondAttribute="trailing" id="HH5-ED-sYq"/>
                             <constraint firstAttribute="bottom" secondItem="Ogs-Q1-y78" secondAttribute="bottom" id="P8f-Km-h89"/>
-                            <constraint firstAttribute="trailing" secondItem="tEx-Mb-Wrb" secondAttribute="trailing" id="Pl7-HS-yRP"/>
                             <constraint firstItem="Ogs-Q1-y78" firstAttribute="leading" secondItem="UKk-QB-CCp" secondAttribute="leading" id="TBh-rU-0bP"/>
+                            <constraint firstItem="Vvw-zh-epG" firstAttribute="leading" secondItem="A1s-zn-Nc1" secondAttribute="leading" id="TgB-4d-MFX"/>
+                            <constraint firstItem="A1s-zn-Nc1" firstAttribute="bottom" secondItem="Vvw-zh-epG" secondAttribute="bottom" constant="40" id="U1d-iS-gT2"/>
                             <constraint firstItem="2yu-ob-7DL" firstAttribute="top" secondItem="A1s-zn-Nc1" secondAttribute="top" id="Uvw-5O-fHY"/>
-                            <constraint firstItem="tEx-Mb-Wrb" firstAttribute="leading" secondItem="A1s-zn-Nc1" secondAttribute="leading" id="Y58-ix-4fx"/>
                             <constraint firstItem="A1s-zn-Nc1" firstAttribute="trailing" secondItem="tUU-lO-x4B" secondAttribute="trailing" constant="40" id="YZk-mk-ZHz"/>
-                            <constraint firstAttribute="bottom" secondItem="tEx-Mb-Wrb" secondAttribute="bottom" constant="80" id="ecx-6w-o7y"/>
-                            <constraint firstItem="tEx-Mb-Wrb" firstAttribute="top" secondItem="A1s-zn-Nc1" secondAttribute="top" constant="45" id="rjN-ur-sQN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EAn-7o-sw2"/>
                     <connections>
-                        <outlet property="collectionView" destination="tEx-Mb-Wrb" id="a8p-bA-5Tv"/>
                         <outlet property="heading" destination="2yu-ob-7DL" id="XAg-AK-yzn"/>
+                        <outlet property="tableView" destination="Vvw-zh-epG" id="Hmd-a1-0Xx"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z7u-Rs-5H3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1921" y="-449"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DUZ-Kt-ayi"/>
         <segue reference="Pr2-as-fDm"/>
-        <segue reference="4l0-Ab-iBd"/>
-        <segue reference="lPu-xw-AAb"/>
-        <segue reference="wda-av-RYE"/>
-        <segue reference="E62-aZ-Sai"/>
+        <segue reference="dyG-XP-exf"/>
+        <segue reference="WtH-SG-3b3"/>
+        <segue reference="fLw-8v-kmp"/>
+        <segue reference="b2T-rT-2Hx"/>
         <segue reference="vyE-OM-wpk"/>
     </inferredMetricsTieBreakers>
     <resources>
