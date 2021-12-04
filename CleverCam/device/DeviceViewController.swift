@@ -7,18 +7,19 @@
 
 import UIKit
 
-class DeviceViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
+class DeviceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var tableView: UITableView!
     var counter: Int = 0
     public static var device_timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loading device view controller ")
-        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-        let nibCell = UINib(nibName: "DeviceCell", bundle: nil)
-        collectionView.register(nibCell, forCellWithReuseIdentifier: "deviceCell")
+        //UserDefaults.standard.set(true, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
+        let nibCell = UINib(nibName: "deviceTableCell", bundle: nil)
+        tableView.register(nibCell, forCellReuseIdentifier: "deviceTableCell")
         
         HttpRequest.deviceList(self) { (deviceList) in
             DispatchQueue.main.async {
@@ -34,7 +35,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                                 
                                     if ApiContext.shared.allDeviceAlertsAvailable() {
                                         DispatchQueue.main.async {
-                                            self.collectionView.reloadData()
+                                            self.tableView.reloadData()
                                             return
                                         }
                                     }
@@ -53,19 +54,16 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
             counter=0;
         }
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            self.tableView.reloadData()
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ApiContext.shared.deviceList.count
     }
     
-    // make a cell for each cell index path
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        // get a reference to our storyboard cell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deviceCell", for: indexPath as IndexPath) as! DeviceCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "deviceTableCell", for: indexPath as IndexPath) as! DeviceCell
         cell.delegate = self
     
         let index :Int = indexPath[1]
@@ -81,7 +79,7 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                 let url_str = al[counter].url
                 let data:Data = ApiContext.shared.getImage(url: url_str)
                 if !data.isEmpty {
-                    cell.image.image = UIImage(data: data)
+                    cell.deviceImage.image = UIImage(data: data)
                     cell.progress.stopAnimating()
                 }
             }
@@ -89,13 +87,13 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    private func tableView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
         fireTimer()
-        //DeviceViewController.device_timer.invalidate()
-        // get a reference to our storyboard cell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deviceCell", for: indexPath as IndexPath) as! DeviceCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "deviceTableCell", for: indexPath as IndexPath) as! DeviceCell
     
         let index :Int = indexPath[1]
         if index < ApiContext.shared.deviceAlertList.count {
@@ -109,13 +107,12 @@ class DeviceViewController: UIViewController, UICollectionViewDataSource, UIColl
                 let url_str = al[counter].url
                 let data:Data = ApiContext.shared.getImage(url: url_str)
                 if !data.isEmpty {
-                    cell.image.image = UIImage(data: data)
+                    cell.deviceImage.image = UIImage(data: data)
                 }
             }
         }
         ApiContext.shared.moveDeviceToTop(index: index)
     }
-    
     
 }
 

@@ -2,7 +2,7 @@
 //  DeviceCell.swift
 //  CleverCam
 //
-//  Created by Abhinandan Prateek on 14/10/21.
+//  Created by Abhinandan Prateek on 04/12/21.
 //
 
 import UIKit
@@ -13,12 +13,13 @@ protocol DeviceCellDelegate: AnyObject {
     func settingsClicked(with uuid: String)
 }
 
-class DeviceCell: UICollectionViewCell {
-
-    @IBOutlet var image: UIImageView!
+class DeviceCell: UITableViewCell {
+    
+    @IBOutlet var deviceImage: UIImageView!
     @IBOutlet var deviceName: UILabel!
     @IBOutlet var progress: UIActivityIndicatorView!
     
+
     weak var delegate: DeviceCellDelegate?
     private var uuid:String=""
     
@@ -27,6 +28,12 @@ class DeviceCell: UICollectionViewCell {
         // Initialization code
     }
 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
     @IBAction func settingsClick(_ sender: Any) {
         print("settings clicked")
         delegate?.settingsClicked(with: uuid)

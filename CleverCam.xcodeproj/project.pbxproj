@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB38989A275B108B00884EFC /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB389898275B108B00884EFC /* DeviceCell.swift */; };
+		AB38989B275B108B00884EFC /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB389899275B108B00884EFC /* DeviceCell.xib */; };
 		AB5FCE592720124100D695DA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5FCE572720124100D695DA /* NotificationCell.swift */; };
 		AB5FCE5A2720124100D695DA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5FCE582720124100D695DA /* NotificationCell.xib */; };
 		AB5FCE5D27201D9000D695DA /* BellAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5FCE5C27201D9000D695DA /* BellAlertViewController.swift */; };
@@ -24,8 +26,6 @@
 		AB7F828B271710B30054DA5E /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F828A271710B30054DA5E /* HttpRequest.swift */; };
 		AB7F829427181B220054DA5E /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F829327181B220054DA5E /* PushNotificationManager.swift */; };
 		AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F8297271820270054DA5E /* DeviceViewController.swift */; };
-		AB7F82AB271837950054DA5E /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82A9271837950054DA5E /* DeviceCell.swift */; };
-		AB7F82AC271837950054DA5E /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7F82AA271837950054DA5E /* DeviceCell.xib */; };
 		AB7F82B127197DEA0054DA5E /* ApiObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82B027197DEA0054DA5E /* ApiObjects.swift */; };
 		AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82B4271A9E620054DA5E /* ApiContext.swift */; };
 		AB7F82BC271BE2CA0054DA5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82BB271BE2CA0054DA5E /* Utils.swift */; };
@@ -43,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB389898275B108B00884EFC /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
+		AB389899275B108B00884EFC /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
 		AB5FCE572720124100D695DA /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		AB5FCE582720124100D695DA /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		AB5FCE5C27201D9000D695DA /* BellAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellAlertViewController.swift; sourceTree = "<group>"; };
@@ -61,8 +63,6 @@
 		AB7F828A271710B30054DA5E /* HttpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		AB7F829327181B220054DA5E /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		AB7F8297271820270054DA5E /* DeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
-		AB7F82A9271837950054DA5E /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
-		AB7F82AA271837950054DA5E /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
 		AB7F82B027197DEA0054DA5E /* ApiObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiObjects.swift; sourceTree = "<group>"; };
 		AB7F82B4271A9E620054DA5E /* ApiContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiContext.swift; sourceTree = "<group>"; };
 		AB7F82BB271BE2CA0054DA5E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -157,13 +157,13 @@
 			isa = PBXGroup;
 			children = (
 				AB7F8297271820270054DA5E /* DeviceViewController.swift */,
-				AB7F82A9271837950054DA5E /* DeviceCell.swift */,
-				AB7F82AA271837950054DA5E /* DeviceCell.xib */,
 				AB7F82C2271C45340054DA5E /* HistoryViewController.swift */,
 				AB7F82CC271D42490054DA5E /* HistoryCell.swift */,
 				AB7F82CD271D42490054DA5E /* HistoryCell.xib */,
 				AB7F82D1271D72CF0054DA5E /* LiveViewController.swift */,
 				AB7F82D4271D77460054DA5E /* SettingsViewController.swift */,
+				AB389898275B108B00884EFC /* DeviceCell.swift */,
+				AB389899275B108B00884EFC /* DeviceCell.xib */,
 			);
 			path = device;
 			sourceTree = "<group>";
@@ -264,7 +264,7 @@
 				AB7F82662716D0D70054DA5E /* Main.storyboard in Resources */,
 				AB5FCE5A2720124100D695DA /* NotificationCell.xib in Resources */,
 				AB7F82CF271D42490054DA5E /* HistoryCell.xib in Resources */,
-				AB7F82AC271837950054DA5E /* DeviceCell.xib in Resources */,
+				AB38989B275B108B00884EFC /* DeviceCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +280,7 @@
 				AB5FCE5D27201D9000D695DA /* BellAlertViewController.swift in Sources */,
 				AB7F82D2271D72CF0054DA5E /* LiveViewController.swift in Sources */,
 				AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */,
+				AB38989A275B108B00884EFC /* DeviceCell.swift in Sources */,
 				AB7F828427170E4B0054DA5E /* Users.swift in Sources */,
 				AB7F82B127197DEA0054DA5E /* ApiObjects.swift in Sources */,
 				ABDC6F6427296FF100061E9B /* TimeZone.swift in Sources */,
@@ -295,7 +296,6 @@
 				AB7F829427181B220054DA5E /* PushNotificationManager.swift in Sources */,
 				AB7F82D9271D79780054DA5E /* NotificationViewController.swift in Sources */,
 				AB7F82DE271D79990054DA5E /* GlobalSettingsViewController.swift in Sources */,
-				AB7F82AB271837950054DA5E /* DeviceCell.swift in Sources */,
 				AB7F82E2271D79B30054DA5E /* BluetoothViewController.swift in Sources */,
 				AB7F825F2716D0D70054DA5E /* AppDelegate.swift in Sources */,
 				AB9BF7B92723E8A900C5B832 /* ResetViewController.swift in Sources */,
