@@ -137,6 +137,45 @@ public class HttpRequest: HttpRequestDelegate {
         dataTask?.resume()
     }
     
+    
+    static func reset(_ delegate: HttpRequestDelegate?, user_email: String,
+                    success successCallback: @escaping SuccessCompletionHandler
+    ) {
+        let url = "https://ping.ibeyonde.com/api/iot.php?view=reset&user_email=\(user_email)"
+        guard let urlComponent = URLComponents(string: url), let usableUrl = urlComponent.url else {
+            delegate?.onError()
+            return
+        }
+        print(url)
+        
+        var request = URLRequest(url: usableUrl)
+        request.httpMethod = "GET"
+        request.setValue("ping.ibeyonde.com", forHTTPHeaderField: "Host")
+        
+        var dataTask: URLSessionDataTask?
+        let defaultSession = URLSession(configuration: .default)
+        
+        dataTask =
+            defaultSession.dataTask(with: request) { data, response, error in
+                defer {
+                    dataTask = nil
+                }
+                if error != nil {
+                    delegate?.onError()
+                } else if
+                    let data: Data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+                    successCallback(String(decoding: data, as: UTF8.self))
+                }
+                else {
+                    print("Unknown error")
+                    delegate?.onError()
+                }
+        }
+        dataTask?.resume()
+    }
+    
     static func veil(_ delegate: HttpRequestDelegate?, uuid: String,
                     success successCallback: @escaping SuccessCompletionHandler
     ) {
