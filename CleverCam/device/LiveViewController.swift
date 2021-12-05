@@ -45,7 +45,7 @@ class LiveViewController: UIViewController {
     
 
     @IBAction func reload(_ sender: Any) {
-        self.stream.play() 
+        self.streamLive()
     }
     
     public func streamLive()->Void {

@@ -17,12 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        //let pushManager = PushNotificationManager(userID: "currently_logged_in_user_id")
-          //  pushManager.registerForPushNotifications()
-            
-        //FirebaseApp.configure()
-        
-        
+        let pushManager = PushNotificationManager(userID: Users.getUserName())
+        pushManager.registerForPushNotifications()
+
         return true
     }
     
@@ -67,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print(fcmToken!)
+        print("messaging",fcmToken!)
         Users.setFCMtoken(object: fcmToken!)
     }
 
