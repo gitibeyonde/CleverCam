@@ -1475,10 +1475,10 @@
                                 </constraints>
                                 <blurEffect style="prominent"/>
                             </visualEffectView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth is under construction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wET-GL-5FV">
-                                <rect key="frame" x="40" y="361" width="334" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth is under construction, please use android phone to configure your CleverCam." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wET-GL-5FV">
+                                <rect key="frame" x="40" y="361" width="334" height="81"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ETg-lI-EjA"/>
+                                    <constraint firstAttribute="height" constant="81" id="ETg-lI-EjA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" name="colSecDark"/>
@@ -1553,7 +1553,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LlM-Yz-bdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5334" y="363"/>
+            <point key="canvasLocation" x="5333.3333333333339" y="362.94642857142856"/>
         </scene>
         <!--Global Settings View Controller-->
         <scene sceneID="NQ8-Ta-9wG">
@@ -1781,7 +1781,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="E57-xj-hEB"/>
         <segue reference="Pr2-as-fDm"/>
         <segue reference="4l0-Ab-iBd"/>
         <segue reference="lPu-xw-AAb"/>
