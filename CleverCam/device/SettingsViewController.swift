@@ -21,10 +21,12 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet var camFramesize: UIPickerView!
     @IBOutlet var activity: UIActivityIndicatorView!
     @IBOutlet var message: UILabel!
+    
     @IBOutlet var cloudStreamSwitch: UISwitch!
     @IBOutlet var storeHistorySwitch: UISwitch!
     @IBOutlet var vertFlipSwitch: UISwitch!
     @IBOutlet var horFlipSwitch: UISwitch!
+    
     @IBOutlet var upgradeButton: UIButton!
     
     
