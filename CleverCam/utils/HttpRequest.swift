@@ -327,6 +327,11 @@ public class HttpRequest: HttpRequestDelegate {
                     let response = response as? HTTPURLResponse,
                     response.statusCode == 200 {
                     var alertList: Array<Alert> = Array<Alert>()
+                    let response: String = String(bytes: data, encoding: .ascii) ?? ""
+                    if (response.contains("No alerts found for this device")) {
+                        successCallback(alertList)
+                        return
+                    }
                     do {
                         let jsonObjects: [Array] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [Array<String>]
                         for jsonObject in jsonObjects {

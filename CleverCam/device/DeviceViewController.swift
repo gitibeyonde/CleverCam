@@ -24,27 +24,36 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
         
         HttpRequest.deviceList(self) { (deviceList) in
             DispatchQueue.main.async {
-                for device in deviceList {
-                    print("DeviceViewController ", device.uuid)
-                    HttpRequest.lastAlerts(self, uuid: device.uuid) { (alerts) in
-                        for a in alerts {
-                            let url_str = a.url
-                            let Url = URL(string: url_str)!
-                            getData(from: Url) { data, response, error in
-                                    guard let data = data, error == nil else { return }
-                                    ApiContext.shared.addImage(url: url_str, data: data)
-                                
-                                    if ApiContext.shared.allDeviceAlertsAvailable() {
-                                        DispatchQueue.main.async {
-                                            self.tableView.reloadData()
-                                            return
+                if (deviceList.count == 0 ) {
+                    let alert = UIAlertController(title: "No Device Found", message: "No device attached to this account. Please, configure the device that you want to view from Android App.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else {
+                    for device in deviceList {
+                        print("DeviceViewController ", device.uuid)
+                        HttpRequest.lastAlerts(self, uuid: device.uuid) { (alerts) in
+                            for a in alerts {
+                                let url_str = a.url
+                                let Url = URL(string: url_str)!
+                                getData(from: Url) { data, response, error in
+                                        guard let data = data, error == nil else { return }
+                                        ApiContext.shared.addImage(url: url_str, data: data)
+                                    
+                                        if ApiContext.shared.allDeviceAlertsAvailable() {
+                                            DispatchQueue.main.async {
+                                                self.tableView.reloadData()
+                                                return
+                                            }
                                         }
-                                    }
-                               }
+                                   }
+                            }
                         }
                     }
+                    let pushManager = PushNotificationManager(userID: Users.getUserName())
+                    pushManager.registerForPushNotifications()
+                    DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
                 }
-                DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
             }
         }
     }
@@ -69,12 +78,12 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
     
         let index :Int = indexPath[1]
         cell.progress.startAnimating()
+        
+        let da: Device = ApiContext.shared.getDevice(index: index)
+        cell.deviceName.text = da.device_name
+        cell.configure(uuid: da.uuid)
+        
         if index < ApiContext.shared.deviceAlertList.count {
-            
-            let da: Device = ApiContext.shared.getDevice(index: index)
-            cell.deviceName.text = da.device_name
-            cell.configure(uuid: da.uuid)
-            
             let al: Array<Alert> = ApiContext.shared.getDeviceAlerts(uuid: da.uuid)
             if al.count > 0 {
                 let url_str = al[counter].url
@@ -84,6 +93,10 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
                     cell.progress.stopAnimating()
                 }
             }
+        }
+        else if (ApiContext.shared.deviceAlertList.count == 0){
+            cell.deviceImage.image = UIImage(named: "no_image")
+            cell.progress.stopAnimating()
         }
         return cell
     }
