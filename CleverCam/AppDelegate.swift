@@ -14,11 +14,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        FirebaseConfiguration.shared.setLoggerLevel(.max)
+        
+        //1
+        UNUserNotificationCenter.current().delegate = self
+        // 2
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+          options: authOptions) { _, _ in }
+        // 3
+        application.registerForRemoteNotifications()
+        
+        Messaging.messaging().delegate = self
         
         return true
     }
-    
-    // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
@@ -42,26 +53,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
           }
           UNUserNotificationCenter.current().delegate = self
     }
-    func userNotificationCenter(
-      _ center: UNUserNotificationCenter,
-      willPresent notification: UNNotification,
-      withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print(">>>>>>>>>userNotificationCenter willPresent----", notification.request.content.userInfo)
         completionHandler([.banner, .list, .sound])
     }
 
-    func userNotificationCenter(
-      _ center: UNUserNotificationCenter,
-      didReceive response: UNNotificationResponse,
-      withCompletionHandler completionHandler: @escaping () -> Void) {
-
-      completionHandler()
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+     print(">>>>>userNotificationCenter didReceive ----")
+     
+     let created = response.notification.request.content.userInfo["created"]!
+     let image_url = response.notification.request.content.userInfo["image_url"]!
+     let uuid = response.notification.request.content.userInfo["uuid"]!
+     
+     
+     print(created)
+     print(image_url)
+     print(uuid)
+     
+     completionHandler()
     }
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+        print(">>>>>>>>>didRegisterForRemoteNotificationsWithDeviceToken " , deviceToken)
+    }
+    
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingDelegate) {
+        print(">>>>>>messaging", remoteMessage)
+    }
+
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("messaging",fcmToken!)
+        print(">>>>>>>>>messaging", fcmToken!)
         Users.setFCMtoken(object: fcmToken!)
     }
+    
 
 }
 

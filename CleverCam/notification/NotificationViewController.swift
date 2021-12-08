@@ -20,12 +20,22 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         let nibCell = UINib(nibName: "NotificationCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "NotificationCell")
         
-        
         HttpRequest.notifications(self) { (notificationList) in
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("Notification view viewDidDisappear")
+        if LiveViewController.stream != nil {
+            LiveViewController.stream.stop()
+        }
+    }
+    
+    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
+        print("Notification myUnwindAction")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

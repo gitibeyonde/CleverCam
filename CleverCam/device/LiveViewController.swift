@@ -13,8 +13,8 @@ class LiveViewController: UIViewController {
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
     public static var uuid: String = ""
-    var stream: MJPEGStreamLib!
-    var url: String?
+    static var stream: MJPEGStreamLib!
+    static var url: String?
     
     @IBOutlet var heading: UILabel!
     
@@ -27,16 +27,16 @@ class LiveViewController: UIViewController {
         
         self.progressIndicator.startAnimating()
         HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in
-            print(localUrl)
+            print("Local URL=", localUrl)
             if localUrl == "" {
                 HttpRequest.getRemoteURL(self, uuid: LiveViewController.uuid ) { (remoteUrl) in
                     print(remoteUrl)
-                    self.url=remoteUrl
+                    LiveViewController.url=remoteUrl
                     self.streamLive()
                 }
             }
             else {
-                self.url=localUrl
+                LiveViewController.url = localUrl
                 self.streamLive()
             }
             
@@ -49,22 +49,31 @@ class LiveViewController: UIViewController {
     }
     
     public func streamLive()->Void {
-        print("Live view rcvd url ", self.url!)
-        let urlComponent2 = URLComponents(string: self.url!)
+        print("Live view rcvd url ", LiveViewController.url!)
+        let urlComponent2 = URLComponents(string: LiveViewController.url!)
         
         // Set the ImageView to the stream object
-        self.stream = MJPEGStreamLib(imageView: self.video)
+        LiveViewController.stream = MJPEGStreamLib(imageView: self.video)
         // Start Loading Indicator
-        self.stream.didStartLoading = { [unowned self] in
+        LiveViewController.stream.didStartLoading = { [unowned self] in
             self.progressIndicator.startAnimating()
         }
         // Stop Loading Indicator
-        self.stream.didFinishLoading = { [unowned self] in
+        LiveViewController.stream.didFinishLoading = { [unowned self] in
             self.progressIndicator.stopAnimating()
         }
         
-        self.stream.contentURL = urlComponent2!.url
-        self.stream.play() // Play the stream
+        LiveViewController.stream.contentURL = urlComponent2!.url
+        LiveViewController.stream.play() // Play the stream
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("Live view viewDidDisappear")
+        LiveViewController.stream.stop()
+    }
+    
+    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
+        print("Live myUnwindAction")
     }
     
     override func didReceiveMemoryWarning() {

@@ -96,6 +96,15 @@ class BellAlertViewController: UIViewController {
     }
     
     
+    override func viewDidDisappear(_ animated: Bool) {
+        print("Bell ALert view viewDidDisappear")
+        LiveViewController.stream.stop()
+    }
+    
+    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
+        print("Bell ALert myUnwindAction")
+    }
+    
 
     @IBAction func reload(_ sender: Any) {
         self.stream.play()
