@@ -16,14 +16,12 @@ class LiveViewController: UIViewController {
     static var stream: MJPEGStreamLib!
     static var url: String?
     
-    @IBOutlet var heading: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("loading live view for ", LiveViewController.uuid)
         
-        heading.text = "    Live " + ApiContext.shared.getDeviceName(uuid: LiveViewController.uuid)
+        //heading.text = "    Live " + ApiContext.shared.getDeviceName(uuid: LiveViewController.uuid)
         
         self.progressIndicator.startAnimating()
         HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in

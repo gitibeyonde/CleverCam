@@ -10,7 +10,6 @@ import UIKit
 class NotificationViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
    
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var heading: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

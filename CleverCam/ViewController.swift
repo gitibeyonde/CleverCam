@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         if Users.getLoginStatus() == "true"
         {
             print("Remember me true")
-            self.performSegue(withIdentifier: "ShowDevice", sender: nil)
+            self.performSegue(withIdentifier: "ShowTab", sender: nil)
             print("Perform Segue ShowDevice")
             
         }
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         if Users.getLoginStatus() == "true"
         {
             print("Remember me true")
-            self.performSegue(withIdentifier: "ShowDevice", sender: nil)
+            self.performSegue(withIdentifier: "ShowTab", sender: nil)
             print("Perform Segue ShowDevice")
             
         }
