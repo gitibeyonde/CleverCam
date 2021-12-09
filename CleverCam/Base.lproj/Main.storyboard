@@ -55,11 +55,11 @@
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="b28-yQ-tY2" customClass="LoginViewController" customModule="CleverCam" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6dN-H2-3IH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="Xfv-gi-y30">
-                                <rect key="frame" x="0.0" y="44" width="417" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="417" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L2U-0p-JgN">
                                         <rect key="frame" x="0.0" y="0.0" width="417" height="1200"/>
@@ -226,7 +226,7 @@
                         <outlet property="loginButton" destination="pkT-iI-yfy" id="rgH-W2-qfU"/>
                         <outlet property="password" destination="ZGa-hb-Z8d" id="dJs-DL-nCM"/>
                         <outlet property="username" destination="TDb-x6-5RX" id="kvl-sp-fsh"/>
-                        <segue destination="gIw-sV-OJ0" kind="show" identifier="ShowDevice" id="BB7-ha-MLm"/>
+                        <segue destination="7VP-0z-Fpc" kind="showDetail" identifier="ShowDevice" id="z6F-i4-saU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WN6-oL-yUS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -364,11 +364,11 @@
             <objects>
                 <viewController id="5b4-bz-hGK" customClass="RegisterViewController" customModule="CleverCam" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myR-og-dv3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifV-qc-CNQ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzt-h0-s2L">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
@@ -677,8 +677,8 @@
                     <connections>
                         <segue destination="gIw-sV-OJ0" kind="relationship" relationship="viewControllers" id="m1K-ss-mWt"/>
                         <segue destination="OmS-P2-Thr" kind="relationship" relationship="viewControllers" id="MMu-e7-eS9"/>
-                        <segue destination="c4s-SL-Pig" kind="relationship" relationship="viewControllers" id="C6n-BZ-v26"/>
-                        <segue destination="tuA-vt-A7A" kind="relationship" relationship="viewControllers" id="7n9-PF-LgB"/>
+                        <segue destination="u4F-l3-K2B" kind="relationship" relationship="viewControllers" id="C6n-BZ-v26"/>
+                        <segue destination="uqP-Ia-cPd" kind="relationship" relationship="viewControllers" id="7n9-PF-LgB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KBe-8i-9xL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -699,18 +699,35 @@
                                     <constraint firstAttribute="width" secondItem="yCi-vZ-qft" secondAttribute="height" multiplier="320:240" id="oUo-TU-xqG"/>
                                 </constraints>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGo-ox-oOQ">
-                                <rect key="frame" x="170" y="170" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGo-ox-oOQ">
+                                <rect key="frame" x="200" y="278.33333333333331" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOy-hD-lW6">
+                                <rect key="frame" x="180" y="683" width="54" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DeY-Ey-5yF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" image="arrow.clockwise" catalog="system">
+                                    <color key="titleColor" name="colPrimaryDark"/>
+                                </state>
+                                <connections>
+                                    <action selector="reload:" destination="NCE-0w-BAR" eventType="touchUpInside" id="RuK-gH-2Xe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yl8-R3-eFY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yl8-R3-eFY" firstAttribute="bottom" secondItem="uOy-hD-lW6" secondAttribute="bottom" constant="100" id="1HX-0L-QjE"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" constant="45" id="3nx-YO-nhL"/>
+                            <constraint firstItem="uOy-hD-lW6" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" constant="180" id="Btu-By-ilp"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="centerX" secondItem="yl8-R3-eFY" secondAttribute="centerX" id="Ji9-dX-wVl"/>
+                            <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerY" secondItem="yCi-vZ-qft" secondAttribute="centerY" id="OZm-Pv-oZv"/>
                             <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="yCi-vZ-qft" secondAttribute="trailing" id="Osm-jg-DhO"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="Woo-Ub-xZg"/>
+                            <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerX" secondItem="yCi-vZ-qft" secondAttribute="centerX" constant="3" id="eLg-9N-pqC"/>
+                            <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="uOy-hD-lW6" secondAttribute="trailing" constant="180" id="yky-Mc-yYS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TfO-Bb-iqB"/>
@@ -721,7 +738,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42k-bw-qse" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2414" y="976"/>
+            <point key="canvasLocation" x="2413.04347826087" y="975.66964285714278"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="VVF-ys-afv">
@@ -1193,17 +1210,34 @@
                                                     <constraint firstAttribute="height" constant="60" id="rvt-qh-g3w"/>
                                                 </constraints>
                                             </activityIndicatorView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKU-hW-Zyn">
+                                                <rect key="frame" x="170" y="660" width="60" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="cR3-nH-FaW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <state key="normal" image="arrow.clockwise" catalog="system">
+                                                    <color key="titleColor" name="colPrimaryDark"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="reload:" destination="NCE-0w-BAR" eventType="touchUpInside" id="N6y-W7-0Bd"/>
+                                                    <action selector="reload:" destination="GLn-p8-OGp" eventType="touchUpInside" id="o8I-dT-5MV"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1000" id="05e-13-pd7"/>
                                             <constraint firstItem="ZAx-Fp-fke" firstAttribute="top" secondItem="J3T-UB-biX" secondAttribute="bottom" constant="50" id="5QC-uM-QZ1"/>
+                                            <constraint firstAttribute="trailing" secondItem="tKU-hW-Zyn" secondAttribute="trailing" constant="170" id="BNN-Tt-Wn2"/>
+                                            <constraint firstItem="tKU-hW-Zyn" firstAttribute="leading" secondItem="K4J-23-hDE" secondAttribute="leading" constant="170" id="BsK-hv-LJT"/>
                                             <constraint firstAttribute="trailing" secondItem="a2J-wZ-7HF" secondAttribute="trailing" id="Ctj-QS-3Hs"/>
                                             <constraint firstItem="pFs-6I-zOh" firstAttribute="top" secondItem="K4J-23-hDE" secondAttribute="top" constant="451" id="DXu-9a-oOO"/>
                                             <constraint firstAttribute="trailing" secondItem="J3T-UB-biX" secondAttribute="trailing" id="HMV-RI-Rgu"/>
                                             <constraint firstItem="a2J-wZ-7HF" firstAttribute="top" secondItem="J3T-UB-biX" secondAttribute="bottom" constant="10" id="THf-xy-ixk"/>
                                             <constraint firstItem="hVd-K9-bTk" firstAttribute="top" secondItem="K4J-23-hDE" secondAttribute="top" constant="129" id="VNV-2r-oGO"/>
                                             <constraint firstAttribute="trailing" secondItem="ZAx-Fp-fke" secondAttribute="trailing" id="WuO-iA-LrL"/>
+                                            <constraint firstItem="tKU-hW-Zyn" firstAttribute="top" secondItem="ZAx-Fp-fke" secondAttribute="bottom" constant="10" id="aAq-OG-HoY"/>
                                             <constraint firstItem="J3T-UB-biX" firstAttribute="top" secondItem="K4J-23-hDE" secondAttribute="top" id="ckC-xC-nzz"/>
                                             <constraint firstItem="pFs-6I-zOh" firstAttribute="leading" secondItem="K4J-23-hDE" secondAttribute="leading" constant="163" id="eGU-nc-Gx7"/>
                                             <constraint firstItem="hVd-K9-bTk" firstAttribute="leading" secondItem="K4J-23-hDE" secondAttribute="leading" constant="161" id="gV3-yc-YZR"/>
@@ -1254,16 +1288,16 @@
             </objects>
             <point key="canvasLocation" x="1628.985507246377" y="1684.8214285714284"/>
         </scene>
-        <!--Bluetooth-->
+        <!--Device Initialization-->
         <scene sceneID="XMS-GP-qj1">
             <objects>
-                <viewController restorationIdentifier="BluetoothViewController" storyboardIdentifier="BluetoothViewController" id="c4s-SL-Pig" customClass="BluetoothViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="BluetoothViewController" storyboardIdentifier="BluetoothViewController" title="Device Initialization" id="c4s-SL-Pig" customClass="BluetoothViewController" customModule="CleverCam" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Ta-cU-DGW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth is under construction, please use android phone to configure your CleverCam." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wET-GL-5FV">
-                                <rect key="frame" x="40" y="388" width="334" height="120"/>
+                                <rect key="frame" x="40" y="344" width="334" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="ETg-lI-EjA"/>
                                 </constraints>
@@ -1280,25 +1314,23 @@
                             <constraint firstItem="wET-GL-5FV" firstAttribute="centerY" secondItem="2Ta-cU-DGW" secondAttribute="centerY" id="tvc-Nu-5hf"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Bluetooth" image="tt_settings_bluetooth" selectedImage="tt_settings_bluetooth" id="2Rs-za-gFW">
-                        <color key="badgeColor" name="colPrimaryDark"/>
-                    </tabBarItem>
-                    <navigationItem key="navigationItem" id="St2-RN-sZT"/>
+                    <navigationItem key="navigationItem" title="New Device Configuration" id="St2-RN-sZT"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LlM-Yz-bdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-210" y="2424"/>
+            <point key="canvasLocation" x="700" y="2423.4375"/>
         </scene>
-        <!--Settings-->
+        <!--Global Settings-->
         <scene sceneID="NQ8-Ta-9wG">
             <objects>
-                <viewController id="tuA-vt-A7A" customClass="GlobalSettingsViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Global Settings" id="tuA-vt-A7A" customClass="GlobalSettingsViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sJ9-CC-Ad0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Logout " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2C-T7-5Ua">
-                                <rect key="frame" x="20" y="144" width="265" height="30"/>
+                                <rect key="frame" x="20" y="100" width="265" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="q3a-9U-Ibd"/>
                                 </constraints>
@@ -1307,7 +1339,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-sC-6sX">
-                                <rect key="frame" x="368" y="144" width="36" height="36"/>
+                                <rect key="frame" x="368" y="100" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Bda-9F-UeV"/>
                                     <constraint firstAttribute="width" constant="36" id="mLu-x4-557"/>
@@ -1316,7 +1348,7 @@
                                 <state key="normal" image="tt_restart_alt"/>
                                 <connections>
                                     <action selector="loginReset:" destination="tuA-vt-A7A" eventType="touchUpInside" id="EDL-5M-IkC"/>
-                                    <segue destination="b28-yQ-tY2" kind="show" identifier="ShowLogin" id="c7c-ci-XiC"/>
+                                    <segue destination="b28-yQ-tY2" kind="showDetail" identifier="ShowLogin" id="c7c-ci-XiC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1330,14 +1362,12 @@
                             <constraint firstItem="p2C-T7-5Ua" firstAttribute="leading" secondItem="Yzu-EL-r2e" secondAttribute="leading" constant="20" id="cy2-wg-GRA"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="tt_handyman" selectedImage="tt_handyman" id="YDD-fO-JqH">
-                        <color key="badgeColor" name="colPrimaryDark"/>
-                    </tabBarItem>
-                    <navigationItem key="navigationItem" id="ZW4-vH-cm2"/>
+                    <navigationItem key="navigationItem" title="Global Settings" id="ZW4-vH-cm2"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MeL-fV-7zq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-194" y="3181"/>
+            <point key="canvasLocation" x="715.94202898550725" y="3180.8035714285711"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="6i5-Uz-TGR">
@@ -1419,12 +1449,55 @@
             </objects>
             <point key="canvasLocation" x="-188.40579710144928" y="1673.4375"/>
         </scene>
+        <!--Bluetooth-->
+        <scene sceneID="kjU-fs-LYx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u4F-l3-K2B" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Bluetooth" image="tt_settings_bluetooth" selectedImage="tt_settings_bluetooth" id="2Rs-za-gFW">
+                        <color key="badgeColor" name="colPrimaryDark"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vE3-C7-mC7">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="c4s-SL-Pig" kind="relationship" relationship="rootViewController" id="nj7-ci-WnB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l9A-aA-qYR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-210.1449275362319" y="2423.4375"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="ZHR-vO-Fe4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uqP-Ia-cPd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="tt_handyman" selectedImage="tt_handyman" id="YDD-fO-JqH">
+                        <color key="badgeColor" name="colPrimaryDark"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TgI-lG-PcQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tuA-vt-A7A" kind="relationship" relationship="rootViewController" id="BvC-eq-dyX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E7z-vF-XZZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-194.20289855072465" y="3180.8035714285711"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="BB7-ha-MLm"/>
+        <segue reference="A1E-v6-8Zc"/>
         <segue reference="c7c-ci-XiC"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="eyeHide" width="25" height="25"/>
         <image name="eyeShow" width="25" height="25"/>
         <image name="ico256" width="341.33334350585938" height="341.33334350585938"/>

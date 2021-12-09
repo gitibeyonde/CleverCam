@@ -28,9 +28,6 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
     
     override func viewDidDisappear(_ animated: Bool) {
         print("Notification view viewDidDisappear")
-        if LiveViewController.stream != nil {
-            LiveViewController.stream.stop()
-        }
     }
     
     @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
