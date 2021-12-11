@@ -113,11 +113,11 @@ class ApiContext: NSObject {
     /*
      NOTIFICATION
      */
-    public var notificationList: Array<Notification> = Array<Notification>()
-    public func setNotification(nl: Array<Notification>){
+    public var notificationList: Array<CCNotification> = Array<CCNotification>()
+    public func setNotification(nl: Array<CCNotification>){
         notificationList = nl
     }
-    public func getNotification()->Array<Notification>{
+    public func getNotification()->Array<CCNotification>{
         return notificationList;
     }
     

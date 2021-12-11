@@ -67,11 +67,9 @@ class LiveViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         print("Live view viewDidDisappear")
-        self.stream.stop()
-    }
-    
-    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
-        print("Live myUnwindAction")
+        if (self.stream != nil ){
+            self.stream.stop()
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -43,7 +43,7 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NotificationCell", for: indexPath as IndexPath) as! NotificationCell
         
-        let nl: Array<Notification> = ApiContext.shared.notificationList
+        let nl: Array<CCNotification> = ApiContext.shared.notificationList
         
         cell.deviceName.text = ApiContext.shared.getDeviceName(uuid:nl[indexPath[1]].uuid)
         cell.id.text = nl[indexPath[1]].id
@@ -80,7 +80,7 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
         DeviceViewController.device_timer.invalidate()
-        let nl: Array<Notification> = ApiContext.shared.notificationList
+        let nl: Array<CCNotification> = ApiContext.shared.notificationList
         BellAlertViewController.uuid = nl[indexPath[1]].uuid
         BellAlertViewController.datetime = nl[indexPath[1]].created
         print("Date time", BellAlertViewController.datetime)
