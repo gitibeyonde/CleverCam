@@ -16,18 +16,16 @@ class LiveViewController: UIViewController {
     var stream: MJPEGStreamLib!
     var url: String?
     
-    @IBOutlet var heading: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("loading live view for ", LiveViewController.uuid)
         
-        heading.text = "    Live " + ApiContext.shared.getDeviceName(uuid: LiveViewController.uuid)
+        //heading.text = "    Live " + ApiContext.shared.getDeviceName(uuid: LiveViewController.uuid)
         
         self.progressIndicator.startAnimating()
         HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in
-            print(localUrl)
+            print("Local URL=", localUrl)
             if localUrl == "" {
                 HttpRequest.getRemoteURL(self, uuid: LiveViewController.uuid ) { (remoteUrl) in
                     print(remoteUrl)
@@ -36,7 +34,7 @@ class LiveViewController: UIViewController {
                 }
             }
             else {
-                self.url=localUrl
+                self.url = localUrl
                 self.streamLive()
             }
             
@@ -65,6 +63,13 @@ class LiveViewController: UIViewController {
         
         self.stream.contentURL = urlComponent2!.url
         self.stream.play() // Play the stream
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("Live view viewDidDisappear")
+        if (self.stream != nil ){
+            self.stream.stop()
+        }
     }
     
     override func didReceiveMemoryWarning() {

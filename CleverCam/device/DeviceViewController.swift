@@ -18,9 +18,10 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
         print("loading device view controller ")
         //UserDefaults.standard.set(true, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
+        navigationItem.hidesBackButton = true;
+        
         let nibCell = UINib(nibName: "DeviceCell", bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: "deviceCell")
-        
         
         HttpRequest.deviceList(self) { (deviceList) in
             DispatchQueue.main.async {
@@ -50,13 +51,12 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
                             }
                         }
                     }
-                    let pushManager = PushNotificationManager(userID: Users.getUserName())
-                    pushManager.registerForPushNotifications()
                     DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
                 }
             }
         }
     }
+    
     
     @objc func fireTimer() {
         counter+=1
@@ -67,7 +67,15 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.reloadData()
         }
     }
-
+    
+    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
+        print("Device myUnwindAction")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("Device View exited...exit app")
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ApiContext.shared.deviceList.count
     }
@@ -137,3 +145,4 @@ extension DeviceViewController: DeviceCellDelegate {
         self.performSegue(withIdentifier: "ShowSettings", sender: uuid)
     }
 }
+

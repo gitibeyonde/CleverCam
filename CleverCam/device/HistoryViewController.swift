@@ -21,7 +21,7 @@ class HistoryViewController: UIViewController,  UITableViewDataSource, UITableVi
         let nibCell = UINib(nibName: "HistoryCell", bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: "historyCell")
         
-        heading.text = "    " + ApiContext.shared.getDeviceName(uuid: HistoryViewController.uuid) + " History"
+        //heading.text = "    " + ApiContext.shared.getDeviceName(uuid: HistoryViewController.uuid) + " History"
         
         HttpRequest.history(self, uuid: HistoryViewController.uuid) { (histlist) in
             for h in histlist {

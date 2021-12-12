@@ -74,9 +74,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                         if Users.getFCMtoken() != ""
                         {
                             HttpRequest.sendFCMToken(self, strToken: Users.getFCMtoken()) { (output) in
-                                print("FCM token sent successfully to server.")
+                                print("FCM token sent successfully to server.", output)
                             }
                         }
+                        
                         self.performSegue(withIdentifier: "ShowDevice", sender: nil)
                     }
                     else {

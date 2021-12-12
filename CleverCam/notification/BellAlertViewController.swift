@@ -9,7 +9,6 @@ import UIKit
 
 class BellAlertViewController: UIViewController {
     
-    @IBOutlet var name: UILabel!
     @IBOutlet var history: UIImageView!
     @IBOutlet var live: UIImageView!
     @IBOutlet var progressHistory: UIActivityIndicatorView!
@@ -72,7 +71,7 @@ class BellAlertViewController: UIViewController {
         }
         
         //load live
-        name.text = "     " + ApiContext.shared.getDeviceName(uuid: BellAlertViewController.uuid) + " at " +  BellAlertViewController.datetime
+        //name.text = "     " + ApiContext.shared.getDeviceName(uuid: BellAlertViewController.uuid) + " at " +  BellAlertViewController.datetime
         
         self.liveProgress.startAnimating()
         HttpRequest.checkLocalURL(self, uuid: BellAlertViewController.uuid ) { (localUrl) in
@@ -96,9 +95,16 @@ class BellAlertViewController: UIViewController {
     }
     
     
+    override func viewDidDisappear(_ animated: Bool) {
+        print("Bell ALert view viewDidDisappear")
+        if (self.stream != nil ){
+            self.stream.stop()
+        }
+    }
+    
 
     @IBAction func reload(_ sender: Any) {
-        self.stream.play()
+        self.streamLive()
     }
     
     public func streamLive()->Void {

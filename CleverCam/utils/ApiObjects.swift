@@ -83,7 +83,7 @@ public struct History:Codable {
 }
 
 
-public struct Notification:Codable {
+public struct CCNotification:Codable {
     var uuid: String
     var id: String
     var created: String

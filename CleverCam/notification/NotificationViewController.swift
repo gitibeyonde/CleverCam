@@ -10,7 +10,6 @@ import UIKit
 class NotificationViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
    
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var heading: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +19,19 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         let nibCell = UINib(nibName: "NotificationCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "NotificationCell")
         
-        
         HttpRequest.notifications(self) { (notificationList) in
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("Notification view viewDidDisappear")
+    }
+    
+    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
+        print("Notification myUnwindAction")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -37,7 +43,7 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NotificationCell", for: indexPath as IndexPath) as! NotificationCell
         
-        let nl: Array<Notification> = ApiContext.shared.notificationList
+        let nl: Array<CCNotification> = ApiContext.shared.notificationList
         
         cell.deviceName.text = ApiContext.shared.getDeviceName(uuid:nl[indexPath[1]].uuid)
         cell.id.text = nl[indexPath[1]].id
@@ -74,7 +80,7 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
         DeviceViewController.device_timer.invalidate()
-        let nl: Array<Notification> = ApiContext.shared.notificationList
+        let nl: Array<CCNotification> = ApiContext.shared.notificationList
         BellAlertViewController.uuid = nl[indexPath[1]].uuid
         BellAlertViewController.datetime = nl[indexPath[1]].created
         print("Date time", BellAlertViewController.datetime)

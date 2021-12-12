@@ -18,7 +18,7 @@ public class HttpRequest: HttpRequestDelegate {
     public typealias DeviceSuccessCompletionHandler = (_ response: Array<Device>) -> Void
     public typealias AlertSuccessCompletionHandler = (_ response: Array<Alert>) -> Void
     public typealias HistorySuccessCompletionHandler = (_ response: Array<History>) -> Void
-    public typealias NotificationSuccessCompletionHandler = (_ response: Array<Notification>) -> Void
+    public typealias NotificationSuccessCompletionHandler = (_ response: Array<CCNotification>) -> Void
     public typealias BellHistorySuccessCompletionHandler = (_ response: Array<BellHistory>) -> Void
     public typealias ConfigSuccessCompletionHandler = (_ response: CameraConfig) -> Void
    
@@ -720,11 +720,11 @@ public class HttpRequest: HttpRequestDelegate {
                     let data: Data = data,
                     let response = response as? HTTPURLResponse,
                     response.statusCode == 200 {
-                    var notificationList: Array<Notification> = Array<Notification>()
+                    var notificationList: Array<CCNotification> = Array<CCNotification>()
                     do {
                         let jsonObjects: [NSDictionary] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [NSDictionary]
                         for jsonObject in jsonObjects {
-                            notificationList.append(Notification(uuid: jsonObject["uuid"] as! String, id: jsonObject["id"] as! String, created: jsonObject["created"] as! String, image: jsonObject["image"] as! String, type: jsonObject["type"] as! String
+                            notificationList.append(CCNotification(uuid: jsonObject["uuid"] as! String, id: jsonObject["id"] as! String, created: jsonObject["created"] as! String, image: jsonObject["image"] as! String, type: jsonObject["type"] as! String
                             ))
                         }
                         ApiContext.shared.setNotification(nl: notificationList)
