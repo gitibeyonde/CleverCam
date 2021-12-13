@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB028EEB276703D300DC6F7A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB028EEA276703D300DC6F7A /* NotificationService.swift */; };
+		AB028EEF276703D300DC6F7A /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AB028EE8276703D300DC6F7A /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AB38989A275B108B00884EFC /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB389898275B108B00884EFC /* DeviceCell.swift */; };
 		AB38989B275B108B00884EFC /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB389899275B108B00884EFC /* DeviceCell.xib */; };
 		AB5FCE592720124100D695DA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5FCE572720124100D695DA /* NotificationCell.swift */; };
@@ -39,10 +41,38 @@
 		AB7F82E2271D79B30054DA5E /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82E1271D79B30054DA5E /* BluetoothViewController.swift */; };
 		AB7F82E8271ED9230054DA5E /* MJPEGStreamLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */; };
 		AB9BF7B92723E8A900C5B832 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */; };
+		ABA9D2DF276705600039521E /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = ABA9D2DE276705600039521E /* FirebaseMessaging */; };
 		ABDC6F6427296FF100061E9B /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDC6F6327296FF100061E9B /* TimeZone.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AB028EED276703D300DC6F7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB7F82532716D0D70054DA5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB028EE7276703D300DC6F7A;
+			remoteInfo = NotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AB028EF0276703D300DC6F7A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AB028EEF276703D300DC6F7A /* NotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		AB028EE8276703D300DC6F7A /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB028EEA276703D300DC6F7A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		AB028EEC276703D300DC6F7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB389898275B108B00884EFC /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		AB389899275B108B00884EFC /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
 		AB5FCE572720124100D695DA /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
@@ -81,6 +111,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AB028EE5276703D300DC6F7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABA9D2DF276705600039521E /* FirebaseMessaging in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB7F82582716D0D70054DA5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,11 +130,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB028EE9276703D300DC6F7A /* NotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				AB028EEA276703D300DC6F7A /* NotificationService.swift */,
+				AB028EEC276703D300DC6F7A /* Info.plist */,
+			);
+			path = NotificationServiceExtension;
+			sourceTree = "<group>";
+		};
 		AB7F82522716D0D70054DA5E = {
 			isa = PBXGroup;
 			children = (
 				AB7F825D2716D0D70054DA5E /* CleverCam */,
+				AB028EE9276703D300DC6F7A /* NotificationServiceExtension */,
 				AB7F825C2716D0D70054DA5E /* Products */,
+				ABA9D2DD276705600039521E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7F825B2716D0D70054DA5E /* CleverCam.app */,
+				AB028EE8276703D300DC6F7A /* NotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,9 +247,36 @@
 			path = bluetooth;
 			sourceTree = "<group>";
 		};
+		ABA9D2DD276705600039521E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AB028EE7276703D300DC6F7A /* NotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB028EF3276703D300DC6F7A /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */;
+			buildPhases = (
+				AB028EE4276703D300DC6F7A /* Sources */,
+				AB028EE5276703D300DC6F7A /* Frameworks */,
+				AB028EE6276703D300DC6F7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationServiceExtension;
+			packageProductDependencies = (
+				ABA9D2DE276705600039521E /* FirebaseMessaging */,
+			);
+			productName = NotificationServiceExtension;
+			productReference = AB028EE8276703D300DC6F7A /* NotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		AB7F825A2716D0D70054DA5E /* CleverCam */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB7F826F2716D0DF0054DA5E /* Build configuration list for PBXNativeTarget "CleverCam" */;
@@ -207,10 +284,12 @@
 				AB7F82572716D0D70054DA5E /* Sources */,
 				AB7F82582716D0D70054DA5E /* Frameworks */,
 				AB7F82592716D0D70054DA5E /* Resources */,
+				AB028EF0276703D300DC6F7A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AB028EEE276703D300DC6F7A /* PBXTargetDependency */,
 			);
 			name = CleverCam;
 			packageProductDependencies = (
@@ -229,6 +308,9 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					AB028EE7276703D300DC6F7A = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					AB7F825A2716D0D70054DA5E = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -251,11 +333,19 @@
 			projectRoot = "";
 			targets = (
 				AB7F825A2716D0D70054DA5E /* CleverCam */,
+				AB028EE7276703D300DC6F7A /* NotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AB028EE6276703D300DC6F7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB7F82592716D0D70054DA5E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -273,6 +363,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AB028EE4276703D300DC6F7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB028EEB276703D300DC6F7A /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB7F82572716D0D70054DA5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -307,6 +405,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AB028EEE276703D300DC6F7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB028EE7276703D300DC6F7A /* NotificationServiceExtension */;
+			targetProxy = AB028EED276703D300DC6F7A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		AB7F82642716D0D70054DA5E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -327,6 +433,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AB028EF1276703D300DC6F7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = N75U3D8GN7;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibeyonde.cam.NotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AB028EF2276703D300DC6F7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = N75U3D8GN7;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibeyonde.cam.NotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		AB7F826D2716D0DF0054DA5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -446,11 +592,12 @@
 		AB7F82702716D0DF0054DA5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CleverCam/CleverCam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = N75U3D8GN7;
 				INFOPLIST_FILE = CleverCam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -468,11 +615,12 @@
 		AB7F82712716D0DF0054DA5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CleverCam/CleverCam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = N75U3D8GN7;
 				INFOPLIST_FILE = CleverCam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -490,6 +638,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AB028EF3276703D300DC6F7A /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB028EF1276703D300DC6F7A /* Debug */,
+				AB028EF2276703D300DC6F7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AB7F82562716D0D70054DA5E /* Build configuration list for PBXProject "CleverCam" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -523,6 +680,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		AB7F82742716D7CE0054DA5E /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB7F82732716D7CE0054DA5E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		ABA9D2DE276705600039521E /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AB7F82732716D7CE0054DA5E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;

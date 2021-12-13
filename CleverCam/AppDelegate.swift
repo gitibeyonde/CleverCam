@@ -129,31 +129,24 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     print(">>>>>userNotificationCenter didReceive ----")
-    //let created = response.notification.request.content.userInfo["created"]!
+    let created: String = response.notification.request.content.userInfo["created"] as! String
     //let image = response.notification.request.content.userInfo["image"]!
-    //let uuid = response.notification.request.content.userInfo["uuid"]!
+    let uuid:String = response.notification.request.content.userInfo["uuid"] as! String
     
     
-    //print(created)
+    print(created)
     //print(image)
-    //print(uuid)
+    print(uuid)
     print(response.notification.request.content.userInfo)
     
+    let viewController = UIApplication.shared.windows.first!.rootViewController as! ViewController
     
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    BellAlertViewController.uuid = uuid
+    BellAlertViewController.datetime = created
+    print("Date time", BellAlertViewController.datetime)
     
-    print(">>>>>userNotificationCenter Pop up  storyboard ----", storyboard.hashValue)
-    // instantiate the view controller we want to show from storyboard
-    // root view controller is tab bar controller
-    // the selected tab is a navigation controller
-    // then we push the new view controller to it
-    let conversationVC = storyboard.instantiateViewController(withIdentifier: "NotificationViewController") as? NotificationViewController
-    print(">>>>>>>>>Got notification controller", conversationVC?.hashValue as Any)
-    let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController
-    print(">>>>>>>>>Got tab bar controller", tabBarController?.hashValue as Any)
-    DispatchQueue.main.async {
-        tabBarController?.selectedViewController = tabBarController?.viewControllers![2]
-    }
+    viewController.performSegue(withIdentifier: "ShowBell", sender: nil)
+    print("Perform Segue ShowBell")
     
     completionHandler()
   }

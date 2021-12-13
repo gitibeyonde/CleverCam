@@ -44,6 +44,7 @@
                     <connections>
                         <segue destination="b28-yQ-tY2" kind="showDetail" identifier="ShowLogin" id="Snh-GA-Gw4"/>
                         <segue destination="7VP-0z-Fpc" kind="show" identifier="ShowTab" id="A1E-v6-8Zc"/>
+                        <segue destination="OmS-P2-Thr" kind="show" identifier="ShowBell" id="hBR-oF-8rW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -238,7 +239,7 @@
             <objects>
                 <viewController restorationIdentifier="ResetViewController" storyboardIdentifier="ResetViewController" id="zjM-Yg-CM1" customClass="ResetViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ciQ-GW-8lv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="xsA-Wz-ctQ">
@@ -588,7 +589,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AFn-Io-j4j">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gCt-UT-MAh">
                                     <size key="itemSize" width="128" height="128"/>
@@ -1117,7 +1118,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="90U-E7-fsO">
-                                <rect key="frame" x="0.0" y="83" width="411" height="730"/>
+                                <rect key="frame" x="0.0" y="34" width="411" height="828"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4J-23-hDE">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="1000"/>
@@ -1452,6 +1453,7 @@
                         <color key="badgeColor" name="colPrimaryDark"/>
                     </tabBarItem>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="SbG-6w-jRh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="P9A-RU-nJz">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1533,6 +1535,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="hBR-oF-8rW"/>
         <segue reference="A1E-v6-8Zc"/>
         <segue reference="Snh-GA-Gw4"/>
     </inferredMetricsTieBreakers>
