@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico256" translatesAutoresizingMaskIntoConstraints="NO" id="Eb5-TF-5mp">
-                                <rect key="frame" x="92" y="224" width="230" height="95"/>
+                                <rect key="frame" x="92" y="144" width="230" height="95.333333333333314"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Eb5-TF-5mp" secondAttribute="height" multiplier="171:71" id="f4u-SP-Dpg"/>
                                     <constraint firstAttribute="width" constant="230" id="sew-op-L5D"/>
@@ -39,7 +39,7 @@
                         <constraints>
                             <constraint firstItem="XFB-AC-lDT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7AT-wv-Zkz"/>
                             <constraint firstItem="XFB-AC-lDT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Bkz-fS-gT5"/>
-                            <constraint firstItem="Eb5-TF-5mp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="180" id="QJ0-pA-rXE"/>
+                            <constraint firstItem="Eb5-TF-5mp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="QJ0-pA-rXE"/>
                             <constraint firstItem="Eb5-TF-5mp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qj6-cu-fPt"/>
                         </constraints>
                     </view>
@@ -237,14 +237,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WN6-oL-yUS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="194.85981308411215" y="-548.16414686825055"/>
+            <point key="canvasLocation" x="-674" y="96"/>
         </scene>
         <!--Reset View Controller-->
         <scene sceneID="WXA-Io-Tg6">
             <objects>
                 <viewController restorationIdentifier="ResetViewController" storyboardIdentifier="ResetViewController" id="zjM-Yg-CM1" customClass="ResetViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ciQ-GW-8lv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="xsA-Wz-ctQ">
@@ -363,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJ9-aF-pX8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1828" y="-556"/>
+            <point key="canvasLocation" x="758" y="92"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="vUL-VC-0yt">
@@ -583,7 +583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3sC-hp-6P2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1017" y="-538"/>
+            <point key="canvasLocation" x="72" y="94"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="jRH-9P-5I7">
@@ -594,7 +594,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AFn-Io-j4j">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gCt-UT-MAh">
                                     <size key="itemSize" width="128" height="128"/>
@@ -1123,7 +1123,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" directionalLockEnabled="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-E7-fsO">
-                                <rect key="frame" x="0.0" y="96" width="414" height="766"/>
+                                <rect key="frame" x="0.0" y="96" width="414" height="717"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4J-23-hDE">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
@@ -1141,83 +1141,44 @@
                                                     <constraint firstAttribute="height" constant="60" id="Keg-Bs-yAp"/>
                                                 </constraints>
                                             </activityIndicatorView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2J-wZ-7HF">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="a2J-wZ-7HF">
                                                 <rect key="frame" x="0.0" y="320.66666666666669" width="414" height="50"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qaZ-Ff-Ncb" userLabel="img0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="KXg-5t-0YY"/>
-                                                            <constraint firstAttribute="height" constant="50" id="qfF-7Q-chM"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="50"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZpE-Jd-Ndd" userLabel="img1">
-                                                        <rect key="frame" x="50" y="0.0" width="50" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="Ne3-nc-7PE"/>
-                                                            <constraint firstAttribute="height" constant="50" id="Q1u-k7-s2O"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="41.333333333333329" y="0.0" width="41.333333333333329" height="50"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FEb-1o-lUS" userLabel="img2">
-                                                        <rect key="frame" x="100" y="0.0" width="50" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="5mW-Fv-JrJ"/>
-                                                            <constraint firstAttribute="height" constant="50" id="Nhv-9U-hqM"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="82.666666666666671" y="0.0" width="41.666666666666671" height="50"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3jg-rs-MHS" userLabel="img3">
-                                                        <rect key="frame" x="150" y="0.0" width="50" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="STL-Y0-M0i"/>
-                                                            <constraint firstAttribute="height" constant="50" id="T0U-z1-AfL"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="124.33333333333333" y="0.0" width="41.333333333333329" height="50"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1aT-4A-wZf" userLabel="img4">
-                                                        <rect key="frame" x="200" y="0.0" width="50" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="VN4-qS-lDh"/>
-                                                            <constraint firstAttribute="height" constant="50" id="zd7-M0-AXX"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="165.66666666666666" y="0.0" width="41.333333333333343" height="50"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NVu-xd-AYi" userLabel="img5">
-                                                        <rect key="frame" x="250" y="0.0" width="50" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="TY3-YU-5fE"/>
-                                                            <constraint firstAttribute="width" constant="50" id="ztC-0N-Epa"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="207" y="0.0" width="41.333333333333343" height="50"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JxD-mu-rEM" userLabel="img6">
-                                                        <rect key="frame" x="300" y="0.0" width="0.0" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="uq7-nC-gZa"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="248.33333333333334" y="0.0" width="41.333333333333343" height="50"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kSP-7i-ZAh" userLabel="img7">
-                                                        <rect key="frame" x="300" y="0.0" width="0.0" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="Qaw-88-TgE"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="289.66666666666669" y="0.0" width="41.666666666666686" height="50"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xdh-3O-MVm" userLabel="img8">
-                                                        <rect key="frame" x="300" y="0.0" width="50" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="BIL-cc-bLM"/>
-                                                            <constraint firstAttribute="width" constant="50" id="kHM-b7-qwj"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="331.33333333333331" y="0.0" width="41.333333333333314" height="50"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ry-BM-HMd" userLabel="img9">
-                                                        <rect key="frame" x="350" y="0.0" width="64" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="vy2-nt-IRy"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="372.66666666666669" y="0.0" width="41.333333333333314" height="50"/>
                                                     </imageView>
                                                 </subviews>
                                                 <viewLayoutGuide key="safeArea" id="ddX-PF-1wH"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="9hP-pQ-eyt"/>
-                                                    <constraint firstItem="kSP-7i-ZAh" firstAttribute="leading" secondItem="JxD-mu-rEM" secondAttribute="leading" id="Zcw-bB-Mjd"/>
-                                                    <constraint firstItem="xdh-3O-MVm" firstAttribute="leading" secondItem="kSP-7i-ZAh" secondAttribute="leading" id="bbL-4j-Vwv"/>
                                                 </constraints>
                                             </stackView>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="pFs-6I-zOh">
@@ -1554,7 +1515,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hBR-oF-8rW"/>
+        <segue reference="MMu-e7-eS9"/>
         <segue reference="A1E-v6-8Zc"/>
         <segue reference="Snh-GA-Gw4"/>
     </inferredMetricsTieBreakers>

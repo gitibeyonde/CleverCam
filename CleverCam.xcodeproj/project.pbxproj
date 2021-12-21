@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AB2AA5E2276855AA002EB810 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2AA5E1276855AA002EB810 /* NotificationService.swift */; };
-		AB2AA5E6276855AA002EB810 /* CleverCamNSE.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AB2AA5DF276855AA002EB810 /* CleverCamNSE.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AB38989A275B108B00884EFC /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB389898275B108B00884EFC /* DeviceCell.swift */; };
 		AB38989B275B108B00884EFC /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB389899275B108B00884EFC /* DeviceCell.xib */; };
 		AB5FCE592720124100D695DA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5FCE572720124100D695DA /* NotificationCell.swift */; };
@@ -28,7 +27,6 @@
 		AB7F82812716E2B50054DA5E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82802716E2B50054DA5E /* RegisterViewController.swift */; };
 		AB7F828427170E4B0054DA5E /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F828327170E4B0054DA5E /* Users.swift */; };
 		AB7F828B271710B30054DA5E /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F828A271710B30054DA5E /* HttpRequest.swift */; };
-		AB7F829427181B220054DA5E /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F829327181B220054DA5E /* PushNotificationManager.swift */; };
 		AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F8297271820270054DA5E /* DeviceViewController.swift */; };
 		AB7F82B127197DEA0054DA5E /* ApiObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82B027197DEA0054DA5E /* ApiObjects.swift */; };
 		AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82B4271A9E620054DA5E /* ApiContext.swift */; };
@@ -42,10 +40,18 @@
 		AB7F82E8271ED9230054DA5E /* MJPEGStreamLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */; };
 		AB9BF7B92723E8A900C5B832 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */; };
 		ABDC6F6427296FF100061E9B /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDC6F6327296FF100061E9B /* TimeZone.swift */; };
+		ABF755552771D3E800ED8403 /* CleverCamNSE.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AB2AA5DF276855AA002EB810 /* CleverCamNSE.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		AB2AA5E4276855AA002EB810 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB7F82532716D0D70054DA5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB2AA5DE276855AA002EB810;
+			remoteInfo = CleverCamNSE;
+		};
+		ABF755562771D3E800ED8403 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AB7F82532716D0D70054DA5E /* Project object */;
 			proxyType = 1;
@@ -61,7 +67,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				AB2AA5E6276855AA002EB810 /* CleverCamNSE.appex in Embed App Extensions */,
+				ABF755552771D3E800ED8403 /* CleverCamNSE.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,7 +98,6 @@
 		AB7F82802716E2B50054DA5E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		AB7F828327170E4B0054DA5E /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		AB7F828A271710B30054DA5E /* HttpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
-		AB7F829327181B220054DA5E /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		AB7F8297271820270054DA5E /* DeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		AB7F82B027197DEA0054DA5E /* ApiObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiObjects.swift; sourceTree = "<group>"; };
 		AB7F82B4271A9E620054DA5E /* ApiContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiContext.swift; sourceTree = "<group>"; };
@@ -107,6 +112,7 @@
 		AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
 		ABBFAE55275B8F1C00E0BD2D /* CleverCam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CleverCam.entitlements; sourceTree = "<group>"; };
 		ABDC6F6327296FF100061E9B /* TimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZone.swift; sourceTree = "<group>"; };
+		ABF755602771DC5A00ED8403 /* CleverCamNSE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CleverCamNSE.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,7 @@
 		AB2AA5E0276855AA002EB810 /* CleverCamNSE */ = {
 			isa = PBXGroup;
 			children = (
+				ABF755602771DC5A00ED8403 /* CleverCamNSE.entitlements */,
 				AB2AA5E1276855AA002EB810 /* NotificationService.swift */,
 				AB2AA5E3276855AA002EB810 /* Info.plist */,
 			);
@@ -193,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				AB7F828A271710B30054DA5E /* HttpRequest.swift */,
-				AB7F829327181B220054DA5E /* PushNotificationManager.swift */,
 				AB7F82B4271A9E620054DA5E /* ApiContext.swift */,
 				AB7F82B027197DEA0054DA5E /* ApiObjects.swift */,
 				AB7F82BB271BE2CA0054DA5E /* Utils.swift */,
@@ -285,6 +291,7 @@
 			);
 			dependencies = (
 				AB2AA5E5276855AA002EB810 /* PBXTargetDependency */,
+				ABF755572771D3E800ED8403 /* PBXTargetDependency */,
 			);
 			name = CleverCam;
 			packageProductDependencies = (
@@ -387,7 +394,6 @@
 				AB5FCE592720124100D695DA /* NotificationCell.swift in Sources */,
 				AB7F828B271710B30054DA5E /* HttpRequest.swift in Sources */,
 				AB7F82D5271D77460054DA5E /* SettingsViewController.swift in Sources */,
-				AB7F829427181B220054DA5E /* PushNotificationManager.swift in Sources */,
 				AB7F82D9271D79780054DA5E /* NotificationViewController.swift in Sources */,
 				AB6FF124275B351900273902 /* HistoryCell.swift in Sources */,
 				AB7F82DE271D79990054DA5E /* GlobalSettingsViewController.swift in Sources */,
@@ -405,6 +411,11 @@
 			isa = PBXTargetDependency;
 			target = AB2AA5DE276855AA002EB810 /* CleverCamNSE */;
 			targetProxy = AB2AA5E4276855AA002EB810 /* PBXContainerItemProxy */;
+		};
+		ABF755572771D3E800ED8403 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB2AA5DE276855AA002EB810 /* CleverCamNSE */;
+			targetProxy = ABF755562771D3E800ED8403 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -431,9 +442,12 @@
 		AB2AA5E8276855AA002EB810 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CleverCamNSE/CleverCamNSE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = N75U3D8GN7;
 				INFOPLIST_FILE = CleverCamNSE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,9 +464,12 @@
 		AB2AA5E9276855AA002EB810 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CleverCamNSE/CleverCamNSE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = N75U3D8GN7;
 				INFOPLIST_FILE = CleverCamNSE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -593,6 +610,7 @@
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = N75U3D8GN7;
 				INFOPLIST_FILE = CleverCam/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -616,6 +634,7 @@
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = N75U3D8GN7;
 				INFOPLIST_FILE = CleverCam/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

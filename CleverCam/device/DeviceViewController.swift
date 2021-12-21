@@ -13,48 +13,59 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
     var counter: Int = 0
     public static var device_timer = Timer()
     
+    public static var showBell = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("loading device view controller ")
-        //UserDefaults.standard.set(true, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
-        navigationItem.hidesBackButton = true;
+        if (DeviceViewController.showBell) {
+            print("DeviceViewController performSegue--ShowBell")
+            self.performSegue(withIdentifier: "ShowBell", sender: nil)
+        }
+        else {
         
-        let nibCell = UINib(nibName: "DeviceCell", bundle: nil)
-        tableView.register(nibCell, forCellReuseIdentifier: "deviceCell")
-        
-        HttpRequest.deviceList(self) { (deviceList) in
-            DispatchQueue.main.async {
-                if (deviceList.count == 0 ) {
-                    let alert = UIAlertController(title: "No Device Found", message: "No device attached to this account. Please, configure the device that you want to view from Android App.", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-                else {
-                    for device in deviceList {
-                        print("DeviceViewController ", device.uuid)
-                        HttpRequest.lastAlerts(self, uuid: device.uuid) { (alerts) in
-                            for a in alerts {
-                                let url_str = a.url
-                                let Url = URL(string: url_str)!
-                                getData(from: Url) { data, response, error in
-                                        guard let data = data, error == nil else { return }
-                                        ApiContext.shared.addImage(url: url_str, data: data)
-                                    
-                                        if ApiContext.shared.allDeviceAlertsAvailable() {
-                                            DispatchQueue.main.async {
-                                                self.tableView.reloadData()
-                                                return
+            print("loading device view controller ")
+            //UserDefaults.standard.set(true, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+            
+            navigationItem.hidesBackButton = true;
+            
+            let nibCell = UINib(nibName: "DeviceCell", bundle: nil)
+            tableView.register(nibCell, forCellReuseIdentifier: "deviceCell")
+            
+            HttpRequest.deviceList(self) { (deviceList) in
+                DispatchQueue.main.async {
+                    if (deviceList.count == 0 ) {
+                        let alert = UIAlertController(title: "No Device Found", message: "No device attached to this account. Please, configure the device that you want to view from Android App.", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    else {
+                        for device in deviceList {
+                            print("DeviceViewController ", device.uuid)
+                            HttpRequest.lastAlerts(self, uuid: device.uuid) { (alerts) in
+                                for a in alerts {
+                                    let url_str = a.url
+                                    let Url = URL(string: url_str)!
+                                    getData(from: Url) { data, response, error in
+                                            guard let data = data, error == nil else { return }
+                                            ApiContext.shared.addImage(url: url_str, data: data)
+                                        
+                                            if ApiContext.shared.allDeviceAlertsAvailable() {
+                                                DispatchQueue.main.async {
+                                                    self.tableView.reloadData()
+                                                    return
+                                                }
                                             }
-                                        }
-                                   }
+                                       }
+                                }
                             }
                         }
+                        DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
                     }
-                    DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
                 }
             }
         }
+        
     }
     
     

@@ -40,6 +40,7 @@ class BellAlertViewController: UIViewController {
         super.viewDidLoad()
         print("loading bell alert view controller ")
         NotificationViewController.showBell = false
+        DeviceViewController.showBell = false
         BellAlertViewController.images = [ self.img0, self.img1, self.img2, self.img3, self.img4, self.img5, self.img6, self.img7, self.img8, self.img9 ]
         
         var initFirstImage = false

@@ -29,6 +29,7 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         }
         
         if (NotificationViewController.showBell) {
+            print("NotificationViewController performSegue--ShowBell")
             self.performSegue(withIdentifier: "ShowBell", sender: nil)
         }
     }
