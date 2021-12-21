@@ -11,10 +11,13 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
    
     @IBOutlet var collectionView: UICollectionView!
     
+    public static var showBell = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("loading notification view controller ")
+        
         
         let nibCell = UINib(nibName: "NotificationCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "NotificationCell")
@@ -23,6 +26,10 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
+        }
+        
+        if (NotificationViewController.showBell) {
+            self.performSegue(withIdentifier: "ShowBell", sender: nil)
         }
     }
     

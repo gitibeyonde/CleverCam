@@ -1,8 +1,8 @@
 //
 //  NotificationService.swift
-//  NotificationServiceExtension
+//  CleverCamNSE
 //
-//  Created by Abhinandan Prateek on 13/12/21.
+//  Created by Abhinandan Prateek on 14/12/21.
 //
 
 import UserNotifications
@@ -15,11 +15,10 @@ class NotificationService: UNNotificationServiceExtension {
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
-        print(">>>>>>>> extension received")
         
         if let bestAttemptContent = bestAttemptContent {
             // Modify the notification content here...
-            bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
+            bestAttemptContent.title = "[modified] \(bestAttemptContent.title)"
             
             contentHandler(bestAttemptContent)
         }

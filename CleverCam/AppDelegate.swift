@@ -141,6 +141,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     
     let viewController = UIApplication.shared.windows.first!.rootViewController as! ViewController
     
+    NotificationViewController.showBell = true
     BellAlertViewController.uuid = uuid
     BellAlertViewController.datetime = created
     print("Date time", BellAlertViewController.datetime)
