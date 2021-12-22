@@ -11,7 +11,6 @@ class HistoryViewController: UIViewController,  UITableViewDataSource, UITableVi
     
     
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var heading: UILabel!
     public static var uuid: String = ""
     
     override func viewDidLoad() {

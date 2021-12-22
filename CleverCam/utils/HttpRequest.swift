@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol HttpRequestDelegate: class {
+protocol HttpRequestDelegate: AnyObject {
     func onError()
 }
 

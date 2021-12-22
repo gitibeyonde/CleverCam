@@ -41,6 +41,7 @@
 		AB9BF7B92723E8A900C5B832 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */; };
 		ABDC6F6427296FF100061E9B /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDC6F6327296FF100061E9B /* TimeZone.swift */; };
 		ABF755552771D3E800ED8403 /* CleverCamNSE.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AB2AA5DF276855AA002EB810 /* CleverCamNSE.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CD294B6B2772CC91007FF43E /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CD294B6A2772CC91007FF43E /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD294B6B2772CC91007FF43E /* FirebaseMessaging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +276,9 @@
 			dependencies = (
 			);
 			name = CleverCamNSE;
+			packageProductDependencies = (
+				CD294B6A2772CC91007FF43E /* FirebaseMessaging */,
+			);
 			productName = CleverCamNSE;
 			productReference = AB2AA5DF276855AA002EB810 /* CleverCamNSE.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -692,6 +697,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		AB7F82742716D7CE0054DA5E /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB7F82732716D7CE0054DA5E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		CD294B6A2772CC91007FF43E /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AB7F82732716D7CE0054DA5E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
