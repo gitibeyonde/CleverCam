@@ -62,11 +62,11 @@
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="b28-yQ-tY2" customClass="LoginViewController" customModule="CleverCam" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6dN-H2-3IH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="Xfv-gi-y30">
-                                <rect key="frame" x="0.0" y="44" width="417" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="417" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L2U-0p-JgN">
                                         <rect key="frame" x="0.0" y="0.0" width="417" height="1200"/>
@@ -245,7 +245,7 @@
             <objects>
                 <viewController restorationIdentifier="ResetViewController" storyboardIdentifier="ResetViewController" id="zjM-Yg-CM1" customClass="ResetViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ciQ-GW-8lv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="xsA-Wz-ctQ">
@@ -371,11 +371,11 @@
             <objects>
                 <viewController id="5b4-bz-hGK" customClass="RegisterViewController" customModule="CleverCam" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myR-og-dv3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifV-qc-CNQ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzt-h0-s2L">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
@@ -693,7 +693,6 @@
                     <connections>
                         <segue destination="gIw-sV-OJ0" kind="relationship" relationship="viewControllers" id="m1K-ss-mWt"/>
                         <segue destination="OmS-P2-Thr" kind="relationship" relationship="viewControllers" id="MMu-e7-eS9"/>
-                        <segue destination="u4F-l3-K2B" kind="relationship" relationship="viewControllers" id="C6n-BZ-v26"/>
                         <segue destination="uqP-Ia-cPd" kind="relationship" relationship="viewControllers" id="7n9-PF-LgB"/>
                     </connections>
                 </tabBarController>
@@ -1105,6 +1104,7 @@
                         <outlet property="cloudStreamSwitch" destination="lcx-2D-jk3" id="C2V-Ne-yml"/>
                         <outlet property="horFlipSwitch" destination="GgP-O0-Sc8" id="hxt-C4-W3P"/>
                         <outlet property="message" destination="caD-rl-f9N" id="ySL-Te-5UW"/>
+                        <outlet property="message_top" destination="Kil-fx-EWa" id="ZGW-wE-CMf"/>
                         <outlet property="name" destination="EO3-fI-eYh" id="UAU-za-jgy"/>
                         <outlet property="storeHistorySwitch" destination="afL-25-rx3" id="9y1-Wm-vc0"/>
                         <outlet property="timezone" destination="vcH-Oj-RTe" id="DUC-I4-fUb"/>
@@ -1279,39 +1279,6 @@
             </objects>
             <point key="canvasLocation" x="1628.985507246377" y="1684.8214285714284"/>
         </scene>
-        <!--Device Initialization-->
-        <scene sceneID="XMS-GP-qj1">
-            <objects>
-                <viewController restorationIdentifier="BluetoothViewController" storyboardIdentifier="BluetoothViewController" title="Device Initialization" id="c4s-SL-Pig" customClass="BluetoothViewController" customModule="CleverCam" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2Ta-cU-DGW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth is under construction, please use android phone to configure your CleverCam." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wET-GL-5FV">
-                                <rect key="frame" x="40" y="344" width="334" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="ETg-lI-EjA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" name="colSecDark"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Rfv-Kk-swR"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Rfv-Kk-swR" firstAttribute="trailing" secondItem="wET-GL-5FV" secondAttribute="trailing" constant="40" id="0QF-y0-zQ6"/>
-                            <constraint firstItem="wET-GL-5FV" firstAttribute="leading" secondItem="Rfv-Kk-swR" secondAttribute="leading" constant="40" id="hDe-fJ-cnR"/>
-                            <constraint firstItem="wET-GL-5FV" firstAttribute="centerY" secondItem="2Ta-cU-DGW" secondAttribute="centerY" id="tvc-Nu-5hf"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="New Device Configuration" id="St2-RN-sZT"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LlM-Yz-bdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="700" y="2423.4375"/>
-        </scene>
         <!--Global Settings-->
         <scene sceneID="NQ8-Ta-9wG">
             <objects>
@@ -1342,6 +1309,12 @@
                                     <segue destination="b28-yQ-tY2" kind="showDetail" identifier="ShowLogin" id="c7c-ci-XiC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Software Ver 1.0  Build 9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vo-d1-Idi">
+                                <rect key="frame" x="143" y="397" width="128.33333333333337" height="14.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yzu-EL-r2e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1349,8 +1322,10 @@
                             <constraint firstItem="Yzu-EL-r2e" firstAttribute="trailing" secondItem="p2C-T7-5Ua" secondAttribute="trailing" constant="129" id="7KE-61-Bnp"/>
                             <constraint firstItem="gaf-sC-6sX" firstAttribute="top" secondItem="Yzu-EL-r2e" secondAttribute="top" constant="100" id="EYG-4f-AT0"/>
                             <constraint firstItem="p2C-T7-5Ua" firstAttribute="top" secondItem="Yzu-EL-r2e" secondAttribute="top" constant="100" id="Hsv-Ur-Vuz"/>
+                            <constraint firstItem="7vo-d1-Idi" firstAttribute="centerY" secondItem="sJ9-CC-Ad0" secondAttribute="centerY" id="JU2-2b-qIj"/>
                             <constraint firstAttribute="trailing" secondItem="gaf-sC-6sX" secondAttribute="trailing" constant="10" id="RJu-Nx-pkh"/>
                             <constraint firstItem="p2C-T7-5Ua" firstAttribute="leading" secondItem="Yzu-EL-r2e" secondAttribute="leading" constant="20" id="cy2-wg-GRA"/>
+                            <constraint firstItem="7vo-d1-Idi" firstAttribute="centerX" secondItem="sJ9-CC-Ad0" secondAttribute="centerX" id="yHO-ZD-vRc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Global Settings" id="ZW4-vH-cm2"/>
@@ -1358,7 +1333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MeL-fV-7zq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="715.94202898550725" y="3180.8035714285711"/>
+            <point key="canvasLocation" x="758" y="2438"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="6i5-Uz-TGR">
@@ -1458,35 +1433,6 @@
             </objects>
             <point key="canvasLocation" x="-188.40579710144928" y="1673.4375"/>
         </scene>
-        <!--Bluetooth-->
-        <scene sceneID="kjU-fs-LYx">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u4F-l3-K2B" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bluetooth" image="tt_settings_bluetooth" selectedImage="tt_settings_bluetooth" id="2Rs-za-gFW">
-                        <color key="badgeColor" name="colPrimaryDark"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vE3-C7-mC7">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" name="colPrimaryDark"/>
-                        </textAttributes>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" name="colPrimaryDark"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="c4s-SL-Pig" kind="relationship" relationship="rootViewController" id="nj7-ci-WnB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="l9A-aA-qYR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-210.1449275362319" y="2423.4375"/>
-        </scene>
         <!--Settings-->
         <scene sceneID="ZHR-vO-Fe4">
             <objects>
@@ -1514,13 +1460,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7z-vF-XZZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-194.20289855072465" y="3180.8035714285711"/>
+            <point key="canvasLocation" x="-210" y="2438"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="MMu-e7-eS9"/>
         <segue reference="A1E-v6-8Zc"/>
-        <segue reference="Snh-GA-Gw4"/>
+        <segue reference="c7c-ci-XiC"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
@@ -1533,7 +1479,6 @@
         <image name="tt_handyman" width="36" height="36"/>
         <image name="tt_notifications_active" width="36" height="36"/>
         <image name="tt_restart_alt" width="36" height="36"/>
-        <image name="tt_settings_bluetooth" width="36" height="36"/>
         <namedColor name="colPrimary">
             <color red="0.2199999988079071" green="0.28999999165534973" blue="0.67000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     public static var uuid: String = ""
     var config:CameraConfig = CameraConfig()
     
+    @IBOutlet weak var message_top: UILabel!
     @IBOutlet var name: UITextField!
     @IBOutlet var version: UILabel!
     @IBOutlet var timezone: UIPickerView!
@@ -51,7 +52,8 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     self.config = config
                     DispatchQueue.main.async {
                         self.activity.stopAnimating()
-                        self.message.text = "       \(config.name) settings"
+                        self.message_top.text = ""
+                        self.message.text = "    \(config.name) settings"
                         self.name.text = config.name
                         self.version.text = config.version
                         self.cloudStreamSwitch.setOn(config.cloud == "true", animated: false)

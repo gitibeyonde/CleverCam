@@ -134,7 +134,8 @@ class ApiContext: NSObject {
     }
     
     private func md5(str: String)-> String {
-        let us = str.components(separatedBy: "data.ibeyonde")[1]
+        print(str)
+        let us = str.components(separatedBy: "com.ibeyonde.cam")[1]
         let ind = us.components(separatedBy: "?")[0]
         return ind
     }
