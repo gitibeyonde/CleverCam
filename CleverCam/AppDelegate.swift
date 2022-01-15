@@ -14,12 +14,28 @@ import FirebaseMessaging
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let gcmMessageIDKey = "gcm.notification.data"
+    let gcmMessageIDKey = "gcm.notification.id"
+    let gcmMessageUuid = "gcm.notification.uuid"
+    let gcmMessageCreated = "gcm.notification.created"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print(">>>>>>>>>didFinishLaunchingWithOptions willPresent----")
         FirebaseApp.configure()
-        Messaging.messaging().delegate = self
+        if #available(iOS 10.0, *) {
+           // For iOS 10 display notification (sent via APNS)
+           UNUserNotificationCenter.current().delegate = self
+           let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+           UNUserNotificationCenter.current().requestAuthorization(
+               options: authOptions,
+               completionHandler: {_, _ in })
+           // For iOS 10 data message (sent via FCM)
+           Messaging.messaging().delegate = self
+        } else {
+           let settings: UIUserNotificationSettings =
+               UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+           UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+
         UIApplication.shared.registerForRemoteNotifications()
         UNUserNotificationCenter.current().delegate = self
         return true
@@ -112,9 +128,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     print(">>>>>userNotificationCenter didReceive ----")
-    let created: String = response.notification.request.content.userInfo["created"] as! String
+    let created: String = response.notification.request.content.userInfo[gcmMessageCreated] as! String
     //let image = response.notification.request.content.userInfo["image"]!
-    let uuid:String = response.notification.request.content.userInfo["uuid"] as! String
+    let uuid:String = response.notification.request.content.userInfo[gcmMessageUuid] as! String
     
     
     print(created)
