@@ -28,7 +28,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet var vertFlipSwitch: UISwitch!
     @IBOutlet var horFlipSwitch: UISwitch!
     
-    @IBOutlet var upgradeButton: UIButton!
+    @IBOutlet weak var upgradeButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -77,7 +77,14 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                             DispatchQueue.main.async {
                                 print("Enabling upgrade button")
                                 self.upgradeButton.isEnabled = true;
-                                self.upgradeButton.setTitle("Upgrade to version \(upver)", for: UIControl.State.normal)
+                                self.upgradeButton.setTitle("Upgrade to version - \(upver)", for: UIControl.State.normal)
+                            }
+                        }
+                        else {
+                            DispatchQueue.main.async {
+                                print("Enabling upgrade button")
+                                self.upgradeButton.isEnabled = false;
+                                self.upgradeButton.setTitle("Running latest version - \(curver)", for: UIControl.State.normal)
                             }
                         }
                     }
@@ -126,19 +133,49 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func restart(_ sender: UIButton) {
-        HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "restart" ) { (reponse) in
-            print(reponse)
-        }
+        let restartAlert = UIAlertController(title: "Warning", message: "You are going to restart your device. It will be offline for few minutes.", preferredStyle: UIAlertController.Style.alert)
+
+        restartAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "restart" ) { (reponse) in
+                print(reponse)
+            }
+        }))
+
+        restartAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+              print("restart Cancelled")
+        }))
+
+        present(restartAlert, animated: true, completion: nil)
     }
     @IBAction func reset(_ sender: UIButton) {
-        HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "reset" ) { (reponse) in
-            print(reponse)
-        }
+        let resetAlert = UIAlertController(title: "Warning", message: "You are going to reset your device. The device will be reset and loose wifi connection. Use android bluetooth setup to re-configure.", preferredStyle: UIAlertController.Style.alert)
+
+        resetAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "reset" ) { (reponse) in
+                print(reponse)
+            }
+        }))
+
+        resetAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+              print("reset Cancelled")
+        }))
+
+        present(resetAlert, animated: true, completion: nil)
     }
     @IBAction func upgrade(_ sender: UIButton) {
-        HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "upgrade" ) { (reponse) in
-            print(reponse)
-        }
+            let upgradeAlert = UIAlertController(title: "Warning", message: "You are going to upgrade your device. It will be offline for few minutes.", preferredStyle: UIAlertController.Style.alert)
+
+            upgradeAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "upgrade" ) { (reponse) in
+                    print(reponse)
+                }
+            }))
+
+            upgradeAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                  print("restet Cancelled")
+            }))
+
+            present(upgradeAlert, animated: true, completion: nil)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

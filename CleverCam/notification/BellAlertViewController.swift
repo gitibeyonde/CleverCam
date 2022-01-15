@@ -9,6 +9,8 @@ import UIKit
 
 class BellAlertViewController: UIViewController {
     
+    @IBOutlet weak var navBack: UINavigationItem!
+    
     @IBOutlet var history: UIImageView!
     @IBOutlet var live: UIImageView!
     @IBOutlet var progressHistory: UIActivityIndicatorView!
@@ -91,7 +93,7 @@ class BellAlertViewController: UIViewController {
             }
             
         }
-        
+        self.navBack.title = "at " + BellAlertViewController.datetime
         //animate history
         BellAlertViewController.history_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
     }

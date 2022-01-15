@@ -66,7 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
             HttpRequest.login(self, base64LoginString: base64LoginString) { (output) in
                 DispatchQueue.main.async {
                     if output.contains("Success"){
-                        print("Login Successful")
+                        print("Login Successful \(Users.getFCMtoken())")
                         Users.setUserName(object: self.username.text!)
                         Users.setPassword(object: self.password.text!)
                         Users.setLoginStatus(object: "true")

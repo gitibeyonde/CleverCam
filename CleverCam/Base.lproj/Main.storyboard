@@ -760,11 +760,11 @@
             <objects>
                 <viewController id="rJR-dg-IM9" customClass="SettingsViewController" customModule="CleverCam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VLi-Oq-NJ5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1346"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8c-zt-abA">
-                                <rect key="frame" x="-2" y="56" width="417" height="757"/>
+                                <rect key="frame" x="-2" y="56" width="417" height="1261"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JbJ-2G-h3j">
                                         <rect key="frame" x="0.0" y="0.0" width="417" height="1200"/>
@@ -988,13 +988,8 @@
                                                         <viewLayoutGuide key="safeArea" id="zfN-qJ-47S"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzq-T8-q5D">
-                                                        <rect key="frame" x="0.0" y="576.66666666666663" width="337" height="57.666666666666629"/>
-                                                        <viewLayoutGuide key="safeArea" id="oip-5L-xql"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZp-ye-7BM">
-                                                        <rect key="frame" x="0.0" y="634.33333333333337" width="337" height="57.666666666666629"/>
+                                                        <rect key="frame" x="0.0" y="576.66666666666663" width="337" height="57.666666666666629"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="0A8-pf-dfa">
                                                                 <rect key="frame" x="65" y="6" width="200" height="34"/>
@@ -1004,7 +999,7 @@
                                                                     <color key="titleColor" name="colSec"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="restart:" destination="rJR-dg-IM9" eventType="touchUpInside" id="MLI-TF-K8u"/>
+                                                                    <action selector="restart:" destination="rJR-dg-IM9" eventType="touchUpInside" id="42Q-kd-VuU"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -1012,25 +1007,44 @@
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0XT-rf-FeN">
-                                                        <rect key="frame" x="0.0" y="692" width="337" height="57.666666666666629"/>
+                                                        <rect key="frame" x="0.0" y="634.33333333333337" width="337" height="57.666666666666629"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-sH-iYN">
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-sH-iYN">
                                                                 <rect key="frame" x="36" y="6" width="260" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                                <state key="normal">
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                <state key="normal" title="No Upgrade available">
                                                                     <color key="titleColor" name="colSec"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="upgrade:" destination="rJR-dg-IM9" eventType="touchUpInside" id="TQr-ff-vbd"/>
+                                                                    <action selector="upgrade:" destination="rJR-dg-IM9" eventType="touchUpInside" id="elh-8j-v0p"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
                                                         <viewLayoutGuide key="safeArea" id="8fo-7D-v8d"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzq-T8-q5D">
+                                                        <rect key="frame" x="0.0" y="692" width="337" height="57.666666666666629"/>
+                                                        <viewLayoutGuide key="safeArea" id="oip-5L-xql"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RY7-kM-zIE">
                                                         <rect key="frame" x="0.0" y="749.66666666666663" width="337" height="57.666666666666629"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vk-6U-Cme">
+                                                                <rect key="frame" x="133" y="13.333333333333371" width="74" height="36"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Reset">
+                                                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                                                                    <color key="baseForegroundColor" name="colSecDark"/>
+                                                                </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="reset:" destination="rJR-dg-IM9" eventType="touchUpInside" id="gQr-rK-etR"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
                                                         <viewLayoutGuide key="safeArea" id="1mr-ds-uGN"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
@@ -1098,6 +1112,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GCK-eZ-h1H"/>
+                    <size key="freeformSize" width="414" height="1400"/>
                     <connections>
                         <outlet property="activity" destination="aAQ-pC-jKJ" id="T8A-KH-nEu"/>
                         <outlet property="camFramesize" destination="eKg-8j-AGh" id="JXY-Hr-1pF"/>
@@ -1108,7 +1123,7 @@
                         <outlet property="name" destination="EO3-fI-eYh" id="UAU-za-jgy"/>
                         <outlet property="storeHistorySwitch" destination="afL-25-rx3" id="9y1-Wm-vc0"/>
                         <outlet property="timezone" destination="vcH-Oj-RTe" id="DUC-I4-fUb"/>
-                        <outlet property="upgradeButton" destination="Kp4-sH-iYN" id="Qjt-HI-OHN"/>
+                        <outlet property="upgradeButton" destination="Kp4-sH-iYN" id="ujg-DY-I9H"/>
                         <outlet property="version" destination="fTN-zL-ERa" id="JyB-bD-CvZ"/>
                         <outlet property="vertFlipSwitch" destination="eQt-OX-zVX" id="1j9-ud-ihR"/>
                     </connections>
@@ -1271,6 +1286,7 @@
                         <outlet property="img9" destination="4ry-BM-HMd" id="ZE5-UF-fsm"/>
                         <outlet property="live" destination="ZAx-Fp-fke" id="n25-SG-7Zn"/>
                         <outlet property="liveProgress" destination="pFs-6I-zOh" id="exJ-oI-vWu"/>
+                        <outlet property="navBack" destination="qwi-vN-XNc" id="wCc-bg-0Pj"/>
                         <outlet property="progressHistory" destination="hVd-K9-bTk" id="pvh-mx-dd4"/>
                         <outlet property="scrollView" destination="90U-E7-fsO" id="0Ep-ji-6rl"/>
                     </connections>
@@ -1309,8 +1325,8 @@
                                     <segue destination="b28-yQ-tY2" kind="showDetail" identifier="ShowLogin" id="c7c-ci-XiC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Software Ver 1.0  Build 9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vo-d1-Idi">
-                                <rect key="frame" x="143" y="397" width="128.33333333333337" height="14.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Software Ver 1.1  Build 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vo-d1-Idi">
+                                <rect key="frame" x="144" y="397" width="126.33333333333331" height="14.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

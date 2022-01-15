@@ -449,7 +449,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CleverCamNSE/CleverCamNSE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N75U3D8GN7;
 				INFOPLIST_FILE = CleverCamNSE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -458,6 +458,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibeyonde.cam.CleverCamNSE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -471,7 +472,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CleverCamNSE/CleverCamNSE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N75U3D8GN7;
 				INFOPLIST_FILE = CleverCamNSE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -480,6 +481,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibeyonde.cam.CleverCamNSE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -612,7 +614,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CleverCam/CleverCam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N75U3D8GN7;
 				INFOPLIST_FILE = CleverCam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -620,6 +622,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibeyonde.cam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -636,7 +639,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CleverCam/CleverCam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N75U3D8GN7;
 				INFOPLIST_FILE = CleverCam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -644,6 +647,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibeyonde.cam;
 				PRODUCT_NAME = "$(TARGET_NAME)";

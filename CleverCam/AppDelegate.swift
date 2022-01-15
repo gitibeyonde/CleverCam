@@ -19,27 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print(">>>>>>>>>didFinishLaunchingWithOptions willPresent----")
         FirebaseApp.configure()
-        FirebaseConfiguration.shared.setLoggerLevel(.max)
-
-        if #available(iOS 10.0, *) {
-           // For iOS 10 display notification (sent via APNS)
-           UNUserNotificationCenter.current().delegate = self
-           let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-           UNUserNotificationCenter.current().requestAuthorization(
-               options: authOptions,
-               completionHandler: {_, _ in })
-           // For iOS 10 data message (sent via FCM)
-           Messaging.messaging().delegate = self
-        } else {
-           let settings: UIUserNotificationSettings =
-               UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-           UIApplication.shared.registerUserNotificationSettings(settings)
-        }
+        Messaging.messaging().delegate = self
         UIApplication.shared.registerForRemoteNotifications()
         UNUserNotificationCenter.current().delegate = self
         return true
     }
-
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+        print(">>>>>>>>>didRegisterForRemoteNotificationsWithDeviceToken " , deviceToken.hexString)
+    }
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
@@ -82,13 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler(UIBackgroundFetchResult.newData)
         
     }
-    
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Messaging.messaging().apnsToken = deviceToken
-        print(">>>>>>>>>didRegisterForRemoteNotificationsWithDeviceToken " , deviceToken)
-    }
-    
     
 }
 
@@ -154,4 +137,10 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
   }
 }
 
+extension Data {
+    var hexString: String {
+        let hexString = map { String(format: "%02.2hhx", $0) }.joined()
+        return hexString
+    }
+}
 

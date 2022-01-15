@@ -134,10 +134,15 @@ class ApiContext: NSObject {
     }
     
     private func md5(str: String)-> String {
-        print(str)
-        let us = str.components(separatedBy: "com.ibeyonde.cam")[1]
-        let ind = us.components(separatedBy: "?")[0]
-        return ind
+        if (str.contains("/com.ibeyonde.cam/")) {
+            let us = str.components(separatedBy: "/com.ibeyonde.cam/")[1]
+            let ind = us.components(separatedBy: ".jpg?")[0]
+            //print(ind);
+            return ind
+        }
+        else {
+            return str;
+        }
     }
     
     /*
