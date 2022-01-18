@@ -785,6 +785,7 @@ public class HttpRequest: HttpRequestDelegate {
         var dataTask: URLSessionDataTask?
         let defaultSession = URLSession(configuration: .default)
         
+        
         dataTask =
             defaultSession.dataTask(with: request) { data, response, error in
                 defer {
@@ -798,7 +799,10 @@ public class HttpRequest: HttpRequestDelegate {
                     response.statusCode == 200 {
                     var bellHistoryList: Array<BellHistory> = Array<BellHistory>()
                     do {
-                        let jsonObjects: [NSDictionary] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [NSDictionary]
+                        guard let jsonObjects: [NSDictionary] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as? [NSDictionary] else {
+                            delegate?.onError()
+                            return
+                        }
                         for jsonObject in jsonObjects {
                             bellHistoryList.append(BellHistory(url: jsonObject["url"] as! String, time: jsonObject["datetime"] as! String))
                             print(jsonObject["datetime"]!)
