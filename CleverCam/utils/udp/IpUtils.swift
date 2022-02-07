@@ -14,8 +14,19 @@ public class IpUtils {
     static var min_udp_port:UInt16 = 20000
     static var max_udp_port:UInt16 = 65534
     
+    struct Address {
+        var hostname: String
+        var type: String
+        
+        init(hostname: String, type: String){
+            self.hostname = hostname
+            self.type = type
+        }
+    }
+    
     static func getMyIPAddresses() -> String {
-        var addresses = [String]()
+        var addresses = [Address]()
+        var preferredAddress:String = ""
      
         // Get list of all interfaces on the local machine:
         var ifaddr : UnsafeMutablePointer<ifaddrs>?
@@ -26,32 +37,49 @@ public class IpUtils {
         for ptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
             let flags = Int32(ptr.pointee.ifa_flags)
             let addr = ptr.pointee.ifa_addr.pointee
-     
             // Check for running IPv4, IPv6 interfaces. Skip the loopback interface.
             if (flags & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING) {
-                if addr.sa_family == UInt8(AF_INET) {//|| addr.sa_family == UInt8(AF_INET6) {
+                if addr.sa_family == UInt8(AF_INET) { //|| addr.sa_family == UInt8(AF_INET6) {
+                    let interfaceName =  String.init(cString: &ptr.pointee.ifa_name.pointee)
+                    print(interfaceName)
      
                     // Convert interface address to a human readable string:
                     var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
                     if (getnameinfo(ptr.pointee.ifa_addr, socklen_t(addr.sa_len), &hostname, socklen_t(hostname.count),
                                     nil, socklen_t(0), NI_NUMERICHOST) == 0) {
-                        let address = String(cString: hostname)
+                        let address:Address = Address(hostname: String(cString: hostname), type: interfaceName)
                         addresses.append(address)
                     }
                 }
             }
         }
         freeifaddrs(ifaddr)
-        print(addresses)
-        if (addresses.count == 1){
-            return addresses[0]
+        
+        
+        for a in addresses {
+            if (a.type == "en0"){
+                preferredAddress = a.hostname
+                break
+            }
         }
-        else if (addresses.count == 2){
-            return addresses[1]
+        if preferredAddress == "" {
+            for a in addresses {
+                if (a.type == "en1"){
+                    preferredAddress = a.hostname
+                    break
+                }
+            }
         }
-        else {
-            return addresses[0]
+        if preferredAddress == "" {
+            for a in addresses {
+                if (a.type == "en2"){
+                    preferredAddress = a.hostname
+                    break
+                }
+            }
         }
+        
+       return preferredAddress
     }
     
     public static func getMyPort()->UInt16 {

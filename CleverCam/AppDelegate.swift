@@ -31,8 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         netUtils.initPeer()
         netUtils.getImageFromPeer()
         sleep(1)
+        netUtils.getImageFromPeer()
         sleep(1)
+        netUtils.getImageFromPeer()
         sleep(1)
+        netUtils.getImageFromPeer()
         sleep(1)
         
         

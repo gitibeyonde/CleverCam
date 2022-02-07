@@ -20,6 +20,10 @@ class ClientConnection {
     let nwConnection: NWConnection
     let queue: DispatchQueue
     var listener: ConnectionListener
+    public var type: String = ""
+    public var min_size: Int = 6
+    public var max_size: Int = 128
+    var image: Data = Data()
 
     init(nwConnection: NWConnection) {
         self.queue = DispatchQueue.global()
@@ -62,12 +66,36 @@ class ClientConnection {
         }
     }
 
+    public func setImage(size: Int){
+        self.type = "IMAGE"
+        self.min_size = size
+        self.max_size = size
+        self.image = Data()
+    }
+    
+    public func unsetImage(){
+        self.type = ""
+        self.min_size = 6
+        self.max_size = 1460
+    }
+    
+    public func isImage()->Bool {
+        return self.type == "IMAGE"
+    }
+    
     public func setupReceive() {
         print("setupReceive")
-        nwConnection.receive(minimumIncompleteLength: 6, maximumLength: Int.max) { (data, _, isComplete, error) in
+        nwConnection.receive(minimumIncompleteLength: self.min_size, maximumLength: self.max_size) { (data, _, isComplete, error) in
             if let data = data, !data.isEmpty {
-                self.listener.listen(response: data)
-                print("UDP<",String(decoding: data, as: UTF8.self))
+                if self.isImage() {
+                    self.image.append(data)
+                    if (self.min_size == self.image.count) {
+                        self.listener.listen(response: self.image)
+                    }
+                }
+                else {
+                    self.listener.listen(response: data)
+                }
             }
             if isComplete {
                 print("setupReceive connection complete")

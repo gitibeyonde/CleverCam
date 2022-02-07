@@ -12,7 +12,6 @@ import Network
 class Client : ConnectionListener {
     let _connection: ClientConnection
     let _device_uuid: String
-    var state: String = "INIT"
     
     init(device_uuid: String) {
         let host = NWEndpoint.Host("broker.ibeyonde.com")
@@ -83,7 +82,11 @@ class Client : ConnectionListener {
     }
     
     func listen(response: Data) {
-        if response.starts(with: Data(bytes: "RREG", count: 4)) {
+        if (_connection.isImage()){
+            print("Peer Image<",response)
+            _connection.unsetImage()
+        }
+        else if response.starts(with: Data(bytes: "RREG", count: 4)) {
             print("Broker<:", String(decoding: response, as: UTF8.self))
             print("Device registration done")
         }
@@ -98,10 +101,11 @@ class Client : ConnectionListener {
             let vc = response.split(separator: 58)[1].split(separator: 46)
             let size: Int = Int(String(decoding: vc[1], as: UTF8.self))!
             print("Size=",size)
+            _connection.setImage(size: size)
         }
-         else {
-             print("UDP Unknown response",String(decoding: response, as: UTF8.self))
-         }
+        else {
+         print("UDP Unknown response",response)
+        }
      }
     
 }
