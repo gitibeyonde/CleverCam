@@ -19,6 +19,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let gcmMessageCreated = "gcm.notification.created"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let netUtils: NetUtils = NetUtils(my_uuid: getMyUuid(), device_uuid: "e8db843a5034")
+        netUtils.register()
+        netUtils.getPeerAddress()
+        while(NetUtils._peer_host == ""){
+            sleep(1)
+        }
+        netUtils.cancelBroker()
+        print("-----------------------------------------------------")
+        netUtils.initPeer()
+        netUtils.getImageFromPeer()
+        sleep(1)
+        sleep(1)
+        sleep(1)
+        sleep(1)
+        
+        
         print(">>>>>>>>>didFinishLaunchingWithOptions willPresent----")
         FirebaseApp.configure()
         if #available(iOS 10.0, *) {
@@ -87,6 +104,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(userInfo)
         completionHandler(UIBackgroundFetchResult.newData)
         
+    }
+    
+    public func getMyUuid()->String {
+        let uuid: String = UIDevice.current.identifierForVendor?.uuidString ?? NSUUID().uuidString
+        let vuuid: [String] = uuid.components(separatedBy: "-")
+        print("My uuid=", vuuid[4])
+        return vuuid[4]
     }
     
 }
