@@ -45,6 +45,22 @@ class BellAlertViewController: UIViewController {
         DeviceViewController.showBell = false
         BellAlertViewController.images = [ self.img0, self.img1, self.img2, self.img3, self.img4, self.img5, self.img6, self.img7, self.img8, self.img9 ]
         
+        
+        self.liveProgress.startAnimating()
+        let my_uuid: String = UIDevice.current.identifierForVendor?.uuidString ?? NSUUID().uuidString
+        let vuuid: [String] = my_uuid.components(separatedBy: "-")
+        print("My uuid=", vuuid[4])
+        
+        let netUtils: NetUtils = NetUtils(my_uuid: vuuid[4], device_uuid: BellAlertViewController.uuid)
+        
+        netUtils.register()
+        netUtils.getPeerAddress()
+        while(NetUtils._peer_host == ""){
+            sleep(1)
+        }
+        netUtils.cancelBroker()
+        print("-----------------------------------------------------")
+        
         var initFirstImage = false
         HttpRequest.bellAlertDetails(self, uuid: BellAlertViewController.uuid, datetime: BellAlertViewController.datetime) { (notificationList) in
             print(notificationList.count)
@@ -74,11 +90,15 @@ class BellAlertViewController: UIViewController {
             }
         }
         
-        //load live
-        //name.text = "     " + ApiContext.shared.getDeviceName(uuid: BellAlertViewController.uuid) + " at " +  BellAlertViewController.datetime
-        
-        self.liveProgress.startAnimating()
-        HttpRequest.checkLocalURL(self, uuid: BellAlertViewController.uuid ) { (localUrl) in
+        DispatchQueue.main.async {
+                netUtils.initPeer()
+                self.progressHistory.stopAnimating()
+                while(true){
+                    let image:Data = netUtils.getImageFromPeer()
+                    self.live.image = UIImage(data: image)
+                }
+        }
+        /**HttpRequest.checkLocalURL(self, uuid: BellAlertViewController.uuid ) { (localUrl) in
             print(localUrl)
             if localUrl == "" {
                 HttpRequest.getRemoteURL(self, uuid: BellAlertViewController.uuid ) { (remoteUrl) in
@@ -92,7 +112,10 @@ class BellAlertViewController: UIViewController {
                 self.streamLive()
             }
             
-        }
+        }**/
+        
+        
+        
         self.navBack.title = "at " + BellAlertViewController.datetime
         //animate history
         BellAlertViewController.history_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)

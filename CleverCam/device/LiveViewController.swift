@@ -23,7 +23,35 @@ class LiveViewController: UIViewController {
         
         //heading.text = "    Live " + ApiContext.shared.getDeviceName(uuid: LiveViewController.uuid)
         
-        self.progressIndicator.startAnimating()
+        let my_uuid: String = UIDevice.current.identifierForVendor?.uuidString ?? NSUUID().uuidString
+        let vuuid: [String] = my_uuid.components(separatedBy: "-")
+        print("My uuid=", vuuid[4])
+        
+        let netUtils: NetUtils = NetUtils(my_uuid: vuuid[4], device_uuid: LiveViewController.uuid)
+        
+        netUtils.register()
+        netUtils.getPeerAddress()
+        while(NetUtils._peer_host == ""){
+            sleep(1)
+        }
+        netUtils.cancelBroker()
+        print("-----------------------------------------------------")
+        
+        let queue = DispatchQueue(label: "liveq", qos: .utility)
+        queue.async {
+            netUtils.initPeer()
+            DispatchQueue.main.async {
+                self.progressIndicator.stopAnimating()
+            }
+            while(true){
+                let image:Data = netUtils.getImageFromPeer()
+                print("Rcvd Image ", image.count)
+                DispatchQueue.main.async {
+                    self.video.image = UIImage(data: image)
+                }
+            }
+        }
+        /**self.progressIndicator.startAnimating()
         HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in
             print("Local URL=", localUrl)
             if localUrl == "" {
@@ -38,7 +66,7 @@ class LiveViewController: UIViewController {
                 self.streamLive()
             }
             
-        }
+        }**/
     }
     
 

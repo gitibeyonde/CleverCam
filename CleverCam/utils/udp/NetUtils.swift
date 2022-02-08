@@ -64,8 +64,9 @@ class NetUtils {
         self.client.start(listener: client)
     }
     
-    public func getImageFromPeer(){
+    public func getImageFromPeer()->Data {
         self.client.requestDHINJPeer()
+        return self.client.getImage()
     }
     
     public func cancelPeer(){

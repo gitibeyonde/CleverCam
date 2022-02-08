@@ -12,6 +12,7 @@ import Network
 class Client : ConnectionListener {
     let _connection: ClientConnection
     let _device_uuid: String
+    var _image: Data = Data()
     
     init(device_uuid: String) {
         let host = NWEndpoint.Host("broker.ibeyonde.com")
@@ -81,10 +82,16 @@ class Client : ConnectionListener {
         _connection.send(data: cmd)
     }
     
+    func getImage()->Data {
+        sleep(1)
+        return self._image
+    }
+    
     func listen(response: Data) {
         if (_connection.isImage()){
             print("Peer Image<",response)
             _connection.unsetImage()
+            _image = response
         }
         else if response.starts(with: Data(bytes: "RREG", count: 4)) {
             print("Broker<:", String(decoding: response, as: UTF8.self))

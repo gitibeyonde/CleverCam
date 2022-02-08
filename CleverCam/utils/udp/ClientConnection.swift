@@ -84,7 +84,7 @@ class ClientConnection {
     }
     
     public func setupReceive() {
-        print("setupReceive")
+        //print("setupReceive")
         nwConnection.receive(minimumIncompleteLength: self.min_size, maximumLength: self.max_size) { (data, _, isComplete, error) in
             if let data = data, !data.isEmpty {
                 if self.isImage() {
@@ -98,7 +98,7 @@ class ClientConnection {
                 }
             }
             if isComplete {
-                print("setupReceive connection complete")
+                //print("setupReceive connection complete")
                 //self.connectionDidEnd()
                 self.setupReceive()
             } else if let error = error {
