@@ -9,24 +9,23 @@ import Foundation
 import Network
 
 @available(macOS 10.14, *)
-class Client : ConnectionListener {
+class Client {
     let _connection: ClientConnection
     let _device_uuid: String
-    var _image: Data = Data()
     
     init(device_uuid: String) {
+        self._device_uuid = device_uuid
         let host = NWEndpoint.Host("broker.ibeyonde.com")
         let port = NWEndpoint.Port(rawValue: 5020)!
         let connectionParams = NWParameters.udp
-        connectionParams.allowLocalEndpointReuse = true
         connectionParams.requiredLocalEndpoint = NWEndpoint.hostPort(host: NWEndpoint.Host(NetUtils._my_host), port: NWEndpoint.Port("\(NetUtils._my_port)")!)
         let nwConnection = NWConnection(host: host, port: port, using: connectionParams)
         _connection = ClientConnection(nwConnection: nwConnection)
-        self._device_uuid = device_uuid
     }
     
     init(peer_host: String, peer_port: UInt16, device_uuid: String) {
-        print("Peer host=\(peer_host), port=\(peer_port)")
+        self._device_uuid = device_uuid
+        NSLog("Peer host=\(peer_host), port=\(peer_port)")
         let host = NWEndpoint.Host(peer_host)
         let port = NWEndpoint.Port("\(peer_port)")!
         let connectionParams = NWParameters.udp
@@ -34,13 +33,12 @@ class Client : ConnectionListener {
         connectionParams.requiredLocalEndpoint = NWEndpoint.hostPort(host: NWEndpoint.Host(NetUtils._my_host), port: NWEndpoint.Port("\(NetUtils._my_port)")!)
         let nwConnection = NWConnection(host: host, port: port, using: connectionParams)
         _connection = ClientConnection(nwConnection: nwConnection)
-        self._device_uuid = device_uuid
         
     }
 
-    func start(listener: ConnectionListener) {
+    func start() {
         _connection.didStopCallback = didStopCallback(error:)
-        _connection.start(listener: listener)
+        _connection.start()
     }
 
     func cancel(){
@@ -56,64 +54,66 @@ class Client : ConnectionListener {
     }
     
     
-    func register(my_uuid: String, my_host: String, my_port: UInt16) -> Void {
+    func register(my_uuid: String, my_host: String, my_port: UInt16) -> Bool {
         let cmd_str: String = "REGISTER:\(my_uuid):"
         var cmd: Data = cmd_str.data(using: .utf8)!
         let addressData: Data = IpUtils.addressToBytes(ip: my_host, port: my_port)
         cmd.append(addressData)
-        print("Broker>", String(decoding: cmd, as: UTF8.self))
+        NSLog("Broker>\(String(decoding: cmd, as: UTF8.self))")
         
-        _connection.send(data: cmd)
-    }
-    
-    func askPeerAddress() -> Void {
-        let cmd_str: String = "PADDR:\(self._device_uuid):"
-        let cmd: Data = cmd_str.data(using: .utf8)!
-        print("Broker>", cmd_str)
+        let response:Data = _connection.send(request: cmd)
         
-        _connection.send(data: cmd)
-    }
-    
-    func requestDHINJPeer() -> Void {
-        let cmd_str: String = "DHINJ:\(self._device_uuid):"
-        let cmd: Data = cmd_str.data(using: .utf8)!
-        print("Peer>", cmd_str)
-        
-        _connection.send(data: cmd)
-    }
-    
-    func getImage()->Data {
-        sleep(1)
-        return self._image
-    }
-    
-    func listen(response: Data) {
-        if (_connection.isImage()){
-            print("Peer Image<",response)
-            _connection.unsetImage()
-            _image = response
-        }
-        else if response.starts(with: Data(bytes: "RREG", count: 4)) {
-            print("Broker<:", String(decoding: response, as: UTF8.self))
-            print("Device registration done")
-        }
-        else if response.starts(with: Data(bytes: "RPADDR", count: 6)) {
-            print("Broker<:", String(decoding: response, as: UTF8.self))
-            let result = IpUtils.getAddress(dp: response)
-            NetUtils._peer_host = result.0
-            NetUtils._peer_port = result.1
-        }
-        else if response.starts(with: Data(bytes: "SIZE", count: 4)) {
-            print("Peer<:", String(decoding: response, as: UTF8.self))
-            let vc = response.split(separator: 58)[1].split(separator: 46)
-            let size: Int = Int(String(decoding: vc[1], as: UTF8.self))!
-            print("Size=",size)
-            _connection.setImage(size: size)
+        if response.starts(with: Data(bytes: "RREG:", count: 5)) {
+            NSLog("Broker<:\(String(decoding: response, as: UTF8.self))")
+            return true
         }
         else {
-         print("UDP Unknown response",response)
+            NSLog("Broker<BAD>:\(String(decoding: response, as: UTF8.self))")
+            sleep(1)
+            return false
         }
-     }
+    }
+    
+    func getPeerAddress() -> (String, UInt16) {
+        let cmd_str: String = "PADDR:\(self._device_uuid):"
+        let cmd: Data = cmd_str.data(using: .utf8)!
+        NSLog("Broker>\(String(decoding: cmd, as: UTF8.self))")
+        
+        let response:Data = _connection.send(request: cmd)
+        
+        if response.starts(with: Data(bytes: "RPADDR:", count: 7)) {
+            NSLog("Broker<:\(String(decoding: response, as: UTF8.self))")
+            let result = IpUtils.getAddress(dp: response)
+            return result
+        }
+        else {
+            NSLog("Broker<BAD>:\(String(decoding: response, as: UTF8.self))")
+            sleep(1)
+            return ("", 0)
+        }
+    }
+    
+    func requestDHINJPeer() -> Data {
+        let cmd_str: String = "DHINJ:\(self._device_uuid):"
+        let cmd: Data = cmd_str.data(using: .utf8)!
+        NSLog("Peer>\(String(decoding: cmd, as: UTF8.self))")
+        
+        let response:Data = _connection.send(request: cmd)
+        
+        if response.starts(with: Data(bytes: "SIZE:", count: 5)) {
+            NSLog("Peer<:\(String(decoding: response, as: UTF8.self))")
+            let vc = response.split(separator: 58)[1].split(separator: 46)
+            let size: Int = Int(String(decoding: vc[1], as: UTF8.self))!
+            NSLog("Size=\(size)")
+            _connection.resetImage()
+            return _connection.receiveImage(size: size)
+        }
+        else {
+            NSLog("Peer<BAD>:\(response.count)")
+            return Data()
+        }
+    }
+    
     
 }
 

@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.notification.id"
     let gcmMessageUuid = "gcm.notification.uuid"
     let gcmMessageCreated = "gcm.notification.created"
+    var _isRunning:Bool = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print(">>>>>>>>>didFinishLaunchingWithOptions willPresent----")

@@ -9,139 +9,136 @@ import Foundation
 import Network
 
 
-protocol ConnectionListener {
-    func listen(response: Data)->Void
-}
-
-
 @available(macOS 10.14, *)
 class ClientConnection {
 
     let nwConnection: NWConnection
-    let queue: DispatchQueue
-    var listener: ConnectionListener
+    let queue: DispatchQueue = DispatchQueue(label: "CamQ")
+    
     public var type: String = ""
-    public var min_size: Int = 6
-    public var max_size: Int = 128
+    public var min_size: Int = 10
+    public var max_size: Int = 32
     var image: Data = Data()
 
     init(nwConnection: NWConnection) {
-        self.queue = DispatchQueue.global()
         self.nwConnection = nwConnection
-        self.listener = DefaultListener()
     }
 
     var didStopCallback: ((Error?) -> Void)? = nil
 
-    func start(listener: ConnectionListener) {
-        self.listener = listener
+    func start() {
         nwConnection.stateUpdateHandler = stateDidChange(to:)
-        print("Connection state ",nwConnection.state)
+        NSLog("Connection state \(nwConnection.state)")
         nwConnection.start(queue: queue)
         while(nwConnection.state != NWConnection.State.ready){
             sleep(1)
-            print("waiting for connection to be ready")
+            NSLog("waiting for connection to be ready")
         }
-        setupReceive()
+        NSLog("Connection Ready")
     }
 
     private func stateDidChange(to state: NWConnection.State) {
         switch state {
             case .setup:
-                print("Client connection setup")
+                NSLog("Client connection setup")
             case .waiting( _):
-                print("Client connection waiting")
+                NSLog("Client connection waiting")
             case .preparing:
-                print("Client connection preparing")
+                NSLog("Client connection preparing")
             case .ready:
-                print("Client connection ready")
+                NSLog("Client connection ready")
             case .cancelled:
-                print("Client connection cancelled")
+                NSLog("Client connection cancelled")
                 cancel(error: nil)
             case .failed(let error):
-                print("Client connection failed")
+                NSLog("Client connection failed")
                 connectionDidFail(error: error)
             default:
                 break
         }
     }
-
-    public func setImage(size: Int){
-        self.type = "IMAGE"
-        self.min_size = size
-        self.max_size = size
+    
+    public func resetImage()->Void {
         self.image = Data()
     }
     
-    public func unsetImage(){
-        self.type = ""
-        self.min_size = 6
-        self.max_size = 1460
-    }
-    
-    public func isImage()->Bool {
-        return self.type == "IMAGE"
-    }
-    
-    public func setupReceive() {
-        //print("setupReceive")
-        nwConnection.receive(minimumIncompleteLength: self.min_size, maximumLength: self.max_size) { (data, _, isComplete, error) in
-            if let data = data, !data.isEmpty {
-                if self.isImage() {
-                    self.image.append(data)
-                    if (self.min_size == self.image.count) {
-                        self.listener.listen(response: self.image)
-                    }
-                }
-                else {
-                    self.listener.listen(response: data)
-                }
-            }
-            if isComplete {
-                //print("setupReceive connection complete")
-                //self.connectionDidEnd()
-                self.setupReceive()
-            } else if let error = error {
-                print("setupReceive connection error")
-                self.connectionDidFail(error: error)
-            } else {
-                self.setupReceive()
-            }
-        }
-    }
-
-    func send(data: Data) {
-        nwConnection.send(content: data, completion: .contentProcessed( { error in
+    func send(request: Data)->Data {
+        let send_semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
+        nwConnection.send(content: request, completion: .contentProcessed( { error in
             if let error = error {
-                print("send connection error")
+                NSLog("send connection error")
                 self.connectionDidFail(error: error)
                 return
             }
-            print("UDP>",String(decoding: data, as: UTF8.self))
+            send_semaphone.signal()
         }))
+        _ = send_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(1))
+        
+        var response: Data = Data()
+        let receive_semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
+        nwConnection.receiveMessage(completion: { (data, _, isComplete, error) in
+            if isComplete {
+                if let data = data, !data.isEmpty {
+                    response.append(data)
+                }
+            } else if let error = error {
+                NSLog("setupReceive connection error \(error)")
+            } else {
+                NSLog("setupReceive inComplete \(String(decoding: data!, as: UTF8.self))")
+            }
+            receive_semaphone.signal()
+        })
+        _ = receive_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
+        return response
+    }
+    
+    func receiveImage(size: Int)->Data {
+        for _ in (0..<20){
+            _ = self.receiveAll(size: size)
+            if (self.image.count == size){
+                break
+            }
+        }
+        return self.image
+    }
+    
+    func receiveAll(size: Int)->Data {
+        let semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
+        nwConnection.receive(minimumIncompleteLength: size, maximumLength: size) { (data, _, isComplete, error) in
+            if isComplete {
+                if let data = data, !data.isEmpty {
+                    self.image.append(data)
+                }
+            } else if let error = error {
+                NSLog("setupReceiveAll connection error \(error)")
+            } else {
+                NSLog("setupReceiveAll inComplete \(self.image.count)")
+            }
+            _ = semaphone.signal()
+        }
+        _ = semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
+        return self.image
     }
     
     private func connectionDidFail(error: Error) {
-        print("connection did fail, error: \(error)")
+        NSLog("connection did fail, error: \(error)")
         cancel(error: error)
     }
 
     private func connectionDidEnd() {
-        print("connection did end")
+        NSLog("connection did end")
         cancel(error: nil)
     }
 
     public func cancel(error: Error?) {
         self.nwConnection.stateUpdateHandler = nil
-        //self.nwConnection.cancel()
+        self.nwConnection.cancel()
         self.nwConnection.forceCancel()
-        print("XXXXXX  Connection Ends XXXXX")
+        while(nwConnection.state != NWConnection.State.cancelled){
+            sleep(1)
+            NSLog("waiting for connection to be cancelled")
+        }
+        NSLog("XXXXXX  Connection Ends XXXXX")
     }
 }
 
-
-class DefaultListener: ConnectionListener {
-    func listen(response: Data) {
-        print("DefaultListener<:", String(decoding: response, as: UTF8.self))
-    }
-}

@@ -15,66 +15,69 @@ class LiveViewController: UIViewController {
     public static var uuid: String = ""
     var stream: MJPEGStreamLib!
     var url: String?
+    var _runDirect:Bool = true
+    var _isDirectRunning:Bool = false
+    public static var refresh = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         print("loading live view for ", LiveViewController.uuid)
         
-        //heading.text = "    Live " + ApiContext.shared.getDeviceName(uuid: LiveViewController.uuid)
+        self.progressIndicator.startAnimating()
+        Thread.detachNewThreadSelector(#selector(liveDirect), toTarget: self, with: nil)
         
-        let my_uuid: String = UIDevice.current.identifierForVendor?.uuidString ?? NSUUID().uuidString
-        let vuuid: [String] = my_uuid.components(separatedBy: "-")
-        print("My uuid=", vuuid[4])
-        
-        let netUtils: NetUtils = NetUtils(my_uuid: vuuid[4], device_uuid: LiveViewController.uuid)
-        
-        netUtils.register()
-        netUtils.getPeerAddress()
-        while(NetUtils._peer_host == ""){
-            sleep(1)
-        }
-        netUtils.cancelBroker()
-        print("-----------------------------------------------------")
-        
-        let queue = DispatchQueue(label: "liveq", qos: .utility)
-        queue.async {
-            netUtils.initPeer()
-            DispatchQueue.main.async {
-                self.progressIndicator.stopAnimating()
-            }
-            while(true){
-                let image:Data = netUtils.getImageFromPeer()
-                print("Rcvd Image ", image.count)
-                DispatchQueue.main.async {
-                    self.video.image = UIImage(data: image)
-                }
-            }
-        }
-        /**self.progressIndicator.startAnimating()
         HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in
             print("Local URL=", localUrl)
             if localUrl == "" {
                 HttpRequest.getRemoteURL(self, uuid: LiveViewController.uuid ) { (remoteUrl) in
                     print(remoteUrl)
-                    self.url=remoteUrl
-                    self.streamLive()
+                    if (self._isDirectRunning == false){
+                        self.url=remoteUrl
+                        self.streamLive()
+                    }
                 }
             }
             else {
+                print(localUrl)
                 self.url = localUrl
                 self.streamLive()
+                LiveViewController.refresh = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
             }
             
-        }**/
+        }
     }
     
-
-    @IBAction func reload(_ sender: Any) {
-        self.streamLive()
+    @objc private func liveDirect(){
+        let my_uuid: String = UIDevice.current.identifierForVendor?.uuidString ?? NSUUID().uuidString
+        let vuuid: [String] = my_uuid.components(separatedBy: "-")
+        print("My uuid=", vuuid[4])
+    
+        let broker: NetUtils = NetUtils(device_uuid: LiveViewController.uuid)
+        
+        broker.register(my_uuid: vuuid[4])
+        broker.getPeerAddress()
+        broker.cancelBroker()
+        
+        let peer: NetUtils  = NetUtils()
+        print("-----------------------------------------------------")
+        DispatchQueue.main.async {
+            self.progressIndicator.stopAnimating()
+        }
+        while(self._runDirect == true){
+            let image:Data = peer.getImageFromPeer()
+            if (image.isEmpty){
+                continue
+            }
+            DispatchQueue.main.async {
+                self.video.image = UIImage(data: image)
+                self._isDirectRunning = true
+            }
+        }
+        peer.cancelPeer()
     }
     
     public func streamLive()->Void {
+        self._runDirect = false
         print("Live view rcvd url ", self.url!)
         let urlComponent2 = URLComponents(string: self.url!)
         
@@ -93,8 +96,18 @@ class LiveViewController: UIViewController {
         self.stream.play() // Play the stream
     }
     
+
+    @IBAction func reload(_ sender: Any) {
+        self.streamLive()
+    }
+    
+    @objc func fireTimer() {
+        self.streamLive()
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         print("Live view viewDidDisappear")
+        self._runDirect = false
         if (self.stream != nil ){
             self.stream.stop()
         }

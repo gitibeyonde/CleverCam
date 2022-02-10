@@ -37,6 +37,8 @@ class BellAlertViewController: UIViewController {
     var counter: Int = 0
     var counterMax: Int = 0
     public static var history_timer = Timer()
+    var _runDirect:Bool = true
+    var _isDirectRunning:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,21 +47,8 @@ class BellAlertViewController: UIViewController {
         DeviceViewController.showBell = false
         BellAlertViewController.images = [ self.img0, self.img1, self.img2, self.img3, self.img4, self.img5, self.img6, self.img7, self.img8, self.img9 ]
         
-        
         self.liveProgress.startAnimating()
-        let my_uuid: String = UIDevice.current.identifierForVendor?.uuidString ?? NSUUID().uuidString
-        let vuuid: [String] = my_uuid.components(separatedBy: "-")
-        print("My uuid=", vuuid[4])
-        
-        let netUtils: NetUtils = NetUtils(my_uuid: vuuid[4], device_uuid: BellAlertViewController.uuid)
-        
-        netUtils.register()
-        netUtils.getPeerAddress()
-        while(NetUtils._peer_host == ""){
-            sleep(1)
-        }
-        netUtils.cancelBroker()
-        print("-----------------------------------------------------")
+        Thread.detachNewThreadSelector(#selector(liveDirect), toTarget: self, with: nil)
         
         var initFirstImage = false
         HttpRequest.bellAlertDetails(self, uuid: BellAlertViewController.uuid, datetime: BellAlertViewController.datetime) { (notificationList) in
@@ -89,31 +78,24 @@ class BellAlertViewController: UIViewController {
                 }
             }
         }
-        
-        DispatchQueue.main.async {
-                netUtils.initPeer()
-                self.progressHistory.stopAnimating()
-                while(true){
-                    let image:Data = netUtils.getImageFromPeer()
-                    self.live.image = UIImage(data: image)
-                }
-        }
-        /**HttpRequest.checkLocalURL(self, uuid: BellAlertViewController.uuid ) { (localUrl) in
-            print(localUrl)
+        HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in
+            print("Local URL=", localUrl)
             if localUrl == "" {
-                HttpRequest.getRemoteURL(self, uuid: BellAlertViewController.uuid ) { (remoteUrl) in
+                HttpRequest.getRemoteURL(self, uuid: LiveViewController.uuid ) { (remoteUrl) in
                     print(remoteUrl)
-                    self.url=remoteUrl
-                    self.streamLive()
+                    if (self._isDirectRunning == false){
+                        self.url=remoteUrl
+                        self.streamLive()
+                    }
                 }
             }
             else {
-                self.url=localUrl
+                print(localUrl)
+                self.url = localUrl
                 self.streamLive()
             }
             
-        }**/
-        
+        }
         
         
         self.navBack.title = "at " + BellAlertViewController.datetime
@@ -122,19 +104,37 @@ class BellAlertViewController: UIViewController {
     }
     
     
-    override func viewDidDisappear(_ animated: Bool) {
-        print("Bell ALert view viewDidDisappear")
-        if (self.stream != nil ){
-            self.stream.stop()
-        }
-    }
+    @objc private func liveDirect(){
+        let my_uuid: String = UIDevice.current.identifierForVendor?.uuidString ?? NSUUID().uuidString
+        let vuuid: [String] = my_uuid.components(separatedBy: "-")
+        print("My uuid=", vuuid[4])
     
-
-    @IBAction func reload(_ sender: Any) {
-        self.streamLive()
+        let broker: NetUtils = NetUtils(device_uuid: LiveViewController.uuid)
+        
+        broker.register(my_uuid: vuuid[4])
+        broker.getPeerAddress()
+        broker.cancelBroker()
+        
+        let peer: NetUtils  = NetUtils()
+        print("-----------------------------------------------------")
+        DispatchQueue.main.async {
+            self.liveProgress.stopAnimating()
+        }
+        while(self._runDirect == true){
+            let image:Data = peer.getImageFromPeer()
+            if (image.isEmpty){
+                continue
+            }
+            DispatchQueue.main.async {
+                self.live.image = UIImage(data: image)
+                self._isDirectRunning = true
+            }
+        }
+        peer.cancelPeer()
     }
     
     public func streamLive()->Void {
+        self._runDirect = false
         print("Live view rcvd url ", self.url!)
         let urlComponent2 = URLComponents(string: self.url!)
         
@@ -152,6 +152,20 @@ class BellAlertViewController: UIViewController {
         self.stream.contentURL = urlComponent2!.url
         self.stream.play() // Play the stream
     }
+
+    @IBAction func reload(_ sender: Any) {
+        self.streamLive()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("Bell ALert view viewDidDisappear")
+        self._runDirect = false
+        if (self.stream != nil ){
+            self.stream.stop()
+        }
+        BellAlertViewController.history_timer.invalidate()
+    }
+    
     
     @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
         print("Image taped", sender.view!.tag)

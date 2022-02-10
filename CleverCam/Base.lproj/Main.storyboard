@@ -717,9 +717,10 @@
                                 <rect key="frame" x="200" y="246.33333333333337" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOy-hD-lW6">
-                                <rect key="frame" x="180" y="629" width="54" height="30"/>
+                                <rect key="frame" x="182" y="431.66666666666669" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="DeY-Ey-5yF"/>
+                                    <constraint firstAttribute="width" constant="50" id="9Rm-3a-bQr"/>
+                                    <constraint firstAttribute="height" constant="50" id="mug-nn-gG9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" image="arrow.clockwise" catalog="system">
@@ -733,15 +734,14 @@
                         <viewLayoutGuide key="safeArea" id="yl8-R3-eFY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="yl8-R3-eFY" firstAttribute="bottom" secondItem="uOy-hD-lW6" secondAttribute="bottom" constant="100" id="1HX-0L-QjE"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" constant="45" id="3nx-YO-nhL"/>
-                            <constraint firstItem="uOy-hD-lW6" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" constant="180" id="Btu-By-ilp"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="centerX" secondItem="yl8-R3-eFY" secondAttribute="centerX" id="Ji9-dX-wVl"/>
                             <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerY" secondItem="yCi-vZ-qft" secondAttribute="centerY" id="OZm-Pv-oZv"/>
                             <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="yCi-vZ-qft" secondAttribute="trailing" id="Osm-jg-DhO"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="Woo-Ub-xZg"/>
+                            <constraint firstItem="uOy-hD-lW6" firstAttribute="centerX" secondItem="phq-be-GBR" secondAttribute="centerX" id="ZCQ-Kq-jEt"/>
                             <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerX" secondItem="yCi-vZ-qft" secondAttribute="centerX" constant="3" id="eLg-9N-pqC"/>
-                            <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="uOy-hD-lW6" secondAttribute="trailing" constant="180" id="yky-Mc-yYS"/>
+                            <constraint firstItem="uOy-hD-lW6" firstAttribute="top" secondItem="yCi-vZ-qft" secondAttribute="bottom" constant="20" id="efO-1U-3u7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TfO-Bb-iqB"/>

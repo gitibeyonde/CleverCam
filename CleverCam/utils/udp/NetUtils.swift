@@ -18,55 +18,51 @@ class NetUtils {
     public static var _my_uuid: String = ""
     var client:Client
     
-    private static var _is_init: Bool = false
-    
-    init(my_uuid: String, device_uuid: String){
-        NetUtils._is_init = true
-        NetUtils._my_uuid = my_uuid
+    init(device_uuid: String){
         NetUtils._device_uuid = device_uuid
         NetUtils._my_host = IpUtils.getMyIPAddresses()
         NetUtils._my_port = IpUtils.getMyPort()
         print("My host = \(NetUtils._my_host), My Port=\(NetUtils._my_port)")
         self.client = Client(device_uuid: NetUtils._device_uuid)
-        self.client.start(listener: self.client)
+        self.client.start()
     }
     
-    init(my_uuid: String, device_uuid: String, host: String, port: UInt16){
-        NetUtils._is_init = true
-        NetUtils._my_uuid = my_uuid
-        NetUtils._device_uuid = device_uuid
-        NetUtils._my_host = IpUtils.getMyIPAddresses()
-        NetUtils._my_port = IpUtils.getMyPort()
-        print("My host = \(NetUtils._my_host), My Port=\(NetUtils._my_port)")
-        //self.client = Client(device_uuid: NetUtils._device_uuid)
-        //self.client.start(listener: self.client)
-        NetUtils._peer_host = host
-        NetUtils._peer_port = port
+    init(){
+        print("Peer host = \(NetUtils._peer_host), My Port=\(NetUtils._peer_port)")
         self.client = Client(peer_host: NetUtils._peer_host, peer_port: NetUtils._peer_port, device_uuid: NetUtils._device_uuid)
-        self.client.start(listener: client)
+        self.client.start()
     }
     
-    public func register(){
-        self.client.register(my_uuid: NetUtils._my_uuid, my_host: NetUtils._my_host, my_port: NetUtils._my_port)
+    public func register(my_uuid: String)->Void {
+        NetUtils._my_uuid = my_uuid
+        var result: Bool = false
+        while (result == false){
+            result = self.client.register(my_uuid: NetUtils._my_uuid, my_host: NetUtils._my_host, my_port: NetUtils._my_port)
+        }
     }
     
     
-    public func getPeerAddress(){
-        self.client.askPeerAddress()
+    public func getPeerAddress() -> Void {
+        var result: Bool = false
+        while (result == false){
+            let pa = self.client.getPeerAddress()
+            if (pa.1 > 0) {
+                NetUtils._peer_host = pa.0
+                NetUtils._peer_port = pa.1
+                result = true
+            }
+            else {
+                sleep(2)
+            }
+        }
     }
     
     public func cancelBroker(){
         self.client.cancel()
     }
     
-    public func initPeer(){
-        self.client = Client(peer_host: NetUtils._peer_host, peer_port: NetUtils._peer_port, device_uuid: NetUtils._device_uuid)
-        self.client.start(listener: client)
-    }
-    
     public func getImageFromPeer()->Data {
-        self.client.requestDHINJPeer()
-        return self.client.getImage()
+        return self.client.requestDHINJPeer()
     }
     
     public func cancelPeer(){
