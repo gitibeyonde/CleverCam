@@ -30,13 +30,13 @@ class ClientConnection {
         nwConnection.stateUpdateHandler = stateDidChange(to:)
         NSLog("Connection state \(nwConnection.state)")
         nwConnection.start(queue: queue)
-        while(nwConnection.state != NWConnection.State.ready){
-            sleep(1)
-            NSLog("waiting for connection to be ready")
-        }
         NSLog("Connection Ready")
     }
-
+    
+    func isReady() -> Bool {
+        return nwConnection.state == NWConnection.State.ready
+    }
+    
     private func stateDidChange(to state: NWConnection.State) {
         switch state {
             case .setup:

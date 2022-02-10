@@ -33,28 +33,26 @@ class NetUtils {
         self.client.start()
     }
     
-    public func register(my_uuid: String)->Void {
+    public func isReady()->Bool {
+        return self.client.isReady()
+    }
+    
+    public func register(my_uuid: String)->Bool {
         NetUtils._my_uuid = my_uuid
-        var result: Bool = false
-        while (result == false){
-            result = self.client.register(my_uuid: NetUtils._my_uuid, my_host: NetUtils._my_host, my_port: NetUtils._my_port)
-        }
+        return  self.client.register(my_uuid: NetUtils._my_uuid, my_host: NetUtils._my_host, my_port: NetUtils._my_port)
     }
     
     
-    public func getPeerAddress() -> Void {
-        var result: Bool = false
-        while (result == false){
+    public func getPeerAddress() -> Bool {
             let pa = self.client.getPeerAddress()
             if (pa.1 > 0) {
                 NetUtils._peer_host = pa.0
                 NetUtils._peer_port = pa.1
-                result = true
+                return true
             }
             else {
-                sleep(2)
+                return false
             }
-        }
     }
     
     public func cancelBroker(){

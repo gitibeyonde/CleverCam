@@ -43,7 +43,9 @@ class LiveViewController: UIViewController {
                 self.streamLive()
                 LiveViewController.refresh = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
             }
-            
+            DispatchQueue.main.async {
+                self.progressIndicator.stopAnimating()
+            }
         }
     }
     
@@ -54,8 +56,24 @@ class LiveViewController: UIViewController {
     
         let broker: NetUtils = NetUtils(device_uuid: LiveViewController.uuid)
         
-        broker.register(my_uuid: vuuid[4])
-        broker.getPeerAddress()
+        var result: Bool = false
+        while (result == false && self._runDirect == true){
+            result = broker.isReady()
+            sleep(1)
+        }
+        
+        result = false
+        while (result == false && self._runDirect == true){
+            result = broker.register(my_uuid: vuuid[4])
+            sleep(2)
+        }
+        
+        result = false
+        while (result == false && self._runDirect == true){
+            result = broker.getPeerAddress()
+            sleep(2)
+        }
+        
         broker.cancelBroker()
         
         let peer: NetUtils  = NetUtils()
@@ -83,14 +101,6 @@ class LiveViewController: UIViewController {
         
         // Set the ImageView to the stream object
         self.stream = MJPEGStreamLib(imageView: self.video)
-        // Start Loading Indicator
-        self.stream.didStartLoading = { [unowned self] in
-            self.progressIndicator.startAnimating()
-        }
-        // Stop Loading Indicator
-        self.stream.didFinishLoading = { [unowned self] in
-            self.progressIndicator.stopAnimating()
-        }
         
         self.stream.contentURL = urlComponent2!.url
         self.stream.play() // Play the stream

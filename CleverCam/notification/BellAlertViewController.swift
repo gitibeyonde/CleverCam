@@ -46,8 +46,9 @@ class BellAlertViewController: UIViewController {
         NotificationViewController.showBell = false
         DeviceViewController.showBell = false
         BellAlertViewController.images = [ self.img0, self.img1, self.img2, self.img3, self.img4, self.img5, self.img6, self.img7, self.img8, self.img9 ]
-        
-        self.liveProgress.startAnimating()
+        DispatchQueue.main.async() {
+            self.liveProgress.startAnimating()
+        }
         Thread.detachNewThreadSelector(#selector(liveDirect), toTarget: self, with: nil)
         
         var initFirstImage = false
@@ -94,7 +95,9 @@ class BellAlertViewController: UIViewController {
                 self.url = localUrl
                 self.streamLive()
             }
-            
+            DispatchQueue.main.async() {
+                self.liveProgress.stopAnimating()
+            }
         }
         
         
@@ -111,8 +114,23 @@ class BellAlertViewController: UIViewController {
     
         let broker: NetUtils = NetUtils(device_uuid: LiveViewController.uuid)
         
-        broker.register(my_uuid: vuuid[4])
-        broker.getPeerAddress()
+        var result: Bool = false
+        while (result == false && self._runDirect == true){
+            result = broker.isReady()
+            sleep(1)
+        }
+        
+        result = false
+        while (result == false && self._runDirect == true){
+            result = broker.register(my_uuid: vuuid[4])
+            sleep(2)
+        }
+        
+        result = false
+        while (result == false && self._runDirect == true){
+            result = broker.getPeerAddress()
+            sleep(2)
+        }
         broker.cancelBroker()
         
         let peer: NetUtils  = NetUtils()
@@ -140,14 +158,6 @@ class BellAlertViewController: UIViewController {
         
         // Set the ImageView to the stream object
         self.stream = MJPEGStreamLib(imageView: self.live)
-        // Start Loading Indicator
-        self.stream.didStartLoading = { [unowned self] in
-            self.liveProgress.startAnimating()
-        }
-        // Stop Loading Indicator
-        self.stream.didFinishLoading = { [unowned self] in
-            self.liveProgress.stopAnimating()
-        }
         
         self.stream.contentURL = urlComponent2!.url
         self.stream.play() // Play the stream

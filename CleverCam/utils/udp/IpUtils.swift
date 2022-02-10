@@ -26,12 +26,12 @@ public class IpUtils {
     
     static func getMyIPAddresses() -> String {
         var addresses = [Address]()
-        var preferredAddress:String = ""
+        var preferredAddress:String = "127.0.0.1"
      
         // Get list of all interfaces on the local machine:
         var ifaddr : UnsafeMutablePointer<ifaddrs>?
-        guard getifaddrs(&ifaddr) == 0 else { return "0.0.0.0" }
-        guard let firstAddr = ifaddr else { return "0.0.0.0" }
+        guard getifaddrs(&ifaddr) == 0 else { return "127.0.0.1" }
+        guard let firstAddr = ifaddr else { return "127.0.0.1" }
      
         // For each interface ...
         for ptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
@@ -40,45 +40,28 @@ public class IpUtils {
             // Check for running IPv4, IPv6 interfaces. Skip the loopback interface.
             if (flags & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING) {
                 if addr.sa_family == UInt8(AF_INET) { //|| addr.sa_family == UInt8(AF_INET6) {
+                    
                     let interfaceName =  String.init(cString: &ptr.pointee.ifa_name.pointee)
-                    print(interfaceName)
+                    print("All-->",addr, flags)
+                    print("Interface Name->",interfaceName)
      
                     // Convert interface address to a human readable string:
                     var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                    if (getnameinfo(ptr.pointee.ifa_addr, socklen_t(addr.sa_len), &hostname, socklen_t(hostname.count),
-                                    nil, socklen_t(0), NI_NUMERICHOST) == 0) {
+                    if (getnameinfo(ptr.pointee.ifa_addr, socklen_t(addr.sa_len), &hostname, socklen_t(hostname.count), nil, socklen_t(0), NI_NUMERICHOST) == 0) {
                         let address:Address = Address(hostname: String(cString: hostname), type: interfaceName)
+                        
                         addresses.append(address)
+                        print("Address=",address)
                     }
                 }
             }
         }
         freeifaddrs(ifaddr)
-        
-        
-        for a in addresses {
-            if (a.type == "en0"){
-                preferredAddress = a.hostname
-                break
-            }
+    
+        if (addresses.count >= 1){
+            preferredAddress = addresses[0].hostname
         }
-        if preferredAddress == "" {
-            for a in addresses {
-                if (a.type == "en1"){
-                    preferredAddress = a.hostname
-                    break
-                }
-            }
-        }
-        if preferredAddress == "" {
-            for a in addresses {
-                if (a.type == "en2"){
-                    preferredAddress = a.hostname
-                    break
-                }
-            }
-        }
-        
+    
        return preferredAddress
     }
     

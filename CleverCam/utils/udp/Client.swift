@@ -33,12 +33,15 @@ class Client {
         connectionParams.requiredLocalEndpoint = NWEndpoint.hostPort(host: NWEndpoint.Host(NetUtils._my_host), port: NWEndpoint.Port("\(NetUtils._my_port)")!)
         let nwConnection = NWConnection(host: host, port: port, using: connectionParams)
         _connection = ClientConnection(nwConnection: nwConnection)
-        
     }
 
     func start() {
         _connection.didStopCallback = didStopCallback(error:)
         _connection.start()
+    }
+    
+    func isReady()->Bool {
+        return _connection.isReady()
     }
 
     func cancel(){
@@ -69,7 +72,6 @@ class Client {
         }
         else {
             NSLog("Broker<BAD>:\(String(decoding: response, as: UTF8.self))")
-            sleep(1)
             return false
         }
     }
@@ -88,7 +90,6 @@ class Client {
         }
         else {
             NSLog("Broker<BAD>:\(String(decoding: response, as: UTF8.self))")
-            sleep(1)
             return ("", 0)
         }
     }
