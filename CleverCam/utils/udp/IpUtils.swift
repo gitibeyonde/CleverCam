@@ -39,7 +39,7 @@ public class IpUtils {
             let addr = ptr.pointee.ifa_addr.pointee
             // Check for running IPv4, IPv6 interfaces. Skip the loopback interface.
             if (flags & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING) {
-                if addr.sa_family == UInt8(AF_INET) { //|| addr.sa_family == UInt8(AF_INET6) {
+                if addr.sa_family == UInt8(AF_INET) || addr.sa_family == UInt8(AF_INET6) {
                     
                     let interfaceName =  String.init(cString: &ptr.pointee.ifa_name.pointee)
                     print("All-->",addr, flags)
@@ -58,8 +58,34 @@ public class IpUtils {
         }
         freeifaddrs(ifaddr)
     
-        if (addresses.count >= 1){
+        if (addresses.count == 1){
             preferredAddress = addresses[0].hostname
+        }
+        else if (addresses.count > 1) {
+            var found: Bool = false
+            
+            for ads in addresses {
+                if ads.type == "en0" {
+                    found = true
+                    preferredAddress = ads.hostname
+                    break
+                }
+            }
+            
+            if found == false {
+                for ads in addresses {
+                    if ads.type == "pdp_ip0" {
+                        found = true
+                        preferredAddress = ads.hostname
+                        break
+                    }
+                }
+            }
+            
+            if found == false {
+                found = true
+                preferredAddress = addresses[0].hostname
+            }
         }
     
        return preferredAddress

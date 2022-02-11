@@ -11,6 +11,9 @@ class LiveViewController: UIViewController {
 
     @IBOutlet weak var video: UIImageView!
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var localStream: UILabel!
+    @IBOutlet weak var cloudStream: UILabel!
+    @IBOutlet weak var directStream: UILabel!
     
     public static var uuid: String = ""
     var stream: MJPEGStreamLib!
@@ -34,6 +37,11 @@ class LiveViewController: UIViewController {
                     if (self._isDirectRunning == false){
                         self.url=remoteUrl
                         self.streamLive()
+                        DispatchQueue.main.async {
+                            self.progressIndicator.stopAnimating()
+                            self.cloudStream.textColor = UIColor.green
+                            self.directStream.textColor = UIColor.lightGray
+                        }
                     }
                 }
             }
@@ -41,10 +49,12 @@ class LiveViewController: UIViewController {
                 print(localUrl)
                 self.url = localUrl
                 self.streamLive()
+                DispatchQueue.main.async {
+                    self.progressIndicator.stopAnimating()
+                    self.localStream.textColor = UIColor.green
+                    self.directStream.textColor = UIColor.lightGray
+                }
                 LiveViewController.refresh = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
-            }
-            DispatchQueue.main.async {
-                self.progressIndicator.stopAnimating()
             }
         }
     }
@@ -58,29 +68,37 @@ class LiveViewController: UIViewController {
         
         var result: Bool = false
         while (result == false && self._runDirect == true){
-            result = broker.isReady()
             sleep(1)
+            result = broker.isReady()
         }
         
         result = false
         while (result == false && self._runDirect == true){
+            sleep(1)
             result = broker.register(my_uuid: vuuid[4])
-            sleep(2)
         }
         
         result = false
         while (result == false && self._runDirect == true){
             result = broker.getPeerAddress()
-            sleep(2)
+            sleep(1)
         }
+        result = broker.getPeerAddress()
         
         broker.cancelBroker()
         
+        DispatchQueue.main.async {
+            if (self._runDirect == false){
+                self.directStream.textColor = UIColor.lightGray
+            }
+            else {
+                self.progressIndicator.stopAnimating()
+                self.directStream.textColor = UIColor.green
+            }
+        }
+        
         let peer: NetUtils  = NetUtils()
         print("-----------------------------------------------------")
-        DispatchQueue.main.async {
-            self.progressIndicator.stopAnimating()
-        }
         while(self._runDirect == true){
             let image:Data = peer.getImageFromPeer()
             if (image.isEmpty){

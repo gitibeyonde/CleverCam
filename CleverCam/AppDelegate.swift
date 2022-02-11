@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var _isRunning:Bool = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        //let broker: NetUtils = NetUtils(device_uuid: LiveViewController.uuid)
+        //exit(0)
+        
         print(">>>>>>>>>didFinishLaunchingWithOptions willPresent----")
         FirebaseApp.configure()
         if #available(iOS 10.0, *) {
