@@ -28,12 +28,12 @@ class LiveViewController: UIViewController {
         print("loading live view for ", LiveViewController.uuid)
         
         header.text = "    " + ApiContext.shared.getDeviceName(uuid: LiveViewController.uuid) + " Live"
+        
         self.progressIndicator.startAnimating()
         Thread.detachNewThreadSelector(#selector(liveDirect), toTarget: self, with: nil)
         
         HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in
             print("Local URL=", localUrl)
-            return
             if localUrl == "" {
                 HttpRequest.getRemoteURL(self, uuid: LiveViewController.uuid ) { (remoteUrl) in
                     print(remoteUrl)
@@ -136,6 +136,7 @@ class LiveViewController: UIViewController {
     public func streamLive()->Void {
         self._runDirect = false
         print("Live view rcvd url ", self.url!)
+        
         let urlComponent2 = URLComponents(string: self.url!)
         
         // Set the ImageView to the stream object
