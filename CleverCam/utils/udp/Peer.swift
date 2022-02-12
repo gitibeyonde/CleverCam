@@ -76,7 +76,6 @@ class Peer {
             NSLog("Peer<:\(String(decoding: response, as: UTF8.self))")
             let vc = response.split(separator: 58)[1].split(separator: 46)
             let size: Int = Int(String(decoding: vc[1], as: UTF8.self))!
-            NSLog("Size=\(size)")
             _peer_connection.resetImage()
             return _peer_connection.receiveImage(size: size)
         }

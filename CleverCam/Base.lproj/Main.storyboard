@@ -716,20 +716,6 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGo-ox-oOQ">
                                 <rect key="frame" x="200" y="246.33333333333337" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOy-hD-lW6">
-                                <rect key="frame" x="182" y="441.66666666666669" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="9Rm-3a-bQr"/>
-                                    <constraint firstAttribute="height" constant="50" id="mug-nn-gG9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" image="arrow.clockwise" catalog="system">
-                                    <color key="titleColor" name="colPrimaryDark"/>
-                                </state>
-                                <connections>
-                                    <action selector="reload:" destination="NCE-0w-BAR" eventType="touchUpInside" id="RuK-gH-2Xe"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="FaP-RV-Pn8">
                                 <rect key="frame" x="0.0" y="415.66666666666669" width="414" height="10"/>
                                 <subviews>
@@ -778,9 +764,7 @@
                             <constraint firstItem="jQU-Ru-bKO" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="RUx-55-uJu"/>
                             <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="jQU-Ru-bKO" secondAttribute="trailing" id="Ras-yh-MUd"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="Woo-Ub-xZg"/>
-                            <constraint firstItem="uOy-hD-lW6" firstAttribute="centerX" secondItem="phq-be-GBR" secondAttribute="centerX" id="ZCQ-Kq-jEt"/>
                             <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerX" secondItem="yCi-vZ-qft" secondAttribute="centerX" constant="3" id="eLg-9N-pqC"/>
-                            <constraint firstItem="uOy-hD-lW6" firstAttribute="top" secondItem="yCi-vZ-qft" secondAttribute="bottom" constant="30" id="efO-1U-3u7"/>
                             <constraint firstItem="FaP-RV-Pn8" firstAttribute="top" secondItem="yCi-vZ-qft" secondAttribute="bottom" constant="4" id="lJ8-HE-0nP"/>
                             <constraint firstItem="jQU-Ru-bKO" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" id="yzx-N9-HTl"/>
                         </constraints>

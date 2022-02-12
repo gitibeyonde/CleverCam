@@ -14,11 +14,9 @@ class ClientConnection {
 
     let nwConnection: NWConnection
     let queue: DispatchQueue = DispatchQueue(label: "CamQ")
-    let datagram_size: Int = 1460
+    let DATAGRAM_SIZE: Int = 1460
     
     public var type: String = ""
-    public var min_size: Int = 10
-    public var max_size: Int = 32
     var image: Data = Data()
 
     init(nwConnection: NWConnection) {
@@ -75,7 +73,7 @@ class ClientConnection {
             }
             send_semaphone.signal()
         }))
-        _ = send_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
+        _ = send_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(1))
         
         var response: Data = Data()
         let receive_semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
@@ -91,13 +89,12 @@ class ClientConnection {
             }
             receive_semaphone.signal()
         })
-        _ = receive_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
+        _ = receive_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(1))
         return response
     }
     
     func receiveImage(size: Int)->Data {
-        //let max_loop: Int = Int(size/1460) + 2
-        for _ in (0..<50){
+        for _ in (0..<Int(size/DATAGRAM_SIZE)+1){
             let response = self.receiveAll(size: size)
             if (self.image.count == size || response == 0 ){
                 break
@@ -114,7 +111,7 @@ class ClientConnection {
                 if let data = data, !data.isEmpty {
                     byte_count = data.count
                     self.image.append(data)
-                    NSLog("receivelAll data: \(self.image.count)")
+                    //NSLog("receivelAll data: \(self.image.count)")
                 }
             } else if let error = error {
                 NSLog("setupReceiveAll connection error \(error)")
@@ -123,7 +120,7 @@ class ClientConnection {
             }
             _ = receiveAll_semaphone.signal()
         })
-        _ = receiveAll_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
+        _ = receiveAll_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(1))
         return byte_count
     }
     
