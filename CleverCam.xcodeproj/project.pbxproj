@@ -43,8 +43,8 @@
 		AB9BF7B92723E8A900C5B832 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9BF7B82723E8A900C5B832 /* ResetViewController.swift */; };
 		ABDC6F6427296FF100061E9B /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDC6F6327296FF100061E9B /* TimeZone.swift */; };
 		ABEA64D727AE4B7800DF1AAC /* IpUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEA64D627AE4B7800DF1AAC /* IpUtils.swift */; };
-		ABEA64E727AF7BB500DF1AAC /* NetUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEA64E627AF7BB500DF1AAC /* NetUtils.swift */; };
-		ABEA64ED27B1172F00DF1AAC /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEA64EC27B1172F00DF1AAC /* Client.swift */; };
+		ABEA64F527B771CC00DF1AAC /* Peer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEA64F427B771CC00DF1AAC /* Peer.swift */; };
+		ABEA64F927B771E000DF1AAC /* Broker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEA64F827B771E000DF1AAC /* Broker.swift */; };
 		ABF755552771D3E800ED8403 /* CleverCamNSE.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AB2AA5DF276855AA002EB810 /* CleverCamNSE.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CD294B6B2772CC91007FF43E /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CD294B6A2772CC91007FF43E /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
@@ -122,8 +122,8 @@
 		ABBFAE55275B8F1C00E0BD2D /* CleverCam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CleverCam.entitlements; sourceTree = "<group>"; };
 		ABDC6F6327296FF100061E9B /* TimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZone.swift; sourceTree = "<group>"; };
 		ABEA64D627AE4B7800DF1AAC /* IpUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpUtils.swift; sourceTree = "<group>"; };
-		ABEA64E627AF7BB500DF1AAC /* NetUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetUtils.swift; sourceTree = "<group>"; };
-		ABEA64EC27B1172F00DF1AAC /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		ABEA64F427B771CC00DF1AAC /* Peer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peer.swift; sourceTree = "<group>"; };
+		ABEA64F827B771E000DF1AAC /* Broker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Broker.swift; sourceTree = "<group>"; };
 		ABF755602771DC5A00ED8403 /* CleverCamNSE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CleverCamNSE.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,8 +152,8 @@
 			children = (
 				AB24ED0A27AE2F83004D34D2 /* ClientConnection.swift */,
 				ABEA64D627AE4B7800DF1AAC /* IpUtils.swift */,
-				ABEA64E627AF7BB500DF1AAC /* NetUtils.swift */,
-				ABEA64EC27B1172F00DF1AAC /* Client.swift */,
+				ABEA64F427B771CC00DF1AAC /* Peer.swift */,
+				ABEA64F827B771E000DF1AAC /* Broker.swift */,
 			);
 			path = udp;
 			sourceTree = "<group>";
@@ -414,9 +414,10 @@
 				AB7F82D2271D72CF0054DA5E /* LiveViewController.swift in Sources */,
 				AB7F8298271820270054DA5E /* DeviceViewController.swift in Sources */,
 				AB38989A275B108B00884EFC /* DeviceCell.swift in Sources */,
+				ABEA64F927B771E000DF1AAC /* Broker.swift in Sources */,
 				AB7F828427170E4B0054DA5E /* Users.swift in Sources */,
 				AB7F82B127197DEA0054DA5E /* ApiObjects.swift in Sources */,
-				ABEA64ED27B1172F00DF1AAC /* Client.swift in Sources */,
+				ABEA64F527B771CC00DF1AAC /* Peer.swift in Sources */,
 				ABDC6F6427296FF100061E9B /* TimeZone.swift in Sources */,
 				AB7F82C3271C45340054DA5E /* HistoryViewController.swift in Sources */,
 				AB24ED0F27AE2FDD004D34D2 /* MJEPEGRunner.swift in Sources */,
@@ -434,7 +435,6 @@
 				AB7F82E2271D79B30054DA5E /* BluetoothViewController.swift in Sources */,
 				AB7F825F2716D0D70054DA5E /* AppDelegate.swift in Sources */,
 				AB24ED0B27AE2F83004D34D2 /* ClientConnection.swift in Sources */,
-				ABEA64E727AF7BB500DF1AAC /* NetUtils.swift in Sources */,
 				AB9BF7B92723E8A900C5B832 /* ResetViewController.swift in Sources */,
 				AB7F82612716D0D70054DA5E /* SceneDelegate.swift in Sources */,
 			);

@@ -14,6 +14,7 @@ class ClientConnection {
 
     let nwConnection: NWConnection
     let queue: DispatchQueue = DispatchQueue(label: "CamQ")
+    let datagram_size: Int = 1460
     
     public var type: String = ""
     public var min_size: Int = 10
@@ -28,13 +29,15 @@ class ClientConnection {
 
     func start() {
         nwConnection.stateUpdateHandler = stateDidChange(to:)
-        NSLog("Connection state \(nwConnection.state)")
         nwConnection.start(queue: queue)
-        NSLog("Connection Ready")
     }
     
     func isReady() -> Bool {
         return nwConnection.state == NWConnection.State.ready
+    }
+    
+    func isCancelled() -> Bool {
+        return nwConnection.state == NWConnection.State.cancelled
     }
     
     private func stateDidChange(to state: NWConnection.State) {
@@ -72,7 +75,7 @@ class ClientConnection {
             }
             send_semaphone.signal()
         }))
-        _ = send_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(1))
+        _ = send_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
         
         var response: Data = Data()
         let receive_semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
@@ -93,9 +96,10 @@ class ClientConnection {
     }
     
     func receiveImage(size: Int)->Data {
-        for _ in (0..<20){
-            _ = self.receiveAll(size: size)
-            if (self.image.count == size){
+        //let max_loop: Int = Int(size/1460) + 2
+        for _ in (0..<30){
+            let response = self.receiveAll(size: size)
+            if (self.image.count == size || response.count == 0 ){
                 break
             }
         }
@@ -103,21 +107,22 @@ class ClientConnection {
     }
     
     func receiveAll(size: Int)->Data {
-        let semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
-        nwConnection.receive(minimumIncompleteLength: size, maximumLength: size) { (data, _, isComplete, error) in
+        let receiveAll_semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
+        nwConnection.receiveMessage(completion: { (data, _, isComplete, error) in
             if isComplete {
                 if let data = data, !data.isEmpty {
                     self.image.append(data)
+                    NSLog("receivelAll data: \(self.image.count)")
                 }
             } else if let error = error {
                 NSLog("setupReceiveAll connection error \(error)")
             } else {
                 NSLog("setupReceiveAll inComplete \(self.image.count)")
             }
-            _ = semaphone.signal()
-        }
-        _ = semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
-        return self.image
+            _ = receiveAll_semaphone.signal()
+        })
+        _ = receiveAll_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
+        return image
     }
     
     private func connectionDidFail(error: Error) {
@@ -133,7 +138,6 @@ class ClientConnection {
     public func cancel(error: Error?) {
         self.nwConnection.stateUpdateHandler = nil
         self.nwConnection.cancel()
-        self.nwConnection.forceCancel()
         while(nwConnection.state != NWConnection.State.cancelled){
             sleep(1)
             NSLog("waiting for connection to be cancelled")

@@ -49,7 +49,7 @@ class BellAlertViewController: UIViewController {
         DispatchQueue.main.async() {
             self.liveProgress.startAnimating()
         }
-        Thread.detachNewThreadSelector(#selector(liveDirect), toTarget: self, with: nil)
+        //Thread.detachNewThreadSelector(#selector(liveDirect), toTarget: self, with: nil)
         
         var initFirstImage = false
         HttpRequest.bellAlertDetails(self, uuid: BellAlertViewController.uuid, datetime: BellAlertViewController.datetime) { (notificationList) in
@@ -81,6 +81,7 @@ class BellAlertViewController: UIViewController {
         }
         HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in
             print("Local URL=", localUrl)
+            return
             if localUrl == "" {
                 HttpRequest.getRemoteURL(self, uuid: LiveViewController.uuid ) { (remoteUrl) in
                     print(remoteUrl)
@@ -104,51 +105,6 @@ class BellAlertViewController: UIViewController {
         self.navBack.title = "at " + BellAlertViewController.datetime
         //animate history
         BellAlertViewController.history_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
-    }
-    
-    
-    @objc private func liveDirect(){
-        let my_uuid: String = UIDevice.current.identifierForVendor?.uuidString ?? NSUUID().uuidString
-        let vuuid: [String] = my_uuid.components(separatedBy: "-")
-        print("My uuid=", vuuid[4])
-    
-        let broker: NetUtils = NetUtils(device_uuid: LiveViewController.uuid)
-        
-        var result: Bool = false
-        while (result == false && self._runDirect == true){
-            result = broker.isReady()
-            sleep(1)
-        }
-        
-        result = false
-        while (result == false && self._runDirect == true){
-            result = broker.register(my_uuid: vuuid[4])
-            sleep(2)
-        }
-        
-        result = false
-        while (result == false && self._runDirect == true){
-            result = broker.getPeerAddress()
-            sleep(2)
-        }
-        broker.cancelBroker()
-        
-        let peer: NetUtils  = NetUtils()
-        print("-----------------------------------------------------")
-        DispatchQueue.main.async {
-            self.liveProgress.stopAnimating()
-        }
-        while(self._runDirect == true){
-            let image:Data = peer.getImageFromPeer()
-            if (image.isEmpty){
-                continue
-            }
-            DispatchQueue.main.async {
-                self.live.image = UIImage(data: image)
-                self._isDirectRunning = true
-            }
-        }
-        peer.cancelPeer()
     }
     
     public func streamLive()->Void {

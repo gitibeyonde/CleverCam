@@ -31,6 +31,7 @@ class LiveViewController: UIViewController {
         
         HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in
             print("Local URL=", localUrl)
+            return
             if localUrl == "" {
                 HttpRequest.getRemoteURL(self, uuid: LiveViewController.uuid ) { (remoteUrl) in
                     print(remoteUrl)
@@ -60,33 +61,17 @@ class LiveViewController: UIViewController {
     }
     
     @objc private func liveDirect(){
+        var _peer_host: String = ""
+        var _peer_port: UInt16 = 1
+        var _my_host: String = ""
+        var _my_port: UInt16 = 1
+        var _my_uuid: String = ""
+        
         let my_uuid: String = UIDevice.current.identifierForVendor?.uuidString ?? NSUUID().uuidString
         let vuuid: [String] = my_uuid.components(separatedBy: "-")
         print("My uuid=", vuuid[4])
+        _my_uuid = vuuid[4]
     
-        let broker: NetUtils = NetUtils(device_uuid: LiveViewController.uuid)
-        
-        var result: Bool = false
-        while (result == false && self._runDirect == true){
-            sleep(1)
-            result = broker.isReady()
-        }
-        
-        result = false
-        while (result == false && self._runDirect == true){
-            sleep(1)
-            result = broker.register(my_uuid: vuuid[4])
-        }
-        
-        result = false
-        while (result == false && self._runDirect == true){
-            result = broker.getPeerAddress()
-            sleep(1)
-        }
-        result = broker.getPeerAddress()
-        
-        broker.cancelBroker()
-        
         DispatchQueue.main.async {
             if (self._runDirect == false){
                 self.directStream.textColor = UIColor.lightGray
@@ -97,19 +82,49 @@ class LiveViewController: UIViewController {
             }
         }
         
-        let peer: NetUtils  = NetUtils()
+        var errors: Int = 10
         print("-----------------------------------------------------")
         while(self._runDirect == true){
-            let image:Data = peer.getImageFromPeer()
-            if (image.isEmpty){
-                continue
+            if (errors > 5) {
+                _my_host = IpUtils.getMyIPAddresses()
+                _my_port = IpUtils.getMyPort()
+                print("My host = \(_my_host), My Port=\(_my_port)")
+                
+                let broker = Broker(my_host: _my_host, my_port: _my_port)
+                broker.start()
+                
+                if (!broker.register(my_uuid: _my_uuid, my_host: _my_host, my_port: _my_port)){
+                    continue
+                }
+                
+                let pa = broker.getPeerAddress(device_uuid: LiveViewController.uuid)
+                if (pa.1 > 0) {
+                    _peer_host = pa.0
+                    _peer_port = pa.1
+                }
+                else {
+                    continue
+                }
+                
+                errors = 0
+                broker.cancel()
             }
-            DispatchQueue.main.async {
-                self.video.image = UIImage(data: image)
-                self._isDirectRunning = true
+            
+            let peer: Peer  = Peer(peer_host: _peer_host, peer_port: _peer_port, my_host: _my_host, my_port: _my_port, device_uuid: LiveViewController.uuid)
+            
+            let image:Data = peer.requestDHINJPeer()
+            if (image.isEmpty){
+                errors += 1
+            }
+            else {
+                DispatchQueue.main.async {
+                    self.video.image = UIImage(data: image)
+                    self._isDirectRunning = true
+                }
+                errors = 0
             }
         }
-        peer.cancelPeer()
+        //peer.cancel()
     }
     
     public func streamLive()->Void {
