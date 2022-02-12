@@ -14,6 +14,7 @@ class LiveViewController: UIViewController {
     @IBOutlet weak var localStream: UILabel!
     @IBOutlet weak var cloudStream: UILabel!
     @IBOutlet weak var directStream: UILabel!
+    @IBOutlet var header: UILabel!
     
     public static var uuid: String = ""
     var stream: MJPEGStreamLib!
@@ -26,6 +27,7 @@ class LiveViewController: UIViewController {
         super.viewDidLoad()
         print("loading live view for ", LiveViewController.uuid)
         
+        header.text = "    " + ApiContext.shared.getDeviceName(uuid: LiveViewController.uuid) + " Live"
         self.progressIndicator.startAnimating()
         Thread.detachNewThreadSelector(#selector(liveDirect), toTarget: self, with: nil)
         

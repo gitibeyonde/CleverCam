@@ -756,6 +756,15 @@
                                     <constraint firstAttribute="height" constant="10" id="mCh-qc-YGy"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQU-Ru-bKO">
+                                <rect key="frame" x="0.0" y="56" width="414" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fWV-mH-8du"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="colSecDark"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yl8-R3-eFY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -766,17 +775,21 @@
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="centerX" secondItem="yl8-R3-eFY" secondAttribute="centerX" id="Ji9-dX-wVl"/>
                             <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerY" secondItem="yCi-vZ-qft" secondAttribute="centerY" id="OZm-Pv-oZv"/>
                             <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="yCi-vZ-qft" secondAttribute="trailing" id="Osm-jg-DhO"/>
+                            <constraint firstItem="jQU-Ru-bKO" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="RUx-55-uJu"/>
+                            <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="jQU-Ru-bKO" secondAttribute="trailing" id="Ras-yh-MUd"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="Woo-Ub-xZg"/>
                             <constraint firstItem="uOy-hD-lW6" firstAttribute="centerX" secondItem="phq-be-GBR" secondAttribute="centerX" id="ZCQ-Kq-jEt"/>
                             <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerX" secondItem="yCi-vZ-qft" secondAttribute="centerX" constant="3" id="eLg-9N-pqC"/>
                             <constraint firstItem="uOy-hD-lW6" firstAttribute="top" secondItem="yCi-vZ-qft" secondAttribute="bottom" constant="30" id="efO-1U-3u7"/>
                             <constraint firstItem="FaP-RV-Pn8" firstAttribute="top" secondItem="yCi-vZ-qft" secondAttribute="bottom" constant="4" id="lJ8-HE-0nP"/>
+                            <constraint firstItem="jQU-Ru-bKO" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" id="yzx-N9-HTl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TfO-Bb-iqB"/>
                     <connections>
                         <outlet property="cloudStream" destination="ZUp-yd-mhi" id="cBJ-Un-IQq"/>
                         <outlet property="directStream" destination="sHD-jb-QsZ" id="86G-c9-7RO"/>
+                        <outlet property="header" destination="jQU-Ru-bKO" id="diV-To-Ceb"/>
                         <outlet property="localStream" destination="qM1-xs-xVg" id="eiG-N7-l9d"/>
                         <outlet property="progressIndicator" destination="jGo-ox-oOQ" id="6iu-vl-WdL"/>
                         <outlet property="video" destination="yCi-vZ-qft" id="Eid-T4-bLh"/>

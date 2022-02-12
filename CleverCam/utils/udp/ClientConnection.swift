@@ -97,7 +97,7 @@ class ClientConnection {
     
     func receiveImage(size: Int)->Data {
         //let max_loop: Int = Int(size/1460) + 2
-        for _ in (0..<30){
+        for _ in (0..<50){
             let response = self.receiveAll(size: size)
             if (self.image.count == size || response == 0 ){
                 break
