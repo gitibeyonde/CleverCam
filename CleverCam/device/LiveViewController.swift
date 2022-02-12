@@ -82,49 +82,53 @@ class LiveViewController: UIViewController {
             }
         }
         
-        var errors: Int = 10
+        var errors: Int = 0
         print("-----------------------------------------------------")
         while(self._runDirect == true){
-            if (errors > 5) {
-                _my_host = IpUtils.getMyIPAddresses()
-                _my_port = IpUtils.getMyPort()
-                print("My host = \(_my_host), My Port=\(_my_port)")
-                
-                let broker = Broker(my_host: _my_host, my_port: _my_port)
-                broker.start()
-                
-                if (!broker.register(my_uuid: _my_uuid, my_host: _my_host, my_port: _my_port)){
-                    continue
-                }
-                
-                let pa = broker.getPeerAddress(device_uuid: LiveViewController.uuid)
-                if (pa.1 > 0) {
-                    _peer_host = pa.0
-                    _peer_port = pa.1
-                }
-                else {
-                    continue
-                }
-                
-                errors = 0
-                broker.cancel()
+            _my_host = IpUtils.getMyIPAddresses()
+            _my_port = IpUtils.getMyPort()
+            print("My host = \(_my_host), My Port=\(_my_port)")
+            
+            let broker = Broker(my_host: _my_host, my_port: _my_port)
+            broker.start()
+            
+            if (!broker.register(my_uuid: _my_uuid, my_host: _my_host, my_port: _my_port)){
+                continue
             }
             
-            let peer: Peer  = Peer(peer_host: _peer_host, peer_port: _peer_port, my_host: _my_host, my_port: _my_port, device_uuid: LiveViewController.uuid)
-            
-            let image:Data = peer.requestDHINJPeer()
-            if (image.isEmpty){
-                errors += 1
+            let pa = broker.getPeerAddress(device_uuid: LiveViewController.uuid)
+            if (pa.1 > 0) {
+                _peer_host = pa.0
+                _peer_port = pa.1
             }
             else {
-                DispatchQueue.main.async {
-                    self.video.image = UIImage(data: image)
-                    self._isDirectRunning = true
-                }
-                errors = 0
+                continue
             }
+            
+            errors = 0
+            broker.cancel()
+            
+            let peer: Peer  = Peer(peer_host: _peer_host, peer_port: _peer_port, my_host: _my_host, my_port: _my_port, device_uuid: LiveViewController.uuid)
+            peer.start()
+            while(self._runDirect == true){
+                let image:Data = peer.requestDHINJPeer()
+                if (image.isEmpty){
+                    errors += 1
+                }
+                else {
+                    DispatchQueue.main.async {
+                        self.video.image = UIImage(data: image)
+                        self._isDirectRunning = true
+                    }
+                    errors = 0
+                }
+                if (errors > 20){
+                    break
+                }
+            }
+            peer.cancel()
         }
-        //peer.cancel()
+       
     }
     
     public func streamLive()->Void {

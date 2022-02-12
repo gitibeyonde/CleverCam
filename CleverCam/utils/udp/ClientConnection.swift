@@ -99,18 +99,20 @@ class ClientConnection {
         //let max_loop: Int = Int(size/1460) + 2
         for _ in (0..<30){
             let response = self.receiveAll(size: size)
-            if (self.image.count == size || response.count == 0 ){
+            if (self.image.count == size || response == 0 ){
                 break
             }
         }
         return self.image
     }
     
-    func receiveAll(size: Int)->Data {
+    func receiveAll(size: Int)->Int {
+        var byte_count: Int = 0
         let receiveAll_semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
         nwConnection.receiveMessage(completion: { (data, _, isComplete, error) in
             if isComplete {
                 if let data = data, !data.isEmpty {
+                    byte_count = data.count
                     self.image.append(data)
                     NSLog("receivelAll data: \(self.image.count)")
                 }
@@ -122,7 +124,7 @@ class ClientConnection {
             _ = receiveAll_semaphone.signal()
         })
         _ = receiveAll_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
-        return image
+        return byte_count
     }
     
     private func connectionDidFail(error: Error) {
