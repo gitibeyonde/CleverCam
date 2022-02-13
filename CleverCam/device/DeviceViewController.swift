@@ -84,6 +84,7 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        DeviceViewController.device_timer.invalidate()
         print("Device View exited...exit app")
     }
     
@@ -136,21 +137,18 @@ extension DeviceViewController: HttpRequestDelegate {
 
 extension DeviceViewController: DeviceCellDelegate {
     func historyClicked(with uuid: String) {
-        DeviceViewController.device_timer.invalidate()
         print("uuid clicked = \(uuid)")
         HistoryViewController.uuid = uuid
         self.performSegue(withIdentifier: "ShowHistory", sender: uuid)
     }
     
     func liveClicked(with uuid: String) {
-        DeviceViewController.device_timer.invalidate()
         print("uuid clicked = \(uuid)")
         LiveViewController.uuid = uuid
         self.performSegue(withIdentifier: "ShowLive", sender: uuid)
     }
     
     func settingsClicked(with uuid: String) {
-        DeviceViewController.device_timer.invalidate()
         print("uuid clicked = \(uuid)")
         SettingsViewController.uuid = uuid
         self.performSegue(withIdentifier: "ShowSettings", sender: uuid)

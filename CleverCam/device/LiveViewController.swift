@@ -21,7 +21,6 @@ class LiveViewController: UIViewController {
     var url: String?
     var _runDirect:Bool = true
     var _isDirectRunning:Bool = false
-    public static var refresh = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +57,6 @@ class LiveViewController: UIViewController {
                     self.localStream.textColor = UIColor.green
                     self.directStream.textColor = UIColor.lightGray
                 }
-                LiveViewController.refresh = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
             }
         }
     }
@@ -127,7 +125,7 @@ class LiveViewController: UIViewController {
     
     public func streamLive()->Void {
         self._runDirect = false
-        print("Live view rcvd url ", self.url!)
+        NSLog("Live view rcvd url \( self.url!)")
         
         let urlComponent2 = URLComponents(string: self.url!)
         
@@ -138,17 +136,13 @@ class LiveViewController: UIViewController {
         self.stream.play() // Play the stream
     }
     
-
-    @IBAction func reload(_ sender: Any) {
-        self.streamLive()
-    }
-    
-    @objc func fireTimer() {
-        self.streamLive()
+    @IBAction func imageTap(_ sender: Any) {
+        NSLog("Refreshing stream")
+        self.streamLive() // Play the stream
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        print("Live view viewDidDisappear")
+        NSLog("Live view viewDidDisappear")
         self._runDirect = false
         if (self.stream != nil ){
             self.stream.stop()

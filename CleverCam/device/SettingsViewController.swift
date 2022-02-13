@@ -56,7 +56,6 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                         self.message.text = "    \(config.name) settings"
                         self.name.text = config.name
                         self.version.text = config.version
-                        self.cloudStreamSwitch.setOn(config.cloud == "true", animated: false)
                         self.storeHistorySwitch.setOn(config.history == "true", animated: false)
                         self.vertFlipSwitch.setOn(config.vflip == 1, animated: false)
                         self.horFlipSwitch.setOn(config.hmirror == 1, animated: false)
