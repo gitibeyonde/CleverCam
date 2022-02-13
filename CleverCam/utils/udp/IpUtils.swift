@@ -101,7 +101,6 @@ public class IpUtils {
                     }
                 }
             }
-            
             if found == false {
                 found = true
                 preferredAddress = addresses[0].hostname

@@ -28,8 +28,9 @@ class LiveViewController: UIViewController {
         print("loading live view for ", LiveViewController.uuid)
         
         header.text = "    " + ApiContext.shared.getDeviceName(uuid: LiveViewController.uuid) + " Live"
-        
-        self.progressIndicator.startAnimating()
+        DispatchQueue.main.async {
+            self.progressIndicator.startAnimating()
+        }
         Thread.detachNewThreadSelector(#selector(liveDirect), toTarget: self, with: nil)
         
         HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in
@@ -74,16 +75,6 @@ class LiveViewController: UIViewController {
         print("My uuid=", vuuid[4])
         _my_uuid = vuuid[4]
     
-        DispatchQueue.main.async {
-            if (self._runDirect == false){
-                self.directStream.textColor = UIColor.lightGray
-            }
-            else {
-                self.progressIndicator.stopAnimating()
-                self.directStream.textColor = UIColor.green
-            }
-        }
-        
         var errors: Int = 0
         print("-----------------------------------------------------")
         while(self._runDirect == true){
@@ -119,6 +110,7 @@ class LiveViewController: UIViewController {
                 }
                 else {
                     DispatchQueue.main.async {
+                        self.progressIndicator.stopAnimating()
                         self.video.image = UIImage(data: image)
                         self._isDirectRunning = true
                     }
