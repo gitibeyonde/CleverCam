@@ -23,7 +23,6 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet var activity: UIActivityIndicatorView!
     @IBOutlet var message: UILabel!
     
-    @IBOutlet var cloudStreamSwitch: UISwitch!
     @IBOutlet var storeHistorySwitch: UISwitch!
     @IBOutlet var vertFlipSwitch: UISwitch!
     @IBOutlet var horFlipSwitch: UISwitch!
@@ -51,6 +50,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 HttpRequest.settings(self, uuid: SettingsViewController.uuid) { (config) in
                     self.config = config
                     DispatchQueue.main.async {
+                        print(config)
                         self.activity.stopAnimating()
                         self.message_top.text = ""
                         self.message.text = "    \(config.name) settings"
@@ -99,12 +99,6 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func deviceNameClick(_ sender: UIButton) {
         print(self.name.text!)
         HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "cn", value: self.name.text!) { (reponse) in
-            print(reponse)
-        }
-    }
-    
-    @IBAction func cloudStreaming(_ sender: UISwitch) {
-        HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "cloud", value: sender.isOn == true ? "true" : "false" ) { (reponse) in
             print(reponse)
         }
     }
@@ -184,13 +178,13 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     private func framesizeIndex(framesize: Int)->Int {
         if framesize == 8 {
-            return 2
+            return 0
         }
         else if framesize == 5 {
             return 1
         }
         else {
-            return 0
+            return 2
         }
     }
     

@@ -869,22 +869,6 @@
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqD-uW-SwR">
                                                         <rect key="frame" x="0.0" y="173" width="337" height="57.666666666666657"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stream via cloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8S4-Xs-K2D">
-                                                                <rect key="frame" x="9" y="3" width="170" height="40"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                                <color key="textColor" name="colSecText"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="lcx-2D-jk3" userLabel="streamViaCloud">
-                                                                <rect key="frame" x="280" y="11" width="51" height="31"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <connections>
-                                                                    <action selector="cloudStreaming:" destination="rJR-dg-IM9" eventType="valueChanged" id="Efg-kX-Ijf"/>
-                                                                </connections>
-                                                            </switch>
-                                                        </subviews>
                                                         <viewLayoutGuide key="safeArea" id="VB8-Ac-TeB"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
@@ -1144,7 +1128,6 @@
                     <connections>
                         <outlet property="activity" destination="aAQ-pC-jKJ" id="T8A-KH-nEu"/>
                         <outlet property="camFramesize" destination="eKg-8j-AGh" id="JXY-Hr-1pF"/>
-                        <outlet property="cloudStreamSwitch" destination="lcx-2D-jk3" id="C2V-Ne-yml"/>
                         <outlet property="horFlipSwitch" destination="GgP-O0-Sc8" id="hxt-C4-W3P"/>
                         <outlet property="message" destination="caD-rl-f9N" id="ySL-Te-5UW"/>
                         <outlet property="message_top" destination="Kil-fx-EWa" id="ZGW-wE-CMf"/>
