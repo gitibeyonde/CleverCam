@@ -12,12 +12,18 @@ import Network
 @available(macOS 10.14, *)
 class ClientConnection {
 
-    let nwConnection: NWConnection
-    let queue: DispatchQueue = DispatchQueue(label: "CamQ")
+    var nwConnection: NWConnection
     let DATAGRAM_SIZE: Int = 1460
     
     public var type: String = ""
     var image: Data = Data()
+    
+    init(){
+        let h = NWEndpoint.Host("0.0.0.0")
+        let p = NWEndpoint.Port("0")!
+        let connectionParams = NWParameters.udp
+        self.nwConnection = NWConnection(host: h, port: p, using: connectionParams)
+    }
 
     init(nwConnection: NWConnection) {
         self.nwConnection = nwConnection
@@ -26,16 +32,16 @@ class ClientConnection {
     var didStopCallback: ((Error?) -> Void)? = nil
 
     func start() {
-        nwConnection.stateUpdateHandler = stateDidChange(to:)
-        nwConnection.start(queue: queue)
+        self.nwConnection.stateUpdateHandler = stateDidChange(to:)
+        self.nwConnection.start(queue: .global())
     }
     
     func isReady() -> Bool {
-        return nwConnection.state == NWConnection.State.ready
+        return self.nwConnection.state == NWConnection.State.ready
     }
     
     func isCancelled() -> Bool {
-        return nwConnection.state == NWConnection.State.cancelled
+        return self.nwConnection.state == NWConnection.State.cancelled
     }
     
     private func stateDidChange(to state: NWConnection.State) {
@@ -65,7 +71,7 @@ class ClientConnection {
     
     func send(request: Data)->Data {
         let send_semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
-        nwConnection.send(content: request, completion: .contentProcessed( { error in
+        self.nwConnection.send(content: request, completion: .contentProcessed( { error in
             if let error = error {
                 NSLog("send connection error")
                 self.connectionDidFail(error: error)
@@ -73,11 +79,11 @@ class ClientConnection {
             }
             send_semaphone.signal()
         }))
-        _ = send_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(1))
+        _ = send_semaphone.wait(timeout: DispatchTime.distantFuture)
         
         var response: Data = Data()
         let receive_semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
-        nwConnection.receiveMessage(completion: { (data, _, isComplete, error) in
+        self.nwConnection.receive(minimumIncompleteLength: 16, maximumLength: 32, completion: { (data, _, isComplete, error) in
             if isComplete {
                 if let data = data, !data.isEmpty {
                     response.append(data)
@@ -89,7 +95,7 @@ class ClientConnection {
             }
             receive_semaphone.signal()
         })
-        _ = receive_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(1))
+        _ = receive_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(5))
         return response
     }
     
@@ -106,12 +112,12 @@ class ClientConnection {
     func receiveAll(size: Int)->Int {
         var byte_count: Int = 0
         let receiveAll_semaphone: DispatchSemaphore = DispatchSemaphore(value: 0)
-        nwConnection.receiveMessage(completion: { (data, _, isComplete, error) in
+        self.nwConnection.receive(minimumIncompleteLength: size, maximumLength: size, completion: { (data, _, isComplete, error) in
             if isComplete {
                 if let data = data, !data.isEmpty {
                     byte_count = data.count
                     self.image.append(data)
-                    //NSLog("receivelAll data: \(self.image.count)")
+                    NSLog("receivelAll data: \(self.image.count)")
                 }
             } else if let error = error {
                 NSLog("setupReceiveAll connection error \(error)")
@@ -120,7 +126,7 @@ class ClientConnection {
             }
             _ = receiveAll_semaphone.signal()
         })
-        _ = receiveAll_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(1))
+        _ = receiveAll_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
         return byte_count
     }
     
@@ -136,8 +142,10 @@ class ClientConnection {
 
     public func cancel(error: Error?) {
         self.nwConnection.stateUpdateHandler = nil
-        self.nwConnection.cancel()
-        while(nwConnection.state != NWConnection.State.cancelled){
+        //self.nwConnection.cancel()
+        self.nwConnection.forceCancel()
+        //self.nwConnection.cancelCurrentEndpoint()
+        while(self.nwConnection.state != NWConnection.State.cancelled){
             sleep(1)
             NSLog("waiting for connection to be cancelled")
         }

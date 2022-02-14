@@ -11,19 +11,25 @@ import Network
 @available(macOS 10.14, *)
 class Peer {
     let _peer_connection: ClientConnection
-    let _device_uuid: String
+    
+    init(){
+        _peer_connection = ClientConnection()
+    }
     
     // PEER CONNECTION
-    init(peer_host: String, peer_port: UInt16, my_host: String, my_port: UInt16, device_uuid: String) {
-        self._device_uuid = device_uuid
+    init(peer_host: String, peer_port: UInt16, my_host: String, my_port: UInt16) {
         NSLog("Peer host=\(peer_host), port=\(peer_port)")
         let phost = NWEndpoint.Host(peer_host)
         let pport = NWEndpoint.Port("\(peer_port)")!
         
         let mhost = NWEndpoint.Host(my_host)
         let mport = NWEndpoint.Port("\(my_port)")!
-        let connectionParams = NWParameters.udp
-        //connectionParams.allowLocalEndpointReuse = true
+        
+        let udpOption = NWProtocolUDP.Options()
+        udpOption.preferNoChecksum = false
+        
+        let connectionParams = NWParameters(dtls: nil, udp: udpOption)
+        connectionParams.allowLocalEndpointReuse = true
         //connectionParams.allowFastOpen = true
         //connectionParams.includePeerToPeer = true
         connectionParams.requiredLocalEndpoint = NWEndpoint.hostPort(host: mhost, port: mport)
@@ -65,10 +71,10 @@ class Peer {
     }
 
     
-    func requestDHINJPeer() -> Data {
-        let cmd_str: String = "DHINJ:\(self._device_uuid):"
+    func requestDHINJPeer(device_uuid: String) -> Data {
+        let cmd_str: String = "DHINJ:\(device_uuid):"
         let cmd: Data = cmd_str.data(using: .utf8)!
-        NSLog("Peer>\(String(decoding: cmd, as: UTF8.self))")
+        NSLog("Peer>\(String(decoding: cmd, as: UTF8.self))  \(_peer_connection.nwConnection.state)")
         
         let response:Data = _peer_connection.send(request: cmd)
         

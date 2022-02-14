@@ -707,7 +707,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yCi-vZ-qft">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yCi-vZ-qft">
                                 <rect key="frame" x="0.0" y="56" width="414" height="301"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -718,7 +718,7 @@
                                 </connections>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGo-ox-oOQ">
-                                <rect key="frame" x="182" y="296" width="50" height="50"/>
+                                <rect key="frame" x="182" y="206" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="et5-qt-GCu"/>
                                     <constraint firstAttribute="width" constant="50" id="sfr-u5-XAV"/>
@@ -764,14 +764,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FaP-RV-Pn8" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="0sX-ed-Ilr"/>
-                            <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerY" secondItem="phq-be-GBR" secondAttribute="centerY" constant="-100" id="4Nm-oT-7Zu"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" id="7kt-4Y-cwy"/>
                             <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="FaP-RV-Pn8" secondAttribute="trailing" id="AHS-gu-u1L"/>
+                            <constraint firstItem="jGo-ox-oOQ" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" constant="150" id="OLQ-Wb-MHG"/>
+                            <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerX" secondItem="phq-be-GBR" secondAttribute="centerX" id="SSC-kJ-Hbk"/>
                             <constraint firstItem="jQU-Ru-bKO" firstAttribute="centerX" secondItem="phq-be-GBR" secondAttribute="centerX" id="aij-m9-tNt"/>
                             <constraint firstItem="FaP-RV-Pn8" firstAttribute="top" secondItem="jQU-Ru-bKO" secondAttribute="bottom" constant="5" id="eb0-XD-z8F"/>
-                            <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerX" secondItem="phq-be-GBR" secondAttribute="centerX" id="f5m-Gk-crR"/>
                             <constraint firstItem="yCi-vZ-qft" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="rBj-d0-axG"/>
-                            <constraint firstItem="yCi-vZ-qft" firstAttribute="centerX" secondItem="jGo-ox-oOQ" secondAttribute="centerX" id="rDY-YM-wbc"/>
                             <constraint firstItem="jQU-Ru-bKO" firstAttribute="top" secondItem="yCi-vZ-qft" secondAttribute="bottom" id="xlw-h3-ofO"/>
                         </constraints>
                     </view>

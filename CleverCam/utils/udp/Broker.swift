@@ -20,7 +20,7 @@ class Broker {
         let mport = NWEndpoint.Port("\(my_port)")!
         NSLog("My host=\(my_host), port=\(my_port)")
         let connectionParams = NWParameters.udp
-        //connectionParams.allowLocalEndpointReuse = true
+        connectionParams.allowLocalEndpointReuse = true
         //connectionParams.allowFastOpen = true
         //connectionParams.includePeerToPeer = true
         connectionParams.requiredLocalEndpoint = NWEndpoint.hostPort(host: mhost, port: mport)
@@ -28,6 +28,9 @@ class Broker {
         _broker_connection = ClientConnection(nwConnection: nwConnection)
     }
     
+    init(){
+        _broker_connection = ClientConnection()
+    }
 
     func start() {
         _broker_connection.didStopCallback = didStopCallback(error:)
@@ -85,21 +88,29 @@ class Broker {
     func getPeerAddress(device_uuid: String) -> (String, UInt16) {
         let cmd_str: String = "PADDR:\(device_uuid):"
         let cmd: Data = cmd_str.data(using: .utf8)!
-        NSLog("Broker>\(String(decoding: cmd, as: UTF8.self))")
+        NSLog("Broker>\(String(decoding: cmd, as: UTF8.self))  \(_broker_connection.nwConnection.state)")
         
         let response:Data = _broker_connection.send(request: cmd)
         
         if response.starts(with: Data(bytes: "RPADDR:", count: 7)) {
-            NSLog("Broker<:\(String(decoding: response, as: UTF8.self))")
+            NSLog("Broker<\(String(decoding: response, as: UTF8.self))")
             let result = IpUtils.getAddress(dp: response)
             return result
         }
         else {
-            NSLog("Broker<BAD>:\(String(decoding: response, as: UTF8.self))")
+            NSLog("Broker<BAD>\(String(decoding: response, as: UTF8.self))")
             return ("", 0)
         }
     }
     
+    func kickStartGetImage(device_uuid: String) -> Void {
+        let cmd_str: String = "HINI:\(device_uuid):"
+        let cmd: Data = cmd_str.data(using: .utf8)!
+        NSLog("Broker>\(String(decoding: cmd, as: UTF8.self))")
+        
+        let response:Data =  _broker_connection.send(request: cmd)
+        NSLog("Broker<\(String(decoding: response, as: UTF8.self))")
+    }
     
 }
 
