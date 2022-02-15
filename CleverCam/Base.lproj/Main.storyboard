@@ -1303,11 +1303,11 @@
                         <outlet property="img7" destination="kSP-7i-ZAh" id="61M-CJ-qjs"/>
                         <outlet property="img8" destination="xdh-3O-MVm" id="5Xz-8c-Mlq"/>
                         <outlet property="img9" destination="4ry-BM-HMd" id="ZE5-UF-fsm"/>
-                        <outlet property="live" destination="ZAx-Fp-fke" id="n25-SG-7Zn"/>
                         <outlet property="liveProgress" destination="pFs-6I-zOh" id="exJ-oI-vWu"/>
                         <outlet property="navBack" destination="qwi-vN-XNc" id="wCc-bg-0Pj"/>
                         <outlet property="progressHistory" destination="hVd-K9-bTk" id="pvh-mx-dd4"/>
                         <outlet property="scrollView" destination="90U-E7-fsO" id="0Ep-ji-6rl"/>
+                        <outlet property="video" destination="ZAx-Fp-fke" id="o2z-9K-PAN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JNR-oE-6tB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

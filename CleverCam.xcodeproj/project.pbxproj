@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AB24ED0B27AE2F83004D34D2 /* ClientConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24ED0A27AE2F83004D34D2 /* ClientConnection.swift */; };
-		AB24ED0F27AE2FDD004D34D2 /* MJEPEGRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24ED0E27AE2FDD004D34D2 /* MJEPEGRunner.swift */; };
 		AB2AA5E2276855AA002EB810 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2AA5E1276855AA002EB810 /* NotificationService.swift */; };
 		AB38989A275B108B00884EFC /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB389898275B108B00884EFC /* DeviceCell.swift */; };
 		AB38989B275B108B00884EFC /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB389899275B108B00884EFC /* DeviceCell.xib */; };
@@ -82,7 +81,6 @@
 
 /* Begin PBXFileReference section */
 		AB24ED0A27AE2F83004D34D2 /* ClientConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConnection.swift; sourceTree = "<group>"; };
-		AB24ED0E27AE2FDD004D34D2 /* MJEPEGRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJEPEGRunner.swift; sourceTree = "<group>"; };
 		AB2AA5DF276855AA002EB810 /* CleverCamNSE.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CleverCamNSE.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB2AA5E1276855AA002EB810 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		AB2AA5E3276855AA002EB810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 				AB7F82BB271BE2CA0054DA5E /* Utils.swift */,
 				AB7F82E7271ED9230054DA5E /* MJPEGStreamLib.swift */,
 				ABDC6F6327296FF100061E9B /* TimeZone.swift */,
-				AB24ED0E27AE2FDD004D34D2 /* MJEPEGRunner.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -420,7 +417,6 @@
 				ABEA64F527B771CC00DF1AAC /* Peer.swift in Sources */,
 				ABDC6F6427296FF100061E9B /* TimeZone.swift in Sources */,
 				AB7F82C3271C45340054DA5E /* HistoryViewController.swift in Sources */,
-				AB24ED0F27AE2FDD004D34D2 /* MJEPEGRunner.swift in Sources */,
 				AB7F82BC271BE2CA0054DA5E /* Utils.swift in Sources */,
 				AB7F82B5271A9E630054DA5E /* ApiContext.swift in Sources */,
 				AB7F82632716D0D70054DA5E /* ViewController.swift in Sources */,

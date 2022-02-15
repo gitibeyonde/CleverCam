@@ -100,12 +100,11 @@ class ClientConnection {
     }
     
     func receiveImage(size: Int)->Data {
-        for _ in (0..<Int(size/DATAGRAM_SIZE)+1){
-            let response = self.receiveAll(size: size)
-            if (self.image.count == size || response == 0 ){
-                break
-            }
+        var response = self.receiveAll(size: size)
+        while (self.image.count < size && response > 0 ){
+            response = self.receiveAll(size: size)
         }
+        NSLog("receiveImage data: \(self.image.count)")
         return self.image
     }
     
@@ -117,7 +116,6 @@ class ClientConnection {
                 if let data = data, !data.isEmpty {
                     byte_count = data.count
                     self.image.append(data)
-                    NSLog("receivelAll data: \(self.image.count)")
                 }
             } else if let error = error {
                 NSLog("setupReceiveAll connection error \(error)")
@@ -126,7 +124,7 @@ class ClientConnection {
             }
             _ = receiveAll_semaphone.signal()
         })
-        _ = receiveAll_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(2))
+        _ = receiveAll_semaphone.wait(timeout: .now() + DispatchTimeInterval.seconds(1))
         return byte_count
     }
     
