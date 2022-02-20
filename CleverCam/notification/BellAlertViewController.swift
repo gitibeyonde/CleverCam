@@ -82,10 +82,10 @@ class BellAlertViewController: UIViewController {
         
         liveDirect(video: video)
         
-        HttpRequest.checkLocalURL(self, uuid: LiveViewController.uuid ) { (localUrl) in
+        HttpRequest.checkLocalURL(self, uuid: BellAlertViewController.uuid ) { (localUrl) in
             print("Local URL=", localUrl)
             if localUrl == "" {
-                HttpRequest.getRemoteURL(self, uuid: LiveViewController.uuid ) { (remoteUrl) in
+                HttpRequest.getRemoteURL(self, uuid: BellAlertViewController.uuid ) { (remoteUrl) in
                     print(remoteUrl)
                     self._isLocal = false
                     self._isCloud = true
