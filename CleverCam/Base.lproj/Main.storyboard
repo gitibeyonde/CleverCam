@@ -708,7 +708,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yCi-vZ-qft">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yCi-vZ-qft">
                                 <rect key="frame" x="0.0" y="56" width="414" height="301"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -719,7 +719,7 @@
                                     <outletCollection property="gestureRecognizers" destination="42d-zM-k5K" appends="YES" id="yp2-Xq-EjI"/>
                                 </connections>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGo-ox-oOQ">
+                            <activityIndicatorView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGo-ox-oOQ">
                                 <rect key="frame" x="162.66666666666666" y="206" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="et5-qt-GCu"/>
@@ -1158,11 +1158,11 @@
             <objects>
                 <viewController restorationIdentifier="BellAlertViewController" storyboardIdentifier="BellAlertViewController" id="GLn-p8-OGp" customClass="BellAlertViewController" customModule="CleverCam" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rCA-vR-lDF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" directionalLockEnabled="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-E7-fsO">
-                                <rect key="frame" x="0.0" y="96" width="375" height="633"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="821"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4J-23-hDE">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -1244,8 +1244,7 @@
                                                     <color key="titleColor" name="colPrimaryDark"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="reload:" destination="NCE-0w-BAR" eventType="touchUpInside" id="N6y-W7-0Bd"/>
-                                                    <action selector="reload:" destination="GLn-p8-OGp" eventType="touchUpInside" id="tGd-qj-f3Q"/>
+                                                    <action selector="imageTap:" destination="GLn-p8-OGp" eventType="touchUpInside" id="cIL-Om-47w"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1293,6 +1292,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qwi-vN-XNc"/>
+                    <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="history" destination="J3T-UB-biX" id="9ry-zF-C4w"/>
                         <outlet property="img0" destination="qaZ-Ff-Ncb" id="1TU-eh-TEk"/>
@@ -1314,7 +1314,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JNR-oE-6tB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1628.985507246377" y="1684.8214285714284"/>
+            <point key="canvasLocation" x="1580" y="1922"/>
         </scene>
         <!--Global Settings-->
         <scene sceneID="NQ8-Ta-9wG">

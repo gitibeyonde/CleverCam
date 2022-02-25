@@ -66,7 +66,7 @@ class BellAlertViewController: UIViewController {
                             // always update the UI from the main thread
                             DispatchQueue.main.async() {
                                 BellAlertViewController.images[i].image = UIImage(data: data)
-                                let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageViewTapped))
+                                let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.historyTap))
                                 BellAlertViewController.images[i].addGestureRecognizer(gestureRecognizer)
                                 BellAlertViewController.images[i].tag = i
                                 if !initFirstImage {
@@ -231,7 +231,7 @@ class BellAlertViewController: UIViewController {
     }
     
     
-    @IBAction func imageViewTapped(_ sender: UITapGestureRecognizer) {
+    @IBAction func historyTap(_ sender: UITapGestureRecognizer) {
         print("Image taped", sender.view!.tag)
         BellAlertViewController.history_timer .invalidate()
         counter = sender.view!.tag
