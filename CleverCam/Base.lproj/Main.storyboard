@@ -706,7 +706,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yCi-vZ-qft">
-                                <rect key="frame" x="0.0" y="56" width="0.0" height="600"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="272.66666666666669"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yCi-vZ-qft" secondAttribute="height" multiplier="414:301" id="uLl-ff-JdN"/>
@@ -1157,14 +1157,14 @@
             <objects>
                 <viewController restorationIdentifier="BellAlertViewController" storyboardIdentifier="BellAlertViewController" id="GLn-p8-OGp" customClass="BellAlertViewController" customModule="CleverCam" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rCA-vR-lDF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" contentMode="scaleAspectFit" directionalLockEnabled="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-E7-fsO">
-                                <rect key="frame" x="0.0" y="96" width="375" height="821"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="1600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4J-23-hDE">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1600"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J3T-UB-biX">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="281.33333333333331"/>
@@ -1262,7 +1262,7 @@
                                             <constraint firstItem="J3T-UB-biX" firstAttribute="leading" secondItem="K4J-23-hDE" secondAttribute="leading" id="etZ-5a-fQe"/>
                                             <constraint firstAttribute="trailing" secondItem="J3T-UB-biX" secondAttribute="trailing" id="hd4-lH-rat"/>
                                             <constraint firstItem="ZAx-Fp-fke" firstAttribute="leading" secondItem="K4J-23-hDE" secondAttribute="leading" id="mNP-0A-pke"/>
-                                            <constraint firstAttribute="height" constant="1000" id="olt-8Y-iR1"/>
+                                            <constraint firstAttribute="height" constant="1400" id="olt-8Y-iR1"/>
                                             <constraint firstAttribute="trailing" secondItem="ZAx-Fp-fke" secondAttribute="trailing" id="pdo-E3-5w6"/>
                                             <constraint firstItem="tKU-hW-Zyn" firstAttribute="centerX" secondItem="K4J-23-hDE" secondAttribute="centerX" id="v87-8m-i4s"/>
                                         </constraints>
@@ -1271,10 +1271,11 @@
                                 <viewLayoutGuide key="safeArea" id="4dz-IY-iZG"/>
                                 <constraints>
                                     <constraint firstItem="K4J-23-hDE" firstAttribute="top" secondItem="Fpm-AH-sbN" secondAttribute="top" id="BZT-Cl-klU"/>
-                                    <constraint firstAttribute="bottom" secondItem="K4J-23-hDE" secondAttribute="bottom" constant="-234" id="Jsq-qg-cvO"/>
-                                    <constraint firstAttribute="trailing" secondItem="K4J-23-hDE" secondAttribute="trailing" id="VVP-Uu-YxB"/>
+                                    <constraint firstItem="K4J-23-hDE" firstAttribute="bottom" secondItem="lzx-iQ-FvU" secondAttribute="bottom" id="Vjx-KP-r7S"/>
                                     <constraint firstItem="K4J-23-hDE" firstAttribute="leading" secondItem="4dz-IY-iZG" secondAttribute="leading" id="Wtq-0g-Jiw"/>
-                                    <constraint firstItem="K4J-23-hDE" firstAttribute="centerX" secondItem="90U-E7-fsO" secondAttribute="centerX" id="fCq-Df-bwu"/>
+                                    <constraint firstAttribute="trailing" secondItem="K4J-23-hDE" secondAttribute="trailing" id="dku-0a-TOm"/>
+                                    <constraint firstAttribute="bottom" secondItem="K4J-23-hDE" secondAttribute="bottom" id="p98-ln-YBd"/>
+                                    <constraint firstItem="K4J-23-hDE" firstAttribute="centerX" secondItem="90U-E7-fsO" secondAttribute="centerX" id="rsS-dJ-KEn"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Fpm-AH-sbN"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="lzx-iQ-FvU"/>
@@ -1284,14 +1285,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="lnO-Mk-7Bw" firstAttribute="trailing" secondItem="90U-E7-fsO" secondAttribute="trailing" id="4Hg-s0-Si4"/>
-                            <constraint firstItem="90U-E7-fsO" firstAttribute="top" secondItem="lnO-Mk-7Bw" secondAttribute="top" constant="8" id="VMv-X0-3aB"/>
-                            <constraint firstItem="90U-E7-fsO" firstAttribute="bottom" secondItem="lnO-Mk-7Bw" secondAttribute="bottom" id="gtp-bQ-qPC"/>
-                            <constraint firstItem="90U-E7-fsO" firstAttribute="leading" secondItem="lnO-Mk-7Bw" secondAttribute="leading" id="hxd-Gm-Mku"/>
+                            <constraint firstItem="90U-E7-fsO" firstAttribute="leading" secondItem="lnO-Mk-7Bw" secondAttribute="leading" id="FDK-67-JxL"/>
+                            <constraint firstItem="90U-E7-fsO" firstAttribute="top" secondItem="lnO-Mk-7Bw" secondAttribute="top" constant="8" id="M5D-IT-4Z6"/>
+                            <constraint firstItem="90U-E7-fsO" firstAttribute="centerX" secondItem="rCA-vR-lDF" secondAttribute="centerX" id="dEq-aw-aXU"/>
+                            <constraint firstAttribute="bottom" secondItem="90U-E7-fsO" secondAttribute="bottom" constant="-96" id="nhQ-Cj-c25"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qwi-vN-XNc"/>
-                    <size key="freeformSize" width="375" height="1000"/>
+                    <size key="freeformSize" width="375" height="1600"/>
                     <connections>
                         <outlet property="history" destination="J3T-UB-biX" id="9ry-zF-C4w"/>
                         <outlet property="img0" destination="qaZ-Ff-Ncb" id="1TU-eh-TEk"/>
@@ -1313,7 +1314,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JNR-oE-6tB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1947" y="2794"/>
+            <point key="canvasLocation" x="1946.4000000000001" y="2793.8423645320199"/>
         </scene>
         <!--Global Settings-->
         <scene sceneID="NQ8-Ta-9wG">
