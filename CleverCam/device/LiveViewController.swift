@@ -179,7 +179,7 @@ class LiveViewController: UIViewController {
         }
     }
     
-    @IBAction func imageTap(_ sender: Any) {
+    @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
         if (_isCloud == true || _isLocal == true) {
             self.stream.stop()
             NSLog("Refreshing stream")
