@@ -14,18 +14,15 @@ import FirebaseMessaging
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let gcmMessageIDKey = "gcm.notification.id"
-    let gcmMessageUuid = "gcm.notification.uuid"
-    let gcmMessageCreated = "gcm.notification.created"
+    let gcmMessageIDKey = "id"
+    let gcmMessageUuid = "uuid"
+    let gcmMessageCreated = "created"
     var _isRunning:Bool = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        //let broker: NetUtils = NetUtils(device_uuid: LiveViewController.uuid)
-        //exit(0)
-        
-        print(">>>>>>>>>didFinishLaunchingWithOptions willPresent----")
         FirebaseApp.configure()
+        print(">>>>>>>>>didFinishLaunchingWithOptions willPresent----")
+        
         if #available(iOS 10.0, *) {
            // For iOS 10 display notification (sent via APNS)
            UNUserNotificationCenter.current().delegate = self
@@ -42,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         UIApplication.shared.registerForRemoteNotifications()
-        UNUserNotificationCenter.current().delegate = self
+        
         return true
     }
     
@@ -107,6 +104,12 @@ extension AppDelegate: MessagingDelegate {
         Users.setFCMtoken(object: fcmToken!)
         print("Firebase registration token: \(fcmToken ?? "")")
 
+        if (Users.getLoginStatus() == "true"){
+            HttpRequest.sendFCMToken(self, strToken: Users.getFCMtoken()) { (output) in
+                NSLog("FCM token sent successfully to server.\(output)")
+            }
+        }
+        
         let dataDict:[String: String] = ["token": fcmToken ?? ""]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }
@@ -164,4 +167,13 @@ extension Data {
         return hexString
     }
 }
+
+
+extension AppDelegate: HttpRequestDelegate {
+    func onError() {
+        NSLog("Setting FCM token failed")
+    }
+
+}
+
 

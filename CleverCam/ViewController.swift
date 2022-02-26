@@ -11,42 +11,36 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        print("Showing root View Controller")
     }
 
     override func viewDidAppear(_ animated: Bool) {
         if Users.getLoginStatus() == "true"
         {
-            print("Remember me true")
             self.performSegue(withIdentifier: "ShowTab", sender: nil)
-            print("Perform Segue ShowDevice")
+            NSLog("Perform Segue ShowDevice")
             
         }
         else {
-            print("User logged in")
             self.performSegue(withIdentifier: "ShowLogin", sender: nil)
-            print("Perform Segue ShowLogin")
+            NSLog("Perform Segue ShowLogin")
         }
     }
     
     @IBAction func reOpen(_ sender: Any) {
         if Users.getLoginStatus() == "true"
         {
-            print("Remember me true")
             self.performSegue(withIdentifier: "ShowTab", sender: nil)
-            print("Perform Segue ShowDevice")
+            NSLog("Perform Segue ShowDevice")
             
         }
         else {
-            print("User logged in")
             self.performSegue(withIdentifier: "ShowLogin", sender: nil)
-            print("Perform Segue ShowLogin")
+            NSLog("Perform Segue ShowLogin")
         }
     }
     
     @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
-        print("Main myUnwindAction")
+        NSLog("Main myUnwindAction")
     }
     
     

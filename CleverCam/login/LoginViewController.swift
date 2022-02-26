@@ -43,8 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     }
 
     @IBAction func loginButtonPress(_ sender: UIButton) {
-        print(username.text ?? "noname")
-        print(password.text ?? "nopass")
+        NSLog("loginButtonPress ")
         if username.text == ""
         {
             let alert = UIAlertController(title: "Alert!", message: "Please enter valid username.", preferredStyle: UIAlertController.Style.alert)
@@ -66,7 +65,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
             HttpRequest.login(self, base64LoginString: base64LoginString) { (output) in
                 DispatchQueue.main.async {
                     if output.contains("Success"){
-                        print("Login Successful \(Users.getFCMtoken())")
                         Users.setUserName(object: self.username.text!)
                         Users.setPassword(object: self.password.text!)
                         Users.setLoginStatus(object: "true")
@@ -74,8 +72,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                         if Users.getFCMtoken() != ""
                         {
                             HttpRequest.sendFCMToken(self, strToken: Users.getFCMtoken()) { (output) in
-                                print("FCM token sent successfully to server.", output)
+                                NSLog("FCM token sent successfully to server.\(output)")
                             }
+                        }
+                        else {
+                            NSLog("Fatal: FCM token missing !")
                         }
                         
                         self.performSegue(withIdentifier: "ShowDevice", sender: nil)
