@@ -97,9 +97,21 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     @IBAction func deviceNameClick(_ sender: UIButton) {
         print(self.name.text!)
-        HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "cn", value: self.name.text!) { (reponse) in
-            print(reponse)
-        }
+        
+        let nameChangeAlert = UIAlertController(title: "Warning", message: "Are you sure you want to update the name of the devic ?", preferredStyle: UIAlertController.Style.alert)
+
+        nameChangeAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "name", value: self.name.text!) { (reponse) in
+                print(reponse)
+            }
+        }))
+
+        nameChangeAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+              print("Name Change cancelled")
+        }))
+
+        present(nameChangeAlert, animated: true, completion: nil)
+        
     }
     
     @IBAction func storeMotion(_ sender: UISwitch) {
@@ -223,9 +235,23 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         switch pickerView.tag {
             case 1:
                 print(tzValues[row])
-                HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "timezone", value: tzValues[row] ) { (reponse) in
-                        print(reponse)
-                    }
+            
+            
+                let timeZoneAlert = UIAlertController(title: "Warning", message: "Do you really want to change the timezone ?", preferredStyle: UIAlertController.Style.alert)
+
+                timeZoneAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                        HttpRequest.applyDeviceConfig(self, uuid: SettingsViewController.uuid, name: "timezone", value: tzValues[row] ) { (reponse) in
+                                print(reponse)
+                            }
+                }))
+
+                timeZoneAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                      print("Timezone change cancelled")
+                }))
+
+                present(timeZoneAlert, animated: true, completion: nil)
+            
+            
                 break
             case 2:
                 print(fsValues[row])
@@ -239,7 +265,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 }))
 
                 framesizeAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-                      print("Faremsize change cancelled")
+                      print("Fraemsize change cancelled")
                 }))
 
                 present(framesizeAlert, animated: true, completion: nil)
