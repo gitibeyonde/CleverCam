@@ -83,9 +83,15 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
         print("Device myUnwindAction")
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
+        print("Device View appear")
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         DeviceViewController.device_timer.invalidate()
-        print("Device View exited...exit app")
+        print("Device View dis appear")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -126,7 +126,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func restart(_ sender: UIButton) {
-        let restartAlert = UIAlertController(title: "Warning", message: "You are going to restart your device. It will be offline for few minutes.", preferredStyle: UIAlertController.Style.alert)
+        let restartAlert = UIAlertController(title: "Warning", message: "The device will be restarted. It will be offline for few minutes.", preferredStyle: UIAlertController.Style.alert)
 
         restartAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "restart" ) { (reponse) in
@@ -135,13 +135,13 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }))
 
         restartAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-              print("restart Cancelled")
+              print("Restart cancelled")
         }))
 
         present(restartAlert, animated: true, completion: nil)
     }
     @IBAction func reset(_ sender: UIButton) {
-        let resetAlert = UIAlertController(title: "Warning", message: "You are going to reset your device. The device will be reset and loose wifi connection. Use android bluetooth setup to re-configure.", preferredStyle: UIAlertController.Style.alert)
+        let resetAlert = UIAlertController(title: "Warning", message: "The device will be reset and loose wifi connection and fallback to bluetooth. Use android bluetooth setup to re-configure.", preferredStyle: UIAlertController.Style.alert)
 
         resetAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "reset" ) { (reponse) in
@@ -150,13 +150,13 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }))
 
         resetAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-              print("reset Cancelled")
+              print("Reset cancelled")
         }))
 
         present(resetAlert, animated: true, completion: nil)
     }
     @IBAction func upgrade(_ sender: UIButton) {
-            let upgradeAlert = UIAlertController(title: "Warning", message: "You are going to upgrade your device. It will be offline for few minutes.", preferredStyle: UIAlertController.Style.alert)
+            let upgradeAlert = UIAlertController(title: "Warning", message: "Upgrading will take few minutes depending on network. The device will be offline for few minutes.", preferredStyle: UIAlertController.Style.alert)
 
             upgradeAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                 HttpRequest.deviceCommand(self, uuid: SettingsViewController.uuid, name: "upgrade" ) { (reponse) in
@@ -165,7 +165,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             }))
 
             upgradeAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-                  print("restet Cancelled")
+                  print("Upgrade cancelled")
             }))
 
             present(upgradeAlert, animated: true, completion: nil)
@@ -229,10 +229,22 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 break
             case 2:
                 print(fsValues[row])
-                HttpRequest.applyCamConfig(self, uuid: SettingsViewController.uuid, name: "framesize", value: String(indexToFramesize(index: row)) ) { (reponse) in
-                        print(reponse)
-                    }
-                break
+            
+                let framesizeAlert = UIAlertController(title: "Warning", message: "Framesize change will restart the device. The devce will be offline for a minutes.", preferredStyle: UIAlertController.Style.alert)
+
+                framesizeAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    HttpRequest.applyCamConfig(self, uuid: SettingsViewController.uuid, name: "framesize", value: String(self.indexToFramesize(index: row)) ) { (reponse) in
+                            print(reponse)
+                        }
+                }))
+
+                framesizeAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                      print("Faremsize change cancelled")
+                }))
+
+                present(framesizeAlert, animated: true, completion: nil)
+            
+            break
             default:
                 break
         }

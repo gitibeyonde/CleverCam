@@ -32,6 +32,7 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
             print("NotificationViewController performSegue--ShowBell")
             self.performSegue(withIdentifier: "ShowBell", sender: nil)
         }
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -102,7 +103,6 @@ class NotificationViewController: UIViewController, UICollectionViewDataSource, 
         return CGSize (width: width, height: height)
     }
     
-
 }
 
 extension NotificationViewController: HttpRequestDelegate {

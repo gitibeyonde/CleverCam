@@ -590,16 +590,13 @@
         <scene sceneID="jRH-9P-5I7">
             <objects>
                 <viewController storyboardIdentifier="NotificationViewController" title="Notifications" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RVJ-Gy-CpZ" customClass="NotificationViewController" customModule="CleverCam" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6q8-ja-aOl">
+                    <view key="view" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="6q8-ja-aOl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AFn-Io-j4j">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AFn-Io-j4j">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="aPV-sh-Y8w"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="lPp-6I-f3E"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gCt-UT-MAh">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gCt-UT-MAh">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -615,10 +612,10 @@
                         <viewLayoutGuide key="safeArea" id="BR0-uH-B0k"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="AFn-Io-j4j" firstAttribute="top" secondItem="BR0-uH-B0k" secondAttribute="top" id="1dm-EG-4jd"/>
-                            <constraint firstItem="AFn-Io-j4j" firstAttribute="trailing" secondItem="BR0-uH-B0k" secondAttribute="trailing" id="H5B-n4-P0o"/>
-                            <constraint firstItem="AFn-Io-j4j" firstAttribute="bottom" secondItem="BR0-uH-B0k" secondAttribute="bottom" id="PfY-gx-PaY"/>
-                            <constraint firstItem="AFn-Io-j4j" firstAttribute="leading" secondItem="BR0-uH-B0k" secondAttribute="leading" id="n02-hf-jQB"/>
+                            <constraint firstItem="AFn-Io-j4j" firstAttribute="top" secondItem="6q8-ja-aOl" secondAttribute="top" id="14W-TD-lCZ"/>
+                            <constraint firstItem="AFn-Io-j4j" firstAttribute="bottom" secondItem="BR0-uH-B0k" secondAttribute="bottom" id="65r-j7-dAK"/>
+                            <constraint firstAttribute="trailing" secondItem="AFn-Io-j4j" secondAttribute="trailing" id="Uya-s4-4Gg"/>
+                            <constraint firstItem="AFn-Io-j4j" firstAttribute="leading" secondItem="6q8-ja-aOl" secondAttribute="leading" id="ouO-1H-kPq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Notifications" id="bah-lG-Kmh">
@@ -709,11 +706,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yCi-vZ-qft">
-                                <rect key="frame" x="0.0" y="56" width="414" height="301"/>
+                                <rect key="frame" x="0.0" y="56" width="0.0" height="600"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="yCi-vZ-qft" secondAttribute="height" multiplier="414:301" id="Oa8-xY-WmG"/>
-                                    <constraint firstAttribute="height" constant="301" id="b0N-Wj-ca9"/>
+                                    <constraint firstAttribute="width" secondItem="yCi-vZ-qft" secondAttribute="height" multiplier="414:301" id="uLl-ff-JdN"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="42d-zM-k5K" appends="YES" id="yp2-Xq-EjI"/>
@@ -727,7 +723,7 @@
                                 </constraints>
                             </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="FaP-RV-Pn8">
-                                <rect key="frame" x="0.0" y="402" width="375" height="10"/>
+                                <rect key="frame" x="0.0" y="401.66666666666669" width="375" height="10"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="------------" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qM1-xs-xVg">
                                         <rect key="frame" x="0.0" y="0.0" width="132.33333333333334" height="10"/>
@@ -753,7 +749,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQU-Ru-bKO">
-                                <rect key="frame" x="167" y="357" width="41.333333333333343" height="40"/>
+                                <rect key="frame" x="20" y="356.66666666666669" width="335" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Vfb-rT-URB"/>
                                 </constraints>
@@ -766,14 +762,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FaP-RV-Pn8" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="0sX-ed-Ilr"/>
-                            <constraint firstItem="yCi-vZ-qft" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" id="7kt-4Y-cwy"/>
+                            <constraint firstItem="yCi-vZ-qft" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" id="9JL-pl-Ukl"/>
                             <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="FaP-RV-Pn8" secondAttribute="trailing" id="AHS-gu-u1L"/>
+                            <constraint firstAttribute="trailing" secondItem="yCi-vZ-qft" secondAttribute="trailing" id="EEt-gp-Jmf"/>
+                            <constraint firstItem="jQU-Ru-bKO" firstAttribute="top" secondItem="yCi-vZ-qft" secondAttribute="bottom" constant="28" id="IkF-vR-hoE"/>
                             <constraint firstItem="jGo-ox-oOQ" firstAttribute="top" secondItem="yl8-R3-eFY" secondAttribute="top" constant="150" id="OLQ-Wb-MHG"/>
                             <constraint firstItem="jGo-ox-oOQ" firstAttribute="centerX" secondItem="phq-be-GBR" secondAttribute="centerX" id="SSC-kJ-Hbk"/>
                             <constraint firstItem="jQU-Ru-bKO" firstAttribute="centerX" secondItem="phq-be-GBR" secondAttribute="centerX" id="aij-m9-tNt"/>
+                            <constraint firstItem="yl8-R3-eFY" firstAttribute="trailing" secondItem="jQU-Ru-bKO" secondAttribute="trailing" constant="20" id="e6s-G6-zmr"/>
                             <constraint firstItem="FaP-RV-Pn8" firstAttribute="top" secondItem="jQU-Ru-bKO" secondAttribute="bottom" constant="5" id="eb0-XD-z8F"/>
-                            <constraint firstItem="yCi-vZ-qft" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="rBj-d0-axG"/>
-                            <constraint firstItem="jQU-Ru-bKO" firstAttribute="top" secondItem="yCi-vZ-qft" secondAttribute="bottom" id="xlw-h3-ofO"/>
+                            <constraint firstItem="jQU-Ru-bKO" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" constant="20" id="fPe-tQ-oNP"/>
+                            <constraint firstItem="yCi-vZ-qft" firstAttribute="leading" secondItem="yl8-R3-eFY" secondAttribute="leading" id="iSO-ou-Cto"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TfO-Bb-iqB"/>
@@ -1161,7 +1160,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" directionalLockEnabled="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-E7-fsO">
+                            <scrollView clipsSubviews="YES" contentMode="scaleAspectFit" directionalLockEnabled="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-E7-fsO">
                                 <rect key="frame" x="0.0" y="96" width="375" height="821"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4J-23-hDE">
@@ -1314,7 +1313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JNR-oE-6tB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1580" y="1922"/>
+            <point key="canvasLocation" x="1947" y="2794"/>
         </scene>
         <!--Global Settings-->
         <scene sceneID="NQ8-Ta-9wG">
@@ -1382,11 +1381,11 @@
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zsv-Hl-D9Q">
                                 <rect key="frame" x="-20" y="36" width="415" height="713"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="310" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vvw-zh-epG">
                                         <rect key="frame" x="20" y="20" width="375" height="673"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="vtE-H4-AyR" id="cyg-HY-Ujy"/>
@@ -1412,7 +1411,7 @@
         <!--Device List-->
         <scene sceneID="aVW-ey-NQn">
             <objects>
-                <navigationController title="Device List" automaticallyAdjustsScrollViewInsets="NO" id="gIw-sV-OJ0" sceneMemberID="viewController">
+                <navigationController title="Device List" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="gIw-sV-OJ0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Device" image="tt_awesome_motion" selectedImage="tt_awesome_motion" springLoaded="YES" id="ahZ-ZC-Qrd">
                         <color key="badgeColor" name="colPrimaryDark"/>
                     </tabBarItem>
