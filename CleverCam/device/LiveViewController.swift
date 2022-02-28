@@ -22,6 +22,8 @@ class LiveViewController: UIViewController {
     var _isDirect:Bool = true
     var _isLocal:Bool = false
     var _isCloud:Bool = false
+    private static var video_timer = Timer()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,6 +146,8 @@ class LiveViewController: UIViewController {
                             //self.video.image =
                             first = false
                             self.stopMjpeg()
+                            self._isCloud = false
+                            self._isLocal = false
                         }
                         errors = 0
                     }
@@ -158,51 +162,74 @@ class LiveViewController: UIViewController {
         }//async
     }
     
+    public func stopDirect()->Void {
+        self._isDirect = false
+    }
+    
+    public func startDirect()->Void {
+        if (self._isLocal == false){
+            self._isDirect = true
+            liveDirect(video: self.video)
+        }
+    }
+    
     public func startMjpeg()->Void {
-        if (_isCloud == true || _isLocal == true) {
-            self.setStreamIndicator()
-            NSLog("Live view rcvd url \( self.url!)")
-            let urlComponent2 = URLComponents(string: self.url!)
-            
-            // Set the ImageView to the stream object
+        DispatchQueue.main.async {
             self.stream = MJPEGStreamLib(imageView: self.video)
-            
-            self.stream.contentURL = urlComponent2!.url
-            self.stream.play() // Play the stream
+            if self.isMjpeg() {
+                self.setStreamIndicator()
+                NSLog("Live view rcvd url \( self.url!)")
+                let urlComponent2 = URLComponents(string: self.url!)
+                
+                self.stream.contentURL = urlComponent2!.url
+                self.stream.play() // Play the stream
+            }
         }
     }
     
     public func stopMjpeg(){
-        _isCloud = false
-        if (self.stream != nil ){
+        LiveViewController.video_timer.invalidate()
+        if self.stream != nil {
             self.stream.stop()
         }
     }
     
-    @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
-        if (_isCloud == true || _isLocal == true) {
+    public func restartMjpeg(){
+        if isMjpeg() {
             self.stream.stop()
             NSLog("Refreshing stream")
             self.startMjpeg() // Play the stream
         }
     }
     
+    @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
+        restartMjpeg()
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         NSLog("Live view viewDidDisappear")
-        self._isDirect = false
-        if (self.stream != nil ){
-            self.stream.stop()
-        }
+        stopMjpeg()
+        stopDirect()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        NSLog("Live view viewDidAppear")
+        restartMjpeg()
+        startDirect()
+        LiveViewController.video_timer = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    // Make the Status Bar Light/Dark Content for this View
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-        //return UIStatusBarStyle.default   // Make dark again
+    @objc func fireTimer() {
+        NSLog("fireTimer")
+        restartMjpeg()
+    }
+    
+    func isMjpeg() -> Bool {
+        return (_isCloud == true || _isLocal == true) && self.stream != nil
     }
 
 }

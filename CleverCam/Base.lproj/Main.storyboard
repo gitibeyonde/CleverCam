@@ -1259,20 +1259,6 @@
                                                     <constraint firstAttribute="width" secondItem="ZAx-Fp-fke" secondAttribute="height" multiplier="4:3" id="pQ8-6f-2zx"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKU-hW-Zyn">
-                                                <rect key="frame" x="157.66666666666666" y="642.66666666666663" width="60" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="iUF-V4-p3u"/>
-                                                    <constraint firstAttribute="width" constant="60" id="uDG-cV-V0p"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <state key="normal" image="arrow.clockwise" catalog="system">
-                                                    <color key="titleColor" name="colPrimaryDark"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="imageTap:" destination="GLn-p8-OGp" eventType="touchUpInside" id="cIL-Om-47w"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -1280,7 +1266,6 @@
                                             <constraint firstItem="a2J-wZ-7HF" firstAttribute="top" secondItem="J3T-UB-biX" secondAttribute="bottom" constant="10" id="5Yd-ZE-eAH"/>
                                             <constraint firstItem="hVd-K9-bTk" firstAttribute="centerX" secondItem="K4J-23-hDE" secondAttribute="centerX" id="AWT-9i-cd7"/>
                                             <constraint firstItem="J3T-UB-biX" firstAttribute="top" secondItem="K4J-23-hDE" secondAttribute="top" id="F5M-30-AFu"/>
-                                            <constraint firstItem="tKU-hW-Zyn" firstAttribute="top" secondItem="ZAx-Fp-fke" secondAttribute="bottom" constant="10" id="LkT-mm-17m"/>
                                             <constraint firstItem="pFs-6I-zOh" firstAttribute="centerX" secondItem="K4J-23-hDE" secondAttribute="centerX" id="N8f-3L-Vdl"/>
                                             <constraint firstItem="pFs-6I-zOh" firstAttribute="top" secondItem="a2J-wZ-7HF" secondAttribute="bottom" constant="100" id="ZX7-zh-nbw"/>
                                             <constraint firstItem="hVd-K9-bTk" firstAttribute="top" secondItem="K4J-23-hDE" secondAttribute="top" constant="129" id="acJ-SC-9GD"/>
@@ -1291,7 +1276,6 @@
                                             <constraint firstItem="ZAx-Fp-fke" firstAttribute="leading" secondItem="K4J-23-hDE" secondAttribute="leading" id="mNP-0A-pke"/>
                                             <constraint firstAttribute="height" constant="1400" id="olt-8Y-iR1"/>
                                             <constraint firstAttribute="trailing" secondItem="ZAx-Fp-fke" secondAttribute="trailing" id="pdo-E3-5w6"/>
-                                            <constraint firstItem="tKU-hW-Zyn" firstAttribute="centerX" secondItem="K4J-23-hDE" secondAttribute="centerX" id="v87-8m-i4s"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1373,7 +1357,7 @@
                                     <segue destination="b28-yQ-tY2" kind="showDetail" identifier="ShowLogin" id="c7c-ci-XiC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Software Ver 1.1.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vo-d1-Idi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Software Ver 1.3.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vo-d1-Idi">
                                 <rect key="frame" x="141" y="355.66666666666669" width="93.333333333333314" height="13"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <nil key="textColor"/>
@@ -1532,10 +1516,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="MMu-e7-eS9"/>
         <segue reference="A1E-v6-8Zc"/>
-        <segue reference="1h6-QE-ZDJ"/>
+        <segue reference="c7c-ci-XiC"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="eyeHide" width="25" height="25"/>
         <image name="eyeShow" width="25" height="25"/>
         <image name="ico256" width="341.33334350585938" height="341.33334350585938"/>

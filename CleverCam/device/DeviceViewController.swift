@@ -60,7 +60,6 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
                                 }
                             }
                         }
-                        DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
                     }
                 }
             }
@@ -86,12 +85,12 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidAppear(_ animated: Bool) {
         DeviceViewController.device_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
-        print("Device View appear")
+        print("----Device View appear")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         DeviceViewController.device_timer.invalidate()
-        print("Device View dis appear")
+        print("----Device View dis appear")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

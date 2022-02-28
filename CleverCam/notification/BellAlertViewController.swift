@@ -36,7 +36,9 @@ class BellAlertViewController: UIViewController {
     var url: String?
     var counter: Int = 0
     var counterMax: Int = 0
-    public static var history_timer = Timer()
+    var videoRefreshCounter: Int = 0
+    let videoRefreshMax: Int = 20
+    private static var history_timer = Timer()
     var _isDirect:Bool = true
     var _isLocal:Bool = false
     var _isCloud:Bool = false
@@ -104,8 +106,6 @@ class BellAlertViewController: UIViewController {
         }
         
         self.navBack.title = "at " + BellAlertViewController.datetime
-        //animate history
-        BellAlertViewController.history_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
     }
     
     func liveDirect(video: UIImageView){
@@ -178,6 +178,8 @@ class BellAlertViewController: UIViewController {
                             //self.video.image =
                             first = false
                             self.stopMjpeg()
+                            self._isCloud = false
+                            self._isLocal = false
                         }
                         errors = 0
                     }
@@ -192,29 +194,40 @@ class BellAlertViewController: UIViewController {
         }//async
     }
     
+    public func stopDirect()->Void {
+        self._isDirect = false
+    }
+    
+    public func startDirect()->Void {
+        if (self._isLocal == false){
+            self._isDirect = true
+            liveDirect(video: self.video)
+        }
+    }
+
     public func startMjpeg()->Void {
-        if (_isCloud == true || _isLocal == true) {
-            //self.setStreamIndicator()
-            NSLog("Live view rcvd url \( self.url!)")
-            let urlComponent2 = URLComponents(string: self.url!)
-            
-            // Set the ImageView to the stream object
+        DispatchQueue.main.async {
             self.stream = MJPEGStreamLib(imageView: self.video)
-            
-            self.stream.contentURL = urlComponent2!.url
-            self.stream.play() // Play the stream
+            if self.isMjpeg() {
+                //self.setStreamIndicator()
+                NSLog("Live view rcvd url \( self.url!)")
+                let urlComponent2 = URLComponents(string: self.url!)
+                
+                self.stream.contentURL = urlComponent2!.url
+                self.stream.play() // Play the stream
+            }
         }
     }
     
     public func stopMjpeg(){
-        _isCloud = false
-        if (self.stream != nil ){
+        BellAlertViewController.history_timer.invalidate()
+        if self.stream != nil {
             self.stream.stop()
         }
     }
     
-    @IBAction func imageTap(_ sender: Any) {
-        if (_isCloud == true || _isLocal == true) {
+    public func restartMjpeg(){
+        if isMjpeg() {
             self.stream.stop()
             NSLog("Refreshing stream")
             self.startMjpeg() // Play the stream
@@ -223,13 +236,16 @@ class BellAlertViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         NSLog("Live view viewDidDisappear")
-        self._isDirect = false
-        if (self.stream != nil ){
-            self.stream.stop()
-        }
-        BellAlertViewController.history_timer.invalidate()
+        stopMjpeg()
+        stopDirect()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        NSLog("Live view viewDidAppear")
+        restartMjpeg()
+        startDirect()
+        BellAlertViewController.history_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fireTimer), userInfo: nil, repeats: true)
+    }
     
     @IBAction func historyTap(_ sender: UITapGestureRecognizer) {
         print("Image taped", sender.view!.tag)
@@ -241,12 +257,21 @@ class BellAlertViewController: UIViewController {
     
     @objc func fireTimer() {
         counter+=1
-        if counter > self.counterMax {
+        videoRefreshCounter+=1
+        if counter >= counterMax {
             counter=0;
+        }
+        if (videoRefreshCounter >= videoRefreshMax ) {
+            restartMjpeg()
+            videoRefreshCounter=0
         }
         DispatchQueue.main.async {
             self.history.image = BellAlertViewController.images[self.counter].image
         }
+    }
+    
+    func isMjpeg() -> Bool {
+        return (_isCloud == true || _isLocal == true) && self.stream != nil
     }
 }
 
