@@ -56,11 +56,11 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                         self.message.text = "    \(config.name) settings"
                         self.name.text = config.name
                         self.version.text = config.version
-                        self.storeHistorySwitch.setOn(config.history == "true", animated: false)
-                        self.vertFlipSwitch.setOn(config.vflip == 1, animated: false)
-                        self.horFlipSwitch.setOn(config.hmirror == 1, animated: false)
-                        self.camFramesize.selectRow(self.framesizeIndex(framesize: config.framesize), inComponent: 0, animated: false)
-                        self.timezone.selectRow(tzValues.firstIndex(of: config.timezone) ?? 0, inComponent: 0, animated: false)
+                        self.storeHistorySwitch.setOn(config.history == "true", animated: true)
+                        self.vertFlipSwitch.setOn(config.vflip == 1, animated: true)
+                        self.horFlipSwitch.setOn(config.hmirror == 1, animated: true)
+                        self.camFramesize.selectRow(self.framesizeIndex(framesize: config.framesize), inComponent: 0, animated: true)
+                        self.timezone.selectRow(tzValues.firstIndex(of: config.timezone) ?? 0, inComponent: 0, animated: true)
                     }
                     
                     HttpRequest.latestVersion(self, uuid: SettingsViewController.uuid) { (version) in
@@ -121,9 +121,22 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func deleteHistory(_ sender: UIButton) {
-        HttpRequest.deleteHistory(self, uuid: SettingsViewController.uuid ) { (reponse) in
-            print(reponse)
-        }
+        print("Delete history pressed")
+        
+        let delHistAlert = UIAlertController(title: "Warning", message: "All your motion/alert history will be erased.", preferredStyle: UIAlertController.Style.alert)
+
+        delHistAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            
+            HttpRequest.deleteHistory(self, uuid: SettingsViewController.uuid ) { (reponse) in
+                print(reponse)
+            }
+        }))
+
+        delHistAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+              print("Delete hostory cancelled")
+        }))
+        
+        present(delHistAlert, animated: true, completion: nil)
     }
     
     @IBAction func verticalFlip(_ sender: UISwitch) {
@@ -236,7 +249,6 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             case 1:
                 print(tzValues[row])
             
-            
                 let timeZoneAlert = UIAlertController(title: "Warning", message: "Do you really want to change the timezone ?", preferredStyle: UIAlertController.Style.alert)
 
                 timeZoneAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
@@ -247,10 +259,10 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 
                 timeZoneAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
                       print("Timezone change cancelled")
+                    self.timezone.selectRow(tzValues.firstIndex(of: self.config.timezone) ?? 0, inComponent: 0, animated: true)
                 }))
 
                 present(timeZoneAlert, animated: true, completion: nil)
-            
             
                 break
             case 2:
@@ -266,6 +278,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 
                 framesizeAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
                       print("Fraemsize change cancelled")
+                    self.camFramesize.selectRow(self.framesizeIndex(framesize: self.config.framesize), inComponent: 0, animated: true)
                 }))
 
                 present(framesizeAlert, animated: true, completion: nil)

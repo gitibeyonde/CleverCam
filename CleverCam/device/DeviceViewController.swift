@@ -109,9 +109,9 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
         cell.deviceName.text = da.device_name
         cell.configure(uuid: da.uuid)
         
-        if index < ApiContext.shared.deviceAlertList.count {
+        if index <= ApiContext.shared.deviceAlertList.count {
             let al: Array<Alert> = ApiContext.shared.getDeviceAlerts(uuid: da.uuid)
-            if al.count > 0 {
+            if al.count > 0 && al.count > counter {
                 let url_str = al[counter].url
                 let data:Data = ApiContext.shared.getImage(url: url_str)
                 if !data.isEmpty {
@@ -120,7 +120,7 @@ class DeviceViewController: UIViewController, UITableViewDataSource, UITableView
                 }
             }
         }
-        else if (ApiContext.shared.deviceAlertList.count == 0){
+        else {
             cell.deviceImage.image = UIImage(named: "no_image")
             cell.progress.stopAnimating()
         }
