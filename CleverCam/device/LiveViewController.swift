@@ -14,7 +14,7 @@ class LiveViewController: UIViewController {
     @IBOutlet weak var localStream: UILabel!
     @IBOutlet weak var cloudStream: UILabel!
     @IBOutlet weak var directStream: UILabel!
-    @IBOutlet var header: UILabel!
+    @IBOutlet weak var header: UILabel!
     
     public static var uuid: String = ""
     var stream: MJPEGStreamLib!

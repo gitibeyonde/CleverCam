@@ -16,16 +16,18 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var config:CameraConfig = CameraConfig()
     
     @IBOutlet weak var message_top: UILabel!
-    @IBOutlet var name: UITextField!
-    @IBOutlet var version: UILabel!
-    @IBOutlet var timezone: UIPickerView!
-    @IBOutlet var camFramesize: UIPickerView!
-    @IBOutlet var activity: UIActivityIndicatorView!
-    @IBOutlet var message: UILabel!
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var version: UILabel!
+    @IBOutlet weak var timezone: UIPickerView!
+    @IBOutlet weak var camFramesize: UIPickerView!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var message: UILabel!
     
-    @IBOutlet var storeHistorySwitch: UISwitch!
-    @IBOutlet var vertFlipSwitch: UISwitch!
-    @IBOutlet var horFlipSwitch: UISwitch!
+    @IBOutlet weak var nameChangeButton: UIButton!
+    @IBOutlet weak var deleteHistoryButton: UIButton!
+    @IBOutlet weak var storeHistorySwitch: UISwitch!
+    @IBOutlet weak var vertFlipSwitch: UISwitch!
+    @IBOutlet weak var horFlipSwitch: UISwitch!
     
     @IBOutlet weak var upgradeButton: UIButton!
     
@@ -56,6 +58,15 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                         self.message.text = "    \(config.name) settings"
                         self.name.text = config.name
                         self.version.text = config.version
+                        
+                        self.nameChangeButton.isEnabled = true
+                        self.storeHistorySwitch.isEnabled = true
+                        self.deleteHistoryButton.isEnabled = true
+                        self.vertFlipSwitch.isEnabled = true
+                        self.horFlipSwitch.isEnabled = true
+                        self.camFramesize.isUserInteractionEnabled = true
+                        self.timezone.isUserInteractionEnabled = true
+                        
                         self.storeHistorySwitch.setOn(config.history == "true", animated: true)
                         self.vertFlipSwitch.setOn(config.vflip == 1, animated: true)
                         self.horFlipSwitch.setOn(config.hmirror == 1, animated: true)

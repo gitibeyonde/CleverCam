@@ -9,7 +9,7 @@ import UIKit
 
 class DeviceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     var counter: Int = 0
     public static var device_timer = Timer()
     

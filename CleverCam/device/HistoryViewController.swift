@@ -10,7 +10,7 @@ import UIKit
 class HistoryViewController: UIViewController,  UITableViewDataSource, UITableViewDelegate  {
     
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     public static var uuid: String = ""
     
     override func viewDidLoad() {

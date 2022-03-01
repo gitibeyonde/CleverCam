@@ -381,7 +381,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ico256" translatesAutoresizingMaskIntoConstraints="NO" id="RRX-iU-1p2">
-                                                <rect key="frame" x="128" y="40" width="80" height="80"/>
+                                                <rect key="frame" x="127" y="40" width="80" height="80"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Re-enter Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4J9-K9-9gD">
@@ -883,7 +883,7 @@
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="P5h-kl-J0W">
+                                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="P5h-kl-J0W">
                                                                 <rect key="frame" x="203" y="-1" width="100" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <color key="tintColor" name="colSec"/>
@@ -918,7 +918,7 @@
                                                                 <color key="textColor" name="colSecText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afL-25-rx3">
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afL-25-rx3">
                                                                 <rect key="frame" x="280" y="11" width="51" height="31"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <connections>
@@ -932,7 +932,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qzf-MK-9ia">
                                                         <rect key="frame" x="0.0" y="288.33333333333331" width="337" height="57.666666666666686"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="b2X-dv-4iF">
+                                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="b2X-dv-4iF">
                                                                 <rect key="frame" x="240" y="4" width="98" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <color key="tintColor" name="colSec"/>
@@ -962,7 +962,7 @@
                                                                 <color key="textColor" name="colSecText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcH-Oj-RTe" userLabel="timeZone">
+                                                            <pickerView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcH-Oj-RTe" userLabel="timeZone">
                                                                 <rect key="frame" x="140" y="4" width="259" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <connections>
@@ -984,7 +984,7 @@
                                                                 <color key="textColor" name="colSecText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQt-OX-zVX">
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQt-OX-zVX">
                                                                 <rect key="frame" x="280" y="11" width="51" height="31"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <connections>
@@ -1005,7 +1005,7 @@
                                                                 <color key="textColor" name="colSecText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="GgP-O0-Sc8" userLabel="horizFlipSwitch">
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="GgP-O0-Sc8" userLabel="horizFlipSwitch">
                                                                 <rect key="frame" x="280" y="11" width="52" height="30"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <connections>
@@ -1026,7 +1026,7 @@
                                                                 <color key="textColor" name="colSecText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eKg-8j-AGh" userLabel="camFramesize">
+                                                            <pickerView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eKg-8j-AGh" userLabel="camFramesize">
                                                                 <rect key="frame" x="180" y="6" width="150" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <connections>
@@ -1164,10 +1164,12 @@
                     <connections>
                         <outlet property="activity" destination="aAQ-pC-jKJ" id="T8A-KH-nEu"/>
                         <outlet property="camFramesize" destination="eKg-8j-AGh" id="JXY-Hr-1pF"/>
+                        <outlet property="deleteHistoryButton" destination="b2X-dv-4iF" id="5XY-3b-Qi2"/>
                         <outlet property="horFlipSwitch" destination="GgP-O0-Sc8" id="hxt-C4-W3P"/>
                         <outlet property="message" destination="caD-rl-f9N" id="ySL-Te-5UW"/>
                         <outlet property="message_top" destination="Kil-fx-EWa" id="ZGW-wE-CMf"/>
                         <outlet property="name" destination="EO3-fI-eYh" id="UAU-za-jgy"/>
+                        <outlet property="nameChangeButton" destination="P5h-kl-J0W" id="GGP-hU-h9A"/>
                         <outlet property="storeHistorySwitch" destination="afL-25-rx3" id="9y1-Wm-vc0"/>
                         <outlet property="timezone" destination="vcH-Oj-RTe" id="DUC-I4-fUb"/>
                         <outlet property="upgradeButton" destination="Kp4-sH-iYN" id="ujg-DY-I9H"/>
